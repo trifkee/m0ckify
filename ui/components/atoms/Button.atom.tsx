@@ -2,10 +2,10 @@ import "@/ui/styles/atoms/button.atom.scss";
 
 export default function Button({
   children,
-  variant,
+  variant = "primary",
 }: {
   children: React.ReactNode;
-  variant?: "secondary";
+  variant?: "primary" | "secondary" | "transparent";
 }) {
   return (
     <button className={`button ${variant ? variant : ""}`}>{children}</button>

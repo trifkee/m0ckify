@@ -4,5 +4,16 @@
 *::after {
   margin: 0;
   padding: 0;
+  color: #fff;
   box-sizing: border-box;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  font-style: italic;
 }

@@ -6,6 +6,7 @@ import { getMessages } from "next-intl/server";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
+import Nav from "@/ui/components/moleculs/Nav.molecul";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body className={`${inter.className} body`}>
         <NextIntlClientProvider messages={messages}>
+          <Nav />
           {children}
         </NextIntlClientProvider>
       </body>

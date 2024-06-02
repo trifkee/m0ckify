@@ -1,3 +1,33 @@
+@import "variables.scss";
+
 .home {
-  color: red;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 90dvh;
+  gap: 2rem;
+  max-width: $max-width;
+
+  &-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    .title {
+      color: $primary-clr-500;
+      font-size: clamp(1.25rem, 10vw, 2.5rem);
+    }
+    .desc {
+      max-width: 70ch;
+    }
+  }
+
+  & .button {
+    width: 100%;
+    border-radius: 0.25rem;
+    padding: 1rem 1.5rem;
+  }
 }
