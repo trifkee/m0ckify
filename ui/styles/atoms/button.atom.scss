@@ -1,0 +1,39 @@
+@import "variables.scss";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: $secondary-clr-700;
+  color: $primary-clr-100;
+  border: none;
+  font-size: 1rem;
+  // font-size: clamp(0.75rem, 5vw, 1.25rem);
+  border-radius: 0.25rem;
+  padding: 0.5rem 1.25rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $secondary-clr-700;
+  }
+
+  &.secondary {
+    background: $primary-clr-100;
+    color: $secondary-clr-900;
+
+    &:hover {
+      background: $primary-clr-200;
+    }
+  }
+
+  &.transparent {
+    background: transparent;
+    color: $primary-clr-500;
+
+    // &:hover {
+    //   background: $secondary-clr-900;
+    // }
+  }
+}
