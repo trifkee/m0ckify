@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
+
+import Nav from "@/ui/components/moleculs/Nav.molecul";
 // TRANSLATIONS
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
-import Nav from "@/ui/components/moleculs/Nav.molecul";
 
-const inter = Montserrat({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mockify",
