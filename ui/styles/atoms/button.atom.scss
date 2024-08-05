@@ -24,6 +24,10 @@
     }
   }
 
+  p {
+    color: inherit;
+  }
+
   &:hover {
     background: $primary-clr-600;
   }

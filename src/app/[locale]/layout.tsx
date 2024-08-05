@@ -8,6 +8,7 @@ import { getMessages } from "next-intl/server";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
+import { ContextProvider } from "@/ui/providers/ContextProvider.provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,13 +27,15 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.className} body`}>
-        <NextIntlClientProvider messages={messages}>
-          <Nav />
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <ContextProvider>
+      <html lang={locale}>
+        <body className={`${inter.className} body`}>
+          <NextIntlClientProvider messages={messages}>
+            <Nav />
+            {children}
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    </ContextProvider>
   );
 }

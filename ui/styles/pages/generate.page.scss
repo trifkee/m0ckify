@@ -16,12 +16,16 @@
       "slider-x slider-x slider-x none";
     grid-gap: 1rem;
     grid-template-rows: 1fr 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: clamp(20rem, 50vw, 50rem);
 
     .model {
       outline: 1px solid $secondary-clr-900;
       background-color: rgb($secondary-clr-900, 0.85);
       color: $white-clr;
-      aspect-ratio: 1;
+      grid-row: 1/4;
+      grid-column: 1/4;
+      // aspect-ratio: 1;
       padding: 1rem;
       border-radius: 0.5rem;
     }
@@ -84,6 +88,37 @@
       &:not(:is(.download)) {
         p {
           display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .generate {
+    height: 100dvh;
+    flex-direction: row;
+    align-items: center;
+
+    &__model {
+      flex: 3;
+      aspect-ratio: 1;
+      height: auto;
+    }
+
+    &__controls {
+      flex: 1;
+      height: min-content;
+      display: flex;
+      flex-direction: column;
+
+      & > * {
+        justify-content: space-between;
+      }
+
+      & > *:not(:is(.download)) {
+        p {
+          display: block;
         }
       }
     }
