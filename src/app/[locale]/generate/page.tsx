@@ -1,5 +1,6 @@
 "use client";
 
+import { ModelType } from "@/types/model.type";
 import Button from "@/ui/components/atoms/Button.atom";
 import Context from "@/ui/providers/ContextProvider.provider";
 import ModelProvider from "@/ui/providers/ModelProvider.provider";
@@ -13,17 +14,30 @@ import {
 } from "react-icons/io5";
 
 export default function Generate() {
-  const { setModelPosition } = useContext(Context);
+  const { setModel, model } = useContext(Context);
 
   const onChangeSlider = (e: any, axis: "x" | "y") => {
-    setModelPosition((prev: any) => ({
+    setModel((prev: ModelType) => ({
       ...prev,
-      [axis]: e.target.value,
+      position: {
+        ...prev.position,
+        [axis]: e.target.value,
+      },
+    }));
+  };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const image = e.target.files?.[0];
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: URL.createObjectURL(image as Blob | MediaSource),
     }));
   };
 
   return (
     <main className="generate">
+      <img src={model.image || null} alt="" />
       <article className="generate__model">
         <ModelProvider />
         <input
@@ -31,9 +45,17 @@ export default function Generate() {
           name="x"
           id="x"
           onChange={(e) => onChangeSlider(e, "x")}
+          value={model.position.x}
+          min={-2}
+          max={2}
+          step={0.001}
           className="slider-x"
         />
         <input
+          value={model.position.y}
+          min={-2}
+          max={2}
+          step={0.001}
           type="range"
           name="y"
           id="y"
@@ -45,6 +67,14 @@ export default function Generate() {
         <Button variant="secondary">
           <p>Add image </p>
           <IoAddCircle />
+          <input
+            onChange={handleImageChange}
+            className="add-file"
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+          />
         </Button>
 
         <Button variant="secondary">

@@ -1,20 +1,24 @@
 "use client";
 
+import { ModelType } from "@/types/model.type";
 import { createContext, useState } from "react";
 
 const Context = createContext<any>(null);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
-  const [modelPosition, setModelPosition] = useState({
-    x: 0,
-    y: 0,
+  const [model, setModel] = useState<ModelType>({
+    position: {
+      x: 0,
+      y: 0,
+    },
+    image: null,
   });
 
   return (
     <Context.Provider
       value={{
-        modelPosition,
-        setModelPosition,
+        model,
+        setModel,
       }}
     >
       {children}
