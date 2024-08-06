@@ -2,6 +2,7 @@
 
 import { ModelType } from "@/types/model.type";
 import { createContext, useState } from "react";
+import fallbackImage from "@/public/images/fallback.jpg";
 
 const Context = createContext<any>(null);
 
@@ -11,7 +12,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       x: 0,
       y: 0,
     },
-    image: null,
+    image: fallbackImage.src as any,
   });
 
   return (

@@ -4,14 +4,15 @@ import { ModelType } from "@/types/model.type";
 import Button from "@/ui/components/atoms/Button.atom";
 import Context from "@/ui/providers/ContextProvider.provider";
 import ModelProvider from "@/ui/providers/ModelProvider.provider";
-import "@/ui/styles/pages/generate.page.scss";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import {
   IoAddCircle,
   IoColorPaletteSharp,
   IoCubeSharp,
   IoSaveSharp,
 } from "react-icons/io5";
+
+import "@/ui/styles/pages/generate.page.scss";
 
 export default function Generate() {
   const { setModel, model } = useContext(Context);
@@ -29,15 +30,24 @@ export default function Generate() {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const image = e.target.files?.[0];
 
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: URL.createObjectURL(image as Blob | MediaSource),
-    }));
+    reader(image);
   };
+
+  const reader = (file: any) =>
+    new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.onload = () => resolve(fileReader.result);
+      fileReader.readAsDataURL(file);
+    }).then((result) => {
+      setModel((prev: ModelType) => ({
+        ...prev,
+        image: result,
+      }));
+    });
 
   return (
     <main className="generate">
-      <img src={model.image || null} alt="" />
+      {/* <img src={model.image || null} alt="" /> */}
       <article className="generate__model">
         <ModelProvider />
         <input
@@ -48,14 +58,14 @@ export default function Generate() {
           value={model.position.x}
           min={-2}
           max={2}
-          step={0.001}
+          step={0.25}
           className="slider-x"
         />
         <input
           value={model.position.y}
           min={-2}
           max={2}
-          step={0.001}
+          step={0.25}
           type="range"
           name="y"
           id="y"

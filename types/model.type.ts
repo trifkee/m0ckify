@@ -3,5 +3,5 @@ export type ModelType = {
     x: number;
     y: number;
   };
-  image: File | null;
+  image: File;
 };

@@ -28,6 +28,14 @@
       // aspect-ratio: 1;
       padding: 1rem;
       border-radius: 0.5rem;
+      position: relative;
+
+      &__reset-cta {
+        z-index: 2;
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+      }
     }
 
     & > p {
