@@ -18,6 +18,7 @@
   cursor: pointer;
 
   svg {
+    transition: 0.1s ease-in transform;
     color: inherit;
 
     * {
@@ -38,6 +39,10 @@
 
   &:hover {
     background: $primary-clr-600;
+
+    svg {
+      transform: translateX(2px);
+    }
   }
 
   &.secondary {
@@ -71,8 +76,6 @@
 
   &.disabled {
     background: $dark-gray-clr;
-    // cursor: not-allowed;
-    // pointer-events: none;
     color: $light-gray-clr;
 
     &:hover {

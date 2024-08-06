@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import "@/ui/styles/pages/home.page.scss";
 import Nav from "@/ui/components/moleculs/Nav.molecul";
 import Button from "@/ui/components/atoms/Button.atom";
-import { IoBrushSharp } from "react-icons/io5";
+import { IoArrowForwardSharp, IoBrushSharp } from "react-icons/io5";
 import { Link } from "@/navigation";
 
 export default function Home() {
@@ -20,7 +20,10 @@ export default function Home() {
 
         <Link href={"/generate"}>
           <Button variant="secondary">
-            {g("start")} <IoBrushSharp />
+            {g("start")}
+            <IoArrowForwardSharp />
+
+            {/* <IoBrushSharp /> */}
           </Button>
         </Link>
       </section>

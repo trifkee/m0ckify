@@ -1,6 +1,6 @@
 "use client";
 
-import { ModelType } from "@/types/model.type";
+import { ModelType } from "@/lib/types/model.type";
 import Button from "@/ui/components/atoms/Button.atom";
 import Context from "@/ui/providers/ContextProvider.provider";
 import ModelProvider from "@/ui/providers/ModelProvider.provider";
@@ -13,6 +13,7 @@ import {
 } from "react-icons/io5";
 
 import "@/ui/styles/pages/generate.page.scss";
+import { saveImageFromCanvas } from "@/lib/helpers/saveImage";
 
 export default function Generate() {
   const { setModel, model } = useContext(Context);
@@ -45,6 +46,10 @@ export default function Generate() {
       }));
     });
 
+  const handleSave = () => {
+    saveImageFromCanvas();
+  };
+
   return (
     <main className="generate">
       {/* <img src={model.image || null} alt="" /> */}
@@ -56,16 +61,16 @@ export default function Generate() {
           id="x"
           onChange={(e) => onChangeSlider(e, "x")}
           value={model.position.x}
-          min={-2}
-          max={2}
-          step={0.25}
+          min={-0.5}
+          max={0.5}
+          step={0.025}
           className="slider-x"
         />
         <input
           value={model.position.y}
-          min={-2}
-          max={2}
-          step={0.25}
+          min={-0.5}
+          max={0.5}
+          step={0.025}
           type="range"
           name="y"
           id="y"
@@ -83,7 +88,7 @@ export default function Generate() {
             type="file"
             id="avatar"
             name="avatar"
-            accept="image/png, image/jpeg"
+            accept="image/*"
           />
         </Button>
 
@@ -95,7 +100,7 @@ export default function Generate() {
           <p>Color</p> <IoColorPaletteSharp />
         </Button>
 
-        <Button className="download">
+        <Button onClick={handleSave} className="download">
           <p>Download</p> <IoSaveSharp />
         </Button>
       </article>

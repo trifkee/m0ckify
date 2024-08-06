@@ -1,21 +1,20 @@
 "use client";
 
-import { useContext } from "react";
-import * as THREE from "three";
+import { useContext, useRef } from "react";
 
-import { OrbitControls } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Environment, OrbitControls } from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
 import Context from "./ContextProvider.provider";
-import { IoInvertMode, IoMove, IoSwapHorizontalOutline } from "react-icons/io5";
+import { IoSwapHorizontalOutline } from "react-icons/io5";
 import Button from "../components/atoms/Button.atom";
-import { ModelType } from "@/types/model.type";
+import { ModelType } from "@/lib/types/model.type";
+import Phone from "../models/Phone.model";
+import { saveImageFromCanvas } from "@/lib/helpers/saveImage";
 
 export default function ModelProvider() {
-  const { model, setModel } = useContext(Context);
+  const { setModel } = useContext(Context);
 
-  const keyString = JSON.stringify(model.image);
-
-  const texture = useLoader(THREE.TextureLoader, model.image);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const resetModelPosition = () => {
     setModel((prev: ModelType) => ({
@@ -37,18 +36,32 @@ export default function ModelProvider() {
         Reset
         <IoSwapHorizontalOutline />
       </Button>
-      <Canvas>
-        <ambientLight intensity={1} />
-        <pointLight position={[0, 20, 10]} intensity={1.5} />
-        <mesh
-          key={keyString}
-          rotation={[model.position.y, model.position.x, 0]}
-        >
-          <boxGeometry args={[3, 3, 3]} />
-          <meshStandardMaterial map={texture as THREE.Texture} />
-        </mesh>
+      <Canvas
+        gl={{ preserveDrawingBuffer: true }}
+        ref={canvasRef}
+        linear
+        shadows
+      >
+        <Lights />
+        <Model />
+
         {/* <OrbitControls /> */}
       </Canvas>
     </div>
   );
+}
+
+function Lights() {
+  return (
+    <>
+      <Environment preset="park" environmentIntensity={0.5} />
+      <ambientLight intensity={1} />
+      <directionalLight intensity={10} position={[-2, -2, -5]} />
+      <directionalLight intensity={2} position={[-2, 1, 5]} />
+    </>
+  );
+}
+
+function Model() {
+  return <Phone />;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ModelType } from "@/types/model.type";
+import { ModelType } from "@/lib/types/model.type";
 import { createContext, useState } from "react";
 import fallbackImage from "@/public/images/fallback.jpg";
 
@@ -8,6 +8,7 @@ const Context = createContext<any>(null);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [model, setModel] = useState<ModelType>({
+    title: "new mockify",
     position: {
       x: 0,
       y: 0,
