@@ -1,39 +1,85 @@
 @import "variables.scss";
 
 .button {
+  font-size: 1.1rem;
+  text-wrap: nowrap;
+  padding: 14px 20px;
+  color: $white-clr;
+  background: $primary-clr-500;
+  border-radius: 0.75rem;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: $secondary-clr-700;
-  color: $primary-clr-100;
-  border: none;
-  font-size: 1rem;
-  // font-size: clamp(0.75rem, 5vw, 1.25rem);
-  border-radius: 0.25rem;
-  padding: 0.5rem 1.25rem;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+
+  transition: 0.1s ease-in background;
   cursor: pointer;
 
+  svg {
+    transition: 0.1s ease-in transform;
+    color: inherit;
+
+    * {
+      color: inherit;
+    }
+  }
+
+  p {
+    color: inherit;
+  }
+  .add-file {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+
   &:hover {
-    background-color: $secondary-clr-700;
+    background: $primary-clr-600;
+
+    svg {
+      transform: translateX(2px);
+    }
   }
 
   &.secondary {
-    background: $primary-clr-100;
-    color: $secondary-clr-900;
+    background: $secondary-clr-800;
+    color: $primary-clr-300;
 
     &:hover {
-      background: $primary-clr-200;
+      background: $secondary-clr-900;
+    }
+  }
+
+  &.outlined {
+    border: 1px solid $primary-clr-500;
+    color: $primary-clr-500;
+    background: transparent;
+
+    &:hover {
+      background: rgb($secondary-clr-900, 1);
     }
   }
 
   &.transparent {
     background: transparent;
-    color: $primary-clr-500;
+    border: none;
+    color: inherit;
 
-    // &:hover {
-    //   background: $secondary-clr-900;
-    // }
+    &:hover {
+      background: rgb($secondary-clr-900, 0.75);
+    }
+  }
+
+  &.disabled {
+    background: $dark-gray-clr;
+    color: $light-gray-clr;
+
+    &:hover {
+      background: rgb($dark-gray-clr, 0.85);
+    }
   }
 }

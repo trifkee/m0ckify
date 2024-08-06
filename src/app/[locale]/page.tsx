@@ -1,22 +1,32 @@
 import { useTranslations } from "next-intl";
-import { IoAddCircle } from "react-icons/io5";
 
 import "@/ui/styles/pages/home.page.scss";
+import Nav from "@/ui/components/moleculs/Nav.molecul";
 import Button from "@/ui/components/atoms/Button.atom";
+import { IoArrowForwardSharp, IoBrushSharp } from "react-icons/io5";
 import { Link } from "@/navigation";
 
 export default function Home() {
   const t = useTranslations("home");
-  return (
-    <div className="home wrapper">
-      <div className="home-title">
-        <h1 className="title">{t("title")}</h1>
-        <p className="desc">{t("description")}</p>
-      </div>
+  const g = useTranslations("global");
 
-      <Link href="/generate">
-        <Button>Počni odmah!</Button>
-      </Link>
-    </div>
+  return (
+    <main className="home">
+      <section className="home__header">
+        <div className="title">
+          <h1>{t("title")}</h1>
+          <p>{t("description")}</p>
+        </div>
+
+        <Link href={"/generate"}>
+          <Button variant="secondary">
+            {g("start")}
+            <IoArrowForwardSharp />
+
+            {/* <IoBrushSharp /> */}
+          </Button>
+        </Link>
+      </section>
+    </main>
   );
 }

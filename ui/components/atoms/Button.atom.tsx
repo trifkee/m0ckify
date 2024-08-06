@@ -1,13 +1,24 @@
+"use client";
+
 import "@/ui/styles/atoms/button.atom.scss";
 
 export default function Button({
   children,
   variant = "primary",
+  className,
+  onClick,
 }: {
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "transparent";
+  className?: string;
+  onClick?: CallableFunction;
+  variant?: "primary" | "secondary" | "transparent" | "outlined" | "disabled";
 }) {
   return (
-    <button className={`button ${variant ? variant : ""}`}>{children}</button>
+    <button
+      onClick={() => (onClick ? onClick() : null)}
+      className={`button ${variant ? variant : ""} ${className}`}
+    >
+      {children}
+    </button>
   );
 }

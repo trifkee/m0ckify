@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
+
+import Nav from "@/ui/components/moleculs/Nav.molecul";
 // TRANSLATIONS
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
-import Nav from "@/ui/components/moleculs/Nav.molecul";
+import { ContextProvider } from "@/ui/providers/ContextProvider.provider";
 
-const inter = Montserrat({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mockify",
@@ -25,13 +27,15 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
-      <body className={`${inter.className} body`}>
-        <NextIntlClientProvider messages={messages}>
-          <Nav />
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <ContextProvider>
+      <html lang={locale}>
+        <body className={`${inter.className} body`}>
+          <NextIntlClientProvider messages={messages}>
+            <Nav />
+            {children}
+          </NextIntlClientProvider>
+        </body>
+      </html>
+    </ContextProvider>
   );
 }

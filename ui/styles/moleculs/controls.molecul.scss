@@ -1,0 +1,11 @@
+@import "variables.scss";
+
+.controls {
+  position: fixed;
+  right: 1rem;
+  top: 10rem;
+  max-width: 18rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

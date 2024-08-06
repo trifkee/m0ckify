@@ -1,0 +1,141 @@
+@import "variables.scss";
+
+.generate {
+  padding: 1rem;
+  display: flex;
+  max-height: 100vh;
+  gap: 2rem;
+  flex-direction: column;
+
+  &__model {
+    display: grid;
+    grid-template-areas:
+      "model model model slider-y"
+      "model model model slider-y"
+      "model model model slider-y"
+      "slider-x slider-x slider-x none";
+    grid-gap: 1rem;
+    grid-template-rows: 1fr 1fr 1fr auto;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: clamp(20rem, 50vw, 50rem);
+
+    .model {
+      outline: 1px solid $secondary-clr-900;
+      background-color: rgb($secondary-clr-900, 0.85);
+      color: $white-clr;
+      grid-row: 1/4;
+      grid-column: 1/4;
+      // aspect-ratio: 1;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      position: relative;
+
+      &__reset-cta {
+        z-index: 2;
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+      }
+
+      &__save-cta {
+        z-index: 2;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+    }
+
+    & > p {
+      grid-area: model;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      //   width: 15rem;
+
+      &::-webkit-slider-runnable-track {
+        padding: 0.25rem;
+        background: $secondary-clr-900;
+        border-radius: 10rem;
+      }
+
+      &::-webkit-slider-thumb {
+        appearance: none;
+        width: 1rem;
+        aspect-ratio: 1;
+        border-radius: 100%;
+
+        background: $primary-clr-500;
+      }
+    }
+
+    .slider-x {
+      grid-area: slider-x;
+      writing-mode: horizontal-tb;
+      direction: ltr;
+    }
+
+    .slider-y {
+      writing-mode: vertical-lr;
+      direction: rtl;
+      appearance: slider-vertical;
+      grid-area: slider-y;
+    }
+  }
+
+  &__controls {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    // display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
+
+    & > * {
+      &:is(.download) {
+        grid-column: 1/-1;
+      }
+
+      &:not(:is(.download)) {
+        p {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .generate {
+    height: 100dvh;
+    flex-direction: row;
+    align-items: center;
+
+    &__model {
+      flex: 3;
+      aspect-ratio: 1;
+      height: auto;
+    }
+
+    &__controls {
+      flex: 1;
+      height: min-content;
+      display: flex;
+      flex-direction: column;
+
+      & > * {
+        justify-content: space-between;
+      }
+
+      & > *:not(:is(.download)) {
+        p {
+          display: block;
+        }
+      }
+    }
+  }
+}
