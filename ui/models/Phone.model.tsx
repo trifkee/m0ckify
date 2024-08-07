@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import React, { useContext } from "react";
-import { useGLTF, PerspectiveCamera } from "@react-three/drei";
+import { useGLTF, PerspectiveCamera, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import Context from "../providers/ContextProvider.provider";
 import { useLoader } from "@react-three/fiber";
@@ -22,15 +22,62 @@ export default function Phone(props: JSX.IntrinsicElements["group"]) {
 
   const { model } = useContext(Context);
 
-  const texture = useLoader(THREE.TextureLoader, model.image);
+  const texture = useLoader(THREE.TextureLoader, model.image.src);
 
-  // @ts-expect-error
+  /* MARBLE MATERIAL */
+  const textureMarbleProps = useTexture({
+    map: "/textures/marble/White_Marble_004_COLOR.jpg",
+    normalMap: "/textures/marble/White_Marble_004_NORM.jpg",
+    roughnessMap: "/textures/marble/White_Marble_004_ROUGH.jpg",
+    aoMap: "/textures/marble/White_Marble_004_OCC.jpg",
+  });
+
+  textureMarbleProps.aoMap.repeat.set(4, 4);
+  textureMarbleProps.roughnessMap.repeat.set(4, 4);
+  textureMarbleProps.normalMap.repeat.set(4, 4);
+  textureMarbleProps.map.repeat.set(4, 4);
+
+  textureMarbleProps.map.wrapS =
+    textureMarbleProps.map.wrapT =
+    textureMarbleProps.roughnessMap.wrapS =
+    textureMarbleProps.roughnessMap.wrapT =
+    textureMarbleProps.normalMap.wrapS =
+    textureMarbleProps.normalMap.wrapT =
+    textureMarbleProps.aoMap.wrapS =
+    textureMarbleProps.aoMap.wrapT =
+      THREE.RepeatWrapping;
+
+  /* PLASTIC MATERIAL */
+  const texturePlasticProps = useTexture({
+    map: "/textures/plastic/Plastic_Rough_001_basecolor.jpg",
+    normalMap: "/textures/plastic/Plastic_Rough_001_normal.jpg",
+    roughnessMap: "/textures/plastic/Plastic_Rough_001_roughness.jpg",
+    aoMap: "/textures/plastic/Plastic_Rough_001_ambientOcclusion.jpg",
+  });
+
+  texturePlasticProps.aoMap.repeat.set(4, 4);
+  texturePlasticProps.roughnessMap.repeat.set(4, 4);
+  texturePlasticProps.normalMap.repeat.set(4, 4);
+  texturePlasticProps.map.repeat.set(4, 4);
+
+  texturePlasticProps.map.wrapS =
+    texturePlasticProps.map.wrapT =
+    texturePlasticProps.roughnessMap.wrapS =
+    texturePlasticProps.roughnessMap.wrapT =
+    texturePlasticProps.normalMap.wrapS =
+    texturePlasticProps.normalMap.wrapT =
+    texturePlasticProps.aoMap.wrapS =
+    texturePlasticProps.aoMap.wrapT =
+      THREE.RepeatWrapping;
+
+  /* SCREEN MOCKUP */
+  // @ts-ignore
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-  // @ts-expect-error
+  // @ts-ignore
   texture.repeat.set(3, 4.125);
-  // @ts-expect-error
+  // @ts-ignore
   texture.center.set(0.5, 0.5);
-  // @ts-expect-error
+  // @ts-ignore
   texture.rotation = Math.PI / 2;
 
   return (
@@ -43,24 +90,40 @@ export default function Phone(props: JSX.IntrinsicElements["group"]) {
             rotation={[0, -Math.PI / 2, 0]}
             material-roughness={2}
             dispose={null}
+            receiveShadow
+            position={[0, 0, -0.0005]}
+            visible
           >
-            {/* @ts-ignore */}
-            <meshStandardMaterial attach="material" map={texture} />
+            <meshStandardMaterial
+              attach="material"
+              // color={model.color}
+              // @ts-ignore
+              map={texture}
+            />
           </mesh>
-          <mesh
-            geometry={nodes.Phone.geometry}
-            material={materials["Matte Metallic Paint.001"]}
-            rotation={[0, -Math.PI / 2, 0]}
-          >
-            {/* <meshStandardMaterial color={"black"} /> */}
+          <mesh geometry={nodes.Phone.geometry} rotation={[0, -Math.PI / 2, 0]}>
+            <meshStandardMaterial
+              side={THREE.DoubleSide}
+              color={model.color}
+              {...(model.texture === "plastic"
+                ? texturePlasticProps
+                : textureMarbleProps)}
+            />
           </mesh>
           <mesh
             material-roughness={0.85}
             dispose={null}
             geometry={nodes.Camera.geometry}
-            material={materials["Matte Metallic Paint.001"]}
             rotation={[0, -Math.PI / 2, 0]}
-          />
+          >
+            <meshStandardMaterial
+              side={THREE.DoubleSide}
+              color={model.color}
+              {...(model.texture === "plastic"
+                ? texturePlasticProps
+                : textureMarbleProps)}
+            />
+          </mesh>
         </group>
         <PerspectiveCamera
           makeDefault={false}

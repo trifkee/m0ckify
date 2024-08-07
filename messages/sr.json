@@ -8,10 +8,12 @@
   },
   "generate": {
     "controls": {
-      "upload": "Dodaj",
+      "upload": "Dodaj sliku",
       "download": "Preuzmi",
-      "more": "Napredne kontrole",
-      "bg": "Pozadina"
+      "model": "Izaberi model",
+      "bg": "Izaberi pozadinu",
+      "color": "Izaberi boju",
+      "reset-position": "Resetuj"
     }
   }
 }

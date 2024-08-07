@@ -1,65 +1,61 @@
 @import "variables.scss";
 
 .generate {
-  padding: 1rem;
-  display: flex;
-  max-height: 100vh;
-  gap: 2rem;
-  flex-direction: column;
+  overflow: hidden;
+  height: 100vh;
+  display: grid;
+
+  width: 100%;
+  grid-template-rows: 0.25fr repeat(4, 1fr); /* 3 columns of 1fr each, and 1 column of 0.5fr */
+  grid-template-columns: repeat(4, 1fr) 0.75fr;
+  grid-template-areas:
+    "navigation navigation navigation navigation navigation"
+    "model model model model menu"
+    "model  model model model menu"
+    "model model model model menu"
+    "model model model model menu";
+
+  &__navigation {
+    width: 100%;
+    grid-area: navigation;
+    grid-row: 1/1;
+    height: 4rem;
+    padding: 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: $dashboard-gray-clr;
+    border-bottom: 1px solid $dashboard-border-clr;
+
+    p {
+      font-weight: lighter;
+      opacity: 0.25;
+    }
+  }
 
   &__model {
+    grid-area: model;
+
     display: grid;
     grid-template-areas:
       "model model model slider-y"
       "model model model slider-y"
       "model model model slider-y"
       "slider-x slider-x slider-x none";
-    grid-gap: 1rem;
-    grid-template-rows: 1fr 1fr 1fr auto;
-    grid-template-columns: 1fr 1fr 1fr;
-    height: clamp(20rem, 50vw, 50rem);
-
-    .model {
-      outline: 1px solid $secondary-clr-900;
-      background-color: rgb($secondary-clr-900, 0.85);
-      color: $white-clr;
-      grid-row: 1/4;
-      grid-column: 1/4;
-      // aspect-ratio: 1;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      position: relative;
-
-      &__reset-cta {
-        z-index: 2;
-        position: absolute;
-        top: 0.5rem;
-        left: 0.5rem;
-      }
-
-      &__save-cta {
-        z-index: 2;
-        position: absolute;
-        top: 0.5rem;
-        right: 0.5rem;
-      }
-    }
-
-    & > p {
-      grid-area: model;
-    }
 
     input[type="range"] {
       -webkit-appearance: none;
       appearance: none;
       background: transparent;
       cursor: pointer;
-      //   width: 15rem;
 
       &::-webkit-slider-runnable-track {
         padding: 0.25rem;
-        background: $secondary-clr-900;
-        border-radius: 10rem;
+        background: rgb($secondary-clr-900, 0.25);
+        backdrop-filter: blur(3px);
+        // border-radius: 10rem;
       }
 
       &::-webkit-slider-thumb {
@@ -69,6 +65,12 @@
         border-radius: 100%;
 
         background: $primary-clr-500;
+
+        transition: 0.2s ease background;
+
+        &:hover {
+          background: $primary-clr-700;
+        }
       }
     }
 
@@ -76,66 +78,236 @@
       grid-area: slider-x;
       writing-mode: horizontal-tb;
       direction: ltr;
+      box-shadow: 50px 0 0 rgb($secondary-clr-900, 0.5);
+      border-top: 1px solid $dashboard-border-clr;
+
+      cursor: w-resize !important;
     }
 
     .slider-y {
+      border-left: 1px solid $dashboard-border-clr;
       writing-mode: vertical-lr;
       direction: rtl;
       appearance: slider-vertical;
       grid-area: slider-y;
+
+      cursor: s-resize !important;
     }
   }
 
   &__controls {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    // display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    width: 100%;
-    justify-content: space-between;
+    overflow-y: auto;
 
-    & > * {
-      &:is(.download) {
-        grid-column: 1/-1;
-      }
-
-      &:not(:is(.download)) {
-        p {
-          display: none;
-        }
-      }
-    }
-  }
-}
-
-@media (min-width: 1000px) {
-  .generate {
-    height: 100dvh;
-    flex-direction: row;
-    align-items: center;
-
-    &__model {
-      flex: 3;
-      aspect-ratio: 1;
-      height: auto;
+    &::-webkit-scrollbar {
+      width: 0.75rem;
+      background: $dark-gray-clr;
+      padding: 0.5rem;
     }
 
-    &__controls {
-      flex: 1;
-      height: min-content;
+    &::-webkit-scrollbar-thumb {
+      background: rgb($dashboard-border-clr, 1);
+      border-radius: 0.5rem;
+    }
+
+    // ----
+    .control {
+      padding: 0.5rem;
+      border-bottom: 1px solid $dashboard-border-clr;
+
       display: flex;
       flex-direction: column;
+      gap: 0.75rem;
 
-      & > * {
-        justify-content: space-between;
+      .divider {
+        height: 1px;
+        background: rgb($dashboard-border-clr, 1);
       }
 
-      & > *:not(:is(.download)) {
-        p {
-          display: block;
+      &__title {
+        font-weight: bold;
+        font-size: clamp(0.5rem, 10vw, 0.85rem);
+      }
+
+      // -----
+
+      &.image {
+        .image-container {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0.5rem;
+          outline: 1px solid $dashboard-border-clr;
+          width: 100%;
+          height: 10rem;
+          overflow: hidden;
+
+          background-image: radial-gradient(
+            circle,
+            rgb($dashboard-border-clr, 0.25) 1px,
+            rgb($dark-gray-clr, 0.5) 1px
+          );
+          background-size: 0.5rem 0.5rem;
+          background-position: center center;
+
+          img {
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+
+      &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow: hidden;
+
+        .title {
+          font-weight: 300;
+          font-size: clamp(0.5rem, 15vw, 0.75rem);
+        }
+
+        .react-colorful {
+          width: 100%;
+          cursor: pointer;
+        }
+
+        .position {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        input[type="number"] {
+          // aspect-ratio: 1;
+          width: 100%;
+          height: 2rem;
+          outline: none;
+          text-align: center;
+          border: 1px solid rgb($dashboard-border-clr, 1);
+          background: rgb($dark-gray-clr, 0.5);
+        }
+
+        .textures {
+          display: flex;
+          gap: 0.25rem;
+        }
+
+        .checkbox-input {
+          width: 100%;
+          position: relative;
+          max-width: 100%;
+          overflow: hidden;
+          cursor: pointer;
+
+          label {
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: $white-clr;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            outline: none;
+            border: 1px solid rgb($dashboard-border-clr, 1);
+            background: rgb($dark-gray-clr, 0.5);
+            transition: 0.2s ease all;
+            position: relative;
+
+            svg {
+              color: inherit;
+              font-size: 0.85rem;
+              display: none;
+            }
+
+            &:has(+ input[type="checkbox"]:checked) {
+              svg {
+                display: block;
+                position: absolute;
+                top: 2px;
+                right: 2px;
+              }
+
+              border: 1px solid $secondary-clr-400;
+              background: rgb($secondary-clr-900, 0.5);
+              color: $primary-clr-200;
+            }
+
+            &:has(+ input[type="checkbox"]:hover) {
+              border: 1px solid $secondary-clr-400;
+              background: rgb($secondary-clr-700, 0.5);
+            }
+          }
+
+          input[type="checkbox"] {
+            cursor: pointer;
+            left: 0;
+            top: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+          }
+        }
+
+        input[type="range"] {
+          -webkit-appearance: none;
+          appearance: none;
+          background: transparent;
+          cursor: pointer;
+
+          &::-webkit-slider-runnable-track {
+            padding: 0.25rem;
+            border: 1px solid rgb($dashboard-border-clr, 1);
+            background: rgb($dark-gray-clr, 0.5);
+
+            border-radius: 10rem;
+          }
+
+          &::-webkit-slider-thumb {
+            appearance: none;
+            width: 0.75rem;
+            aspect-ratio: 1;
+            border-radius: 100%;
+
+            background: rgb($dashboard-border-clr, 1);
+          }
+        }
+      }
+
+      &.select {
+        width: 100%;
+
+        select {
+          width: 100%;
+          color: $white-clr;
+          padding: 0.5rem;
+          border-radius: 0.25rem;
+          outline: none;
+          border: 1px solid rgb($dashboard-border-clr, 1);
+          background: rgb($dark-gray-clr, 0.5);
+          transition: 0.2s ease all;
+
+          &:hover {
+            cursor: pointer;
+            border: 1px solid $secondary-clr-400;
+            background: rgb($secondary-clr-700, 0.5);
+          }
+
+          & > * {
+            border-radius: 0;
+          }
         }
       }
     }
+
+    flex-direction: column;
+    height: 100%;
+    grid-area: menu;
+    background: $dashboard-gray-clr;
+    border-left: 1px solid $dashboard-border-clr;
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ModelType } from "@/lib/types/model.type";
+import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
 import { createContext, useState } from "react";
 import fallbackImage from "@/public/images/fallback.jpg";
 
@@ -8,12 +8,47 @@ const Context = createContext<any>(null);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [model, setModel] = useState<ModelType>({
-    title: "new mockify",
     position: {
       x: 0,
       y: 0,
     },
-    image: fallbackImage.src as any,
+    image: {
+      src: fallbackImage.src as any,
+      isDefault: true,
+    },
+    color: "#fff",
+    texture: "plastic",
+  });
+
+  const [sceneDocument, setSceneDocument] = useState<SceneDocumentType>({
+    title: "Mockify",
+    background: "transparent",
+    env: {
+      preset: "warehouse",
+      intensity: 0.25,
+      color: "#fff",
+      castShadow: true,
+    },
+    lights: {
+      leftDirectional: {
+        color: "#fff",
+        intensity: 0.5,
+        position: {
+          x: -2,
+          y: 1,
+          z: 5,
+        },
+      },
+      rightDirectional: {
+        color: "#fff",
+        intensity: 0.5,
+        position: {
+          x: 5,
+          y: -10,
+          z: 15,
+        },
+      },
+    },
   });
 
   return (
@@ -21,6 +56,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       value={{
         model,
         setModel,
+        sceneDocument,
+        setSceneDocument,
       }}
     >
       {children}
