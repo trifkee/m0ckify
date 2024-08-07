@@ -21,7 +21,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   });
 
   const [sceneDocument, setSceneDocument] = useState<SceneDocumentType>({
-    title: "Mockify",
+    title: "Untitled",
     background: "transparent",
     env: {
       preset: "warehouse",

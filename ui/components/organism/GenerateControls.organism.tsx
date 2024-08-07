@@ -1,181 +1,33 @@
 "use client";
 
-import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
-import Button from "@/ui/components/atoms/Button.atom";
-import { useContext, useEffect } from "react";
-
-import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
-
-import { IoImageSharp, IoSaveSharp, IoSyncSharp } from "react-icons/io5";
-
 import { useTranslations } from "next-intl";
-import Context from "@/ui/providers/ContextProvider.provider";
-import Slider from "../atoms/Slider.atom";
-import { ENV_LIST, MODELS_LIST, TEXTURE_LIST } from "@/lib/constants/generator";
 
 import { HexColorPicker } from "react-colorful";
-import Checkbox from "../atoms/Checkbox.atom";
-import { AnyTxtRecord } from "dns";
+import Slider from "@/ui/components/atoms/Slider.atom";
+import Checkbox from "@/ui/components/atoms/Checkbox.atom";
+import Button from "@/ui/components/atoms/Button.atom";
+
+import { ENV_LIST, MODELS_LIST, TEXTURE_LIST } from "@/lib/constants/generator";
+
+import { IoImageSharp, IoSaveSharp, IoSyncSharp } from "react-icons/io5";
+import useGenerator from "@/ui/hooks/useGenerator.hook";
 
 export default function GenerateControls() {
-  const { model, setModel, sceneDocument, setSceneDocument } =
-    useContext(Context);
   const t = useTranslations("generate");
 
-  const handleSave = () => {
-    saveImageFromCanvas({ title: sceneDocument.title });
-  };
-
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const image = e.target.files?.[0];
-
-    if (!image) return;
-
-    handleReadImage(image);
-  };
-
-  const handleChangeColor = (
-    color: string,
-    type: "model" | "ambient" | "leftDirectional" | "rightDirectional"
-  ) => {
-    if (type === "model") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        color: color,
-      }));
-
-      return;
-    }
-
-    if (type === "ambient") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        env: {
-          ...prev.env,
-          color: color,
-        },
-      }));
-    }
-
-    if (type === "leftDirectional" || type === "rightDirectional") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        lights: {
-          ...prev.lights,
-          [type]: {
-            ...prev.lights[type],
-            color,
-          },
-        },
-      }));
-    }
-  };
-
-  const handleReadImage = (file: File) =>
-    readUserImage(file).then((result) => {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          src: result,
-          isDefault: false,
-        },
-      }));
-    });
-
-  const resetModelPosition = () => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      position: {
-        x: 0,
-        y: 0,
-      },
-    }));
-  };
-
-  const handleSelectChange = (e: any, type: string) => {
-    const value = e.target.value;
-
-    if (type === "env") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        env: {
-          ...prev.env,
-          preset: value,
-        },
-      }));
-
-      return;
-    }
-  };
-
-  const onChangeIntensity = (
-    e: any,
-    type: "env" | "leftDirectional" | "rightDirectional"
-  ) => {
-    if (type === "env") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        env: {
-          ...prev.env,
-          intensity: Number(e.target.value),
-        },
-      }));
-
-      return;
-    }
-
-    if (type === "leftDirectional" || type === "rightDirectional") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        lights: {
-          ...prev.lights,
-          [type]: {
-            ...prev.lights[type],
-            intensity: Number(e.target.value),
-          },
-        },
-      }));
-
-      return;
-    }
-  };
-
-  const handleChangeShadow = (e: any) => {
-    setSceneDocument((prev: SceneDocumentType) => ({
-      ...prev,
-      env: {
-        ...prev.env,
-        castShadow: e.target.checked ? true : false,
-      },
-    }));
-  };
-
-  const handleChangeModelTexture = (e: any) => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      texture: e.target.name,
-    }));
-  };
-
-  const handleDirLightPosition = (
-    e: any,
-    axis: "x" | "y" | "z",
-    position: "leftDirectional" | "rightDirectional"
-  ) => {
-    setSceneDocument((prev: SceneDocumentType) => ({
-      ...prev,
-      lights: {
-        ...prev.lights,
-        [position]: {
-          ...prev.lights[position],
-          position: {
-            ...prev.lights[position].position,
-            [axis]: Number(e.target.value),
-          },
-        },
-      },
-    }));
-  };
+  const {
+    model,
+    sceneDocument,
+    handleImageChange,
+    handleChangeColor,
+    onChangeIntensity,
+    handleChangeModelTexture,
+    handleChangeShadow,
+    handleDirLightPosition,
+    handleSave,
+    handleSelectChange,
+    resetModelPosition,
+  } = useGenerator();
 
   return (
     <article className="generate__controls">
