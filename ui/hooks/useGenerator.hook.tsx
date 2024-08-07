@@ -1,7 +1,9 @@
 "use client";
 
 import { useContext } from "react";
-import Context from "../providers/ContextProvider.provider";
+
+import Context from "@/ui/providers/ContextProvider.provider";
+
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
 

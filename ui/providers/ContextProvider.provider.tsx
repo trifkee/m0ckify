@@ -1,7 +1,9 @@
 "use client";
 
-import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
 import { createContext, useState } from "react";
+
+import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
+
 import fallbackImage from "@/public/images/fallback.jpg";
 
 const Context = createContext<any>(null);

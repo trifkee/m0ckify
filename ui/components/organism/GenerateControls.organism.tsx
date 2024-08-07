@@ -32,7 +32,7 @@ export default function GenerateControls() {
   return (
     <article className="generate__controls">
       <article className="control image">
-        <p className="control__title">Image</p>
+        <p className="control__title">{t("image.title")}</p>
 
         <div className="image-container">
           {!model.image.isDefault ? (
@@ -40,13 +40,13 @@ export default function GenerateControls() {
           ) : (
             <>
               <IoImageSharp />
-              <p style={{ fontSize: ".75rem" }}>Add Image</p>
+              <p style={{ fontSize: ".75rem" }}>{t("image.noImage")}</p>
             </>
           )}
         </div>
 
         <Button variant="secondary">
-          <p>{t("controls.upload")}</p>
+          <p>{t("image.add")}</p>
           <IoImageSharp />
 
           <input
@@ -61,16 +61,16 @@ export default function GenerateControls() {
       </article>
 
       <article className="control model select">
-        <p className="control__title">Model</p>
+        <p className="control__title">{t("model.title")}</p>
 
         <div className="control__section">
-          <p className="title">Model Texture</p>
+          <p className="title">{t("model.texture.title")}</p>
 
           <div className="textures">
             {TEXTURE_LIST.map((texture, i) => (
               <Checkbox
                 key={i}
-                title={texture.name}
+                title={t(`model.texture.texture.${texture.name}`)}
                 htmlName={texture.name}
                 value={texture.name === model.texture}
                 onChange={(e) => handleChangeModelTexture(e)}
@@ -80,13 +80,13 @@ export default function GenerateControls() {
         </div>
 
         <div className="control__section">
-          <p className="title">Model Type</p>
+          <p className="title">{t("model.type.title")}</p>
 
           <select defaultValue={MODELS_LIST[0].title}>
             {MODELS_LIST.map((model) => {
               return (
                 <option key={model.id} value={model.id}>
-                  {model.title}
+                  {t(`model.type.types.${model.title.toLowerCase()}`)}
                 </option>
               );
             })}
@@ -94,7 +94,7 @@ export default function GenerateControls() {
         </div>
 
         <div className="control__section ">
-          <p className="title">Model Color</p>
+          <p className="title">{t("model.color.title")}</p>
           <HexColorPicker
             color={model.color}
             onChange={(e) => handleChangeColor(e, "model")}
@@ -102,10 +102,10 @@ export default function GenerateControls() {
         </div>
       </article>
       <article className="control env select">
-        <p className="control__title">Envrionment</p>
+        <p className="control__title">{t("environment.title")}</p>
 
         <div className="control__section env select">
-          <p className="title">Preset</p>
+          <p className="title">{t("environment.preset")}</p>
 
           <select
             onChange={(e) => handleSelectChange(e, "env")}
@@ -114,7 +114,7 @@ export default function GenerateControls() {
             {ENV_LIST.map((env) => {
               return (
                 <option key={env.id} value={env.name}>
-                  {env.title}
+                  {t(`environment.list.${env.title.toLowerCase()}`)}
                 </option>
               );
             })}
@@ -122,10 +122,10 @@ export default function GenerateControls() {
         </div>
 
         <div className="control__section env">
-          <p className="title">Cast shadow</p>
+          <p className="title">{t("environment.castShadow.title")}</p>
 
           <Checkbox
-            title="Shadows"
+            title={t("environment.castShadow.shadow")}
             htmlName="castShadow"
             value={sceneDocument.env.castShadow}
             onChange={(e) => handleChangeShadow(e)}
@@ -133,7 +133,7 @@ export default function GenerateControls() {
         </div>
 
         <div className="control__section env">
-          <p className="title">Ambient Light Intensity</p>
+          <p className="title">{t("environment.ambientLight.intensity")}</p>
 
           <Slider
             className="env-slider"
@@ -147,7 +147,7 @@ export default function GenerateControls() {
         </div>
 
         <div className="control__section ">
-          <p className="title">Ambient Light Color</p>
+          <p className="title">{t("environment.ambientLight.color")}</p>
           <HexColorPicker
             color={sceneDocument.env.color}
             onChange={(e) => handleChangeColor(e, "ambient")}
@@ -156,24 +156,24 @@ export default function GenerateControls() {
       </article>
 
       <article className="control">
-        <p className="control__title">Lights</p>
+        <p className="control__title">{t("lights.title")}</p>
 
         <div className="control__section">
-          <p className="title">Left directional light</p>
+          <p className="title">{t("lights.lDirLight.title")}</p>
 
-          <p className="title">Intensity</p>
+          <p className="title">{t("lights.lDirLight.intensity")}</p>
 
           <Slider
             className="env-slider"
             max={1}
             min={0}
-            name="intensity"
+            name={t("lights.lDirLight.intensity")}
             step={0.01}
             onChange={(e) => onChangeIntensity(e, "leftDirectional")}
             value={sceneDocument.lights.leftDirectional.intensity}
           />
 
-          <p className="title">Position</p>
+          <p className="title">{t("lights.lDirLight.position")}</p>
           <div className="position">
             <input
               type="number"
@@ -204,7 +204,7 @@ export default function GenerateControls() {
             />
           </div>
 
-          <p className="title">Color</p>
+          <p className="title">{t("lights.lDirLight.color")}</p>
           <HexColorPicker
             color={sceneDocument.lights.leftDirectional.color}
             onChange={(e) => handleChangeColor(e, "leftDirectional")}
@@ -214,21 +214,21 @@ export default function GenerateControls() {
         <div className="divider"></div>
 
         <div className="control__section">
-          <p className="title">Right directional light</p>
+          <p className="title">{t("lights.rDirLight.title")}</p>
 
-          <p className="title">Intensity</p>
+          <p className="title">{t("lights.rDirLight.intensity")}</p>
 
           <Slider
             className="env-slider"
             max={1}
             min={0}
-            name="intensity"
+            name={t("lights.rDirLight.intensity")}
             step={0.01}
             onChange={(e) => onChangeIntensity(e, "rightDirectional")}
             value={sceneDocument.lights.rightDirectional.intensity}
           />
 
-          <p className="title">Position</p>
+          <p className="title">{t("lights.rDirLight.position")}</p>
           <div className="position">
             <input
               type="number"
@@ -259,7 +259,7 @@ export default function GenerateControls() {
             />
           </div>
 
-          <p className="title">Color</p>
+          <p className="title">{t("lights.rDirLight.color")}</p>
           <HexColorPicker
             color={sceneDocument.lights.rightDirectional.color}
             onChange={(e) => handleChangeColor(e, "rightDirectional")}
@@ -268,20 +268,18 @@ export default function GenerateControls() {
       </article>
 
       <article className="control">
-        <p className="control__title">Actions</p>
-
-        <Button onClick={handleSave} className="download">
-          <p>{t("controls.download")}</p>
-          <IoSaveSharp />
-        </Button>
-
+        <p className="control__title">{t("actions.title")}</p>
         <Button
           onClick={resetModelPosition}
           variant="danger"
           className="model__reset-cta"
         >
-          <p>{t("controls.reset-position")}</p>
+          <p>{t("actions.reset")}</p>
           <IoSyncSharp />
+        </Button>
+        <Button onClick={handleSave} className="download">
+          <p>{t("actions.download")}</p>
+          <IoSaveSharp />
         </Button>
       </article>
     </article>
