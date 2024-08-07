@@ -136,7 +136,7 @@ export default function GenerateControls() {
           <p className="title">{t("environment.ambientLight.intensity")}</p>
 
           <Slider
-            className="env-slider"
+            className=" small env-slider"
             max={1}
             min={0}
             name="intensity"
@@ -164,7 +164,7 @@ export default function GenerateControls() {
           <p className="title">{t("lights.lDirLight.intensity")}</p>
 
           <Slider
-            className="env-slider"
+            className="small env-slider"
             max={1}
             min={0}
             name={t("lights.lDirLight.intensity")}
@@ -219,7 +219,7 @@ export default function GenerateControls() {
           <p className="title">{t("lights.rDirLight.intensity")}</p>
 
           <Slider
-            className="env-slider"
+            className="small env-slider"
             max={1}
             min={0}
             name={t("lights.rDirLight.intensity")}

@@ -30,7 +30,7 @@ export default function GenerateModel() {
         min={-0.5}
         max={0.5}
         step={0.025}
-        className="slider-x"
+        className="x"
       />
       <Slider
         value={model.position.y}
@@ -40,7 +40,7 @@ export default function GenerateModel() {
         name="y"
         id="y"
         onChange={(e) => onChangeSlider(e, "y")}
-        className="slider-y"
+        className="y"
       />
     </article>
   );

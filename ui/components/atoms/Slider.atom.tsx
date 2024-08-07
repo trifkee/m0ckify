@@ -1,5 +1,7 @@
 "use client";
 
+import "@/ui/styles/atoms/slider.atom.scss";
+
 type SliderType = {
   className?: string;
   value: string;
@@ -8,6 +10,7 @@ type SliderType = {
   step: number;
   name: string;
   id?: string;
+  // type: "x" | "y" | "small";
   onChange: (e: any, axis?: string) => void;
 };
 
@@ -18,6 +21,7 @@ export default function Slider({
   max,
   step,
   name,
+  // type = "small",
   id,
   onChange,
 }: SliderType) {
@@ -31,7 +35,7 @@ export default function Slider({
       name={name}
       id={id || name}
       onChange={(e) => onChange(e, "y")}
-      className={className}
+      className={`slider ${className}`}
     />
   );
 }

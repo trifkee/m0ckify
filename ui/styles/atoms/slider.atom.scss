@@ -1,0 +1,73 @@
+@import "variables.scss";
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+
+  &::-webkit-slider-runnable-track {
+    padding: 0.25rem;
+    background: rgb($secondary-clr-900, 0.25);
+    backdrop-filter: blur(3px);
+    // border-radius: 10rem;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 1rem;
+    aspect-ratio: 1;
+    border-radius: 100%;
+
+    background: $primary-clr-500;
+
+    transition: 0.2s ease background;
+
+    &:hover {
+      background: $primary-clr-700;
+    }
+  }
+
+  &.x {
+    grid-area: slider-x;
+    writing-mode: horizontal-tb;
+    direction: ltr;
+    box-shadow: 50px 0 0 rgb($secondary-clr-900, 0.5);
+    border-top: 1px solid $dashboard-border-clr;
+
+    cursor: w-resize !important;
+  }
+
+  &.y {
+    border-left: 1px solid $dashboard-border-clr;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    grid-area: slider-y;
+
+    cursor: s-resize !important;
+  }
+
+  &.small {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+
+    &::-webkit-slider-runnable-track {
+      padding: 0.25rem;
+      border: 1px solid rgb($dashboard-border-clr, 1);
+      background: rgb($dark-gray-clr, 0.5);
+
+      border-radius: 10rem;
+    }
+
+    &::-webkit-slider-thumb {
+      appearance: none;
+      width: 0.75rem;
+      aspect-ratio: 1;
+      border-radius: 100%;
+
+      background: rgb($dashboard-border-clr, 1);
+    }
+  }
+}

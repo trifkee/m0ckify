@@ -2,6 +2,8 @@
 
 import { IoCheckmark } from "react-icons/io5";
 
+import "@/ui/styles/atoms/checkbox.atom.scss";
+
 type CheckboxType = {
   title: string;
   value: boolean;
