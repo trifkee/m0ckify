@@ -1,0 +1,82 @@
+{
+  "global": {
+    "start": "Start"
+  },
+  "home": {
+    "title": "Dynamic Mockups, Endless Possibilities",
+    "description": "Mockify allows you to create impressive 3D mockups with ease."
+  },
+  "generate": {
+    "image": {
+      "title": "Image",
+      "add": "Add Image",
+      "noImage": "Preview"
+    },
+    "model": {
+      "title": "Model",
+      "texture": {
+        "title": "Texture",
+        "texture": {
+          "plastic": "Plastic",
+          "marble": "Marble"
+        }
+      },
+      "type": {
+        "title": "Type",
+        "types": {
+          "iphone": "iPhone",
+          "android": "Android",
+          "tv": "TV",
+          "laptop": "Laptop"
+        }
+      },
+      "color": {
+        "title": "Color"
+      }
+    },
+    "environment": {
+      "title": "Environment",
+      "preset": "Preset",
+      "list": {
+        "warehouse": "Warehouse",
+        "apartment": "Apartment",
+        "city": "City",
+        "dawn": "Dawn",
+        "forest": "Forest",
+        "lobby": "Lobby",
+        "night": "Night",
+        "park": "Park",
+        "studio": "Studio",
+        "sunset": "Sunset"
+      },
+      "castShadow": {
+        "title": "Cast Shadows",
+        "shadow": "Shadows"
+      },
+      "ambientLight": {
+        "intensity": "Ambient Light Intensity",
+        "color": "Ambient Light Color"
+      }
+    },
+    "lights": {
+      "title": "Lights",
+      "lDirLight": {
+        "title": "Left Directional Light",
+        "intensity": "Intensity",
+        "position": "Position",
+        "color": "Color"
+      },
+      "rDirLight": {
+        "title": "Right Directional Light",
+        "intensity": "Intensity",
+        "position": "Position",
+        "color": "Color"
+      }
+    },
+    "actions": {
+      "title": "Actions",
+      "download": "Download",
+      "reset": "Reset"
+    }
+  }
+}

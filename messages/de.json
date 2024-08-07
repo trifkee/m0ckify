@@ -1,0 +1,82 @@
+{
+  "global": {
+    "start": "Start"
+  },
+  "home": {
+    "title": "Dynamische Mockups, Endlose Möglichkeiten",
+    "description": "Mockify ermöglicht es Ihnen, beeindruckende 3D-Mockups mit Leichtigkeit zu erstellen."
+  },
+  "generate": {
+    "image": {
+      "title": "Bild",
+      "add": "Bild hinzufügen",
+      "noImage": "Vorschau"
+    },
+    "model": {
+      "title": "Modell",
+      "texture": {
+        "title": "Textur",
+        "texture": {
+          "plastic": "Kunststoff",
+          "marble": "Marmor"
+        }
+      },
+      "type": {
+        "title": "Typ",
+        "types": {
+          "iphone": "iPhone",
+          "android": "Android",
+          "tv": "TV",
+          "laptop": "Laptop"
+        }
+      },
+      "color": {
+        "title": "Farbe"
+      }
+    },
+    "environment": {
+      "title": "Umgebung",
+      "preset": "Voreinstellung",
+      "list": {
+        "warehouse": "Lager",
+        "apartment": "Wohnung",
+        "city": "Stadt",
+        "dawn": "Morgen",
+        "forest": "Wald",
+        "lobby": "Lobby",
+        "night": "Nacht",
+        "park": "Park",
+        "studio": "Studio",
+        "sunset": "Sonnenuntergang"
+      },
+      "castShadow": {
+        "title": "Schatten werfen",
+        "shadow": "Schatten"
+      },
+      "ambientLight": {
+        "intensity": "Stärke des Umgebungslichts",
+        "color": "Farbe des Umgebungslichts"
+      }
+    },
+    "lights": {
+      "title": "Lichter",
+      "lDirLight": {
+        "title": "Linkes Richtungslicht",
+        "intensity": "Intensität",
+        "position": "Position",
+        "color": "Farbe"
+      },
+      "rDirLight": {
+        "title": "Rechtes Richtungslicht",
+        "intensity": "Intensität",
+        "position": "Position",
+        "color": "Farbe"
+      }
+    },
+    "actions": {
+      "title": "Aktionen",
+      "download": "Herunterladen",
+      "reset": "Zurücksetzen"
+    }
+  }
+}
