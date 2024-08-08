@@ -21,24 +21,34 @@ export type SceneDocumentType = {
     color: string;
     castShadow: boolean;
   };
-  lights: {
-    leftDirectional: {
-      intensity: number;
-      color: string;
-      position: {
-        x: number;
-        y: number;
-        z: number;
-      };
-    };
-    rightDirectional: {
-      intensity: number;
-      color: string;
-      position: {
-        x: number;
-        y: number;
-        z: number;
-      };
-    };
+  // lights: {
+  //   leftDirectional: {
+  //     intensity: number;
+  //     color: string;
+  //     position: {
+  //       x: number;
+  //       y: number;
+  //       z: number;
+  //     };
+  //   };
+  //   rightDirectional: {
+  //     intensity: number;
+  //     color: string;
+  //     position: {
+  //       x: number;
+  //       y: number;
+  //       z: number;
+  //     };
+  //   };
+  // };
+};
+
+export type SceneLightsType = {
+  intensity: number;
+  color: string;
+  position: {
+    x: number;
+    y: number;
+    z: number;
   };
 };

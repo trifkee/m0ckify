@@ -6,6 +6,7 @@ import { Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Phone from "../models/Phone.model";
 import Context from "./ContextProvider.provider";
+import { SceneLightsType } from "@/lib/types/model.type";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -41,7 +42,7 @@ export default function ModelProvider() {
 }
 
 function Lights() {
-  const { sceneDocument } = useContext(Context);
+  const { sceneDocument, sceneLights } = useContext(Context);
 
   return (
     <>
@@ -49,24 +50,14 @@ function Lights() {
         color={sceneDocument.env.color}
         intensity={sceneDocument.env.intensity}
       />
-      <directionalLight
-        intensity={sceneDocument.lights.leftDirectional.intensity}
-        color={sceneDocument.lights.leftDirectional.color}
-        position={[
-          sceneDocument.lights.leftDirectional.position.x,
-          sceneDocument.lights.leftDirectional.position.y,
-          sceneDocument.lights.leftDirectional.position.z,
-        ]}
-      />
-      <directionalLight
-        intensity={sceneDocument.lights.rightDirectional.intensity}
-        color={sceneDocument.lights.rightDirectional.color}
-        position={[
-          sceneDocument.lights.rightDirectional.position.x,
-          sceneDocument.lights.rightDirectional.position.y,
-          sceneDocument.lights.rightDirectional.position.z,
-        ]}
-      />
+      {sceneLights.map((light: SceneLightsType, i: number) => (
+        <directionalLight
+          key={i}
+          intensity={light.intensity}
+          color={light.color}
+          position={[light.position.x, light.position.y, light.position.z]}
+        />
+      ))}
     </>
   );
 }

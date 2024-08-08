@@ -60,14 +60,10 @@
     },
     "lights": {
       "title": "Lichter",
-      "lDirLight": {
-        "title": "Linkes Richtungslicht",
-        "intensity": "Intensität",
-        "position": "Position",
-        "color": "Farbe"
-      },
-      "rDirLight": {
-        "title": "Rechtes Richtungslicht",
+      "add": "Hinzufügen",
+      "remove": "Entfernen",
+      "lights": {
+        "title": "Licht",
         "intensity": "Intensität",
         "position": "Position",
         "color": "Farbe"

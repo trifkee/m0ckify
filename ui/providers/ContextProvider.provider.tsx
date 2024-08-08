@@ -2,7 +2,11 @@
 
 import { createContext, useState } from "react";
 
-import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
+import {
+  ModelType,
+  SceneDocumentType,
+  SceneLightsType,
+} from "@/lib/types/model.type";
 
 import fallbackImage from "@/public/images/fallback.jpg";
 
@@ -31,27 +35,28 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       color: "#fff",
       castShadow: true,
     },
-    lights: {
-      leftDirectional: {
-        color: "#fff",
-        intensity: 0.5,
-        position: {
-          x: -2,
-          y: 1,
-          z: 5,
-        },
-      },
-      rightDirectional: {
-        color: "#fff",
-        intensity: 0.5,
-        position: {
-          x: 5,
-          y: -10,
-          z: 15,
-        },
+  });
+
+  const [sceneLights, setSceneLights] = useState<SceneLightsType[]>([
+    {
+      color: "#fff",
+      intensity: 0.5,
+      position: {
+        x: -2,
+        y: 1,
+        z: 5,
       },
     },
-  });
+    {
+      color: "#fff",
+      intensity: 0.5,
+      position: {
+        x: 5,
+        y: -10,
+        z: 15,
+      },
+    },
+  ]);
 
   return (
     <Context.Provider
@@ -60,6 +65,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         setModel,
         sceneDocument,
         setSceneDocument,
+        sceneLights,
+        setSceneLights,
       }}
     >
       {children}

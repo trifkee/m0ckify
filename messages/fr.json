@@ -60,14 +60,10 @@
     },
     "lights": {
       "title": "Lumières",
-      "lDirLight": {
-        "title": "Lumière Directionnelle Gauche",
-        "intensity": "Intensité",
-        "position": "Position",
-        "color": "Couleur"
-      },
-      "rDirLight": {
-        "title": "Lumière Directionnelle Droite",
+      "add": "Ajouter",
+      "remove": "Supprimer",
+      "lights": {
+        "title": "Lumière",
         "intensity": "Intensité",
         "position": "Position",
         "color": "Couleur"

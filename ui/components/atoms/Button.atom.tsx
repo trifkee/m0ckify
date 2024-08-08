@@ -17,6 +17,7 @@ export default function Button({
     | "transparent"
     | "outlined"
     | "disabled"
+    | "editor"
     | "danger";
 }) {
   return (

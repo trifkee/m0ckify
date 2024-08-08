@@ -101,4 +101,48 @@
       background: $ternary-clr-600;
     }
   }
+
+  &.editor {
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    color: $white-clr;
+    border: 1px solid rgb($dashboard-border-clr, 1);
+    background: rgb($dark-gray-clr, 0.5);
+    transition: 0.2s ease all;
+    box-shadow: none;
+    font-size: 0.85rem;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    svg {
+      font: inherit;
+    }
+
+    &:hover {
+      border: 1px solid $secondary-clr-400;
+      background: rgb($secondary-clr-700, 0.5);
+    }
+
+    &.danger {
+      background: rgb($ternary-clr-500, 0.075);
+      color: rgb($ternary-clr-500, 1);
+      border: 1px solid rgb($ternary-clr-500, 1);
+
+      &:hover {
+        background: rgb($ternary-clr-500, 0.25);
+      }
+    }
+
+    &.download {
+      background: rgb($primary-clr-500, 0.075);
+      color: rgb($primary-clr-500, 1);
+      border: 1px solid rgb($primary-clr-800, 1);
+
+      &:hover {
+        background: rgb($primary-clr-500, 0.25);
+      }
+    }
+  }
 }

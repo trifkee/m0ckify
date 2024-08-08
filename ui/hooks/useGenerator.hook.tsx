@@ -1,15 +1,25 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
-import { ModelType, SceneDocumentType } from "@/lib/types/model.type";
+import {
+  ModelType,
+  SceneDocumentType,
+  SceneLightsType,
+} from "@/lib/types/model.type";
 
 export default function useGenerator() {
-  const { model, setModel, sceneDocument, setSceneDocument } =
-    useContext(Context);
+  const {
+    model,
+    setModel,
+    sceneDocument,
+    setSceneDocument,
+    sceneLights,
+    setSceneLights,
+  } = useContext(Context);
 
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,27 +66,28 @@ export default function useGenerator() {
         color: "#fff",
         castShadow: true,
       },
-      lights: {
-        leftDirectional: {
-          color: "#fff",
-          intensity: 0.5,
-          position: {
-            x: -2,
-            y: 1,
-            z: 5,
-          },
-        },
-        rightDirectional: {
-          color: "#fff",
-          intensity: 0.5,
-          position: {
-            x: 5,
-            y: -10,
-            z: 15,
-          },
+    }));
+
+    setSceneLights([
+      {
+        color: "#fff",
+        intensity: 0.5,
+        position: {
+          x: -2,
+          y: 1,
+          z: 5,
         },
       },
-    }));
+      {
+        color: "#fff",
+        intensity: 0.5,
+        position: {
+          x: 5,
+          y: -10,
+          z: 15,
+        },
+      },
+    ]);
   };
 
   const handleSelectChange = (e: any, type: string) => {
@@ -97,7 +108,8 @@ export default function useGenerator() {
 
   const onChangeIntensity = (
     e: any,
-    type: "env" | "leftDirectional" | "rightDirectional"
+    type: "env" | "dirLights",
+    index?: number
   ) => {
     if (type === "env") {
       setSceneDocument((prev: SceneDocumentType) => ({
@@ -111,17 +123,12 @@ export default function useGenerator() {
       return;
     }
 
-    if (type === "leftDirectional" || type === "rightDirectional") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        lights: {
-          ...prev.lights,
-          [type]: {
-            ...prev.lights[type],
-            intensity: Number(e.target.value),
-          },
-        },
-      }));
+    if (type === "dirLights") {
+      setSceneLights(
+        sceneLights.map((light: SceneLightsType, i: number) =>
+          i === index ? { ...light, intensity: e.target.value } : light
+        )
+      );
 
       return;
     }
@@ -129,7 +136,8 @@ export default function useGenerator() {
 
   const handleChangeColor = (
     color: string,
-    type: "model" | "ambient" | "leftDirectional" | "rightDirectional"
+    type: "model" | "ambient" | "dirLight",
+    index?: number
   ) => {
     if (type === "model") {
       setModel((prev: ModelType) => ({
@@ -150,17 +158,14 @@ export default function useGenerator() {
       }));
     }
 
-    if (type === "leftDirectional" || type === "rightDirectional") {
-      setSceneDocument((prev: SceneDocumentType) => ({
-        ...prev,
-        lights: {
-          ...prev.lights,
-          [type]: {
-            ...prev.lights[type],
-            color,
-          },
-        },
-      }));
+    if (type === "dirLight") {
+      setSceneLights(
+        sceneLights.map((light: SceneLightsType, i: number) =>
+          i === index ? { ...light, color: color } : light
+        )
+      );
+
+      return;
     }
   };
 
@@ -184,26 +189,45 @@ export default function useGenerator() {
   const handleDirLightPosition = (
     e: any,
     axis: "x" | "y" | "z",
-    position: "leftDirectional" | "rightDirectional"
+    index: number
   ) => {
-    setSceneDocument((prev: SceneDocumentType) => ({
+    setSceneLights(
+      sceneLights.map((light: SceneLightsType, i: number) =>
+        i === index
+          ? {
+              ...light,
+              position: { ...light.position, [axis]: Number(e.target.value) },
+            }
+          : light
+      )
+    );
+  };
+
+  const handleAddNewLight = () => {
+    setSceneLights((prev: SceneLightsType[]) => [
       ...prev,
-      lights: {
-        ...prev.lights,
-        [position]: {
-          ...prev.lights[position],
-          position: {
-            ...prev.lights[position].position,
-            [axis]: Number(e.target.value),
-          },
+      {
+        color: "#fff",
+        intensity: 0.5,
+        position: {
+          x: 0,
+          y: 0,
+          z: 0,
         },
       },
-    }));
+    ]);
+  };
+
+  const handleRemoveLight = (index: number) => {
+    setSceneLights((prev: SceneLightsType[]) =>
+      prev.filter((_, i) => i !== index)
+    );
   };
 
   return {
     model,
     sceneDocument,
+    sceneLights,
     handleImageChange,
     handleSave,
     resetModelPosition,
@@ -213,5 +237,7 @@ export default function useGenerator() {
     handleChangeColor,
     onChangeIntensity,
     handleSelectChange,
+    handleAddNewLight,
+    handleRemoveLight,
   };
 }

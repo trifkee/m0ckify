@@ -60,15 +60,11 @@
     },
     "lights": {
       "title": "Svetla",
-      "lDirLight": {
-        "title": "Levo usmereno svetlo",
-        "intensity": "Jačin",
-        "position": "Pozicija",
-        "color": "Boja"
-      },
-      "rDirLight": {
-        "title": "Desno usmereno svetlo",
-        "intensity": "Jačin",
+      "add": "Dodaj",
+      "remove": "Obriši",
+      "lights": {
+        "title": "Svetlo",
+        "intensity": "Jačina",
         "position": "Pozicija",
         "color": "Boja"
       }
