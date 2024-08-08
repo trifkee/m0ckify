@@ -4,10 +4,14 @@ import GenerateNavigation from "@/ui/components/organism/GenerateNavigation.orga
 
 import "@/ui/styles/pages/generate.page.scss";
 
-export default function Generate() {
+export default function Generate({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
   return (
     <main className="generate">
-      <GenerateNavigation />
+      <GenerateNavigation locale={locale} />
       <GenerateModel />
       <GenerateControls />
     </main>

@@ -3,8 +3,9 @@
     "start": "Počni"
   },
   "home": {
-    "title": "Dinamični Mokapi, Beskrajne Mogućnosti",
-    "description": "Mockify omogućava kreiranje impresivnih 3D mokapa sa lakoćom."
+    "title": "Napravite prelepe prilagođene mockupe besplatno",
+    "getStarted": "Započni",
+    "learnMore": "Saznaj više"
   },
   "generate": {
     "image": {

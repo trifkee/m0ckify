@@ -3,8 +3,9 @@
     "start": "Démarrer"
   },
   "home": {
-    "title": "Mockups Dynamiques, Possibilités Infinies",
-    "description": "Mockify vous permet de créer des mockups 3D impressionnants avec facilité."
+    "title": "Créez de magnifiques mockups personnalisés gratuitement",
+    "getStarted": "Commencer",
+    "learnMore": "En savoir plus"
   },
   "generate": {
     "image": {

@@ -41,7 +41,10 @@ export default function GenerateDocumentTitle() {
           onBlur={handleOnBlur}
         />
       ) : (
-        <span onDoubleClick={() => setIsEditable(true)}>
+        <span
+          style={{ marginRight: "auto" }}
+          onDoubleClick={() => setIsEditable(true)}
+        >
           {sceneDocument.title}
         </span>
       )}

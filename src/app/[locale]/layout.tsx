@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit, Ubuntu } from "next/font/google";
 
 import Nav from "@/ui/components/moleculs/Nav.molecul";
 // TRANSLATIONS
@@ -10,7 +10,9 @@ import "./globals.css";
 import "@/ui/styles/global.scss";
 import { ContextProvider } from "@/ui/providers/ContextProvider.provider";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Outfit({
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Mockify",
