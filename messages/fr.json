@@ -1,0 +1,79 @@
+{
+  "global": {
+    "start": "Démarrer"
+  },
+  "home": {
+    "title": "Créez de magnifiques mockups personnalisés gratuitement",
+    "getStarted": "Commencer",
+    "learnMore": "En savoir plus"
+  },
+  "generate": {
+    "image": {
+      "title": "Image",
+      "add": "Ajouter une image",
+      "noImage": "Aperçu"
+    },
+    "model": {
+      "title": "Modèle",
+      "texture": {
+        "title": "Texture",
+        "texture": {
+          "plastic": "Plastique",
+          "marble": "Marbre"
+        }
+      },
+      "type": {
+        "title": "Type",
+        "types": {
+          "iphone": "iPhone",
+          "android": "Android",
+          "tv": "TV",
+          "laptop": "Ordinateur portable"
+        }
+      },
+      "color": {
+        "title": "Couleur"
+      }
+    },
+    "environment": {
+      "title": "Environnement",
+      "preset": "Préréglage",
+      "list": {
+        "warehouse": "Entrepôt",
+        "apartment": "Appartement",
+        "city": "Ville",
+        "dawn": "Aube",
+        "forest": "Forêt",
+        "lobby": "Hall",
+        "night": "Nuit",
+        "park": "Parc",
+        "studio": "Studio",
+        "sunset": "Coucher de soleil"
+      },
+      "castShadow": {
+        "title": "Projeter des ombres",
+        "shadow": "Ombres"
+      },
+      "ambientLight": {
+        "intensity": "Intensité de la lumière ambiante",
+        "color": "Couleur de la lumière ambiante"
+      }
+    },
+    "lights": {
+      "title": "Lumières",
+      "add": "Ajouter",
+      "remove": "Supprimer",
+      "lights": {
+        "title": "Lumière",
+        "intensity": "Intensité",
+        "position": "Position",
+        "color": "Couleur"
+      }
+    },
+    "actions": {
+      "title": "Actions",
+      "download": "Télécharger",
+      "reset": "Réinitialiser"
+    }
+  }
+}

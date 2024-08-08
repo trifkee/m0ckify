@@ -1,0 +1,90 @@
+@import "variables.scss";
+
+.home {
+  background: rgb($light-gray-clr, 0.005);
+  color: $dark-gray-clr;
+  background-size: 1.5rem 1.5rem;
+  background-position: center center;
+  position: relative;
+  min-height: 100dvh;
+
+  background-image: radial-gradient(
+    circle,
+    rgb($light-gray-clr, 0.25) 1px,
+    rgb($dark-gray-clr, 0.05) 1px
+  );
+
+  .navigation {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    // background: red;
+    background-color: rgb($light-gray-clr, 0.01);
+    border-bottom: 1px solid rgb($dashboard-gray-clr, 0.125);
+    backdrop-filter: blur(2px);
+
+    .logo {
+      // position: absolute;
+      // top: 1rem;
+      // left: 1rem;
+      width: clamp(5rem, 15vw, 8rem);
+      height: min-content;
+      // width: 100%;
+    }
+  }
+
+  &__header {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    .title {
+      color: $dark-gray-clr;
+      line-height: 1;
+      font-size: clamp(1.5rem, 10vw, 5rem);
+      text-align: center;
+      max-width: 20ch;
+      font-weight: bold;
+    }
+
+    .ctas {
+      display: flex;
+      gap: 0.5rem;
+
+      .button {
+        backdrop-filter: blur(5px);
+        font-weight: bold;
+        font-size: clamp(0.75rem, 10vw, 1.25rem) !important;
+
+        &.learn-more {
+          color: rgb($ternary-clr-500, 1);
+          background: rgb($ternary-clr-500, 0.25);
+          border: 1px solid rgb($ternary-clr-500, 1);
+
+          &:hover {
+            color: rgb($ternary-clr-400, 1);
+            background: rgb($ternary-clr-400, 0.25);
+            border: 1px solid rgb($ternary-clr-400, 1);
+          }
+        }
+
+        &.get-started {
+          color: rgb($primary-clr-900, 1);
+          background: rgb($primary-clr-900, 0.25);
+          border: 1px solid rgb($primary-clr-900, 1);
+        }
+      }
+    }
+
+    .subtitle {
+      color: rgb($light-gray-clr, 0.5);
+    }
+  }
+}
