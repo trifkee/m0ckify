@@ -4,7 +4,7 @@
   font-size: 1.1rem;
   text-wrap: nowrap;
   padding: 14px 20px;
-  color: $white-clr;
+  color: $primary-clr-900;
   background: $primary-clr-500;
   border-radius: 0.75rem;
   border: none;
@@ -13,6 +13,9 @@
   justify-content: center;
   gap: 0.5rem;
   position: relative;
+
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1),
+    0px 1px 0px 0px $primary-clr-100 inset;
 
   transition: 0.1s ease-in background;
   cursor: pointer;
@@ -38,7 +41,7 @@
   }
 
   &:hover {
-    background: $primary-clr-600;
+    background: $primary-clr-400;
 
     svg {
       transform: translateX(2px);
@@ -48,6 +51,9 @@
   &.secondary {
     background: $secondary-clr-800;
     color: $primary-clr-300;
+
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1),
+      0px 1px 0px 0px $secondary-clr-400 inset;
 
     &:hover {
       background: $secondary-clr-900;
@@ -69,6 +75,8 @@
     border: none;
     color: inherit;
 
+    box-shadow: none;
+
     &:hover {
       background: rgb($secondary-clr-900, 0.75);
     }
@@ -80,6 +88,61 @@
 
     &:hover {
       background: rgb($dark-gray-clr, 0.85);
+    }
+  }
+
+  &.danger {
+    color: $white-clr;
+    background: $ternary-clr-500;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1),
+      0px 1px 0px 0px $ternary-clr-100 inset;
+
+    &:hover {
+      background: $ternary-clr-600;
+    }
+  }
+
+  &.editor {
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    color: $white-clr;
+    border: 1px solid rgb($dashboard-border-clr, 1);
+    background: rgb($dark-gray-clr, 0.5);
+    transition: 0.2s ease all;
+    box-shadow: none;
+    font-size: 0.85rem;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    svg {
+      font: inherit;
+    }
+
+    &:hover {
+      border: 1px solid $secondary-clr-400;
+      background: rgb($secondary-clr-700, 0.5);
+    }
+
+    &.danger {
+      background: rgb($ternary-clr-500, 0.075);
+      color: rgb($ternary-clr-500, 1);
+      border: 1px solid rgb($ternary-clr-500, 1);
+
+      &:hover {
+        background: rgb($ternary-clr-500, 0.25);
+      }
+    }
+
+    &.download {
+      background: rgb($primary-clr-500, 0.075);
+      color: rgb($primary-clr-500, 1);
+      border: 1px solid rgb($primary-clr-800, 1);
+
+      &:hover {
+        background: rgb($primary-clr-500, 0.25);
+      }
     }
   }
 }

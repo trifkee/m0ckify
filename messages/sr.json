@@ -7,11 +7,72 @@
     "description": "Mockify omogućava kreiranje impresivnih 3D mokapa sa lakoćom."
   },
   "generate": {
-    "controls": {
-      "upload": "Dodaj",
-      "download": "Preuzmi",
-      "more": "Napredne kontrole",
-      "bg": "Pozadina"
+    "image": {
+      "title": "Slika",
+      "add": "Dodaj sliku",
+      "noImage": "Pregled"
+    },
+    "model": {
+      "title": "Model",
+      "texture": {
+        "title": "Tekstura",
+        "texture": {
+          "plastic": "Plastika",
+          "marble": "Mermer"
+        }
+      },
+      "type": {
+        "title": "Tip",
+        "types": {
+          "iphone": "Ajfon",
+          "android": "Android",
+          "tv": "TV",
+          "laptop": "Laptop"
+        }
+      },
+      "color": {
+        "title": "Boja"
+      }
+    },
+    "environment": {
+      "title": "Okruženje",
+      "preset": "Podešavanje",
+      "list": {
+        "warehouse": "Skladište",
+        "apartment": "Apartman",
+        "city": "Grad",
+        "dawn": "Jutro",
+        "forest": "Šuma",
+        "lobby": "Lobi",
+        "night": "Noć",
+        "park": "Park",
+        "studio": "Studio",
+        "sunset": "Zalazak sunca"
+      },
+      "castShadow": {
+        "title": "Emituj senke",
+        "shadow": "Senke"
+      },
+      "ambientLight": {
+        "intensity": "Jačina ambijentalnog svetla",
+        "color": "Boja ambijentalnog svetla"
+      }
+    },
+    "lights": {
+      "title": "Svetla",
+      "add": "Dodaj",
+      "remove": "Obriši",
+      "lights": {
+        "title": "Svetlo",
+        "intensity": "Jačina",
+        "position": "Pozicija",
+        "color": "Boja"
+      }
+    },
+    "actions": {
+      "title": "Akcije",
+      "download": "Skini",
+      "reset": "Resetuj"
     }
   }
 }

@@ -1,0 +1,23 @@
+@import "variables.scss";
+
+.document-title {
+  width: fit-content;
+  max-width: 10ch;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid $dashboard-border-clr;
+
+  height: fit-content;
+  padding: 0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.125rem;
+
+  color: $white-clr;
+  font-size: 0.75rem;
+  font: inherit;
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+}

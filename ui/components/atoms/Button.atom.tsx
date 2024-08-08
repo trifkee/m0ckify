@@ -11,7 +11,14 @@ export default function Button({
   children: React.ReactNode;
   className?: string;
   onClick?: CallableFunction;
-  variant?: "primary" | "secondary" | "transparent" | "outlined" | "disabled";
+  variant?:
+    | "primary"
+    | "secondary"
+    | "transparent"
+    | "outlined"
+    | "disabled"
+    | "editor"
+    | "danger";
 }) {
   return (
     <button

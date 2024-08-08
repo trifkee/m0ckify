@@ -1,8 +1,54 @@
 export type ModelType = {
-  title: string;
   position: {
     x: number;
     y: number;
   };
-  image: File;
+  image: {
+    src: File | null;
+    isDefault: boolean;
+  };
+  color: string;
+  texture: "plastic" | "marble";
+};
+
+export type SceneDocumentType = {
+  title: string;
+  background: string;
+
+  env: {
+    preset: string;
+    intensity: number;
+    color: string;
+    castShadow: boolean;
+  };
+  // lights: {
+  //   leftDirectional: {
+  //     intensity: number;
+  //     color: string;
+  //     position: {
+  //       x: number;
+  //       y: number;
+  //       z: number;
+  //     };
+  //   };
+  //   rightDirectional: {
+  //     intensity: number;
+  //     color: string;
+  //     position: {
+  //       x: number;
+  //       y: number;
+  //       z: number;
+  //     };
+  //   };
+  // };
+};
+
+export type SceneLightsType = {
+  intensity: number;
+  color: string;
+  position: {
+    x: number;
+    y: number;
+    z: number;
+  };
 };

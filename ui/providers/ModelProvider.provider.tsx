@@ -1,49 +1,39 @@
 "use client";
 
-import { useContext, useRef } from "react";
+import { Suspense, useContext, useRef } from "react";
 
-import { Environment, OrbitControls } from "@react-three/drei";
+import { Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Context from "./ContextProvider.provider";
-import { IoSwapHorizontalOutline } from "react-icons/io5";
-import Button from "../components/atoms/Button.atom";
-import { ModelType } from "@/lib/types/model.type";
 import Phone from "../models/Phone.model";
-import { saveImageFromCanvas } from "@/lib/helpers/saveImage";
+import Context from "./ContextProvider.provider";
+import { SceneLightsType } from "@/lib/types/model.type";
 
 export default function ModelProvider() {
-  const { setModel } = useContext(Context);
-
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const resetModelPosition = () => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      position: {
-        x: 0,
-        y: 0,
-      },
-    }));
-  };
+  const { sceneDocument } = useContext(Context);
 
   return (
     <div className="model">
-      <Button
-        onClick={resetModelPosition}
-        variant="transparent"
-        className="model__reset-cta"
-      >
-        Reset
-        <IoSwapHorizontalOutline />
-      </Button>
       <Canvas
         gl={{ preserveDrawingBuffer: true }}
         ref={canvasRef}
         linear
-        shadows
+        shadows={sceneDocument.env.castShadow ? true : false}
       >
+        {/* TODO:
+              ADD LATER BACKGROUND 
+        */}
+        {/* <color attach="background" args={["#15151a"]} /> */}
+
         <Lights />
-        <Model />
+        <Stage
+          environment={sceneDocument.env.preset}
+          intensity={sceneDocument.env.intensity}
+          castShadow={sceneDocument.env.castShadow === true ? true : false}
+        >
+          <Model />
+        </Stage>
 
         {/* <OrbitControls /> */}
       </Canvas>
@@ -52,12 +42,22 @@ export default function ModelProvider() {
 }
 
 function Lights() {
+  const { sceneDocument, sceneLights } = useContext(Context);
+
   return (
     <>
-      <Environment preset="park" environmentIntensity={0.5} />
-      <ambientLight intensity={1} />
-      <directionalLight intensity={10} position={[-2, -2, -5]} />
-      <directionalLight intensity={2} position={[-2, 1, 5]} />
+      <ambientLight
+        color={sceneDocument.env.color}
+        intensity={sceneDocument.env.intensity}
+      />
+      {sceneLights.map((light: SceneLightsType, i: number) => (
+        <directionalLight
+          key={i}
+          intensity={light.intensity}
+          color={light.color}
+          position={[light.position.x, light.position.y, light.position.z]}
+        />
+      ))}
     </>
   );
 }

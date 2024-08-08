@@ -6,6 +6,9 @@ import Button from "@/ui/components/atoms/Button.atom";
 import { IoArrowForwardSharp, IoBrushSharp } from "react-icons/io5";
 import { Link } from "@/navigation";
 
+import backgorund from "@/public/images/background.png";
+import Image from "next/image";
+
 export default function Home() {
   const t = useTranslations("home");
   const g = useTranslations("global");
@@ -26,6 +29,7 @@ export default function Home() {
             {/* <IoBrushSharp /> */}
           </Button>
         </Link>
+        <Image className="background" alt="" src={backgorund} />
       </section>
     </main>
   );
