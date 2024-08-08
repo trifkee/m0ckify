@@ -1,19 +1,1 @@
 @import "variables.scss";
-
-.body {
-  background: $black-clr;
-  margin: 0 auto;
-  height: 100vh;
-  background-size: 30px 30px;
-  background-image: linear-gradient(
-      to right,
-      rgb($light-gray-clr, 0.15) 1px,
-      transparent 1px
-    ),
-    linear-gradient(to bottom, rgb($light-gray-clr, 0.15) 1px, transparent 1px);
-  // background: radial-gradient(
-  //   circle at top,
-  //   rgb($primary-clr-500, 1) 0%,
-  //   $primary-clr-100
-  // );
-}

@@ -5,6 +5,14 @@
   height: 100vh;
   display: grid;
 
+  background-color: rgb($dark-gray-clr, 1);
+  background-image: radial-gradient(
+    circle,
+    rgb($light-gray-clr, 0.125) 1px,
+    $dark-gray-clr 1px
+  );
+  background-size: 10px 10px;
+
   width: 100%;
   grid-template-rows: 0.25fr repeat(4, 1fr);
   grid-template-columns: repeat(4, 1fr) 0.75fr;
@@ -28,6 +36,15 @@
     gap: 0.5rem;
     background: $dashboard-gray-clr;
     border-bottom: 1px solid $dashboard-border-clr;
+
+    a {
+      margin-right: auto;
+      width: clamp(2rem, 10vw, 5rem);
+    }
+
+    a + * {
+      margin-right: auto;
+    }
 
     p {
       font-weight: lighter;
