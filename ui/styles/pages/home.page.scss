@@ -22,18 +22,13 @@
     padding: 1rem;
     justify-content: space-between;
     align-items: center;
-    // background: red;
     background-color: rgb($light-gray-clr, 0.01);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid rgb($dashboard-gray-clr, 0.125);
-    backdrop-filter: blur(2px);
 
     .logo {
-      // position: absolute;
-      // top: 1rem;
-      // left: 1rem;
       width: clamp(5rem, 15vw, 8rem);
       height: min-content;
-      // width: 100%;
     }
   }
 
@@ -44,6 +39,16 @@
     justify-content: center;
     flex-direction: column;
     gap: 1rem;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+      opacity: 0.5;
+    }
 
     .title {
       color: $dark-gray-clr;

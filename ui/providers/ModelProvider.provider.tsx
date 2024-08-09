@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useContext, useRef } from "react";
+import { Suspense, useContext, useEffect, useRef, useState } from "react";
 
 import { Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
@@ -10,11 +10,12 @@ import { SceneLightsType } from "@/lib/types/model.type";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const parentRef = useRef<HTMLDivElement | null>(null);
 
   const { sceneDocument } = useContext(Context);
 
   return (
-    <div className="model">
+    <div className="model" ref={parentRef}>
       <Canvas
         gl={{ preserveDrawingBuffer: true }}
         ref={canvasRef}

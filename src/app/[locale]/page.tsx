@@ -11,6 +11,8 @@ import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
+import bg from "@/public/images/background-gradient.png";
+
 export default function Home({
   params: { locale },
 }: {
@@ -27,7 +29,7 @@ export default function Home({
       </nav>
 
       <section className="home__header">
-        <p className="title">{t("title")}</p>
+        <p className="title">{t("title")}. </p>
 
         <div className="ctas">
           <Button className="learn-more" variant="editor">
@@ -39,6 +41,8 @@ export default function Home({
             </Button>
           </Link>
         </div>
+
+        {/* <Image src={bg} alt="" /> */}
       </section>
     </main>
   );

@@ -1,46 +1,32 @@
 "use client";
+
 import { Link, usePathname } from "@/navigation";
 import { useEffect, useState } from "react";
 
-// import { StaticImageData } from "next/image";
-
-// import srbFlag from "@/public/flags/FlagSerbia.png";
-// import engFlag from "@/public/flags/FlagUK.png";
-// import geFlag from "@/public/flags/FlagGermany.png";
-// import frFlag from "@/public/flags/FlagFrance.png";
+import { IoEarthSharp } from "react-icons/io5";
 
 import "@/ui/styles/moleculs/languagePicker.molecul.scss";
-// import "@/ui/styles/components/languagePicker/LanguagePicker.atom.scss";
-// import { usePathname, Link } from "@/navigation";
-// import { axiosBaseInstance } from "@/infrastructure/services/instances/axiosBaseInstance";
-
-// import { usePathname } from "next/navigation";
-// import Link from "next/link";
 
 const languages = [
   {
     id: 0,
     name: "Srpski",
     locale: "sr",
-    // img: srbFlag,
   },
   {
     id: 1,
     name: "English",
     locale: "en",
-    // img: engFlag,
   },
   {
     id: 2,
     name: "Deutsch",
     locale: "de",
-    // img: geFlag,
   },
   {
     id: 3,
     name: "Français",
     locale: "fr",
-    // img: frFlag,
   },
 ];
 
@@ -75,6 +61,7 @@ export default function LanguagePicker({
     <article className={`lang-picker ${type} ${variant}`}>
       {lang && (
         <div className="current lang">
+          <IoEarthSharp />
           {type === "full" && <p>{lang?.name}</p>}
         </div>
       )}
