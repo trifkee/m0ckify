@@ -83,3 +83,8 @@ export const TEXTURE_LIST = [
     name: "color",
   },
 ];
+
+export const IMAGE_SETTINGS = {
+  positionDivider: 100,
+  dimensionDivider: 100,
+};

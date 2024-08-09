@@ -41,6 +41,8 @@ export default function GenerateControls() {
     handleAddNewLight,
     handleRemoveLight,
     handleModelChange,
+    handleImageSize,
+    handleImagePosition,
   } = useGenerator();
 
   const getMenu = (
@@ -74,12 +76,100 @@ export default function GenerateControls() {
                 accept="image/*"
               />
             </Button>
+
+            <div
+              className="position"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <div className="input-label">
+                <label htmlFor="iw">W</label>
+                <input
+                  type="number"
+                  name="iw"
+                  id="iw"
+                  onChange={(e) => handleImageSize(e, "width")}
+                  value={model.image.width}
+                />
+              </div>
+              <div className="input-label">
+                <label htmlFor="ig">H</label>
+                <input
+                  type="number"
+                  name="ih"
+                  id="ih"
+                  onChange={(e) => handleImageSize(e, "height")}
+                  value={model.image.height}
+                />
+              </div>
+            </div>
+
+            <div
+              className="position"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <div className="input-label">
+                <label htmlFor="iw">X</label>
+                <input
+                  type="number"
+                  name="iw"
+                  id="iw"
+                  onChange={(e) => handleImagePosition(e, "x")}
+                  value={model.image.x}
+                />
+              </div>
+
+              <div className="input-label">
+                <label htmlFor="ig">Y</label>
+                <input
+                  type="number"
+                  name="ih"
+                  id="ih"
+                  onChange={(e) => handleImagePosition(e, "y")}
+                  value={model.image.y}
+                />
+              </div>
+            </div>
           </>
         );
 
       case "environment":
         return (
           <>
+            <div className="control__section env">
+              <div className="control__section env">
+                <p className="title">
+                  {t("environment.ambientLight.intensity")}
+                </p>
+
+                <Slider
+                  className=" small env-slider"
+                  max={1}
+                  min={0}
+                  name="intensity"
+                  step={0.01}
+                  onChange={(e) => onChangeIntensity(e, "env")}
+                  value={sceneDocument.env.intensity}
+                />
+              </div>
+
+              <p className="title">{t("environment.castShadow.title")}</p>
+
+              <Checkbox
+                title={t("environment.castShadow.shadow")}
+                htmlName="castShadow"
+                value={sceneDocument.env.castShadow}
+                onChange={(e) => handleChangeShadow(e)}
+              />
+            </div>
+
             <div className="control__section env select">
               <p className="title">{t("environment.preset")}</p>
 
@@ -95,31 +185,6 @@ export default function GenerateControls() {
                   );
                 })}
               </select>
-            </div>
-
-            <div className="control__section env">
-              <p className="title">{t("environment.castShadow.title")}</p>
-
-              <Checkbox
-                title={t("environment.castShadow.shadow")}
-                htmlName="castShadow"
-                value={sceneDocument.env.castShadow}
-                onChange={(e) => handleChangeShadow(e)}
-              />
-            </div>
-
-            <div className="control__section env">
-              <p className="title">{t("environment.ambientLight.intensity")}</p>
-
-              <Slider
-                className=" small env-slider"
-                max={1}
-                min={0}
-                name="intensity"
-                step={0.01}
-                onChange={(e) => onChangeIntensity(e, "env")}
-                value={sceneDocument.env.intensity}
-              />
             </div>
 
             <div className="control__section ">
@@ -163,27 +228,36 @@ export default function GenerateControls() {
 
                     <p className="title">{t("lights.lights.position")}</p>
                     <div className="position">
-                      <input
-                        type="number"
-                        name="lx"
-                        id="lx"
-                        onChange={(e) => handleDirLightPosition(e, "x", i)}
-                        value={light.position.x}
-                      />
-                      <input
-                        type="number"
-                        name="ly"
-                        id="ly"
-                        onChange={(e) => handleDirLightPosition(e, "y", i)}
-                        value={light.position.y}
-                      />
-                      <input
-                        type="number"
-                        name="lz"
-                        id="lx"
-                        onChange={(e) => handleDirLightPosition(e, "z", i)}
-                        value={light.position.z}
-                      />
+                      <div className="input-label">
+                        <label htmlFor="lx">X</label>
+                        <input
+                          type="number"
+                          name="lx"
+                          id="lx"
+                          onChange={(e) => handleDirLightPosition(e, "x", i)}
+                          value={light.position.x}
+                        />
+                      </div>
+                      <div className="input-label">
+                        <label htmlFor="ly">Y</label>
+                        <input
+                          type="number"
+                          name="ly"
+                          id="ly"
+                          onChange={(e) => handleDirLightPosition(e, "y", i)}
+                          value={light.position.y}
+                        />
+                      </div>
+                      <div className="input-label">
+                        <label htmlFor="lz">Z</label>
+                        <input
+                          type="number"
+                          name="lz"
+                          id="lz"
+                          onChange={(e) => handleDirLightPosition(e, "z", i)}
+                          value={light.position.z}
+                        />
+                      </div>
                     </div>
 
                     <p className="title">{t("lights.lights.color")}</p>
@@ -295,7 +369,8 @@ export default function GenerateControls() {
               {t("lights.title")}
               {sceneLights.length > 0 && (
                 <span style={{ fontSize: ".75rem", fontWeight: "lighter" }}>
-                  {sceneLights.length}
+                  {" "}
+                  • {sceneLights.length}
                 </span>
               )}
             </p>

@@ -8,6 +8,7 @@ import { useGLTF, PerspectiveCamera, useTexture } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useLoader } from "@react-three/fiber";
 import Context from "../providers/ContextProvider.provider";
+import { IMAGE_SETTINGS } from "@/lib/constants/generator";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -80,14 +81,25 @@ export default function Android(props: JSX.IntrinsicElements["group"]) {
   //   THREE.RepeatWrapping;
 
   /* SCREEN MOCKUP */
+  const image = model.image;
+
   //   @ts-ignore
-  texture.center.set(0.5, 0.5); // Set the rotation center to the middle of the texture
+  texture.center.set(
+    0.5 + image.width / IMAGE_SETTINGS.dimensionDivider,
+    0.5 + image.height / IMAGE_SETTINGS.dimensionDivider
+  );
+
   //   @ts-ignore
-  texture.rotation = Math.PI / 2; // Rotate 90 degrees
+  texture.rotation = Math.PI / 2;
+
   //   @ts-ignore
-  texture.repeat.set(-4.25, 4.1); // Invert and scale down the texture (adjust values as needed)
+  texture.repeat.set(-4.25, 4.1);
+
   //   @ts-ignore
-  texture.offset.set(-0.52, 0); // Adjust the offset to keep it centered after scaling and inversion
+  texture.offset.set(
+    -0.52 + image.x / IMAGE_SETTINGS.positionDivider,
+    0 + image.y / IMAGE_SETTINGS.positionDivider
+  );
 
   return (
     <>

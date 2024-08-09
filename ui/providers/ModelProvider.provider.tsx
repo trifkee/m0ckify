@@ -2,7 +2,7 @@
 
 import { Suspense, useContext, useEffect, useRef, useState } from "react";
 
-import { OrbitControls, Stage } from "@react-three/drei";
+import { Environment, OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Phone from "../models/Phone.model";
 import Context from "./ContextProvider.provider";
@@ -32,21 +32,21 @@ export default function ModelProvider() {
         {/* <color attach="background" args={["#15151a"]} /> */}
 
         <Lights />
-        <Stage
-          environment={sceneDocument.env.preset}
-          intensity={sceneDocument.env.intensity / 2}
-          castShadow={sceneDocument.env.castShadow === true ? true : false}
-        >
-          <Model />
-        </Stage>
+        {sceneDocument.env.castShadow ? (
+          <Stage
+            environment={sceneDocument.env.preset}
+            intensity={sceneDocument.env.intensity}
+          >
+            <Model />
+          </Stage>
+        ) : (
+          <>
+            <Environment preset={sceneDocument.env.preset} />
+            <Model />
+          </>
+        )}
 
-        <OrbitControls
-          enableZoom
-          enableDamping={false}
-          enableRotate={false}
-          maxZoom={1}
-          minZoom={0}
-        />
+        <OrbitControls enableRotate={false} />
       </Canvas>
     </div>
   );
@@ -62,22 +62,12 @@ function Lights() {
         intensity={sceneDocument.env.intensity}
       />
       {sceneLights.map((light: SceneLightsType, i: number) => (
-        <>
-          {/* <pointLight
-            key={i}
-            intensity={light.intensity * 100}
-            decay={2}
-            distance={5}
-            position={[light.position.y, light.position.x, light.position.z]}
-            rotation={[-Math.PI / 2, 0, 0]}
-          /> */}
-          <directionalLight
-            key={i}
-            intensity={light.intensity}
-            color={light.color}
-            position={[light.position.x, light.position.y, light.position.z]}
-          />
-        </>
+        <directionalLight
+          key={i}
+          intensity={light.intensity}
+          color={light.color}
+          position={[light.position.x, light.position.y, light.position.z]}
+        />
       ))}
     </>
   );
@@ -105,3 +95,12 @@ function Model() {
     </>
   );
 }
+
+// {/* <pointLight
+//       key={i}
+//       intensity={light.intensity * 100}
+//       decay={2}
+//       distance={5}
+//       position={[light.position.y, light.position.x, light.position.z]}
+//       rotation={[-Math.PI / 2, 0, 0]}
+//     /> */}

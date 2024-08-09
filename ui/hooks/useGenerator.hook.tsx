@@ -233,6 +233,30 @@ export default function useGenerator() {
     return setSelectedModel(model);
   };
 
+  const handleImageSize = (e: any, type: "width" | "height") => {
+    const size = Number(e.target.value);
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        [type]: size,
+      },
+    }));
+  };
+
+  const handleImagePosition = (e: any, position: "x" | "y") => {
+    const positionVal = Number(e.target.value);
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        [position]: positionVal,
+      },
+    }));
+  };
+
   useEffect(() => {
     setSelectedModel("iphone");
   }, []);
@@ -242,6 +266,8 @@ export default function useGenerator() {
     sceneDocument,
     sceneLights,
     handleImageChange,
+    handleImagePosition,
+    handleImageSize,
     handleSave,
     resetModelPosition,
     handleChangeShadow,
