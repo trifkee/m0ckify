@@ -1,0 +1,322 @@
+@import "variables.scss";
+
+.generate__controls {
+  &-mobile {
+    display: none !important;
+  }
+
+  display: flex !important;
+  overflow-y: auto;
+
+  flex-direction: column;
+  height: 100%;
+  grid-area: menu;
+  background: $dashboard-gray-clr;
+  border-left: 1px solid $dashboard-border-clr;
+
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+    background: $dark-gray-clr;
+    padding: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgb($dashboard-border-clr, 1);
+    border-radius: 0.5rem;
+  }
+
+  // ----
+  .control {
+    padding: 0.5rem;
+    border-bottom: 1px solid $dashboard-border-clr;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &:last-of-type + .divider {
+      display: none;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgb($dashboard-border-clr, 1);
+    }
+
+    &__title {
+      cursor: pointer;
+      padding: 1rem 0.5rem;
+      font-weight: bold;
+      font-size: clamp(0.5rem, 10vw, 0.85rem);
+      // border-bottom: 1px solid rgb($dashboard-border-clr, 1);
+      border-radius: 0.25rem;
+
+      &:hover {
+        background: rgb($dark-gray-clr, 0.25);
+      }
+
+      &::-webkit-details-marker {
+        display: none;
+      }
+
+      &.flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.25rem;
+        // border-bottom: 1px solid rgb($dashboard-border-clr, 1);
+
+        .button {
+          width: fit-content;
+        }
+      }
+    }
+
+    // -----
+
+    &.image {
+      .image-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.5rem;
+        outline: 1px solid $dashboard-border-clr;
+        width: 100%;
+        height: 10rem;
+        overflow: hidden;
+
+        background-image: radial-gradient(
+          circle,
+          rgb($dashboard-border-clr, 0.25) 1px,
+          rgb($dark-gray-clr, 0.5) 1px
+        );
+        background-size: 0.5rem 0.5rem;
+        background-position: center center;
+
+        img {
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+
+    &__section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      overflow: hidden;
+      padding: 0.5rem 0;
+
+      & > * {
+        width: 100%;
+      }
+
+      .title {
+        font-weight: 300;
+        font-size: clamp(0.5rem, 15vw, 0.75rem);
+
+        &.flex {
+          display: flex;
+          justify-content: space-between;
+          gap: 1rem;
+          align-items: center;
+          padding: 0.5rem 0;
+
+          .button {
+            padding: 0.25rem;
+            width: fit-content;
+          }
+        }
+      }
+
+      .react-colorful {
+        width: 100%;
+        cursor: pointer;
+
+        @media (max-width: 768px) {
+          max-width: 70%;
+        }
+      }
+
+      .position {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      input[type="number"] {
+        // aspect-ratio: 1;
+        width: 100%;
+        height: 2rem;
+        outline: none;
+        text-align: center;
+        border: 1px solid rgb($dashboard-border-clr, 1);
+        background: rgb($dark-gray-clr, 0.5);
+      }
+
+      .textures {
+        display: flex;
+        gap: 0.25rem;
+      }
+    }
+
+    &.select {
+      width: 100%;
+
+      select {
+        width: 100%;
+        color: $white-clr;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        outline: none;
+        border: 1px solid rgb($dashboard-border-clr, 1);
+        background: rgb($dark-gray-clr, 0.5);
+        transition: 0.2s ease all;
+
+        &:hover {
+          cursor: pointer;
+          border: 1px solid $secondary-clr-400;
+          background: rgb($secondary-clr-700, 0.5);
+        }
+
+        & > * {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+// .generate__controls-mobile {
+//   grid-area: menu;
+//   height: fit-content;
+//   display: flex;
+//   flex-direction: column;
+//   border-top: 1px solid rgb($dashboard-border-clr, 1);
+//   background: rgb($dashboard-gray-clr, 1);
+//   // overflow-x: auto;
+//   // overflow-y: visible;
+//   overflow-x: auto;
+//   position: relative;
+
+//   .additional-menu {
+//     min-height: 10rem;
+//     position: absolute;
+//     bottom: 100%;
+//     width: 100%;
+//     height: 100%;
+//     background: red;
+//   }
+
+//   .track {
+//     display: flex;
+//     // overflow-x: auto;
+//   }
+
+//   .control {
+//     padding: 1rem;
+//     flex: 1;
+//     min-width: 8rem;
+//     border-right: 1px solid rgb($dashboard-border-clr, 1);
+//     display: flex;
+//     align-items: center;
+//     justify-content: start;
+//     flex-direction: column;
+
+//     &__title {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//       gap: 0.5rem;
+//       text-wrap: nowrap;
+//     }
+//   }
+// }
+.generate__controls-mobile {
+  display: flex;
+  background: red;
+  position: relative;
+
+  .track {
+    background-color: rgb($dashboard-gray-clr, 1);
+    border-top: 1px solid rgb($dashboard-border-clr, 1);
+    display: flex;
+    width: 100vw;
+    overflow-y: hidden;
+    overflow-x: auto; // overflow-x: scroll;
+
+    .control {
+      padding: 1.25rem 1rem;
+      flex: 1;
+      min-width: 10rem;
+
+      &:not(:last-child) {
+        border-right: 1px solid rgb($dashboard-border-clr, 1);
+      }
+
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+      }
+    }
+  }
+
+  .additional-menu {
+    position: absolute;
+    width: calc(100% - 1rem);
+    transform: translateX(-50%);
+    left: 50%;
+    min-height: 20rem;
+
+    max-height: 30vh;
+    overflow-y: auto;
+    bottom: 116%;
+    border-radius: 0.5rem;
+
+    outline: 1px solid rgb($dashboard-border-clr, 1);
+
+    backdrop-filter: blur(10px);
+    background-color: rgb($dashboard-gray-clr, 0.75);
+    border-top: 1px solid rgb($dashboard-gray-clr, 1);
+
+    padding: 1rem;
+  }
+}
+
+// @media (max-width: 768px) {
+//   .generate__controls {
+//     display: none !important;
+
+//     &-mobile {
+//       display: flex !important;
+//     }
+//   }
+// }
+
+@media (max-width: 768px) {
+  .generate__controls {
+    max-height: 30vh;
+
+    &::-webkit-scrollbar {
+      width: 0.75rem;
+      background: $dark-gray-clr;
+      padding: 0.5rem;
+      display: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb($dashboard-border-clr, 1);
+      border-radius: 0.5rem;
+      display: none;
+    }
+
+    .control {
+      &.actions {
+        display: none;
+      }
+    }
+  }
+}

@@ -28,6 +28,7 @@
     grid-area: navigation;
     grid-row: 1/1;
     height: 4rem;
+    position: relative;
     padding: 1.5rem;
 
     display: flex;
@@ -50,195 +51,92 @@
       font-weight: lighter;
       opacity: 0.25;
     }
+
+    .mobile-cta {
+      display: none;
+    }
+
+    .mobile-nav {
+      border-block: 1px solid rgb($dashboard-border-clr, 1);
+      display: none;
+      position: absolute;
+      width: 100%;
+      height: 20vh;
+      top: 100%;
+      z-index: 2;
+      background: rgb($dashboard-gray-clr, 1);
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1rem;
+
+      .lang-picker {
+        display: block;
+        z-index: 2;
+      }
+
+      .button {
+        padding: 0.5rem;
+        width: 100%;
+        p {
+          opacity: 1;
+        }
+
+        &.danger {
+          p {
+            color: $ternary-clr-500;
+          }
+          background: rgb($ternary-clr-500, 0.125);
+        }
+      }
+    }
   }
 
   &__model {
     grid-area: model;
-
+    position: relative;
+    width: 100%;
+    overflow: hidden;
     display: grid;
     grid-template-areas:
       "model model model slider-y"
       "model model model slider-y"
       "model model model slider-y"
       "slider-x slider-x slider-x none";
+
+    .model {
+      position: relative;
+      width: 100%;
+    }
   }
+}
 
-  &__controls {
-    overflow-y: auto;
+@media (max-width: 768px) {
+  .generate {
+    grid-template-rows: 0fr 1fr auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: "navigation" "model" "menu";
 
-    &::-webkit-scrollbar {
-      width: 0.75rem;
-      background: $dark-gray-clr;
-      padding: 0.5rem;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: rgb($dashboard-border-clr, 1);
-      border-radius: 0.5rem;
-    }
-
-    // ----
-    .control {
-      padding: 0.5rem;
-      border-bottom: 1px solid $dashboard-border-clr;
-
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      &:last-of-type + .divider {
+    &__navigation {
+      .lang-picker {
         display: none;
       }
 
-      .divider {
-        height: 1px;
-        background: rgb($dashboard-border-clr, 1);
-      }
-
-      &__title {
-        cursor: pointer;
-        padding: 1rem 0.5rem;
-        font-weight: bold;
-        font-size: clamp(0.5rem, 10vw, 0.85rem);
-        // border-bottom: 1px solid rgb($dashboard-border-clr, 1);
-        border-radius: 0.25rem;
-
-        &:hover {
-          background: rgb($dark-gray-clr, 0.25);
-        }
-
-        &::-webkit-details-marker {
-          display: none;
-        }
-
-        &.flex {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0.5rem 0.25rem;
-          // border-bottom: 1px solid rgb($dashboard-border-clr, 1);
-
-          .button {
-            width: fit-content;
-          }
-        }
-      }
-
-      // -----
-
-      &.image {
-        .image-container {
-          display: flex;
-          flex-direction: column;
-          gap: 0.25rem;
-          align-items: center;
-          justify-content: center;
-          border-radius: 0.5rem;
-          outline: 1px solid $dashboard-border-clr;
-          width: 100%;
-          height: 10rem;
-          overflow: hidden;
-
-          background-image: radial-gradient(
-            circle,
-            rgb($dashboard-border-clr, 0.25) 1px,
-            rgb($dark-gray-clr, 0.5) 1px
-          );
-          background-size: 0.5rem 0.5rem;
-          background-position: center center;
-
-          img {
-            object-fit: cover;
-            object-position: center;
-          }
-        }
-      }
-
-      &__section {
+      .button {
         display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        overflow: hidden;
-        padding: 0.5rem 0;
-
-        & > * {
-          width: 100%;
-        }
-
-        .title {
-          font-weight: 300;
-          font-size: clamp(0.5rem, 15vw, 0.75rem);
-
-          &.flex {
-            display: flex;
-            justify-content: space-between;
-            gap: 1rem;
-            align-items: center;
-            padding: 0.5rem 0;
-
-            .button {
-              padding: 0.25rem;
-              width: fit-content;
-            }
-          }
-        }
-
-        .react-colorful {
-          width: 100%;
-          cursor: pointer;
-        }
-
-        .position {
-          display: flex;
-          gap: 0.5rem;
-        }
-
-        input[type="number"] {
-          // aspect-ratio: 1;
-          width: 100%;
-          height: 2rem;
-          outline: none;
-          text-align: center;
-          border: 1px solid rgb($dashboard-border-clr, 1);
-          background: rgb($dark-gray-clr, 0.5);
-        }
-
-        .textures {
-          display: flex;
-          gap: 0.25rem;
-        }
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        width: 2rem;
+        aspect-ratio: 1;
       }
 
-      &.select {
-        width: 100%;
+      .mobile-cta {
+        display: block;
+      }
 
-        select {
-          width: 100%;
-          color: $white-clr;
-          padding: 0.5rem;
-          border-radius: 0.25rem;
-          outline: none;
-          border: 1px solid rgb($dashboard-border-clr, 1);
-          background: rgb($dark-gray-clr, 0.5);
-          transition: 0.2s ease all;
-
-          &:hover {
-            cursor: pointer;
-            border: 1px solid $secondary-clr-400;
-            background: rgb($secondary-clr-700, 0.5);
-          }
-
-          & > * {
-            border-radius: 0;
-          }
-        }
+      .mobile-nav {
+        display: flex;
       }
     }
-
-    flex-direction: column;
-    height: 100%;
-    grid-area: menu;
-    background: $dashboard-gray-clr;
-    border-left: 1px solid $dashboard-border-clr;
   }
 }
