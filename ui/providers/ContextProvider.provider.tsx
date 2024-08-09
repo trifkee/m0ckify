@@ -13,6 +13,10 @@ import fallbackImage from "@/public/images/fallback.jpg";
 const Context = createContext<any>(null);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
+  const [selectedModel, setSelectedModel] = useState<React.ReactNode | null>(
+    null
+  );
+
   const [model, setModel] = useState<ModelType>({
     position: {
       x: 0,
@@ -67,6 +71,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         setSceneDocument,
         sceneLights,
         setSceneLights,
+        setSelectedModel,
+        selectedModel,
       }}
     >
       {children}

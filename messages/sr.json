@@ -19,7 +19,8 @@
         "title": "Tekstura",
         "texture": {
           "plastic": "Plastika",
-          "marble": "Mermer"
+          "marble": "Mermer",
+          "color": "Boja"
         }
       },
       "type": {

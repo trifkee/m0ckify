@@ -78,4 +78,8 @@ export const TEXTURE_LIST = [
     id: 1,
     name: "marble",
   },
+  {
+    id: 2,
+    name: "color",
+  },
 ];

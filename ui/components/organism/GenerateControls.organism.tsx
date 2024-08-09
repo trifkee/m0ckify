@@ -40,6 +40,7 @@ export default function GenerateControls() {
     resetModelPosition,
     handleAddNewLight,
     handleRemoveLight,
+    handleModelChange,
   } = useGenerator();
 
   const getMenu = (
@@ -220,10 +221,13 @@ export default function GenerateControls() {
             <div className="control__section">
               <summary className="title">{t("model.type.title")}</summary>
 
-              <select defaultValue={MODELS_LIST[0].title}>
+              <select
+                onChange={handleModelChange}
+                defaultValue={MODELS_LIST[0].title}
+              >
                 {MODELS_LIST.map((model) => {
                   return (
-                    <option key={model.id} value={model.id}>
+                    <option key={model.id} value={model.model}>
                       {t(`model.type.types.${model.title.toLowerCase()}`)}
                     </option>
                   );

@@ -2,17 +2,21 @@
 
 import { Suspense, useContext, useEffect, useRef, useState } from "react";
 
-import { Stage } from "@react-three/drei";
+import { OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Phone from "../models/Phone.model";
 import Context from "./ContextProvider.provider";
 import { SceneLightsType } from "@/lib/types/model.type";
 
+import Phone1 from "@/ui/models/Iphone.model";
+import Iphone from "@/ui/models/Iphone.model";
+import Android from "../models/Android.model";
+
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument } = useContext(Context);
+  const { sceneDocument, selectedModel } = useContext(Context);
 
   return (
     <div className="model" ref={parentRef}>
@@ -30,13 +34,19 @@ export default function ModelProvider() {
         <Lights />
         <Stage
           environment={sceneDocument.env.preset}
-          intensity={sceneDocument.env.intensity}
+          intensity={sceneDocument.env.intensity / 2}
           castShadow={sceneDocument.env.castShadow === true ? true : false}
         >
           <Model />
         </Stage>
 
-        {/* <OrbitControls /> */}
+        <OrbitControls
+          enableZoom
+          enableDamping={false}
+          enableRotate={false}
+          maxZoom={1}
+          minZoom={0}
+        />
       </Canvas>
     </div>
   );
@@ -52,17 +62,46 @@ function Lights() {
         intensity={sceneDocument.env.intensity}
       />
       {sceneLights.map((light: SceneLightsType, i: number) => (
-        <directionalLight
-          key={i}
-          intensity={light.intensity}
-          color={light.color}
-          position={[light.position.x, light.position.y, light.position.z]}
-        />
+        <>
+          {/* <pointLight
+            key={i}
+            intensity={light.intensity * 100}
+            decay={2}
+            distance={5}
+            position={[light.position.y, light.position.x, light.position.z]}
+            rotation={[-Math.PI / 2, 0, 0]}
+          /> */}
+          <directionalLight
+            key={i}
+            intensity={light.intensity}
+            color={light.color}
+            position={[light.position.x, light.position.y, light.position.z]}
+          />
+        </>
       ))}
     </>
   );
 }
 
 function Model() {
-  return <Phone />;
+  const { selectedModel } = useContext(Context);
+
+  const renderModel = () => {
+    switch (selectedModel) {
+      case "iphone":
+        return <Iphone />;
+      case "android":
+        return <Android />;
+      default:
+        <Android />;
+    }
+  };
+
+  return (
+    <>
+      {renderModel()}
+      {/* <Phone1 /> */}
+      {/* <Phone /> */}
+    </>
+  );
 }
