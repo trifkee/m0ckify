@@ -10,6 +10,8 @@ import {
   SceneDocumentType,
   SceneLightsType,
 } from "@/lib/types/model.type";
+import Phone from "../models/Iphone.model";
+import Phone1 from "../models/Iphone.model";
 
 export default function useGenerator() {
   const {
@@ -19,6 +21,7 @@ export default function useGenerator() {
     setSceneDocument,
     sceneLights,
     setSceneLights,
+    setSelectedModel,
   } = useContext(Context);
 
   /* Read image from user PC */
@@ -224,11 +227,47 @@ export default function useGenerator() {
     );
   };
 
+  const handleModelChange = (e: any) => {
+    const model = e.target.value;
+
+    return setSelectedModel(model);
+  };
+
+  const handleImageSize = (e: any, type: "width" | "height") => {
+    const size = Number(e.target.value);
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        [type]: size,
+      },
+    }));
+  };
+
+  const handleImagePosition = (e: any, position: "x" | "y") => {
+    const positionVal = Number(e.target.value);
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        [position]: positionVal,
+      },
+    }));
+  };
+
+  useEffect(() => {
+    setSelectedModel("iphone");
+  }, []);
+
   return {
     model,
     sceneDocument,
     sceneLights,
     handleImageChange,
+    handleImagePosition,
+    handleImageSize,
     handleSave,
     resetModelPosition,
     handleChangeShadow,
@@ -239,5 +278,6 @@ export default function useGenerator() {
     handleSelectChange,
     handleAddNewLight,
     handleRemoveLight,
+    handleModelChange,
   };
 }

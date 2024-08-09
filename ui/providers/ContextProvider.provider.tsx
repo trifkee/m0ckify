@@ -8,11 +8,15 @@ import {
   SceneLightsType,
 } from "@/lib/types/model.type";
 
-import fallbackImage from "@/public/images/fallback.jpg";
+import fallbackImage from "@/public/images/mockify-starter.jpg";
 
 const Context = createContext<any>(null);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
+  const [selectedModel, setSelectedModel] = useState<React.ReactNode | null>(
+    null
+  );
+
   const [model, setModel] = useState<ModelType>({
     position: {
       x: 0,
@@ -21,6 +25,10 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     image: {
       src: fallbackImage.src as any,
       isDefault: true,
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
     },
     color: "#fff",
     texture: "plastic",
@@ -67,6 +75,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         setSceneDocument,
         sceneLights,
         setSceneLights,
+        setSelectedModel,
+        selectedModel,
       }}
     >
       {children}

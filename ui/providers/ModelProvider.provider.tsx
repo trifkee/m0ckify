@@ -2,17 +2,21 @@
 
 import { Suspense, useContext, useEffect, useRef, useState } from "react";
 
-import { Stage } from "@react-three/drei";
+import { Environment, OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Phone from "../models/Phone.model";
 import Context from "./ContextProvider.provider";
 import { SceneLightsType } from "@/lib/types/model.type";
 
+import Phone1 from "@/ui/models/Iphone.model";
+import Iphone from "@/ui/models/Iphone.model";
+import Android from "../models/Android.model";
+
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument } = useContext(Context);
+  const { sceneDocument, selectedModel } = useContext(Context);
 
   return (
     <div className="model" ref={parentRef}>
@@ -28,15 +32,21 @@ export default function ModelProvider() {
         {/* <color attach="background" args={["#15151a"]} /> */}
 
         <Lights />
-        <Stage
-          environment={sceneDocument.env.preset}
-          intensity={sceneDocument.env.intensity}
-          castShadow={sceneDocument.env.castShadow === true ? true : false}
-        >
-          <Model />
-        </Stage>
+        {sceneDocument.env.castShadow ? (
+          <Stage
+            environment={sceneDocument.env.preset}
+            intensity={sceneDocument.env.intensity}
+          >
+            <Model />
+          </Stage>
+        ) : (
+          <>
+            <Environment preset={sceneDocument.env.preset} />
+            <Model />
+          </>
+        )}
 
-        {/* <OrbitControls /> */}
+        <OrbitControls enableRotate={false} />
       </Canvas>
     </div>
   );
@@ -64,5 +74,33 @@ function Lights() {
 }
 
 function Model() {
-  return <Phone />;
+  const { selectedModel } = useContext(Context);
+
+  const renderModel = () => {
+    switch (selectedModel) {
+      case "iphone":
+        return <Iphone />;
+      case "android":
+        return <Android />;
+      default:
+        <Android />;
+    }
+  };
+
+  return (
+    <>
+      {renderModel()}
+      {/* <Phone1 /> */}
+      {/* <Phone /> */}
+    </>
+  );
 }
+
+// {/* <pointLight
+//       key={i}
+//       intensity={light.intensity * 100}
+//       decay={2}
+//       distance={5}
+//       position={[light.position.y, light.position.x, light.position.z]}
+//       rotation={[-Math.PI / 2, 0, 0]}
+//     /> */}

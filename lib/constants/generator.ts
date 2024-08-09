@@ -78,4 +78,13 @@ export const TEXTURE_LIST = [
     id: 1,
     name: "marble",
   },
+  {
+    id: 2,
+    name: "color",
+  },
 ];
+
+export const IMAGE_SETTINGS = {
+  positionDivider: 100,
+  dimensionDivider: 100,
+};

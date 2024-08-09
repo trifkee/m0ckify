@@ -19,7 +19,8 @@
         "title": "Texture",
         "texture": {
           "plastic": "Plastic",
-          "marble": "Marble"
+          "marble": "Marble",
+          "color": "Color"
         }
       },
       "type": {
