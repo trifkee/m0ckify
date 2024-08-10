@@ -1,9 +1,9 @@
 {
   "global": {
-    "start": "Start"
+    "start": "Starten"
   },
   "home": {
-    "title": "Dynamische Mockups, Endlose Möglichkeiten",
+    "title": "Erstellen Sie wunderschöne benutzerdefinierte Mockups kostenlos",
     "getStarted": "Loslegen",
     "learnMore": "Mehr erfahren"
   },
@@ -15,11 +15,14 @@
     },
     "model": {
       "title": "Modell",
+      "screenReflection": "Bildschirmreflexion",
+      "bodyReflection": "Modellreflexion",
       "texture": {
         "title": "Textur",
         "texture": {
-          "plastic": "Kunststoff",
-          "marble": "Marmor"
+          "plastic": "Plastik",
+          "marble": "Marmor",
+          "color": "Farbe"
         }
       },
       "type": {
@@ -27,7 +30,7 @@
         "types": {
           "iphone": "iPhone",
           "android": "Android",
-          "tv": "TV",
+          "tv": "Fernseher",
           "laptop": "Laptop"
         }
       },
@@ -42,7 +45,7 @@
         "warehouse": "Lager",
         "apartment": "Wohnung",
         "city": "Stadt",
-        "dawn": "Morgen",
+        "dawn": "Morgendämmerung",
         "forest": "Wald",
         "lobby": "Lobby",
         "night": "Nacht",
@@ -55,7 +58,7 @@
         "shadow": "Schatten"
       },
       "ambientLight": {
-        "intensity": "Stärke des Umgebungslichts",
+        "intensity": "Intensität des Umgebungslichts",
         "color": "Farbe des Umgebungslichts"
       }
     },

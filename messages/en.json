@@ -3,9 +3,9 @@
     "start": "Start"
   },
   "home": {
-    "title": "Create beautiful customized mockups for free",
+    "title": "Create beautiful custom mockups for free",
     "getStarted": "Get Started",
-    "learnMore": "Lear More"
+    "learnMore": "Learn More"
   },
   "generate": {
     "image": {
@@ -15,11 +15,14 @@
     },
     "model": {
       "title": "Model",
+      "screenReflection": "Screen Reflection",
+      "bodyReflection": "Model Reflection",
       "texture": {
         "title": "Texture",
         "texture": {
           "plastic": "Plastic",
-          "marble": "Marble"
+          "marble": "Marble",
+          "color": "Color"
         }
       },
       "type": {

@@ -1,15 +1,19 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import Button from "@/ui/components/atoms/Button.atom";
 import { Link } from "@/navigation";
+
+import { motion } from "framer-motion";
 
 import Image from "next/image";
 import logo from "@/public/images/logo.svg";
 
 import { IoArrowForwardSharp } from "react-icons/io5";
 
-import "@/ui/styles/pages/home.page.scss";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
-import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+
+import "@/ui/styles/pages/home.page.scss";
 
 export default function Home({
   params: { locale },
@@ -18,27 +22,74 @@ export default function Home({
 }) {
   const t = useTranslations("home");
 
+  const slicedTitle = t("title").split(" ");
+
   return (
     <main className="home">
-      <nav className="navigation">
+      <motion.nav
+        className="navigation"
+        initial={{
+          opacity: 0,
+          y: -10,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          delay: 0.5,
+        }}
+      >
         <Image className="logo" src={logo} alt="Mockify" />
 
-        <LanguagePicker locale={locale} />
-      </nav>
+        <LanguagePicker variant="editor" locale={locale} />
+      </motion.nav>
 
       <section className="home__header">
-        <p className="title">{t("title")}</p>
+        <p className="title">
+          {slicedTitle.map((n, i) => (
+            <motion.span
+              initial={{
+                y: -10,
+                opacity: 0,
+              }}
+              animate={{
+                y: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.5,
+                ease: "easeInOut",
+                delay: i * 0.1,
+              }}
+              key={i}
+            >
+              {n}
+            </motion.span>
+          ))}
+        </p>
 
-        <div className="ctas">
-          <Button className="learn-more" variant="editor">
+        <motion.div
+          className="ctas"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1,
+          }}
+        >
+          {/* <Button className="learn-more" variant="editor">
             {t("learnMore")}
-          </Button>
+          </Button> */}
           <Link href={"/generate"}>
             <Button className="get-started" variant="editor">
               {t("getStarted")} <IoArrowForwardSharp />
             </Button>
           </Link>
-        </div>
+        </motion.div>
       </section>
     </main>
   );

@@ -6,7 +6,13 @@ export type ModelType = {
   image: {
     src: File | null;
     isDefault: boolean;
+    width: number;
+    height: number;
+    x: number;
+    y: number;
   };
+  bodyReflection: number;
+  screenReflection: number;
   color: string;
   texture: "plastic" | "marble";
 };

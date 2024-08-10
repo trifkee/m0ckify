@@ -1,0 +1,82 @@
+{
+  "global": {
+    "start": "Начать"
+  },
+  "home": {
+    "title": "Создавайте красивые индивидуальные макеты бесплатно",
+    "getStarted": "Начать",
+    "learnMore": "Узнать больше"
+  },
+  "generate": {
+    "image": {
+      "title": "Изображение",
+      "add": "Добавить изображение",
+      "noImage": "Просмотр"
+    },
+    "model": {
+      "title": "Модель",
+      "screenReflection": "Отражение экрана",
+      "bodyReflection": "Отражение модели",
+      "texture": {
+        "title": "Текстура",
+        "texture": {
+          "plastic": "Пластик",
+          "marble": "Мрамор",
+          "color": "Цвет"
+        }
+      },
+      "type": {
+        "title": "Тип",
+        "types": {
+          "iphone": "Айфон",
+          "android": "Андроид",
+          "tv": "Телевизор",
+          "laptop": "Ноутбук"
+        }
+      },
+      "color": {
+        "title": "Цвет"
+      }
+    },
+    "environment": {
+      "title": "Окружение",
+      "preset": "Настройка",
+      "list": {
+        "warehouse": "Склад",
+        "apartment": "Квартира",
+        "city": "Город",
+        "dawn": "Рассвет",
+        "forest": "Лес",
+        "lobby": "Вестибюль",
+        "night": "Ночь",
+        "park": "Парк",
+        "studio": "Студия",
+        "sunset": "Закат"
+      },
+      "castShadow": {
+        "title": "Отбрасывать тени",
+        "shadow": "Тени"
+      },
+      "ambientLight": {
+        "intensity": "Интенсивность окружающего света",
+        "color": "Цвет окружающего света"
+      }
+    },
+    "lights": {
+      "title": "Свет",
+      "add": "Добавить",
+      "remove": "Удалить",
+      "lights": {
+        "title": "Свет",
+        "intensity": "Интенсивность",
+        "position": "Позиция",
+        "color": "Цвет"
+      }
+    },
+    "actions": {
+      "title": "Действия",
+      "download": "Скачать",
+      "reset": "Сбросить"
+    }
+  }
+}

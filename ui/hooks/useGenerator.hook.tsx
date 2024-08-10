@@ -19,6 +19,7 @@ export default function useGenerator() {
     setSceneDocument,
     sceneLights,
     setSceneLights,
+    setSelectedModel,
   } = useContext(Context);
 
   /* Read image from user PC */
@@ -224,11 +225,63 @@ export default function useGenerator() {
     );
   };
 
+  const handleModelChange = (e: any) => {
+    const model = e.target.value;
+
+    return setSelectedModel(model);
+  };
+
+  const handleImageSize = (e: any, type: "width" | "height") => {
+    const size = Number(e.target.value);
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        [type]: size,
+      },
+    }));
+  };
+
+  const handleImagePosition = (e: any, position: "x" | "y") => {
+    const positionVal = Number(e.target.value);
+
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        [position]: positionVal,
+      },
+    }));
+  };
+
+  const handleChangeReflection = (e: any, type: "screen" | "phone") => {
+    if (type === "phone") {
+      return setModel((prev: ModelType) => ({
+        ...prev,
+        bodyReflection: e.target.value,
+      }));
+    }
+
+    if (type === "screen") {
+      return setModel((prev: ModelType) => ({
+        ...prev,
+        screenReflection: e.target.checked ? 1 : 0,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    setSelectedModel("iphone");
+  }, []);
+
   return {
     model,
     sceneDocument,
     sceneLights,
     handleImageChange,
+    handleImagePosition,
+    handleImageSize,
     handleSave,
     resetModelPosition,
     handleChangeShadow,
@@ -239,5 +292,7 @@ export default function useGenerator() {
     handleSelectChange,
     handleAddNewLight,
     handleRemoveLight,
+    handleModelChange,
+    handleChangeReflection,
   };
 }

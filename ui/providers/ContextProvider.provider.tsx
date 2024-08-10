@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 import {
   ModelType,
@@ -8,12 +8,22 @@ import {
   SceneLightsType,
 } from "@/lib/types/model.type";
 
-import fallbackImage from "@/public/images/fallback.jpg";
+import fallbackImage from "@/public/images/mockify-starter.jpg";
+import fallbackImageTV from "@/public/images/mockify-starter-big.jpg";
+import { File } from "buffer";
 
 const Context = createContext<any>(null);
 
 export function ContextProvider({ children }: { children: React.ReactNode }) {
+  const [selectedModel, setSelectedModel] = useState<React.ReactNode | null>(
+    null
+  );
+
   const [model, setModel] = useState<ModelType>({
+    color: "#fff",
+    texture: "plastic",
+    bodyReflection: 0,
+    screenReflection: 1,
     position: {
       x: 0,
       y: 0,
@@ -21,9 +31,11 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     image: {
       src: fallbackImage.src as any,
       isDefault: true,
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
     },
-    color: "#fff",
-    texture: "plastic",
   });
 
   const [sceneDocument, setSceneDocument] = useState<SceneDocumentType>({
@@ -58,6 +70,31 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     },
   ]);
 
+  useEffect(() => {
+    if (selectedModel === "tv") {
+      // @ts-ignore
+      setModel((prev: ModelType) => ({
+        ...prev,
+        image: {
+          ...prev.image,
+          src: fallbackImage.src as any,
+        },
+      }));
+      return;
+    }
+
+    if (selectedModel === "iphone" || selectedModel === "android") {
+      // @ts-ignore
+      setModel((prev: ModelType) => ({
+        ...prev,
+        image: {
+          src: fallbackImage.src as any,
+        },
+      }));
+      return;
+    }
+  }, [selectedModel]);
+
   return (
     <Context.Provider
       value={{
@@ -67,6 +104,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         setSceneDocument,
         sceneLights,
         setSceneLights,
+        setSelectedModel,
+        selectedModel,
       }}
     >
       {children}
