@@ -35,16 +35,16 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   const image = model.image;
 
   //   @ts-ignore
-  texture.center.set(
-    0.5 + image.width / IMAGE_SETTINGS.dimensionDivider,
-    0.5 + image.height / IMAGE_SETTINGS.dimensionDivider
-  );
+  texture.center.set(0.5, 0.5);
 
   //   @ts-ignore
   texture.rotation = Math.PI / 2;
 
   //   @ts-ignore
-  texture.repeat.set(4.25, -4.1);
+  texture.repeat.set(
+    4.25 + image.width / IMAGE_SETTINGS.dimensionDivider,
+    -4.1 + image.height / IMAGE_SETTINGS.dimensionDivider
+  );
 
   //   @ts-ignore
   texture.offset.set(
