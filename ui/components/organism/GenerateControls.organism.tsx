@@ -2,6 +2,8 @@
 
 import { useTranslations } from "next-intl";
 
+import { motion } from "framer-motion";
+
 import { HexColorPicker } from "react-colorful";
 import Slider from "@/ui/components/atoms/Slider.atom";
 import Checkbox from "@/ui/components/atoms/Checkbox.atom";
@@ -373,23 +375,88 @@ export default function GenerateControls() {
 
   return (
     <>
-      <article className="generate__controls">
-        <details className="control image">
+      <motion.article
+        initial={{
+          x: 10,
+          opacity: 0,
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+        }}
+        transition={{
+          delay: 0.5,
+        }}
+        className="generate__controls"
+      >
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.85,
+          }}
+          className="control image"
+        >
           <summary className="control__title">{t("image.title")}</summary>
 
           <div className="control__section">{getMenu("image")}</div>
-        </details>
+        </motion.details>
 
-        <details className="control model select">
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.95,
+          }}
+          className="control model select"
+        >
           <summary className="control__title">{t("model.title")}</summary>
           {getMenu("model")}
-        </details>
-        <details className="control env select">
+        </motion.details>
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1,
+          }}
+          className="control env select"
+        >
           <summary className="control__title">{t("environment.title")}</summary>
           {getMenu("environment")}
-        </details>
+        </motion.details>
 
-        <details className="control">
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1.15,
+          }}
+          className="control"
+        >
           <summary className="control__title flex">
             <p>
               {t("lights.title")}
@@ -407,13 +474,26 @@ export default function GenerateControls() {
           </summary>
 
           {getMenu("lights")}
-        </details>
+        </motion.details>
 
-        <details className="control actions">
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1.25,
+          }}
+          className="control actions"
+        >
           <summary className="control__title">{t("actions.title")}</summary>
           {getMenu("action")}
-        </details>
-      </article>
+        </motion.details>
+      </motion.article>
     </>
   );
 }
