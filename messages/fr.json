@@ -1,9 +1,9 @@
 {
   "global": {
-    "start": "Démarrer"
+    "start": "Commencer"
   },
   "home": {
-    "title": "Créez de magnifiques mockups personnalisés gratuitement",
+    "title": "Créez de superbes maquettes personnalisées gratuitement",
     "getStarted": "Commencer",
     "learnMore": "En savoir plus"
   },
@@ -15,6 +15,8 @@
     },
     "model": {
       "title": "Modèle",
+      "screenReflection": "Réflexion de l'écran",
+      "bodyReflection": "Réflexion du modèle",
       "texture": {
         "title": "Texture",
         "texture": {

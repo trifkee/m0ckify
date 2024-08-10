@@ -10,8 +10,6 @@ import {
   SceneDocumentType,
   SceneLightsType,
 } from "@/lib/types/model.type";
-import Phone from "../models/Iphone.model";
-import Phone1 from "../models/Iphone.model";
 
 export default function useGenerator() {
   const {
@@ -257,6 +255,22 @@ export default function useGenerator() {
     }));
   };
 
+  const handleChangeReflection = (e: any, type: "screen" | "phone") => {
+    if (type === "phone") {
+      return setModel((prev: ModelType) => ({
+        ...prev,
+        bodyReflection: e.target.value,
+      }));
+    }
+
+    if (type === "screen") {
+      return setModel((prev: ModelType) => ({
+        ...prev,
+        screenReflection: e.target.checked ? 1 : 0,
+      }));
+    }
+  };
+
   useEffect(() => {
     setSelectedModel("iphone");
   }, []);
@@ -279,5 +293,6 @@ export default function useGenerator() {
     handleAddNewLight,
     handleRemoveLight,
     handleModelChange,
+    handleChangeReflection,
   };
 }

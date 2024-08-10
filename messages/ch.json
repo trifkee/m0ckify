@@ -1,0 +1,82 @@
+{
+  "global": {
+    "start": "开始"
+  },
+  "home": {
+    "title": "免费创建漂亮的自定义模型",
+    "getStarted": "开始",
+    "learnMore": "了解更多"
+  },
+  "generate": {
+    "image": {
+      "title": "图片",
+      "add": "添加图片",
+      "noImage": "预览"
+    },
+    "model": {
+      "title": "模型",
+      "screenReflection": "屏幕反射",
+      "bodyReflection": "模型反射",
+      "texture": {
+        "title": "材质",
+        "texture": {
+          "plastic": "塑料",
+          "marble": "大理石",
+          "color": "颜色"
+        }
+      },
+      "type": {
+        "title": "类型",
+        "types": {
+          "iphone": "iPhone",
+          "android": "安卓",
+          "tv": "电视",
+          "laptop": "笔记本电脑"
+        }
+      },
+      "color": {
+        "title": "颜色"
+      }
+    },
+    "environment": {
+      "title": "环境",
+      "preset": "预设",
+      "list": {
+        "warehouse": "仓库",
+        "apartment": "公寓",
+        "city": "城市",
+        "dawn": "黎明",
+        "forest": "森林",
+        "lobby": "大厅",
+        "night": "夜晚",
+        "park": "公园",
+        "studio": "工作室",
+        "sunset": "日落"
+      },
+      "castShadow": {
+        "title": "投射阴影",
+        "shadow": "阴影"
+      },
+      "ambientLight": {
+        "intensity": "环境光强度",
+        "color": "环境光颜色"
+      }
+    },
+    "lights": {
+      "title": "灯光",
+      "add": "添加",
+      "remove": "移除",
+      "lights": {
+        "title": "灯光",
+        "intensity": "强度",
+        "position": "位置",
+        "color": "颜色"
+      }
+    },
+    "actions": {
+      "title": "操作",
+      "download": "下载",
+      "reset": "重置"
+    }
+  }
+}
