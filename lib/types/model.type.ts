@@ -11,6 +11,8 @@ export type ModelType = {
     x: number;
     y: number;
   };
+  bodyReflection: number;
+  screenReflection: number;
   color: string;
   texture: "plastic" | "marble";
 };

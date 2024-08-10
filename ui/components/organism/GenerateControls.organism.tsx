@@ -43,6 +43,7 @@ export default function GenerateControls() {
     handleModelChange,
     handleImageSize,
     handleImagePosition,
+    handleChangeReflection,
   } = useGenerator();
 
   const getMenu = (
@@ -276,7 +277,8 @@ export default function GenerateControls() {
       case "model":
         return (
           <>
-            <div className="control__section">
+            {/*TODO : ADD LATER TEXTURES FOR THE MODEL */}
+            {/* <div className="control__section">
               <p className="title">{t("model.texture.title")}</p>
 
               <div className="textures">
@@ -290,6 +292,30 @@ export default function GenerateControls() {
                   />
                 ))}
               </div>
+            </div> */}
+
+            <div className="control__section">
+              <p className="title">{t("model.bodyReflection")}</p>
+              <Slider
+                max={1}
+                min={0}
+                className="small"
+                name="phone-reflection"
+                onChange={(e) => handleChangeReflection(e, "phone")}
+                step={0.01}
+                value={model.bodyReflection}
+              />
+            </div>
+
+            <div className="control__section">
+              <p className="title">{t("model.screenReflection")}</p>
+              {/* TODO: THIS IS BY TYPE NUMBER, CHECK HOW TO MAKE ALPHA CHANNEL, FOR NOW THIS WILL BE LIKE BOOL ( 1 True, 0 False ) */}
+              <Checkbox
+                htmlName="screen-reflection"
+                onChange={(e) => handleChangeReflection(e, "screen")}
+                title={t("model.bodyReflection")}
+                value={model.screenReflection}
+              />
             </div>
 
             <div className="control__section">

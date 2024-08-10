@@ -28,6 +28,16 @@ const languages = [
     name: "Français",
     locale: "fr",
   },
+  {
+    id: 4,
+    name: "Русский",
+    locale: "ru",
+  },
+  {
+    id: 5,
+    name: "中文",
+    locale: "ch",
+  },
 ];
 
 type LanguageType =

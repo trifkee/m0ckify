@@ -4,13 +4,12 @@ import { Suspense, useContext, useEffect, useRef, useState } from "react";
 
 import { Environment, OrbitControls, Stage } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Phone from "../models/Phone.model";
 import Context from "./ContextProvider.provider";
 import { SceneLightsType } from "@/lib/types/model.type";
 
-import Phone1 from "@/ui/models/Iphone.model";
 import Iphone from "@/ui/models/Iphone.model";
-import Android from "../models/Android.model";
+import Android from "@/ui/models/Android.model";
+import TV from "@/ui/models/TV.model";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -82,6 +81,9 @@ function Model() {
         return <Iphone />;
       case "android":
         return <Android />;
+      case "tv":
+        return <TV />;
+
       default:
         <Android />;
     }

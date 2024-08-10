@@ -1,17 +1,17 @@
+import { useTranslations } from "next-intl";
 import Button from "@/ui/components/atoms/Button.atom";
 import { Link } from "@/navigation";
+
+import { motion } from "framer-motion";
 
 import Image from "next/image";
 import logo from "@/public/images/logo.svg";
 
 import { IoArrowForwardSharp } from "react-icons/io5";
 
-import "@/ui/styles/pages/home.page.scss";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
-import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
 
-import bg from "@/public/images/background-gradient.png";
+import "@/ui/styles/pages/home.page.scss";
 
 export default function Home({
   params: { locale },
@@ -25,11 +25,12 @@ export default function Home({
       <nav className="navigation">
         <Image className="logo" src={logo} alt="Mockify" />
 
-        <LanguagePicker locale={locale} />
+        <LanguagePicker variant="editor" locale={locale} />
       </nav>
 
       <section className="home__header">
-        <p className="title">{t("title")}. </p>
+        <div className="title">{t("title")}</div>
+        {/* <p className="title">{t("title")}. </p> */}
 
         <div className="ctas">
           <Button className="learn-more" variant="editor">
