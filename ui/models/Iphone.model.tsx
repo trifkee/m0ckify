@@ -34,7 +34,6 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
 
   /* SCREEN MOCKUP */
   const image = model.image;
-
   //   @ts-ignore
   texture.center.set(0.5, 0.5);
 

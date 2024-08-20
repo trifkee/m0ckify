@@ -36,6 +36,7 @@ export default function useGenerator() {
       setModel((prev: ModelType) => ({
         ...prev,
         image: {
+          ...prev.image,
           src: result,
           isDefault: false,
         },

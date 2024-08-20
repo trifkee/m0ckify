@@ -31,10 +31,10 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     image: {
       src: fallbackImage.src as any,
       isDefault: true,
-      width: 0,
-      height: 0,
-      x: 0,
-      y: 0,
+      width: 1 as number,
+      height: 1 as number,
+      x: 1,
+      y: 1,
     },
   });
 
@@ -88,6 +88,7 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
       setModel((prev: ModelType) => ({
         ...prev,
         image: {
+          ...prev.image,
           src: fallbackImage.src as any,
         },
       }));
