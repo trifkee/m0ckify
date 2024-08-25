@@ -154,7 +154,7 @@ export default function GenerateControls() {
 
                 <Slider
                   className=" small env-slider"
-                  max={1}
+                  max={5}
                   min={0}
                   name="intensity"
                   step={0.01}
@@ -221,10 +221,10 @@ export default function GenerateControls() {
                     <p className="title">{t("lights.lights.intensity")}</p>
                     <Slider
                       className="small env-slider"
-                      max={1}
+                      max={250}
                       min={0}
                       name={t("lights.lights.intensity")}
-                      step={0.01}
+                      step={1}
                       onChange={(e) => onChangeIntensity(e, "dirLights", i)}
                       value={String(light.intensity)}
                     />
@@ -315,7 +315,7 @@ export default function GenerateControls() {
               <Checkbox
                 htmlName="screen-reflection"
                 onChange={(e) => handleChangeReflection(e, "screen")}
-                title={t("model.bodyReflection")}
+                title={t("model.screenReflection")}
                 value={model.screenReflection}
               />
             </div>
