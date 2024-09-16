@@ -9,6 +9,7 @@ import { getMessages } from "next-intl/server";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
+import QueryProvider from "@/ui/providers/QueryProvider.provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,13 +31,15 @@ export default async function RootLayout({
 
   return (
     <ContextProvider>
-      <html lang={locale}>
-        <body className={`${inter.className} body`}>
-          <NextIntlClientProvider messages={messages}>
-            {children}
-          </NextIntlClientProvider>
-        </body>
-      </html>
+      <QueryProvider>
+        <html lang={locale}>
+          <body className={`${inter.className} body`}>
+            <NextIntlClientProvider messages={messages}>
+              {children}
+            </NextIntlClientProvider>
+          </body>
+        </html>
+      </QueryProvider>
     </ContextProvider>
   );
 }

@@ -1,0 +1,46 @@
+@import "variables.scss";
+
+.auth-section {
+  display: flex;
+  //   background: $secondary-clr-900;
+  max-height: 100dvh;
+  overflow: hidden;
+
+  background: rgb($light-gray-clr, 0.005);
+  color: $dark-gray-clr;
+  background-size: 1.5rem 1.5rem;
+  background-position: center center;
+  position: relative;
+  min-height: 100dvh;
+
+  background-image: radial-gradient(
+    circle,
+    rgb($light-gray-clr, 0.25) 1px,
+    rgb($dark-gray-clr, 0.05) 1px
+  );
+
+  & > * {
+    flex: 1;
+  }
+
+  &__right {
+    img {
+      object-fit: cover;
+    }
+  }
+
+  &__left {
+    padding: clamp(1rem, 2rem, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-section {
+    &__right {
+      display: none;
+    }
+  }
+}

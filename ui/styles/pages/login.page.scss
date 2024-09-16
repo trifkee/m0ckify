@@ -1,0 +1,90 @@
+@import "variables.scss";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: $white-clr;
+  padding: 1rem;
+  gap: 1rem;
+  border-radius: 0.25rem;
+  // width: 90%;
+  width: 100%;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px,
+    rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+
+  outline: 1px solid rgb($dark-gray-clr, 0.15);
+  background-image: radial-gradient(
+    circle,
+    rgb($light-gray-clr, 0.25) 1px,
+    rgb($dark-gray-clr, 0.05) 1px
+  );
+
+  & > a > img {
+    max-width: 128px;
+  }
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .input {
+      color: black;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      & > * {
+        color: inherit;
+      }
+
+      input {
+        padding: 1rem;
+        outline: none;
+        border: none;
+        background: rgb(0, 0, 0, 0.04);
+        border-radius: 0.25rem;
+        transition: outline 0.2s;
+        outline: 1px solid rgb(0, 0, 0, 0.04);
+
+        &:focus,
+        &:focus-within {
+          outline: 1px solid $secondary-clr-500;
+        }
+      }
+
+      label {
+        font-size: 0.85rem;
+        // font-weight: 800;
+      }
+    }
+  }
+  & > button {
+    cursor: pointer;
+    padding: 1rem;
+    border: none;
+    background-color: $primary-clr-900;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+
+    &:hover,
+    &:focus {
+      background-color: $primary-clr-800;
+    }
+  }
+
+  .register-cta {
+    font-size: clamp(0.85rem, 0.95rem, 1rem);
+    color: $secondary-clr-500;
+    text-align: center;
+    margin-top: 1rem;
+
+    & > a {
+      text-decoration: underline;
+      font-weight: 800;
+      color: $ternary-clr-600;
+      font-size: inherit;
+    }
+  }
+}

@@ -6,6 +6,8 @@ import { Link } from "@/navigation";
 
 import { motion } from "framer-motion";
 
+import { IoLogIn, IoPersonCircleOutline } from "react-icons/io5";
+
 import Image from "next/image";
 import logo from "@/public/images/logo.svg";
 
@@ -42,7 +44,13 @@ export default function Home({
       >
         <Image className="logo" src={logo} alt="Mockify" />
 
-        <LanguagePicker variant="editor" locale={locale} />
+        <div className="ctas">
+          <Link className="login" href={"/login"}>
+            <IoPersonCircleOutline />
+            Log in
+          </Link>
+          <LanguagePicker variant="editor" locale={locale} />
+        </div>
       </motion.nav>
 
       <section className="home__header">
