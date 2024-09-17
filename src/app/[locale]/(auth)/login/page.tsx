@@ -19,7 +19,11 @@ export default function LoginPage() {
     password: "",
   });
 
-  const { refetchUser } = useContext(Context);
+  const { refetchUser, user } = useContext(Context);
+
+  if (user) {
+    router.replace("/generate");
+  }
 
   const onSuccess = (data: { data: string }) => {
     localStorage.setItem("token", JSON.stringify(data.data));

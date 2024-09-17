@@ -8,6 +8,16 @@
     "learnMore": "Learn More"
   },
   "generate": {
+    "user": {
+      "title": "Account",
+      "logout": "Log out"
+    },
+    "magicfy": {
+      "title": "Magicfy",
+      "generateTitle": "Generate Magic Mockup",
+      "generateDescription": "Generate a magic mockup for my mobile app...",
+      "cta": "Generate"
+    },
     "image": {
       "title": "Image",
       "add": "Add Image",

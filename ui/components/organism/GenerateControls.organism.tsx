@@ -27,7 +27,7 @@ import { Fragment, useContext, useEffect, useState } from "react";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
-import mockifyImage from "@/public/images/mockify-starter-big.jpg";
+import mockifyImage from "@/public/images/bg.jpg";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 
@@ -83,12 +83,10 @@ export default function GenerateControls() {
           <div className="magic-container">
             <div className="magic">
               <div className="control__section">
-                <p className="title">
-                  {"Generate magic mock" ?? t("magic.title")}
-                </p>
+                <p className="title">{t("magicfy.title")}</p>
                 <textarea
                   className="magic-input"
-                  placeholder="Generate cool design for my mobile app!"
+                  placeholder={t("magicfy.generateDescription")}
                   value={generate}
                   onChange={(e) => setGenerate(e.target.value)}
                 />
@@ -99,7 +97,7 @@ export default function GenerateControls() {
                 className="magic"
                 variant="editor"
               >
-                Generate
+                {t("magicfy.cta")}
                 <IoColorWand />
               </Button>
             </div>
@@ -115,7 +113,7 @@ export default function GenerateControls() {
             </div>
             <div className="logout">
               <Button variant="editor" onClick={handleLogout}>
-                {t("logout")} <IoExitOutline />
+                {t("user.logout")} <IoExitOutline />
               </Button>
             </div>
           </div>
@@ -473,9 +471,7 @@ export default function GenerateControls() {
             }}
             className="control user"
           >
-            <summary className="control__title">
-              {"User" ?? t("image.title")}
-            </summary>
+            <summary className="control__title">{t("user.title")}</summary>
             {getMenu("user")}
           </motion.details>
         )}
@@ -496,9 +492,7 @@ export default function GenerateControls() {
             open
             className="control user"
           >
-            <summary className="control__title">
-              {"Magicfy" ?? t("image.title")}
-            </summary>
+            <summary className="control__title">{t("magicfy.title")}</summary>
             {getMenu("magic")}
           </motion.details>
         }

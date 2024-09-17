@@ -8,16 +8,27 @@ import { AnimatePresence, motion } from "framer-motion";
 import logo from "@/public/images/logo-white.svg";
 import Image from "next/image";
 import LanguagePicker from "../moleculs/LanguagePicker.molecul";
-import { IoMenuSharp, IoSaveSharp, IoSyncSharp } from "react-icons/io5";
+import {
+  IoEnterOutline,
+  IoExitOutline,
+  IoMenuSharp,
+  IoSaveSharp,
+  IoSyncSharp,
+} from "react-icons/io5";
 import Button from "../atoms/Button.atom";
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import Context from "@/ui/providers/ContextProvider.provider";
+
+import "@/ui/styles/organism/generateNavigation.organism.scss";
 
 export default function GenerateNavigation({ locale }: { locale: string }) {
   const t = useTranslations("generate");
   const { resetModelPosition, handleSave } = useGenerator();
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
+
+  const { user, handleLogout } = useContext(Context);
 
   return (
     <motion.nav
@@ -37,11 +48,22 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       <Link href={"/"}>
         <Image src={logo} alt="Mockify" />
       </Link>
-      {/* <Link href={"/"}>Mockify</Link>
-      <p>/</p> */}
       <GenerateDocumentTitle />
 
-      <LanguagePicker variant={"editor"} locale={locale} />
+      <div className="gen-ctas">
+        {user ? (
+          <Button onClick={handleLogout} variant="editor" className="danger">
+            <IoExitOutline />
+          </Button>
+        ) : (
+          <Link href={"/login"}>
+            <Button variant="editor" className="download">
+              <IoEnterOutline />
+            </Button>
+          </Link>
+        )}
+        <LanguagePicker variant={"editor"} locale={locale} />
+      </div>
 
       <Button
         className="mobile-cta"

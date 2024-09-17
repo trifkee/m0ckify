@@ -8,6 +8,16 @@
     "learnMore": "Mehr erfahren"
   },
   "generate": {
+    "user": {
+      "title": "Konto",
+      "logout": "Abmelden"
+    },
+    "magicfy": {
+      "title": "Magifizieren",
+      "generateTitle": "Magische Mockup generieren",
+      "generateDescription": "Erstellen Sie ein magisches Mockup für meine mobile App...",
+      "cta": "Generieren"
+    },
     "image": {
       "title": "Bild",
       "add": "Bild hinzufügen",
