@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Link } from "@/navigation";
+import { useContext, useEffect, useState } from "react";
+import { Link, useRouter } from "@/navigation";
 import Image from "next/image";
 
 import { useLogin } from "@/infrastructure/mutations/user";
@@ -9,14 +9,25 @@ import { useLogin } from "@/infrastructure/mutations/user";
 import logo from "@/public/images/logo.svg";
 
 import "@/ui/styles/pages/login.page.scss";
+import Context from "@/ui/providers/ContextProvider.provider";
 
 export default function LoginPage() {
-  const { mutate: logIn, error } = useLogin();
+  const router = useRouter();
 
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+
+  const { refetchUser } = useContext(Context);
+
+  const onSuccess = (data: { data: string }) => {
+    localStorage.setItem("token", JSON.stringify(data.data));
+    refetchUser();
+    router.push("/generate");
+  };
+
+  const { mutate: logIn, error } = useLogin(onSuccess);
 
   const handleChange = (e: any) => {
     setCredentials({
@@ -33,6 +44,10 @@ export default function LoginPage() {
       password: credentials.password,
     });
   };
+
+  useEffect(() => {
+    alert(error?.message);
+  }, [error]);
 
   return (
     <div className="auth-section__left">

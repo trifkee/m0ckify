@@ -39,6 +39,19 @@
       display: none;
     }
 
+    .magic-input {
+      height: 12rem;
+      border-radius: 0.25rem;
+      background: rgb($dark-gray-clr, 0.15);
+      padding: 0.5rem;
+      font: inherit;
+      font-size: clamp(0.5rem, 65rem, 0.85rem);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
     .divider {
       height: 1px;
       background: rgb($dashboard-border-clr, 1);
@@ -74,6 +87,21 @@
     }
 
     // -----
+    &.user {
+      .user-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        img {
+          aspect-ratio: 1;
+          border-radius: 100%;
+          object-fit: cover;
+          max-height: 24px;
+          width: 24px;
+        }
+      }
+    }
 
     &.image {
       .image-container {

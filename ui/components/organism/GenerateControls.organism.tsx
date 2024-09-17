@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import { HexColorPicker } from "react-colorful";
 import Slider from "@/ui/components/atoms/Slider.atom";
@@ -13,6 +14,7 @@ import { ENV_LIST, MODELS_LIST, TEXTURE_LIST } from "@/lib/constants/generator";
 
 import {
   IoAdd,
+  IoColorWand,
   IoImageSharp,
   IoSaveSharp,
   IoSyncSharp,
@@ -20,16 +22,18 @@ import {
 } from "react-icons/io5";
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 import { SceneLightsType } from "@/lib/types/model.type";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
+
+import Context from "@/ui/providers/ContextProvider.provider";
+
+import mockifyImage from "@/public/images/mockify-starter-big.jpg";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
-import { useFetchUser } from "@/infrastructure/queries/user/useUsers";
 
 export default function GenerateControls() {
   const t = useTranslations("generate");
 
-  const { data } = useFetchUser(localStorage.getItem("user_id") ?? "");
-  console.log(data);
+  const [generate, setGenerate] = useState("");
 
   const {
     model,
@@ -52,10 +56,58 @@ export default function GenerateControls() {
     handleChangeReflection,
   } = useGenerator();
 
+  const { user, handleLogout } = useContext(Context);
+
   const getMenu = (
-    tab: "image" | "model" | "environment" | "lights" | "action"
+    tab:
+      | "image"
+      | "magic"
+      | "model"
+      | "environment"
+      | "lights"
+      | "action"
+      | "user"
   ) => {
     switch (tab) {
+      case "magic":
+        return (
+          <div className="magic-container">
+            <div className="magic">
+              <div className="control__section">
+                <p className="title">
+                  {"Generate magic mock" ?? t("magic.title")}
+                </p>
+                <textarea
+                  className="magic-input"
+                  placeholder="Generate cool design for my mobile app!"
+                  value={generate}
+                  onChange={(e) => setGenerate(e.target.value)}
+                />
+              </div>
+
+              <Button className="magic" variant="editor">
+                Generate
+                <IoColorWand />
+              </Button>
+            </div>
+          </div>
+        );
+
+      case "user":
+        return (
+          <div className="user-container">
+            <div className="user">
+              <Image src={mockifyImage} alt={user?.username} />
+              <p>{user?.username}</p>
+            </div>
+            <div className="logout">
+              <Button variant="editor" onClick={handleLogout}>
+                <IoSyncSharp /> {t("logout")}
+              </Button>
+            </div>
+          </div>
+        );
+
       case "image":
         return (
           <>
@@ -393,6 +445,50 @@ export default function GenerateControls() {
         }}
         className="generate__controls"
       >
+        {user && (
+          <motion.details
+            initial={{
+              x: 10,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              delay: 0.85,
+            }}
+            className="control user"
+          >
+            <summary className="control__title">
+              {"User" ?? t("image.title")}
+            </summary>
+            {getMenu("user")}
+          </motion.details>
+        )}
+
+        {
+          <motion.details
+            initial={{
+              x: 10,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              delay: 0.85,
+            }}
+            open
+            className="control user"
+          >
+            <summary className="control__title">
+              {"Magicfy" ?? t("image.title")}
+            </summary>
+            {getMenu("magic")}
+          </motion.details>
+        }
         <motion.details
           initial={{
             x: 10,

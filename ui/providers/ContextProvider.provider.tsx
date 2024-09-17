@@ -11,6 +11,8 @@ import {
 import fallbackImage from "@/public/images/mockify-starter.jpg";
 import fallbackImageTV from "@/public/images/mockify-starter-big.jpg";
 import { File } from "buffer";
+import { useFetchUser } from "@/infrastructure/queries/user/useUsers";
+import { UserType } from "@/lib/types/user.type";
 
 const Context = createContext<any>(null);
 
@@ -18,6 +20,15 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [selectedModel, setSelectedModel] = useState<React.ReactNode | null>(
     null
   );
+
+  const { data: userData, refetch: refetchUser } = useFetchUser();
+
+  const [user, setUser] = useState<UserType | null>(userData ?? null);
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem("token");
+  };
 
   const [model, setModel] = useState<ModelType>({
     color: "#fff",
@@ -96,6 +107,10 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     }
   }, [selectedModel]);
 
+  useEffect(() => {
+    setUser(userData ?? null);
+  }, [userData]);
+
   return (
     <Context.Provider
       value={{
@@ -107,6 +122,9 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         setSceneLights,
         setSelectedModel,
         selectedModel,
+        user,
+        refetchUser,
+        handleLogout,
       }}
     >
       {children}

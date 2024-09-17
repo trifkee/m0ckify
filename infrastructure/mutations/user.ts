@@ -8,9 +8,10 @@ export function useRegisterUser() {
   });
 }
 
-export function useLogin() {
+export function useLogin(onSuccess: CallableFunction) {
   return useMutation({
     mutationFn: (payload: { username: string; password: string }) =>
       login({ username: payload.username, password: payload.password }),
+    onSuccess: (user) => onSuccess(user),
   });
 }
