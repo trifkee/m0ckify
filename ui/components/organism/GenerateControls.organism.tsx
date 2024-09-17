@@ -23,9 +23,13 @@ import { SceneLightsType } from "@/lib/types/model.type";
 import { Fragment, useEffect, useState } from "react";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
+import { useFetchUser } from "@/infrastructure/queries/user/useUsers";
 
 export default function GenerateControls() {
   const t = useTranslations("generate");
+
+  const { data } = useFetchUser(localStorage.getItem("user_id") ?? "");
+  console.log(data);
 
   const {
     model,
