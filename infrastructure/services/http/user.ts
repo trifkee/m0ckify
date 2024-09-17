@@ -1,8 +1,8 @@
 import { RegisterUserType } from "@/lib/types/user.type";
 import { axiosBaseInstance } from "../instances/axiosBaseinstance";
 
-export const me = async (id: string) => {
-  return axiosBaseInstance.get(`/users/${id}`);
+export const me = async () => {
+  return axiosBaseInstance.get(`/auth/me`);
 };
 
 export const users = async () => {
@@ -16,7 +16,7 @@ export const login = async ({
   username: string;
   password: string;
 }) => {
-  return axiosBaseInstance.post("/users/login", { username, password });
+  return axiosBaseInstance.post("/auth/login", { username, password });
 };
 
 export const createUser = async (payload: RegisterUserType) => {

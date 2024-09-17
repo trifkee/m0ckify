@@ -9,11 +9,30 @@ export const axiosBaseInstance = axios.create({
   },
 });
 
+axiosBaseInstance.interceptors.request.use(
+  async function (config) {
+    const tokenFromStorage = JSON.parse(localStorage.getItem("token")!);
+
+    if (!config.headers["Authorization"]) {
+      config.headers["Authorization"] = "Bearer " + tokenFromStorage;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 axiosBaseInstance.interceptors.response.use(
-  async function (response) {
+  async (response) => {
     return response;
   },
-  async function (error) {
+
+  async (error) => {
+    if (error.response.status === 401 && localStorage.getItem("token")) {
+      window.dispatchEvent(new Event("logout"));
+    }
     return Promise.reject(error);
   }
 );

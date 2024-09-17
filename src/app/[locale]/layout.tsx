@@ -30,8 +30,8 @@ export default async function RootLayout({
   const messages = await getMessages();
 
   return (
-    <ContextProvider>
-      <QueryProvider>
+    <QueryProvider>
+      <ContextProvider>
         <html lang={locale}>
           <body className={`${inter.className} body`}>
             <NextIntlClientProvider messages={messages}>
@@ -39,7 +39,7 @@ export default async function RootLayout({
             </NextIntlClientProvider>
           </body>
         </html>
-      </QueryProvider>
-    </ContextProvider>
+      </ContextProvider>
+    </QueryProvider>
   );
 }

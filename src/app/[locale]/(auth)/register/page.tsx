@@ -16,17 +16,16 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleSuccessRegister = () => {
-    setCredentials({
-      email: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-      repeatPassword: "",
-      username: "",
-    });
-
-    localStorage.setItem("user_id", data?.data?.id);
-    router.push("/generate");
+    // setCredentials({
+    //   email: "",
+    //   firstName: "",
+    //   lastName: "",
+    //   password: "",
+    //   repeatPassword: "",
+    //   username: "",
+    // });
+    // localStorage.setItem("user_id", data?.data?.id);
+    // router.push("/generate");
   };
 
   const [credentials, setCredentials] = useState({
@@ -62,11 +61,10 @@ export default function LoginPage() {
       firstName: credentials.firstName || "Mockify",
       lastName: credentials.lastName || " ",
     });
-    handleSuccessRegister();
   };
 
   useEffect(() => {
-    localStorage.setItem("user_id", data?.data?.id);
+    handleSuccessRegister();
   }, [data]);
 
   useEffect(() => {
@@ -169,7 +167,7 @@ export default function LoginPage() {
             pointerEvents: isPending ? "none" : "auto",
           }}
         >
-          Login
+          Register
         </button>
         {/* <p className="forgot-password">Forgot your password?</p> */}
         <p className="register-cta">

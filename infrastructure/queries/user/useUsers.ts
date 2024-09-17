@@ -1,10 +1,12 @@
 import { login, me, users } from "@/infrastructure/services/http/user";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { UserType } from "@/lib/types/user.type";
+import { useMutation, useQuery, UseQueryResult } from "@tanstack/react-query";
 
-export function useFetchUser(id: string) {
+export function useFetchUser(): UseQueryResult<UserType> {
   return useQuery({
-    queryKey: ["user", id],
-    queryFn: () => me(id),
+    queryKey: ["user"],
+    queryFn: () => me(),
+    select: (data) => data.data._doc,
   });
 }
 

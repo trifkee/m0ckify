@@ -32,6 +32,7 @@
   p {
     color: inherit;
   }
+
   .add-file {
     position: absolute;
     width: 100%;
@@ -144,5 +145,26 @@
         background: rgb($primary-clr-500, 0.25);
       }
     }
+  }
+
+  &.magic {
+    --borderWidth: 3px !important;
+    position: relative !important;
+    border-radius: var(--borderWidth) !important;
+    isolation: isolate;
+    // background: rgb($secondary-clr-100, 1);
+    // color: rgb($secondary-clr-700, 1);
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
