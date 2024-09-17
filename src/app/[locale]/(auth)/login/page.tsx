@@ -65,9 +65,8 @@ export default function LoginPage() {
           </div>
         </div>
         <button>Login</button>
-        {/* <p className="forgot-password">Forgot your password?</p> */}
         <p className="register-cta">
-          Don't have an account? <Link href="/register">Register here</Link>
+          {`Don't have an account?`} <Link href="/register">Register here</Link>
         </p>
       </form>
     </div>
