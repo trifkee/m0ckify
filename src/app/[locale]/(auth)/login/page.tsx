@@ -46,7 +46,7 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    alert(error?.message);
+    console.error(error?.message);
   }, [error]);
 
   return (

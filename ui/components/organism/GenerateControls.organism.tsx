@@ -15,6 +15,7 @@ import { ENV_LIST, MODELS_LIST, TEXTURE_LIST } from "@/lib/constants/generator";
 import {
   IoAdd,
   IoColorWand,
+  IoExitOutline,
   IoImageSharp,
   IoSaveSharp,
   IoSyncSharp,
@@ -58,6 +59,14 @@ export default function GenerateControls() {
 
   const { user, handleLogout } = useContext(Context);
 
+  const handleGenerate = () => {
+    if (!user) {
+      return console.error("You must be logged in!");
+    }
+
+    console.log("Successfuly generated!", generate);
+  };
+
   const getMenu = (
     tab:
       | "image"
@@ -85,7 +94,11 @@ export default function GenerateControls() {
                 />
               </div>
 
-              <Button className="magic" variant="editor">
+              <Button
+                onClick={handleGenerate}
+                className="magic"
+                variant="editor"
+              >
                 Generate
                 <IoColorWand />
               </Button>
@@ -102,7 +115,7 @@ export default function GenerateControls() {
             </div>
             <div className="logout">
               <Button variant="editor" onClick={handleLogout}>
-                <IoSyncSharp /> {t("logout")}
+                {t("logout")} <IoExitOutline />
               </Button>
             </div>
           </div>
