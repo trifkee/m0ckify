@@ -8,6 +8,16 @@
     "learnMore": "了解更多"
   },
   "generate": {
+    "user": {
+      "title": "账户",
+      "logout": "退出登录"
+    },
+    "magicfy": {
+      "title": "魔法生成",
+      "generateTitle": "生成魔法模型",
+      "generateDescription": "为我的移动应用生成魔法模型...",
+      "cta": "生成"
+    },
     "image": {
       "title": "图片",
       "add": "添加图片",

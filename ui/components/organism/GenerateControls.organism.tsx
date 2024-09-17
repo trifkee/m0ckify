@@ -15,6 +15,7 @@ import { ENV_LIST, MODELS_LIST, TEXTURE_LIST } from "@/lib/constants/generator";
 import {
   IoAdd,
   IoColorWand,
+  IoExitOutline,
   IoImageSharp,
   IoSaveSharp,
   IoSyncSharp,
@@ -26,7 +27,7 @@ import { Fragment, useContext, useEffect, useState } from "react";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
-import mockifyImage from "@/public/images/mockify-starter-big.jpg";
+import mockifyImage from "@/public/images/bg.jpg";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 
@@ -58,6 +59,14 @@ export default function GenerateControls() {
 
   const { user, handleLogout } = useContext(Context);
 
+  const handleGenerate = () => {
+    if (!user) {
+      return console.error("You must be logged in!");
+    }
+
+    console.log("Successfuly generated!", generate);
+  };
+
   const getMenu = (
     tab:
       | "image"
@@ -74,19 +83,21 @@ export default function GenerateControls() {
           <div className="magic-container">
             <div className="magic">
               <div className="control__section">
-                <p className="title">
-                  {"Generate magic mock" ?? t("magic.title")}
-                </p>
+                <p className="title">{t("magicfy.title")}</p>
                 <textarea
                   className="magic-input"
-                  placeholder="Generate cool design for my mobile app!"
+                  placeholder={t("magicfy.generateDescription")}
                   value={generate}
                   onChange={(e) => setGenerate(e.target.value)}
                 />
               </div>
 
-              <Button className="magic" variant="editor">
-                Generate
+              <Button
+                onClick={handleGenerate}
+                className="magic"
+                variant="editor"
+              >
+                {t("magicfy.cta")}
                 <IoColorWand />
               </Button>
             </div>
@@ -102,7 +113,7 @@ export default function GenerateControls() {
             </div>
             <div className="logout">
               <Button variant="editor" onClick={handleLogout}>
-                <IoSyncSharp /> {t("logout")}
+                {t("user.logout")} <IoExitOutline />
               </Button>
             </div>
           </div>
@@ -460,9 +471,7 @@ export default function GenerateControls() {
             }}
             className="control user"
           >
-            <summary className="control__title">
-              {"User" ?? t("image.title")}
-            </summary>
+            <summary className="control__title">{t("user.title")}</summary>
             {getMenu("user")}
           </motion.details>
         )}
@@ -483,9 +492,7 @@ export default function GenerateControls() {
             open
             className="control user"
           >
-            <summary className="control__title">
-              {"Magicfy" ?? t("image.title")}
-            </summary>
+            <summary className="control__title">{t("magicfy.title")}</summary>
             {getMenu("magic")}
           </motion.details>
         }

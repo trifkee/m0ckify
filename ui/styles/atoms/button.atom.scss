@@ -148,23 +148,36 @@
   }
 
   &.magic {
-    --borderWidth: 3px !important;
-    position: relative !important;
-    border-radius: var(--borderWidth) !important;
-    isolation: isolate;
-    // background: rgb($secondary-clr-100, 1);
-    // color: rgb($secondary-clr-700, 1);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 1), 0 0 1px rgba(255, 0, 255, 0.8);
+    color: white;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    animation: rotate-border 5s linear infinite;
+
+    &:hover {
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+        0 0 10px rgba(255, 0, 255, 0.8);
+    }
   }
 }
 
-@keyframes animatedgradient {
+@keyframes spin {
   0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    transform: scale(0.5) rotate(0deg);
   }
   100% {
-    background-position: 0% 50%;
+    transform: scale(1.5) rotate(180deg);
+  }
+}
+
+@keyframes rotate-border {
+  0% {
+    // transform: rotate(0deg);
+    border-image: linear-gradient(45deg, #ff00ff, #6e00ff, #00ffea, #00ffb8) 1;
+  }
+  100% {
+    // box-shadow: rotate(180deg);
+    border-image: linear-gradient(405deg, #ff00ff, #6e00ff, #00ffea, #00ffb8) 1;
   }
 }

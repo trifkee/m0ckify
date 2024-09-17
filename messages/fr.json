@@ -8,6 +8,16 @@
     "learnMore": "En savoir plus"
   },
   "generate": {
+    "user": {
+      "title": "Compte",
+      "logout": "Se déconnecter"
+    },
+    "magicfy": {
+      "title": "Magifier",
+      "generateTitle": "Générer une maquette magique",
+      "generateDescription": "Générer une maquette magique pour mon application mobile...",
+      "cta": "Générer"
+    },
     "image": {
       "title": "Image",
       "add": "Ajouter une image",

@@ -8,6 +8,16 @@
     "learnMore": "Saznaj više"
   },
   "generate": {
+    "user": {
+      "title": "Nalog",
+      "logout": "Odjavi se"
+    },
+    "magicfy": {
+      "title": "Magicfy",
+      "generateTitle": "Generiši magični mokap",
+      "generateDescription": "Generiši magični mokap za moju mobilnu aplikaciju...",
+      "cta": "Generiši"
+    },
     "image": {
       "title": "Slika",
       "add": "Dodaj sliku",

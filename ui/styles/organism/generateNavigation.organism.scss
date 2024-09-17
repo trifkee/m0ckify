@@ -1,0 +1,22 @@
+@import "variables.scss";
+
+.gen-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  //   gap: 0.5rem;
+  width: fit-content;
+  gap: 1rem;
+
+  a {
+    min-height: 100%;
+    width: min-content;
+  }
+
+  .button {
+    min-height: 100%;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
