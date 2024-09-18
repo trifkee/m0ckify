@@ -43,7 +43,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
   //   @ts-ignore
   texture.rotation = Math.PI / 2;
   // @ts-ignore
-  texture.encoding = THREE.sRGBEncoding;
+  // texture.encoding = THREE.sRGBEncoding;
 
   // @ts-ignore
   texture.minFilter = THREE.LinearMipMapLinearFilter; // For better downscaling
