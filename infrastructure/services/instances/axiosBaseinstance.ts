@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://m0ckify-be.vercel.app";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 export const axiosBaseInstance = axios.create({
   baseURL,
