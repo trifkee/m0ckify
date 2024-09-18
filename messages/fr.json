@@ -7,6 +7,34 @@
     "getStarted": "Commencer",
     "learnMore": "En savoir plus"
   },
+  "auth": {
+    "login": {
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "forgotPassword": "Mot de passe oublié?",
+      "register": "Vous n'avez pas de compte?",
+      "registerCta": "Inscrivez-vous ici.",
+      "submit": "Se connecter",
+      "errors": {
+        "invalidCredentials": "L'email ou le mot de passe est incorrect."
+      }
+    },
+    "register": {
+      "email": "Email",
+      "username": "Nom d'utilisateur",
+      "password": "Mot de passe",
+      "confirmPassword": "Confirmer le mot de passe",
+      "firstName": "Prénom",
+      "lastName": "Nom de famille",
+      "submit": "S'inscrire",
+      "login": "Vous avez déjà un compte?",
+      "loginCta": "Connectez-vous ici.",
+      "errors": {
+        "409": "Nom d'utilisateur ou adresse email déjà utilisé.",
+        "missPw": "Les mots de passe ne correspondent pas."
+      }
+    }
+  },
   "generate": {
     "user": {
       "title": "Compte",

@@ -42,10 +42,10 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     image: {
       src: fallbackImage.src as any,
       isDefault: true,
-      width: 1 as number,
-      height: 1 as number,
-      x: 1,
-      y: 1,
+      width: 0 as number,
+      height: 0 as number,
+      x: 0,
+      y: 0,
     },
   });
 

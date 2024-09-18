@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import { useGLTF, PerspectiveCamera, useTexture } from "@react-three/drei";
-import { useLoader } from "@react-three/fiber";
+import { useLoader, useThree } from "@react-three/fiber";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
@@ -31,15 +31,24 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
   const { model } = useContext(Context);
 
   const texture = useLoader(THREE.TextureLoader, model.image.src);
+  const { gl } = useThree();
 
   /* SCREEN MOCKUP */
   const image = model.image;
   //   @ts-ignore
   texture.center.set(0.5, 0.5);
 
+  // @ts-ignore
+  texture.anisotropy = gl.capabilities.getMaxAnisotropy();
   //   @ts-ignore
   texture.rotation = Math.PI / 2;
+  // @ts-ignore
+  texture.encoding = THREE.sRGBEncoding;
 
+  // @ts-ignore
+  texture.minFilter = THREE.LinearMipMapLinearFilter; // For better downscaling
+  // @ts-ignore
+  texture.magFilter = THREE.NearestFilter; // For pixel-perfect upscaling
   //   @ts-ignore
   texture.repeat.set(
     4 + image.width / IMAGE_SETTINGS.dimensionDivider,

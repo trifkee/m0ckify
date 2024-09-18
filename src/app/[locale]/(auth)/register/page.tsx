@@ -9,24 +9,25 @@ import { useRegisterUser } from "@/infrastructure/mutations/user";
 import logo from "@/public/images/logo.svg";
 
 import "@/ui/styles/pages/login.page.scss";
+import { AnimatePresence, motion } from "framer-motion";
+import Button from "@/ui/components/atoms/Button.atom";
+import { IoClose } from "react-icons/io5";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
-  const { mutate: register, isPending, data } = useRegisterUser();
+  const t = useTranslations("auth");
+
+  const {
+    mutate: register,
+    isPending,
+    data,
+    error,
+    isSuccess,
+  } = useRegisterUser();
+
+  const [registerError, setRegisterError] = useState<string | null>(null);
 
   const router = useRouter();
-
-  const handleSuccessRegister = () => {
-    // setCredentials({
-    //   email: "",
-    //   firstName: "",
-    //   lastName: "",
-    //   password: "",
-    //   repeatPassword: "",
-    //   username: "",
-    // });
-    // localStorage.setItem("user_id", data?.data?.id);
-    // router.push("/generate");
-  };
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -50,7 +51,8 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (!passMatch) {
-      alert("Passwords do not match!");
+      setRegisterError(t("register.errors.missPw"));
+
       return;
     }
 
@@ -64,12 +66,31 @@ export default function LoginPage() {
   };
 
   useEffect(() => {
-    handleSuccessRegister();
-  }, [data]);
-
-  useEffect(() => {
     setPassMatch(credentials.password === credentials.repeatPassword);
   }, [credentials.password, credentials.repeatPassword]);
+
+  useEffect(() => {
+    const message = error?.message;
+    if (message?.includes("409")) {
+      setRegisterError(t("register.errors.409"));
+      return;
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (data) {
+      setCredentials({
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        repeatPassword: "",
+        username: "",
+      });
+
+      router.push("/generate");
+    }
+  }, [isSuccess]);
 
   return (
     <div className="auth-section__left">
@@ -77,9 +98,50 @@ export default function LoginPage() {
         <Link href={"/"}>
           <Image src={logo} alt="" />
         </Link>
+
+        <AnimatePresence presenceAffectsLayout mode="wait">
+          {registerError && (
+            <motion.div
+              className="error-message"
+              initial={{
+                opacity: 0,
+                // height: 0,
+                padding: "inherit",
+                width: 0,
+              }}
+              animate={{
+                opacity: 1,
+                // height: "auto",
+                width: "100%",
+                transformOrigin: "top left",
+                transition: {
+                  duration: 0.5,
+                  delay: 0.5,
+                },
+              }}
+              exit={{
+                opacity: 0,
+                // height: 0,
+                width: 0,
+              }}
+            >
+              <p>{registerError}</p>
+              <Button
+                type="button"
+                onClick={() => setRegisterError(null)}
+                variant="transparent"
+              >
+                <IoClose />
+              </Button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div className="inputs">
           <div className="input">
-            <label htmlFor="email">* Email</label>
+            <label htmlFor="email">
+              {t("register.email")} <span>*</span>
+            </label>
             <input
               onChange={handleChange}
               value={credentials.email}
@@ -91,7 +153,9 @@ export default function LoginPage() {
             />
           </div>
           <div className="input">
-            <label htmlFor="username">* Username</label>
+            <label htmlFor="username">
+              {t("register.username")} <span>*</span>
+            </label>
             <input
               onChange={handleChange}
               value={credentials.username}
@@ -103,7 +167,7 @@ export default function LoginPage() {
             />
           </div>
           <div className="input">
-            <label htmlFor="email">First name</label>
+            <label htmlFor="email">{t("register.firstName")}</label>
             <input
               onChange={handleChange}
               value={credentials.firstName}
@@ -114,7 +178,7 @@ export default function LoginPage() {
             />
           </div>
           <div className="input">
-            <label htmlFor="email">Last name</label>
+            <label htmlFor="email">{t("register.lastName")}</label>
             <input
               onChange={handleChange}
               value={credentials.lastName}
@@ -125,7 +189,9 @@ export default function LoginPage() {
             />
           </div>
           <div className="input">
-            <label htmlFor="password">* Password</label>
+            <label htmlFor="password">
+              {t("register.password")} <span>*</span>
+            </label>
             <input
               style={{
                 outline: !passMatch ? "1px solid #e23a5b" : "none",
@@ -141,7 +207,10 @@ export default function LoginPage() {
             />
           </div>
           <div className="input">
-            <label htmlFor="password">* Repeat Password</label>
+            <label htmlFor="password">
+              {t("register.confirmPassword")}
+              <span>*</span>
+            </label>
             <input
               style={{
                 outline: !passMatch ? "1px solid #e23a5b" : "none",
@@ -156,22 +225,11 @@ export default function LoginPage() {
             />
           </div>
         </div>
-        <button
-          style={{
-            backgroundColor: passMatch ? "#4f7bad" : "#e23a5b",
-            color: "white",
-            marginTop: "20px",
-            width: "100%",
-            cursor: "pointer",
-            opacity: isPending ? 0.2 : 1,
-            pointerEvents: isPending ? "none" : "auto",
-          }}
-        >
-          Register
-        </button>
+        <button>{t("register.submit")}</button>
         {/* <p className="forgot-password">Forgot your password?</p> */}
         <p className="register-cta">
-          Already have an account? <Link href="/login">Login here</Link>
+          {t("register.login")}{" "}
+          <Link href="/login">{t("register.loginCta")}</Link>
         </p>
       </form>
     </div>

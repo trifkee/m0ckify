@@ -2,6 +2,34 @@
   "global": {
     "start": "Počni"
   },
+  "auth": {
+    "login": {
+      "username": "Korisničko ime",
+      "password": "Lozinka",
+      "forgotPassword": "Zaboravili ste lozinku?",
+      "register": "Nemaš nalog?",
+      "registerCta": "Registruj se ovde.",
+      "submit": "Uloguj se",
+      "errors": {
+        "invalidCredentials": "Email ili lozinka nisu tačni."
+      }
+    },
+    "register": {
+      "email": "Email",
+      "username": "Korisničko ime",
+      "password": "Lozinka",
+      "confirmPassword": "Ponovi lozinku",
+      "firstName": "Ime",
+      "lastName": "Prezime",
+      "submit": "Registruj se",
+      "login": "Imaš nalog?",
+      "loginCta": "Uloguj se ovde.",
+      "errors": {
+        "409": "Korisničko ime ili Email adresa su već zauzeti.",
+        "missPw": "Lozinke se ne podudaraju."
+      }
+    }
+  },
   "home": {
     "title": "Napravite prelepe prilagođene mockupe besplatno",
     "getStarted": "Započni",
