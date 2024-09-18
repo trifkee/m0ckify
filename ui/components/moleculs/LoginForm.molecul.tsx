@@ -34,7 +34,7 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
   const { refetchUser, user } = useContext(Context);
 
   if (user?.username) {
-    router.replace("/generate");
+    router.push("/generate");
   }
 
   const onSuccess = (data: { data: string }) => {
