@@ -17,7 +17,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Mockify",
-  description: "Create amazing mockups with custom made models",
+  description:
+    "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
 };
 
 export default async function RootLayout({
