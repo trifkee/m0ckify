@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import mockifyBackground from "@/public/images/bg.jpg";
+import mockifyBackground from "@/public/images/mockify-starter-big.jpg";
 
 import "@/ui/styles/pages/home.page.scss";
 import "@/ui/styles/pages/auth.page.scss";

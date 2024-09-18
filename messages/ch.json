@@ -7,6 +7,34 @@
     "getStarted": "开始",
     "learnMore": "了解更多"
   },
+  "auth": {
+    "login": {
+      "username": "用户名",
+      "password": "密码",
+      "forgotPassword": "忘记密码？",
+      "register": "没有账号？",
+      "registerCta": "在这里注册。",
+      "submit": "登录",
+      "errors": {
+        "invalidCredentials": "电子邮件或密码不正确。"
+      }
+    },
+    "register": {
+      "email": "电子邮件",
+      "username": "用户名",
+      "password": "密码",
+      "confirmPassword": "确认密码",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "submit": "注册",
+      "login": "已经有账号？",
+      "loginCta": "在这里登录。",
+      "errors": {
+        "409": "用户名或电子邮件地址已被占用。",
+        "missPw": "密码不匹配。"
+      }
+    }
+  },
   "generate": {
     "user": {
       "title": "账户",

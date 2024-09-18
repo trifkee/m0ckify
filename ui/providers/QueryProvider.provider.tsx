@@ -6,7 +6,10 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false, // default: true
-      retry: 2,
+      retry:
+        typeof window !== "undefined" && localStorage.getItem("token")
+          ? 2
+          : false,
     },
   },
 });

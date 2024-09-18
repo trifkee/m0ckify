@@ -7,6 +7,34 @@
     "getStarted": "Get Started",
     "learnMore": "Learn More"
   },
+  "auth": {
+    "login": {
+      "username": "Username",
+      "password": "Password",
+      "forgotPassword": "Forgot your password?",
+      "register": "Don't have an account?",
+      "registerCta": "Sign up here.",
+      "submit": "Log in",
+      "errors": {
+        "invalidCredentials": "Email or password is incorrect."
+      }
+    },
+    "register": {
+      "email": "Email",
+      "username": "Username",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "submit": "Register",
+      "login": "Already have an account?",
+      "loginCta": "Log in here.",
+      "errors": {
+        "409": "Username or Email address is already taken.",
+        "missPw": "Passwords do not match."
+      }
+    }
+  },
   "generate": {
     "user": {
       "title": "Account",

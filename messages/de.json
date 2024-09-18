@@ -7,6 +7,34 @@
     "getStarted": "Loslegen",
     "learnMore": "Mehr erfahren"
   },
+  "auth": {
+    "login": {
+      "username": "Benutzername",
+      "password": "Passwort",
+      "forgotPassword": "Passwort vergessen?",
+      "register": "Kein Konto?",
+      "registerCta": "Hier registrieren.",
+      "submit": "Anmelden",
+      "errors": {
+        "invalidCredentials": "E-Mail oder Passwort ist falsch."
+      }
+    },
+    "register": {
+      "email": "Email",
+      "username": "Benutzername",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "submit": "Registrieren",
+      "login": "Bereits ein Konto?",
+      "loginCta": "Hier anmelden.",
+      "errors": {
+        "409": "Benutzername oder E-Mail-Adresse bereits vergeben.",
+        "missPw": "Passwörter stimmen nicht überein."
+      }
+    }
+  },
   "generate": {
     "user": {
       "title": "Konto",

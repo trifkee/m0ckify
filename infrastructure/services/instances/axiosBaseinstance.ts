@@ -32,6 +32,7 @@ axiosBaseInstance.interceptors.response.use(
   async (error) => {
     if (error.response.status === 401 && localStorage.getItem("token")) {
       window.dispatchEvent(new Event("logout"));
+      localStorage.removeItem("token");
     }
     return Promise.reject(error);
   }

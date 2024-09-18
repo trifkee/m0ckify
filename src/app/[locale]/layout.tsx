@@ -23,9 +23,11 @@ export const metadata: Metadata = {
 export default async function RootLayout({
   children,
   params: { locale },
+  modal,
 }: Readonly<{
   children: React.ReactNode;
   params: { locale: string };
+  modal: React.ReactNode;
 }>) {
   const messages = await getMessages();
 
@@ -35,6 +37,7 @@ export default async function RootLayout({
         <html lang={locale}>
           <body className={`${inter.className} body`}>
             <NextIntlClientProvider messages={messages}>
+              {modal}
               {children}
             </NextIntlClientProvider>
           </body>
