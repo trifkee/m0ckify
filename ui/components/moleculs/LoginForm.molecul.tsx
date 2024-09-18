@@ -17,6 +17,7 @@ import Button from "@/ui/components/atoms/Button.atom";
 import { IoClose } from "react-icons/io5";
 
 import "@/ui/styles/pages/login.page.scss";
+import Spinner from "../atoms/Spinner.atom";
 
 export default function LoginForm({ modal }: { modal?: boolean }) {
   const t = useTranslations("auth.login");
@@ -42,7 +43,7 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
     router.push("/generate");
   };
 
-  const { mutate: logIn, error } = useLogin(onSuccess);
+  const { mutate: logIn, error, isPending } = useLogin(onSuccess);
 
   const handleChange = (e: any) => {
     setCredentials({
@@ -143,7 +144,9 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
           />
         </div>
       </div>
-      <button>{t("submit")}</button>
+      <button disabled={isPending}>
+        {isPending ? <Spinner /> : t("submit")}
+      </button>
       <p className="register-cta">
         {t("register")} <Link href="/register">{t("registerCta")}</Link>
       </p>
