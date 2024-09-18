@@ -87,13 +87,10 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
             className="error-message"
             initial={{
               opacity: 0,
-              // height: 0,
-              padding: "inherit",
               width: 0,
             }}
             animate={{
               opacity: 1,
-              // height: "auto",
               width: "100%",
               transformOrigin: "top left",
               transition: {
@@ -103,7 +100,6 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
             }}
             exit={{
               opacity: 0,
-              // height: 0,
               width: 0,
             }}
           >

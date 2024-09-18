@@ -106,13 +106,10 @@ export default function LoginPage() {
               className="error-message"
               initial={{
                 opacity: 0,
-                // height: 0,
-                padding: "inherit",
                 width: 0,
               }}
               animate={{
                 opacity: 1,
-                // height: "auto",
                 width: "100%",
                 transformOrigin: "top left",
                 transition: {
@@ -122,7 +119,6 @@ export default function LoginPage() {
               }}
               exit={{
                 opacity: 0,
-                // height: 0,
                 width: 0,
               }}
             >
@@ -167,7 +163,7 @@ export default function LoginPage() {
               placeholder="Username"
             />
           </div>
-          <div className="input">
+          {/* <div className="input">
             <label htmlFor="email">{t("register.firstName")}</label>
             <input
               onChange={handleChange}
@@ -188,7 +184,7 @@ export default function LoginPage() {
               name="lastName"
               placeholder="last name"
             />
-          </div>
+          </div> */}
           <div className="input">
             <label htmlFor="password">
               {t("register.password")} <span>*</span>

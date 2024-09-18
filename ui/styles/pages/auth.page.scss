@@ -24,12 +24,13 @@
   }
 
   &__right {
-    padding: 3rem;
+    // padding: 3rem;
+    max-width: 30%;
     max-height: 100dvh;
     overflow: hidden;
 
     img {
-      border-radius: 0.5rem;
+      // border-radius: 0.5rem;
       height: 100%;
       object-fit: cover;
     }
