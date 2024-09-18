@@ -13,6 +13,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Button from "@/ui/components/atoms/Button.atom";
 import { IoClose } from "react-icons/io5";
 import { useTranslations } from "next-intl";
+import Spinner from "@/ui/components/atoms/Spinner.atom";
 
 export default function LoginPage() {
   const t = useTranslations("auth");
@@ -225,7 +226,9 @@ export default function LoginPage() {
             />
           </div>
         </div>
-        <button>{t("register.submit")}</button>
+        <button disabled={isPending}>
+          {isPending ? <Spinner /> : t("register.submit")}
+        </button>
         {/* <p className="forgot-password">Forgot your password?</p> */}
         <p className="register-cta">
           {t("register.login")}{" "}
