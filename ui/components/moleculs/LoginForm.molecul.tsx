@@ -33,7 +33,7 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
 
   const { refetchUser, user } = useContext(Context);
 
-  if (user) {
+  if (user?.username) {
     router.replace("/generate");
   }
 
@@ -63,7 +63,6 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
 
   useEffect(() => {
     setLoginError(error?.message ?? null);
-    console.error(error?.message);
   }, [error]);
 
   return (
