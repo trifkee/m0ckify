@@ -52,12 +52,29 @@
       }
     }
 
+    .input {
+      border-radius: 0.25rem;
+      background: rgb($dark-gray-clr, 0.15);
+      padding: 0.5rem;
+      font: inherit;
+      font-size: clamp(0.5rem, 65rem, 0.85rem);
+      border: 1px solid rgb($dashboard-border-clr, 1);
+      // border: none;
+      background-color: rgb($dark-gray-clr, 0.15);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
     .divider {
       height: 1px;
       background: rgb($dashboard-border-clr, 1);
     }
 
     &__title {
+      display: flex;
+      justify-content: space-between;
       cursor: pointer;
       padding: 1rem 0.5rem;
       font-weight: bold;
@@ -192,6 +209,13 @@
       .title {
         font-weight: 300;
         font-size: clamp(0.5rem, 15vw, 0.75rem);
+
+        &.information {
+          border-radius: 0.25rem;
+          background-color: rgb($ternary-clr-500, 0.5);
+          padding: 0.5rem;
+          border: 1px solid rgb($ternary-clr-500, 1);
+        }
 
         &.flex {
           display: flex;

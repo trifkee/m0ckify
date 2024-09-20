@@ -22,6 +22,7 @@
     "maath": "^0.10.7",
     "next": "14.2.3",
     "next-intl": "^3.14.1",
+    "openai": "^4.63.0",
     "react": "^18",
     "react-colorful": "^5.6.1",
     "react-dom": "^18",

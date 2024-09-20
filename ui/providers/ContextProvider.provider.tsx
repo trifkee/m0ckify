@@ -21,6 +21,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     null
   );
 
+  const [openAiKey, setOpenAiKey] = useState("");
+
   const { data: userData, refetch: refetchUser } = useFetchUser();
 
   const [user, setUser] = useState<UserType | null>(userData ?? null);
@@ -125,6 +127,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         user,
         refetchUser,
         handleLogout,
+        openAiKey,
+        setOpenAiKey,
       }}
     >
       {children}
