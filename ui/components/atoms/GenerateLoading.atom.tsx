@@ -32,7 +32,16 @@ export default function GenerateLoading() {
             }}
             className="loading-model"
           >
-            <Image src={logo} alt="Mockify" />
+            <div
+              style={{ position: "relative", width: "12rem", height: "12rem" }}
+            >
+              <Image
+                src={logo}
+                layout="fill"
+                objectFit="contain"
+                alt="Mockify"
+              />
+            </div>
             <Spinner size="big" />
           </motion.main>
         )}
