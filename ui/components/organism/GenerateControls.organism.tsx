@@ -28,6 +28,7 @@ import {
   IoExitOutline,
   IoImage,
   IoImageSharp,
+  IoInformationCircle,
   IoPartlySunny,
   IoPerson,
   IoPersonOutline,
@@ -118,7 +119,7 @@ export default function GenerateControls() {
                 {data?.data.status === 500 && (
                   <>
                     <p className="title information">
-                      {data?.data.message ? (
+                      {true || data?.data.message ? (
                         data?.data.message
                       ) : (
                         <>
@@ -128,11 +129,12 @@ export default function GenerateControls() {
                           <br />
                           If u want to try our product fell free to set your own
                           API key and continue using APP.
-                          <br />
-                          <br />
-                          <strong>Your key won't be saved!</strong>
                         </>
                       )}
+                    </p>
+
+                    <p className="title additional-info">
+                      Your key won't be saved! <IoInformationCircle />
                     </p>
                     <input
                       className="input"

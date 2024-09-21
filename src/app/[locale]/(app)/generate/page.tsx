@@ -3,6 +3,7 @@ import GenerateControls from "@/ui/components/organism/GenerateControls.organism
 import GenerateNavigation from "@/ui/components/organism/GenerateNavigation.organism";
 
 import "@/ui/styles/pages/generate.page.scss";
+import GenerateLoading from "@/ui/components/atoms/GenerateLoading.atom";
 
 export default function Generate({
   params: { locale },
@@ -10,10 +11,13 @@ export default function Generate({
   params: { locale: string };
 }) {
   return (
-    <main className="generate">
-      <GenerateNavigation locale={locale} />
-      <GenerateModel />
-      <GenerateControls />
-    </main>
+    <>
+      <GenerateLoading />
+      <main className="generate">
+        <GenerateNavigation locale={locale} />
+        <GenerateModel />
+        <GenerateControls />
+      </main>
+    </>
   );
 }

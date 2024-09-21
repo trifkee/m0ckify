@@ -8,12 +8,13 @@ import Context from "./ContextProvider.provider";
 
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
+import GenearateLoader from "../components/atoms/GenerateLoader.atom";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument } = useContext(Context);
+  const { sceneDocument, isGenerateLoading } = useContext(Context);
 
   return (
     <div className="model" ref={parentRef}>
@@ -24,25 +25,29 @@ export default function ModelProvider() {
           linear
           shadows={sceneDocument.env.castShadow ? true : false}
         >
-          {/* TODO:
+          <GenearateLoader />
+
+          <Suspense>
+            {/* TODO:
               ADD LATER BACKGROUND 
         */}
-          {/* <color attach="background" args={["#15151a"]} /> */}
+            {/* <color attach="background" args={["#15151a"]} /> */}
 
-          <Lights />
-          {sceneDocument.env.castShadow ? (
-            <Stage
-              environment={sceneDocument.env.preset}
-              intensity={sceneDocument.env.intensity}
-            >
-              <Model />
-            </Stage>
-          ) : (
-            <>
-              <Environment preset={sceneDocument.env.preset} />
-              <Model />
-            </>
-          )}
+            <Lights />
+            {sceneDocument.env.castShadow ? (
+              <Stage
+                environment={sceneDocument.env.preset}
+                intensity={sceneDocument.env.intensity}
+              >
+                <Model />
+              </Stage>
+            ) : (
+              <>
+                <Environment preset={sceneDocument.env.preset} />
+                <Model />
+              </>
+            )}
+          </Suspense>
 
           <OrbitControls enableRotate={false} />
         </Canvas>

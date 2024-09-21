@@ -1,13 +1,18 @@
 "use client";
 
-import { Link } from "@/navigation";
-import GenerateDocumentTitle from "../moleculs/GenerateDocumentTItle.moleculs";
-
-import { AnimatePresence, motion } from "framer-motion";
-
-import logo from "@/public/images/logo-white.svg";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
-import LanguagePicker from "../moleculs/LanguagePicker.molecul";
+import { useContext, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "@/navigation";
+import Context from "@/ui/providers/ContextProvider.provider";
+
+import GenerateDocumentTitle from "@/ui/components/moleculs/GenerateDocumentTItle.moleculs";
+import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
+import Button from "@/ui/components/atoms/Button.atom";
+
+import useGenerator from "@/ui/hooks/useGenerator.hook";
+
 import {
   IoEnterOutline,
   IoExitOutline,
@@ -15,11 +20,8 @@ import {
   IoSaveSharp,
   IoSyncSharp,
 } from "react-icons/io5";
-import Button from "../atoms/Button.atom";
-import useGenerator from "@/ui/hooks/useGenerator.hook";
-import { useTranslations } from "next-intl";
-import { useContext, useState } from "react";
-import Context from "@/ui/providers/ContextProvider.provider";
+
+import logo from "@/public/images/logo-white.png";
 
 import "@/ui/styles/organism/generateNavigation.organism.scss";
 
@@ -46,7 +48,7 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       className="generate__navigation"
     >
       <Link href={"/"}>
-        <Image src={logo} alt="Mockify" />
+        <Image src={logo} className="navigation-logo" alt="Mockify" />
       </Link>
       <GenerateDocumentTitle />
 
