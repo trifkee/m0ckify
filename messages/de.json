@@ -44,7 +44,14 @@
       "title": "Magifizieren",
       "generateTitle": "Magische Mockup generieren",
       "generateDescription": "Erstellen Sie ein magisches Mockup für meine mobile App...",
-      "cta": "Generieren"
+      "cta": "Generieren",
+      "errors": {
+        "noCredit": [
+          "Hey, es sieht so aus, als hätten wir keine Tokens mehr auf unserem Konto.",
+          "Wenn du unser Produkt ausprobieren möchtest, füge einfach deinen eigenen API-Schlüssel hinzu und nutze die App weiter."
+        ],
+        "noSavingKeys": "Ihr Schlüssel wird nicht gespeichert!"
+      }
     },
     "image": {
       "title": "Bild",

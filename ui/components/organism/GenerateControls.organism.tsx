@@ -123,18 +123,17 @@ export default function GenerateControls() {
                         data?.data.message
                       ) : (
                         <>
-                          Hey, looks like we are run out of tokens on our
-                          account.
+                          {t("magicfy.errors.noCredit.0")}
                           <br />
                           <br />
-                          If u want to try our product fell free to set your own
-                          API key and continue using APP.
+                          {t("magicfy.errors.noCredit.1")}
                         </>
                       )}
                     </p>
 
                     <p className="title additional-info">
-                      Your key won't be saved! <IoInformationCircle />
+                      {t("magicfy.errors.noSavingKeys")}
+                      <IoInformationCircle />
                     </p>
                     <input
                       className="input"

@@ -44,7 +44,14 @@
       "title": "Magicfy",
       "generateTitle": "Generiši magični mokap",
       "generateDescription": "Generiši magični mokap za moju mobilnu aplikaciju...",
-      "cta": "Generiši"
+      "cta": "Generiši",
+      "errors": {
+        "noCredit": [
+          "Hej, izgleda da smo ostali bez tokena na našem nalogu.",
+          "Ako želiš da isprobaš naš proizvod, slobodno postavi svoj API ključ i nastavi da koristiš aplikaciju."
+        ],
+        "noSavingKeys": "Vaš ključ neće biti sačuvan!"
+      }
     },
     "image": {
       "title": "Slika",
