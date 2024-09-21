@@ -12,7 +12,7 @@ import GenearateLoader from "../components/atoms/GenerateLoader.atom";
 import Button from "../components/atoms/Button.atom";
 import { IoMove } from "react-icons/io5";
 
-import "@/ui/styles/providers/ModelProvider.provider.scss";
+import "@/ui/styles/providers/modelProvider.provider.scss";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
