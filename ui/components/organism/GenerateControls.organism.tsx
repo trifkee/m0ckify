@@ -66,11 +66,16 @@ export default function GenerateControls() {
   const { user, handleLogout, setOpenAiKey, openAiKey } = useContext(Context);
 
   const [prompt, setPrompt] = useState("");
+
+  const onSuccessGenerate = (data: any) => {
+    handleReadAIImage(data.data.imgUrl ? data.data.imgUrl : mockifyImage);
+  };
+
   const {
     mutate: generate,
     isPending: isGenerating,
     data,
-  } = useGenerateImage();
+  } = useGenerateImage(onSuccessGenerate);
 
   const handleGenerate = () => {
     if (!user) {
@@ -93,6 +98,7 @@ export default function GenerateControls() {
     sceneLights,
     handleImageChange,
     handleChangeColor,
+    handleReadAIImage,
     onChangeIntensity,
     handleChangeModelTexture,
     handleChangeShadow,
@@ -154,7 +160,10 @@ export default function GenerateControls() {
                 <textarea
                   className="magic-input"
                   placeholder={t("magicfy.generateDescription")}
-                  value={prompt}
+                  disabled={isGenerating}
+                  value={
+                    isGenerating ? "I am generating, please wait..." : prompt
+                  }
                   onChange={(e) => setPrompt(e.target.value)}
                 />
               </div>
