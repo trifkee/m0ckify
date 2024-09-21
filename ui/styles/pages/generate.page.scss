@@ -107,9 +107,27 @@
       "model model model slider-y"
       "slider-x slider-x slider-x none";
 
+    grid-template-columns: 1fr 1fr 1fr min-content;
+    grid-template-rows: 1fr 1fr 1fr min-content;
+
     .model {
       position: relative;
       width: 100%;
+      height: 100%;
+      grid-row: 1 / 4;
+      grid-column: 1 / 4;
+
+      & > div,
+      & > div > div {
+        width: 100%;
+        height: 100%;
+      }
+
+      canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

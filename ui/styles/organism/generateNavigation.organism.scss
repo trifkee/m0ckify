@@ -1,10 +1,16 @@
 @import "variables.scss";
 
+.generate__navigation {
+  a > img {
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
 .gen-ctas {
   display: flex;
   align-items: center;
   justify-content: center;
-  //   gap: 0.5rem;
   width: fit-content;
   gap: 1rem;
 

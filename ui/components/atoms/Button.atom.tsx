@@ -7,10 +7,12 @@ export default function Button({
   variant = "primary",
   className,
   onClick,
+  disabled,
   type,
 }: {
   type?: "button" | "submit";
   children: React.ReactNode;
+  disabled?: boolean;
   className?: string;
   onClick?: CallableFunction;
   variant?:
@@ -24,9 +26,10 @@ export default function Button({
 }) {
   return (
     <button
+      disabled={disabled}
       type={type || "button"}
       onClick={() => (onClick ? onClick() : null)}
-      className={`button ${variant ? variant : ""} ${className}`}
+      className={`button ${variant ? variant : ""} ${className} ${disabled}`}
     >
       {children}
     </button>

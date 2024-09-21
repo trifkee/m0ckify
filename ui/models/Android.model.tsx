@@ -29,24 +29,19 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
 
   const { model } = useContext(Context);
 
-  const texture = useLoader(THREE.TextureLoader, model.image.src);
+  const texture: any = useLoader(THREE.TextureLoader, model.image.src);
 
   /* SCREEN MOCKUP */
   const image = model.image;
-
-  //   @ts-ignore
   texture.center.set(0.5, 0.5);
 
-  //   @ts-ignore
   texture.rotation = Math.PI / 2;
 
-  //   @ts-ignore
   texture.repeat.set(
     4.25 + image.width / IMAGE_SETTINGS.dimensionDivider,
     -4.1 + image.height / IMAGE_SETTINGS.dimensionDivider
   );
 
-  //   @ts-ignore
   texture.offset.set(
     -1.6 + image.x / IMAGE_SETTINGS.positionDivider,
     0 + image.y / IMAGE_SETTINGS.positionDivider
@@ -119,17 +114,11 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
         rotation={[0, Math.PI / 2, 0]}
       />
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Screen001.geometry}
         material={materials.Screen}
         rotation={[0, Math.PI / 2, 0]}
       >
-        <meshBasicMaterial
-          attach="material"
-          // @ts-ignore
-          map={texture}
-        />
+        <meshBasicMaterial attach="material" map={texture} />
       </mesh>
     </group>
   );

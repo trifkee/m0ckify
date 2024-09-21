@@ -11,6 +11,8 @@ import {
   SceneLightsType,
 } from "@/lib/types/model.type";
 
+import fallbackImage from "@/public/images/mockify-starter.jpg";
+
 export default function useGenerator() {
   const {
     model,
@@ -42,6 +44,17 @@ export default function useGenerator() {
         },
       }));
     });
+
+  const handleReadAIImage = (image: string) => {
+    setModel((prev: ModelType) => ({
+      ...prev,
+      image: {
+        ...prev.image,
+        src: image ?? fallbackImage,
+        isDefault: false,
+      },
+    }));
+  };
 
   /* Save Image to user PC */
   const handleSave = () => {
@@ -281,6 +294,7 @@ export default function useGenerator() {
     sceneDocument,
     sceneLights,
     handleImageChange,
+    handleReadAIImage,
     handleImagePosition,
     handleImageSize,
     handleSave,

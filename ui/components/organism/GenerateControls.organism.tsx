@@ -1,29 +1,46 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Fragment, useContext, useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "@/navigation";
 
 import { HexColorPicker } from "react-colorful";
 import Slider from "@/ui/components/atoms/Slider.atom";
 import Checkbox from "@/ui/components/atoms/Checkbox.atom";
 import Button from "@/ui/components/atoms/Button.atom";
 
-import { ENV_LIST, MODELS_LIST, TEXTURE_LIST } from "@/lib/constants/generator";
+import { useGenerateImage } from "@/infrastructure/mutations/generate";
+
+import {
+  ENV_LIST,
+  MODELS_LIST,
+  STARTING_PROPMPT,
+  TEXTURE_LIST,
+} from "@/lib/constants/generator";
 
 import {
   IoAdd,
+  IoBulb,
   IoColorWand,
   IoExitOutline,
+  IoImage,
   IoImageSharp,
+  IoInformationCircle,
+  IoPartlySunny,
+  IoPerson,
+  IoPersonOutline,
+  IoPhonePortrait,
   IoSaveSharp,
+  IoSettings,
+  IoSunny,
   IoSyncSharp,
   IoTrashBinSharp,
 } from "react-icons/io5";
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 import { SceneLightsType } from "@/lib/types/model.type";
-import { Fragment, useContext, useEffect, useState } from "react";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
@@ -31,10 +48,49 @@ import mockifyImage from "@/public/images/bg.jpg";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 
+type TabType =
+  | "image"
+  | "magic"
+  | "model"
+  | "environment"
+  | "lights"
+  | "action"
+  | "user";
+
+const promptLen = 30;
+
 export default function GenerateControls() {
   const t = useTranslations("generate");
+  const router = useRouter();
 
-  const [generate, setGenerate] = useState("");
+  const { user, handleLogout, setOpenAiKey, openAiKey } = useContext(Context);
+
+  const [prompt, setPrompt] = useState("");
+
+  const onSuccessGenerate = (data: any) => {
+    handleReadAIImage(data.data.imgUrl ? data.data.imgUrl : mockifyImage);
+  };
+
+  const {
+    mutate: generate,
+    isPending: isGenerating,
+    data,
+  } = useGenerateImage(onSuccessGenerate);
+
+  const handleGenerate = () => {
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
+    generate({ prompt, openAiKey });
+  };
+
+  useEffect(() => {
+    isGenerating
+      ? (document.title = "Generating...")
+      : (document.title = "Mockify");
+  }, [isGenerating]);
 
   const {
     model,
@@ -42,6 +98,7 @@ export default function GenerateControls() {
     sceneLights,
     handleImageChange,
     handleChangeColor,
+    handleReadAIImage,
     onChangeIntensity,
     handleChangeModelTexture,
     handleChangeShadow,
@@ -57,26 +114,15 @@ export default function GenerateControls() {
     handleChangeReflection,
   } = useGenerator();
 
-  const { user, handleLogout } = useContext(Context);
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      document.title = sceneDocument.title;
+    }, 2000);
 
-  const handleGenerate = () => {
-    if (!user) {
-      return console.error("You must be logged in!");
-    }
+    return () => clearTimeout(timeout);
+  }, [sceneDocument]);
 
-    console.log("Successfuly generated!", generate);
-  };
-
-  const getMenu = (
-    tab:
-      | "image"
-      | "magic"
-      | "model"
-      | "environment"
-      | "lights"
-      | "action"
-      | "user"
-  ) => {
+  const getMenu = (tab: TabType) => {
     switch (tab) {
       case "magic":
         return (
@@ -84,22 +130,55 @@ export default function GenerateControls() {
             <div className="magic">
               <div className="control__section">
                 <p className="title">{t("magicfy.title")}</p>
+                {data?.data.status === 500 && (
+                  <>
+                    <p className="title information">
+                      {true || data?.data.message ? (
+                        data?.data.message
+                      ) : (
+                        <>
+                          {t("magicfy.errors.noCredit.0")}
+                          <br />
+                          <br />
+                          {t("magicfy.errors.noCredit.1")}
+                        </>
+                      )}
+                    </p>
+
+                    <p className="title additional-info">
+                      {t("magicfy.errors.noSavingKeys")}
+                      <IoInformationCircle />
+                    </p>
+                    <input
+                      className="input"
+                      placeholder="OPEN AI API KEY"
+                      value={openAiKey}
+                      onChange={(e) => setOpenAiKey(e.target.value)}
+                    />
+                  </>
+                )}
                 <textarea
                   className="magic-input"
                   placeholder={t("magicfy.generateDescription")}
-                  value={generate}
-                  onChange={(e) => setGenerate(e.target.value)}
+                  disabled={isGenerating}
+                  value={
+                    isGenerating ? "I am generating, please wait..." : prompt
+                  }
+                  onChange={(e) => setPrompt(e.target.value)}
                 />
               </div>
 
-              <Button
-                onClick={handleGenerate}
-                className="magic"
-                variant="editor"
-              >
-                {t("magicfy.cta")}
-                <IoColorWand />
-              </Button>
+              {!isGenerating && (
+                <Button
+                  disabled={prompt.length < promptLen}
+                  onClick={handleGenerate}
+                  className={`magic ${prompt.length < promptLen && "disabled"}`}
+                  variant="editor"
+                >
+                  {t("magicfy.cta")}
+                  <IoColorWand />
+                </Button>
+              )}
             </div>
           </div>
         );
@@ -471,7 +550,9 @@ export default function GenerateControls() {
             }}
             className="control user"
           >
-            <summary className="control__title">{t("user.title")}</summary>
+            <summary className="control__title">
+              {t("user.title")} <IoPerson />
+            </summary>
             {getMenu("user")}
           </motion.details>
         )}
@@ -492,7 +573,9 @@ export default function GenerateControls() {
             open
             className="control user"
           >
-            <summary className="control__title">{t("magicfy.title")}</summary>
+            <summary className="control__title">
+              {t("magicfy.title")} <IoColorWand />
+            </summary>
             {getMenu("magic")}
           </motion.details>
         }
@@ -510,7 +593,9 @@ export default function GenerateControls() {
           }}
           className="control image"
         >
-          <summary className="control__title">{t("image.title")}</summary>
+          <summary className="control__title">
+            {t("image.title")} <IoImage />
+          </summary>
 
           <div className="control__section">{getMenu("image")}</div>
         </motion.details>
@@ -529,7 +614,9 @@ export default function GenerateControls() {
           }}
           className="control model select"
         >
-          <summary className="control__title">{t("model.title")}</summary>
+          <summary className="control__title">
+            {t("model.title")} <IoPhonePortrait />
+          </summary>
           {getMenu("model")}
         </motion.details>
         <motion.details
@@ -546,7 +633,9 @@ export default function GenerateControls() {
           }}
           className="control env select"
         >
-          <summary className="control__title">{t("environment.title")}</summary>
+          <summary className="control__title">
+            {t("environment.title")} <IoSunny />
+          </summary>
           {getMenu("environment")}
         </motion.details>
 
@@ -567,6 +656,7 @@ export default function GenerateControls() {
           <summary className="control__title flex">
             <p>
               {t("lights.title")}
+
               {sceneLights.length > 0 && (
                 <span style={{ fontSize: ".75rem", fontWeight: "lighter" }}>
                   {" "}
@@ -578,6 +668,7 @@ export default function GenerateControls() {
             <Button onClick={handleAddNewLight} variant="editor">
               {t("lights.add")} <IoAdd />
             </Button>
+            {/* <IoBulb /> */}
           </summary>
 
           {getMenu("lights")}
@@ -597,7 +688,9 @@ export default function GenerateControls() {
           }}
           className="control actions"
         >
-          <summary className="control__title">{t("actions.title")}</summary>
+          <summary className="control__title">
+            {t("actions.title")} <IoSettings />
+          </summary>
           {getMenu("action")}
         </motion.details>
       </motion.article>

@@ -21,14 +21,14 @@ export default function Model() {
   const renderedModel = () => {
     switch (selectedModel) {
       case "iphone":
-        return <LazyIphone />;
+        return <LazyIphone scale={0.5} />;
       case "android":
-        return <LazyAndroid />;
+        return <LazyAndroid scale={0.5} />;
       case "tv":
-        return <LazyTv />;
+        return <LazyTv scale={0.5} />;
 
       default:
-        return <LazyIphone />;
+        return <LazyIphone scale={0.5} />;
     }
   };
 

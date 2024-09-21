@@ -2,6 +2,14 @@
   "global": {
     "start": "Commencer"
   },
+  "notFound": {
+    "title": "Quelque chose s'est mal passé",
+    "message": "Nous n'avons pas pu trouver la page que vous recherchez...",
+    "ctas": {
+      "homepage": "Page d'accueil",
+      "generate": "Au travail !"
+    }
+  },
   "home": {
     "title": "Créez de superbes maquettes personnalisées gratuitement",
     "getStarted": "Commencer",
@@ -44,7 +52,14 @@
       "title": "Magifier",
       "generateTitle": "Générer une maquette magique",
       "generateDescription": "Générer une maquette magique pour mon application mobile...",
-      "cta": "Générer"
+      "cta": "Générer",
+      "errors": {
+        "noCredit": [
+          "Hé, on dirait que nous n'avons plus de jetons sur notre compte.",
+          "Si vous voulez essayer notre produit, n'hésitez pas à définir votre propre clé API et à continuer d'utiliser l'application."
+        ],
+        "noSavingKeys": "Votre clé ne sera pas sauvegardée !"
+      }
     },
     "image": {
       "title": "Image",
