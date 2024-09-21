@@ -1,19 +1,41 @@
+import { RenderType } from "../types/model.type";
+
+type SaveType = RenderType & {
+  title?: string;
+};
+
 export const saveImageFromCanvas = ({
   title = "Mockify",
-}: {
-  title?: string;
-}) => {
+  type,
+  h,
+  w,
+}: SaveType) => {
   const link = document.createElement("a");
-  const canvas = document.querySelector("canvas") as HTMLCanvasElement; // this was the gl dom element
-  link.setAttribute("download", `${title}.png`);
+  const canvas = document.querySelector("canvas") as HTMLCanvasElement;
+  // const modelContainer = document.getElementById(
+  //   "canvas__model"
+  // ) as HTMLDivElement;
+
+  // const originalWidth = modelContainer?.clientWidth;
+  // const originalHeight = modelContainer?.clientHeight;
+  // modelContainer.style.position = "absolute";
+
+  // modelContainer!.style.width = `${w}px`;
+  // modelContainer!.style.height = `${h}px`;
+
+  link.setAttribute("download", `${title}.${type}`);
   link.setAttribute(
     "href",
-    canvas // instead of gl.domElement
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream")
+    canvas
+      .toDataURL(`image/${type.toLowerCase()}`)
+      .replace(`image/${type.toLowerCase()}`, "image/octet-stream")
   );
   link.click();
   link.remove();
+
+  // modelContainer.style.position = "relative";
+  // modelContainer!.style.width = `${originalWidth}px`;
+  // modelContainer!.style.height = `${originalHeight}px`;
 };
 
 export const readUserImage = (file: File) => {

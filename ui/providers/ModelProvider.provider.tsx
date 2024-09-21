@@ -4,7 +4,7 @@ import { Suspense, useContext, useRef, useState } from "react";
 
 import * as THREE from "three";
 import { Environment, OrbitControls, Stage } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 
 import Context from "./ContextProvider.provider";
 
@@ -20,11 +20,11 @@ export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument } = useContext(Context);
+  const { sceneDocument, render } = useContext(Context);
   const [freeroam, setFreeroam] = useState(false);
 
   return (
-    <div className="model" ref={parentRef}>
+    <div className="model" id="canvas__model" ref={parentRef}>
       <Suspense fallback={null}>
         <Button
           className={`freeroam ${freeroam ? "y" : "n"}`}

@@ -44,6 +44,11 @@
     }
   },
   "generate": {
+    "render": {
+      "title": "Rendern",
+      "imageSize": "Bildgröße",
+      "imageType": "Bildtyp"
+    },
     "user": {
       "title": "Konto",
       "logout": "Abmelden"

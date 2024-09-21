@@ -16,6 +16,7 @@ import { useGenerateImage } from "@/infrastructure/mutations/generate";
 
 import {
   ENV_LIST,
+  IMAGE_TYPES,
   MODELS_LIST,
   STARTING_PROPMPT,
   TEXTURE_LIST,
@@ -24,6 +25,7 @@ import {
 import {
   IoAdd,
   IoBulb,
+  IoCamera,
   IoColorWand,
   IoExitOutline,
   IoImage,
@@ -55,7 +57,8 @@ type TabType =
   | "environment"
   | "lights"
   | "action"
-  | "user";
+  | "user"
+  | "render";
 
 const promptLen = 30;
 
@@ -96,6 +99,7 @@ export default function GenerateControls() {
     model,
     sceneDocument,
     sceneLights,
+    render,
     handleImageChange,
     handleChangeColor,
     handleReadAIImage,
@@ -112,6 +116,8 @@ export default function GenerateControls() {
     handleImageSize,
     handleImagePosition,
     handleChangeReflection,
+    handleChangeRenderSize,
+    handleChangeRenderImageType,
   } = useGenerator();
 
   useEffect(() => {
@@ -122,8 +128,65 @@ export default function GenerateControls() {
     return () => clearTimeout(timeout);
   }, [sceneDocument]);
 
+  // FNs
   const getMenu = (tab: TabType) => {
     switch (tab) {
+      case "render":
+        return (
+          <div className="render-container">
+            <div className="render">
+              <div className="control__section">
+                <p className="title">{t("render.imageSize")}</p>
+                <div
+                  className="position"
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                  }}
+                >
+                  <div className="input-label">
+                    <label htmlFor="iw">W</label>
+                    <input
+                      type="number"
+                      name="w"
+                      id="w"
+                      onChange={(e) => handleChangeRenderSize(e)}
+                      value={render.w}
+                    />
+                  </div>
+                  <div className="input-label">
+                    <label htmlFor="ig">H</label>
+                    <input
+                      type="number"
+                      name="h"
+                      id="h"
+                      onChange={(e) => handleChangeRenderSize(e)}
+                      value={render.h}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="control__section env select">
+                <p className="title">{t("render.imageType")}</p>
+                <select
+                  onChange={(e) => handleChangeRenderImageType(e)}
+                  defaultValue={IMAGE_TYPES[0]}
+                >
+                  {IMAGE_TYPES.map((type) => {
+                    return (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+          </div>
+        );
+
       case "magic":
         return (
           <div className="magic-container">
@@ -506,7 +569,13 @@ export default function GenerateControls() {
                 <IoSyncSharp />
               </Button>
               <Button
-                onClick={handleSave}
+                onClick={() =>
+                  handleSave({
+                    type: render.type,
+                    w: render.w,
+                    h: render.h,
+                  })
+                }
                 variant="editor"
                 className="download"
               >
@@ -518,6 +587,8 @@ export default function GenerateControls() {
         );
     }
   };
+
+  // ---
 
   return (
     <>
@@ -535,6 +606,7 @@ export default function GenerateControls() {
         }}
         className="generate__controls"
       >
+        {/* USER SECTION */}
         {user && (
           <motion.details
             initial={{
@@ -557,28 +629,51 @@ export default function GenerateControls() {
           </motion.details>
         )}
 
-        {
-          <motion.details
-            initial={{
-              x: 10,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              delay: 0.85,
-            }}
-            open
-            className="control user"
-          >
-            <summary className="control__title">
-              {t("magicfy.title")} <IoColorWand />
-            </summary>
-            {getMenu("magic")}
-          </motion.details>
-        }
+        {/* MAGICFY */}
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.85,
+          }}
+          open
+          className="control user"
+        >
+          <summary className="control__title">
+            {t("magicfy.title")} <IoColorWand />
+          </summary>
+          {getMenu("magic")}
+        </motion.details>
+
+        {/* RENDER */}
+        <motion.details
+          initial={{
+            x: 10,
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.85,
+          }}
+          className="control image"
+        >
+          <summary className="control__title">
+            {t("render.title")} <IoCamera />
+          </summary>
+
+          <div className="control__section">{getMenu("render")}</div>
+        </motion.details>
+
+        {/* IMAGE */}
         <motion.details
           initial={{
             x: 10,
@@ -600,6 +695,7 @@ export default function GenerateControls() {
           <div className="control__section">{getMenu("image")}</div>
         </motion.details>
 
+        {/* MODEL */}
         <motion.details
           initial={{
             x: 10,
@@ -619,6 +715,8 @@ export default function GenerateControls() {
           </summary>
           {getMenu("model")}
         </motion.details>
+
+        {/* ENV */}
         <motion.details
           initial={{
             x: 10,
@@ -639,6 +737,7 @@ export default function GenerateControls() {
           {getMenu("environment")}
         </motion.details>
 
+        {/* LIGHTS */}
         <motion.details
           initial={{
             x: 10,
@@ -674,6 +773,7 @@ export default function GenerateControls() {
           {getMenu("lights")}
         </motion.details>
 
+        {/* ACTIONS */}
         <motion.details
           initial={{
             x: 10,
@@ -696,48 +796,4 @@ export default function GenerateControls() {
       </motion.article>
     </>
   );
-}
-
-{
-  /* <div className="generate__controls-mobile">
-        {activeTab && (
-          <div className="additional-menu">
-            <div className="additional-menu__title">
-              <p>{t(`${activeTab.title}.title`)}</p>
-              <Button onClick={() => setActiveTab(null)} variant="editor">
-                <IoCloseCircleSharp />
-              </Button>
-            </div>
-
-            <div className="additional-menu__body" key={activeTab.id}>
-              {activeTab.body}
-            </div>
-          </div>
-        )}
-        <div className="track">
-          <div className="control" onClick={() => handleActiveTab("image")}>
-            <p className="control__title">
-              <IoImageSharp /> {t("image.title")}
-            </p>
-          </div>
-          <div className="control" onClick={() => handleActiveTab("model")}>
-            <p className="control__title">
-              <IoTvSharp /> {t("model.title")}
-            </p>
-          </div>
-          <div
-            className="control"
-            onClick={() => handleActiveTab("environment")}
-          >
-            <p className="control__title">
-              <IoSunnySharp /> {t("environment.title")}
-            </p>
-          </div>
-          <div className="control" onClick={() => handleActiveTab("lights")}>
-            <p className="control__title">
-              <IoFlashlight /> {t("lights.title")}
-            </p>
-          </div>
-        </div>
-      </div> */
 }

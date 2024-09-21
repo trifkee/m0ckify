@@ -44,6 +44,11 @@
     }
   },
   "generate": {
+    "render": {
+      "title": "Рендеринг",
+      "imageSize": "Размер изображения",
+      "imageType": "Тип изображения"
+    },
     "user": {
       "title": "Аккаунт",
       "logout": "Выйти"

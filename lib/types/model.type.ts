@@ -1,3 +1,9 @@
+export type RenderType = {
+  w: number;
+  h: number;
+  type: "JPEG" | "PNG" | "SVG" | "WEBP";
+};
+
 export type ModelType = {
   position: {
     x: number;

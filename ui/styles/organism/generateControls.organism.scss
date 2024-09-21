@@ -278,29 +278,28 @@
         gap: 0.25rem;
       }
     }
+  }
+  .select {
+    width: 100%;
 
-    &.select {
+    select {
       width: 100%;
+      color: $white-clr;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      outline: none;
+      border: 1px solid rgb($dashboard-border-clr, 1);
+      background: rgb($dark-gray-clr, 0.5);
+      transition: 0.2s ease all;
 
-      select {
-        width: 100%;
-        color: $white-clr;
-        padding: 0.5rem;
-        border-radius: 0.25rem;
-        outline: none;
-        border: 1px solid rgb($dashboard-border-clr, 1);
-        background: rgb($dark-gray-clr, 0.5);
-        transition: 0.2s ease all;
+      &:hover {
+        cursor: pointer;
+        border: 1px solid $secondary-clr-400;
+        background: rgb($secondary-clr-700, 0.5);
+      }
 
-        &:hover {
-          cursor: pointer;
-          border: 1px solid $secondary-clr-400;
-          background: rgb($secondary-clr-700, 0.5);
-        }
-
-        & > * {
-          border-radius: 0;
-        }
+      & > * {
+        border-radius: 0;
       }
     }
   }

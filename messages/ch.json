@@ -44,6 +44,11 @@
     }
   },
   "generate": {
+    "render": {
+      "title": "渲染",
+      "imageSize": "图片大小",
+      "imageType": "图片类型"
+    },
     "user": {
       "title": "账户",
       "logout": "退出登录"
