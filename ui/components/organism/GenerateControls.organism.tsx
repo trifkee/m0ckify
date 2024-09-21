@@ -108,6 +108,14 @@ export default function GenerateControls() {
     handleChangeReflection,
   } = useGenerator();
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      document.title = sceneDocument.title;
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [sceneDocument]);
+
   const getMenu = (tab: TabType) => {
     switch (tab) {
       case "magic":
