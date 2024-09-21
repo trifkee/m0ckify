@@ -42,6 +42,7 @@ export default function GenerateDocumentTitle() {
         />
       ) : (
         <span
+          className="document-title__span"
           style={{ marginRight: "auto" }}
           onDoubleClick={() => setIsEditable(true)}
         >

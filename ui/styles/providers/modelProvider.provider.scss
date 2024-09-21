@@ -1,0 +1,20 @@
+@import "variables.scss";
+
+.freeroam {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: min-content !important;
+  max-width: fit-content !important;
+  z-index: 9999;
+
+  &.y {
+    svg,
+    path {
+      color: $primary-clr-500;
+    }
+
+    border: 1px solid $secondary-clr-400;
+    background: rgb($secondary-clr-700, 0.5);
+  }
+}

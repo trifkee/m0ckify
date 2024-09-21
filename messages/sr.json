@@ -2,6 +2,14 @@
   "global": {
     "start": "Počni"
   },
+  "notFound": {
+    "title": "Dogodila se greška.",
+    "message": "Nismo mogli da pronađemo stranicu koju tražite...",
+    "ctas": {
+      "homepage": "Početna stranica",
+      "generate": "Hajde da radimo!"
+    }
+  },
   "auth": {
     "login": {
       "username": "Korisničko ime",
@@ -44,7 +52,14 @@
       "title": "Magicfy",
       "generateTitle": "Generiši magični mokap",
       "generateDescription": "Generiši magični mokap za moju mobilnu aplikaciju...",
-      "cta": "Generiši"
+      "cta": "Generiši",
+      "errors": {
+        "noCredit": [
+          "Hej, izgleda da smo ostali bez tokena na našem nalogu.",
+          "Ako želiš da isprobaš naš proizvod, slobodno postavi svoj API ključ i nastavi da koristiš aplikaciju."
+        ],
+        "noSavingKeys": "Vaš ključ neće biti sačuvan!"
+      }
     },
     "image": {
       "title": "Slika",

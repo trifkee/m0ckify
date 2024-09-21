@@ -13,6 +13,7 @@ import fallbackImageTV from "@/public/images/mockify-starter-big.jpg";
 import { File } from "buffer";
 import { useFetchUser } from "@/infrastructure/queries/user/useUsers";
 import { UserType } from "@/lib/types/user.type";
+import { generate } from "@/infrastructure/services/http/generate";
 
 const Context = createContext<any>(null);
 
@@ -20,6 +21,9 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
   const [selectedModel, setSelectedModel] = useState<React.ReactNode | null>(
     null
   );
+
+  const [openAiKey, setOpenAiKey] = useState("");
+  const [isGenerateLoading, setIsGenerateLoading] = useState(true);
 
   const { data: userData, refetch: refetchUser } = useFetchUser();
 
@@ -125,6 +129,11 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         user,
         refetchUser,
         handleLogout,
+        openAiKey,
+        setOpenAiKey,
+
+        isGenerateLoading,
+        setIsGenerateLoading,
       }}
     >
       {children}

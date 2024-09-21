@@ -2,6 +2,14 @@
   "global": {
     "start": "Start"
   },
+  "notFound": {
+    "title": "Something went wrong",
+    "message": "We couldn't find the page you are looking for...",
+    "ctas": {
+      "homepage": "Home page",
+      "generate": "Let's work!"
+    }
+  },
   "home": {
     "title": "Create beautiful custom mockups for free",
     "getStarted": "Get Started",
@@ -44,7 +52,14 @@
       "title": "Magicfy",
       "generateTitle": "Generate Magic Mockup",
       "generateDescription": "Generate a magic mockup for my mobile app...",
-      "cta": "Generate"
+      "cta": "Generate",
+      "errors": {
+        "noCredit": [
+          "Hey, looks like we are run out of tokens on our account.",
+          "If u want to try our product fell free to set your own API key and continue using APP."
+        ],
+        "noSavingKeys": "Your key won't be saved!"
+      }
     },
     "image": {
       "title": "Image",

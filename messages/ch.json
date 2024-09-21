@@ -2,6 +2,14 @@
   "global": {
     "start": "开始"
   },
+  "notFound": {
+    "title": "出了点问题",
+    "message": "我们找不到您要找的页面...",
+    "ctas": {
+      "homepage": "主页",
+      "generate": "开始工作吧！"
+    }
+  },
   "home": {
     "title": "免费创建漂亮的自定义模型",
     "getStarted": "开始",
@@ -44,7 +52,14 @@
       "title": "魔法生成",
       "generateTitle": "生成魔法模型",
       "generateDescription": "为我的移动应用生成魔法模型...",
-      "cta": "生成"
+      "cta": "生成",
+      "errors": {
+        "noCredit": [
+          "嘿，看起来我们的账户中没有足够的令牌了。",
+          "如果你想试用我们的产品，欢迎设置你自己的API密钥并继续使用应用程序。"
+        ],
+        "noSavingKeys": "你的密钥不会被保存！"
+      }
     },
     "image": {
       "title": "图片",

@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
+
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
-import { useGLTF, PerspectiveCamera, useTexture } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 
 import Context from "@/ui/providers/ContextProvider.provider";
@@ -30,32 +31,26 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
 
   const { model } = useContext(Context);
 
-  const texture = useLoader(THREE.TextureLoader, model.image.src);
+  const texture: any = useLoader(THREE.TextureLoader, model.image.src);
   const { gl } = useThree();
 
   /* SCREEN MOCKUP */
   const image = model.image;
-  //   @ts-ignore
+
   texture.center.set(0.5, 0.5);
 
-  // @ts-ignore
   texture.anisotropy = gl.capabilities.getMaxAnisotropy();
-  //   @ts-ignore
-  texture.rotation = Math.PI / 2;
-  // @ts-ignore
-  // texture.encoding = THREE.sRGBEncoding;
 
-  // @ts-ignore
-  texture.minFilter = THREE.LinearMipMapLinearFilter; // For better downscaling
-  // @ts-ignore
-  texture.magFilter = THREE.NearestFilter; // For pixel-perfect upscaling
-  //   @ts-ignore
+  texture.rotation = Math.PI / 2;
+
+  texture.minFilter = THREE.LinearMipMapLinearFilter;
+  texture.magFilter = THREE.NearestFilter;
+
   texture.repeat.set(
     4 + image.width / IMAGE_SETTINGS.dimensionDivider,
     -4.1 + image.height / IMAGE_SETTINGS.dimensionDivider
   );
 
-  //   @ts-ignore
   texture.offset.set(
     0.5 + image.x / IMAGE_SETTINGS.positionDivider,
     0 + image.y / IMAGE_SETTINGS.positionDivider
@@ -87,8 +82,6 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
       />
       {model.screenReflection && (
         <mesh
-          castShadow
-          receiveShadow
           geometry={nodes.Glass.geometry}
           material={materials.Glas}
           rotation={[0, -Math.PI / 2, 0]}
@@ -102,13 +95,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
         position={[0, 0, -0.006]}
         rotation={[0, -Math.PI / 2, 0]}
       >
-        <meshStandardMaterial
-          attach="material"
-          // color={model.color}
-          roughness={model.bodyReflection}
-          // @ts-ignore
-          map={texture}
-        />
+        <meshStandardMaterial attach="material" roughness={1} map={texture} />
       </mesh>
       <mesh
         castShadow
