@@ -95,7 +95,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
         position={[0, 0, -0.006]}
         rotation={[0, -Math.PI / 2, 0]}
       >
-        <meshStandardMaterial attach="material" roughness={1} map={texture} />
+        <meshStandardMaterial attach="material" map={texture} />
       </mesh>
       <mesh
         castShadow
