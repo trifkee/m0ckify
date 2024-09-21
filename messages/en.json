@@ -2,6 +2,14 @@
   "global": {
     "start": "Start"
   },
+  "notFound": {
+    "title": "Something went wrong",
+    "message": "We couldn't find the page you are looking for...",
+    "ctas": {
+      "homepage": "Home page",
+      "generate": "Let's work!"
+    }
+  },
   "home": {
     "title": "Create beautiful custom mockups for free",
     "getStarted": "Get Started",

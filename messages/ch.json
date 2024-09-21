@@ -2,6 +2,14 @@
   "global": {
     "start": "开始"
   },
+  "notFound": {
+    "title": "出了点问题",
+    "message": "我们找不到您要找的页面...",
+    "ctas": {
+      "homepage": "主页",
+      "generate": "开始工作吧！"
+    }
+  },
   "home": {
     "title": "免费创建漂亮的自定义模型",
     "getStarted": "开始",

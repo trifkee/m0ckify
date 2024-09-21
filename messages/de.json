@@ -7,6 +7,14 @@
     "getStarted": "Loslegen",
     "learnMore": "Mehr erfahren"
   },
+  "notFound": {
+    "title": "Etwas ist schief gelaufen",
+    "message": "Wir konnten die Seite, die du suchst, nicht finden...",
+    "ctas": {
+      "homepage": "Startseite",
+      "generate": "Lass uns arbeiten!"
+    }
+  },
   "auth": {
     "login": {
       "username": "Benutzername",

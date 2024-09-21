@@ -2,6 +2,14 @@
   "global": {
     "start": "Počni"
   },
+  "notFound": {
+    "title": "Dogodila se greška.",
+    "message": "Nismo mogli da pronađemo stranicu koju tražite...",
+    "ctas": {
+      "homepage": "Početna stranica",
+      "generate": "Hajde da radimo!"
+    }
+  },
   "auth": {
     "login": {
       "username": "Korisničko ime",

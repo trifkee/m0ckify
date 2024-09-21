@@ -2,6 +2,14 @@
   "global": {
     "start": "Commencer"
   },
+  "notFound": {
+    "title": "Quelque chose s'est mal passé",
+    "message": "Nous n'avons pas pu trouver la page que vous recherchez...",
+    "ctas": {
+      "homepage": "Page d'accueil",
+      "generate": "Au travail !"
+    }
+  },
   "home": {
     "title": "Créez de superbes maquettes personnalisées gratuitement",
     "getStarted": "Commencer",
