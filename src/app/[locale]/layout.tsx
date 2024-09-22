@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import Head from "next/head";
 import { Inter } from "next/font/google";
+
+import QueryProvider from "@/ui/providers/QueryProvider.provider";
+import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
 
 // TRANSLATIONS
 import { NextIntlClientProvider } from "next-intl";
@@ -7,9 +11,6 @@ import { getMessages } from "next-intl/server";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
-import QueryProvider from "@/ui/providers/QueryProvider.provider";
-import Head from "next/head";
-import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
 
 const inter = Inter({
   subsets: ["latin"],

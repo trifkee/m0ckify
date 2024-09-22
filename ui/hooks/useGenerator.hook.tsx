@@ -1,6 +1,7 @@
 "use client";
 
-import React, { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import {
@@ -10,8 +11,6 @@ import {
   SceneLightsType,
 } from "@/lib/types/model.type";
 
-import fallbackImage from "@/public/images/mockify-starter.jpg";
-import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   modelAtom,
   renderAtom,
@@ -20,8 +19,10 @@ import {
   selectedModelAtom,
 } from "@/lib/atoms/generator";
 
+import fallbackImage from "@/public/images/mockify-starter.jpg";
+
 export default function useGenerator() {
-  const [selectedModel, setSelectedModel] = useRecoilState(selectedModelAtom);
+  const setSelectedModel = useSetRecoilState(selectedModelAtom);
   const [model, setModel] = useRecoilState(modelAtom);
   const [render, setRender] = useRecoilState(renderAtom);
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
@@ -36,7 +37,8 @@ export default function useGenerator() {
     handleReadImage(image);
   };
 
-  const handleReadImage = (file: File) =>
+  const handleReadImage = (file: File) => {
+    console.log(file);
     readUserImage(file).then((result) => {
       setModel((prev: ModelType) => ({
         ...prev,
@@ -47,7 +49,7 @@ export default function useGenerator() {
         },
       }));
     });
-
+  };
   const handleReadAIImage = (image: string) => {
     setModel((prev: ModelType) => ({
       ...prev,
@@ -302,33 +304,21 @@ export default function useGenerator() {
     }));
   };
 
-  useEffect(() => {
-    if (selectedModel === "tv") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          ...prev.image,
-          src: fallbackImage.src as any,
-        },
-      }));
-      return;
-    }
+  const handleDraggedImage = (e: any) => {
+    e.preventDefault();
 
-    if (selectedModel === "iphone" || selectedModel === "android") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          ...prev.image,
-          src: fallbackImage.src as any,
-        },
-      }));
-      return;
-    }
-  }, [selectedModel]);
+    const image = e.dataTransfer.files;
+
+    handleReadImage(image[0]);
+  };
 
   useEffect(() => {
-    setSelectedModel("iphone");
-  }, []);
+    const timeout = setTimeout(() => {
+      document.title = sceneDocument.title;
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [sceneDocument]);
 
   return {
     model,
@@ -353,5 +343,6 @@ export default function useGenerator() {
     handleChangeReflection,
     handleChangeRenderSize,
     handleChangeRenderImageType,
+    handleDraggedImage,
   };
 }

@@ -1,10 +1,10 @@
 import * as THREE from "three";
+import { useRecoilValue } from "recoil";
 import { GLTF } from "three-stdlib";
 import { useGLTF } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
-import { useRecoilValue } from "recoil";
 import { modelAtom } from "@/lib/atoms/generator";
 
 type GLTFResult = GLTF & {

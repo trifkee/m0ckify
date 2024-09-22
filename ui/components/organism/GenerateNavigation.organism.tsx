@@ -1,41 +1,29 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { useRecoilValue } from "recoil";
-import Image from "next/image";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { Link } from "@/navigation";
 
 import GenerateDocumentTitle from "@/ui/components/moleculs/GenerateDocumentTItle.moleculs";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
 import Button from "@/ui/components/atoms/Button.atom";
+import NavigationCtas from "../moleculs/NavigationCtas.molecul";
 
 import useGenerator from "@/ui/hooks/useGenerator.hook";
-
-import { userAtom } from "@/lib/atoms/user";
 
 import logo from "@/public/images/logo-white.png";
 
 import { IoMenuSharp } from "react-icons/io5";
-import {
-  LucideDownload,
-  LucideLogIn,
-  LucideLogOut,
-  LucideRotateCcw,
-} from "lucide-react";
+import { LucideDownload, LucideRotateCcw } from "lucide-react";
 
 import "@/ui/styles/organism/generateNavigation.organism.scss";
-import useUser from "@/ui/hooks/useUser.hook";
 
 export default function GenerateNavigation({ locale }: { locale: string }) {
   const t = useTranslations("generate");
   const { resetModelPosition, handleSave } = useGenerator();
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
-
-  const { handleLogout } = useUser();
-
-  const user = useRecoilValue(userAtom);
 
   return (
     <motion.nav
@@ -57,20 +45,7 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       </Link>
       <GenerateDocumentTitle />
 
-      <div className="gen-ctas">
-        {user ? (
-          <Button onClick={handleLogout} variant="editor" className="danger">
-            <LucideLogOut />
-          </Button>
-        ) : (
-          <Link href={"/login"}>
-            <Button variant="editor" className="download">
-              <LucideLogIn />
-            </Button>
-          </Link>
-        )}
-        <LanguagePicker variant={"editor"} locale={locale} />
-      </div>
+      <NavigationCtas locale={locale} />
 
       <Button
         className="mobile-cta"

@@ -3,43 +3,9 @@
 import { Link, usePathname } from "@/navigation";
 import { useEffect, useState } from "react";
 
-import { IoEarthSharp } from "react-icons/io5";
-
-import "@/ui/styles/moleculs/languagePicker.molecul.scss";
 import { LucideGlobe } from "lucide-react";
 
-const languages = [
-  {
-    id: 0,
-    name: "Srpski",
-    locale: "sr",
-  },
-  {
-    id: 1,
-    name: "English",
-    locale: "en",
-  },
-  {
-    id: 2,
-    name: "Deutsch",
-    locale: "de",
-  },
-  {
-    id: 3,
-    name: "Français",
-    locale: "fr",
-  },
-  {
-    id: 4,
-    name: "Русский",
-    locale: "ru",
-  },
-  {
-    id: 5,
-    name: "中文",
-    locale: "ch",
-  },
-];
+import "@/ui/styles/moleculs/languagePicker.molecul.scss";
 
 type LanguageType =
   | {
@@ -94,3 +60,36 @@ export default function LanguagePicker({
     </article>
   );
 }
+
+const languages = [
+  {
+    id: 0,
+    name: "Srpski",
+    locale: "sr",
+  },
+  {
+    id: 1,
+    name: "English",
+    locale: "en",
+  },
+  {
+    id: 2,
+    name: "Deutsch",
+    locale: "de",
+  },
+  {
+    id: 3,
+    name: "Français",
+    locale: "fr",
+  },
+  {
+    id: 4,
+    name: "Русский",
+    locale: "ru",
+  },
+  {
+    id: 5,
+    name: "中文",
+    locale: "ch",
+  },
+];
