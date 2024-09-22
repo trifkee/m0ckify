@@ -37,7 +37,8 @@ export default function useGenerator() {
     handleReadImage(image);
   };
 
-  const handleReadImage = (file: File) =>
+  const handleReadImage = (file: File) => {
+    console.log(file);
     readUserImage(file).then((result) => {
       setModel((prev: ModelType) => ({
         ...prev,
@@ -48,7 +49,7 @@ export default function useGenerator() {
         },
       }));
     });
-
+  };
   const handleReadAIImage = (image: string) => {
     setModel((prev: ModelType) => ({
       ...prev,
@@ -303,6 +304,14 @@ export default function useGenerator() {
     }));
   };
 
+  const handleDraggedImage = (e: any) => {
+    e.preventDefault();
+
+    const image = e.dataTransfer.files;
+
+    handleReadImage(image[0]);
+  };
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       document.title = sceneDocument.title;
@@ -334,5 +343,6 @@ export default function useGenerator() {
     handleChangeReflection,
     handleChangeRenderSize,
     handleChangeRenderImageType,
+    handleDraggedImage,
   };
 }
