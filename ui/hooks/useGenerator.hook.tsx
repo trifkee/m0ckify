@@ -38,7 +38,6 @@ export default function useGenerator() {
   };
 
   const handleReadImage = (file: File) => {
-    console.log(file);
     readUserImage(file).then((result) => {
       setModel((prev: ModelType) => ({
         ...prev,
