@@ -44,6 +44,11 @@
     "learnMore": "Saznaj više"
   },
   "generate": {
+    "render": {
+      "title": "Renderovanje",
+      "imageSize": "Veličina slike",
+      "imageType": "Tip slike"
+    },
     "user": {
       "title": "Nalog",
       "logout": "Odjavi se"

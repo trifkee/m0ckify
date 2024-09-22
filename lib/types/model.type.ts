@@ -1,3 +1,9 @@
+export type RenderType = {
+  w: number;
+  h: number;
+  type: "JPEG" | "PNG" | "SVG" | "WEBP";
+};
+
 export type ModelType = {
   position: {
     x: number;
@@ -58,3 +64,13 @@ export type SceneLightsType = {
     z: number;
   };
 };
+
+export type TabType =
+  | "image"
+  | "magic"
+  | "model"
+  | "environment"
+  | "lights"
+  | "action"
+  | "user"
+  | "render";

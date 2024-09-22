@@ -34,6 +34,12 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem("token");
   };
 
+  const [render, setRender] = useState({
+    w: 1080,
+    h: 1920,
+    type: "PNG",
+  });
+
   const [model, setModel] = useState<ModelType>({
     color: "#fff",
     texture: "plastic",
@@ -131,7 +137,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         handleLogout,
         openAiKey,
         setOpenAiKey,
-
+        render,
+        setRender,
         isGenerateLoading,
         setIsGenerateLoading,
       }}
