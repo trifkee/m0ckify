@@ -50,6 +50,8 @@
       width: 100%;
       transition: 0.2s ease background;
       padding: 0.5rem;
+      min-width: 100%;
+      margin: 0;
 
       &:hover {
         background: rgb($light-gray-clr, 0.25);
