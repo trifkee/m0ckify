@@ -123,6 +123,15 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     setUser(userData ?? null);
   }, [userData]);
 
+  useEffect(() => {
+    const userSawHelp = localStorage.getItem("help");
+
+    if (!userSawHelp) {
+      setShowHelp(true);
+      localStorage.setItem("help", "1");
+    }
+  }, []);
+
   return (
     <Context.Provider
       value={{

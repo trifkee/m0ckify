@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import Context from "@/ui/providers/ContextProvider.provider";
