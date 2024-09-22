@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useContext, useRef, useState } from "react";
+import { Suspense, useContext, useEffect, useRef, useState } from "react";
 
 import * as THREE from "three";
 import { Environment, OrbitControls, Stage } from "@react-three/drei";
@@ -14,17 +14,27 @@ import Button from "../components/atoms/Button.atom";
 import GenearateLoader from "../components/atoms/GenerateLoader.atom";
 import { IoMove } from "react-icons/io5";
 
+import { RenderType } from "@/lib/types/model.type";
+
 import "@/ui/styles/providers/modelProvider.provider.scss";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument, render } = useContext(Context);
+  const { sceneDocument, setRender } = useContext(Context);
   const [freeroam, setFreeroam] = useState(false);
 
+  useEffect(() => {
+    setRender((prev: RenderType) => ({
+      ...prev,
+      w: parentRef.current?.clientWidth,
+      h: parentRef.current?.clientHeight,
+    }));
+  }, []);
+
   return (
-    <div className="model" id="canvas__model" ref={parentRef}>
+    <div className="model" id="canvasModel" ref={parentRef}>
       <Suspense fallback={null}>
         <Button
           className={`freeroam ${freeroam ? "y" : "n"}`}

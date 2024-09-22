@@ -12,30 +12,26 @@ export const saveImageFromCanvas = ({
 }: SaveType) => {
   const link = document.createElement("a");
   const canvas = document.querySelector("canvas") as HTMLCanvasElement;
-  // const modelContainer = document.getElementById(
-  //   "canvas__model"
-  // ) as HTMLDivElement;
+  const mContainer = document.getElementById("canvasModel");
 
-  // const originalWidth = modelContainer?.clientWidth;
-  // const originalHeight = modelContainer?.clientHeight;
-  // modelContainer.style.position = "absolute";
+  const originalHeight = mContainer?.clientHeight;
+  const originalWidth = mContainer?.clientWidth;
 
-  // modelContainer!.style.width = `${w}px`;
-  // modelContainer!.style.height = `${h}px`;
+  mContainer!.style.width = `${w}px`;
+  mContainer!.style.height = `${h}px`;
 
-  link.setAttribute("download", `${title}.${type}`);
-  link.setAttribute(
-    "href",
-    canvas
-      .toDataURL(`image/${type.toLowerCase()}`)
-      .replace(`image/${type.toLowerCase()}`, "image/octet-stream")
-  );
-  link.click();
-  link.remove();
+  setTimeout(() => {
+    const imageType = `image/${type.toLowerCase()}`;
 
-  // modelContainer.style.position = "relative";
-  // modelContainer!.style.width = `${originalWidth}px`;
-  // modelContainer!.style.height = `${originalHeight}px`;
+    link.setAttribute("download", `${title}.${type.toLowerCase()}`);
+    link.setAttribute("href", canvas.toDataURL(imageType));
+
+    link.click();
+    link.remove();
+
+    mContainer!.style.width = `${originalWidth}px`;
+    mContainer!.style.height = `${originalHeight}px`;
+  }, 300);
 };
 
 export const readUserImage = (file: File) => {

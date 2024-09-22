@@ -64,3 +64,13 @@ export type SceneLightsType = {
     z: number;
   };
 };
+
+export type TabType =
+  | "image"
+  | "magic"
+  | "model"
+  | "environment"
+  | "lights"
+  | "action"
+  | "user"
+  | "render";

@@ -42,23 +42,14 @@ import {
   IoTrashBinSharp,
 } from "react-icons/io5";
 import useGenerator from "@/ui/hooks/useGenerator.hook";
-import { SceneLightsType } from "@/lib/types/model.type";
+import { SceneLightsType, TabType } from "@/lib/types/model.type";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
 import mockifyImage from "@/public/images/bg.jpg";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
-
-type TabType =
-  | "image"
-  | "magic"
-  | "model"
-  | "environment"
-  | "lights"
-  | "action"
-  | "user"
-  | "render";
+import NumberInput from "../atoms/NumberInput.atom";
 
 const promptLen = 30;
 
@@ -145,26 +136,18 @@ export default function GenerateControls() {
                     alignContent: "center",
                   }}
                 >
-                  <div className="input-label">
-                    <label htmlFor="iw">W</label>
-                    <input
-                      type="number"
-                      name="w"
-                      id="w"
-                      onChange={(e) => handleChangeRenderSize(e)}
-                      value={render.w}
-                    />
-                  </div>
-                  <div className="input-label">
-                    <label htmlFor="ig">H</label>
-                    <input
-                      type="number"
-                      name="h"
-                      id="h"
-                      onChange={(e) => handleChangeRenderSize(e)}
-                      value={render.h}
-                    />
-                  </div>
+                  <NumberInput
+                    name="w"
+                    label="W"
+                    onChange={handleChangeRenderSize}
+                    value={render.w}
+                  />
+                  <NumberInput
+                    name="h"
+                    label="H"
+                    onChange={handleChangeRenderSize}
+                    value={render.h}
+                  />
                 </div>
               </div>
 
@@ -297,26 +280,18 @@ export default function GenerateControls() {
                 alignContent: "center",
               }}
             >
-              <div className="input-label">
-                <label htmlFor="iw">W</label>
-                <input
-                  type="number"
-                  name="iw"
-                  id="iw"
-                  onChange={(e) => handleImageSize(e, "width")}
-                  value={model.image.width}
-                />
-              </div>
-              <div className="input-label">
-                <label htmlFor="ig">H</label>
-                <input
-                  type="number"
-                  name="ih"
-                  id="ih"
-                  onChange={(e) => handleImageSize(e, "height")}
-                  value={model.image.height}
-                />
-              </div>
+              <NumberInput
+                name="iw"
+                label="W"
+                onChange={(e: any) => handleImageSize(e, "width")}
+                value={model.image.width}
+              />
+              <NumberInput
+                name="ih"
+                label="H"
+                onChange={(e: any) => handleImageSize(e, "height")}
+                value={model.image.height}
+              />
             </div>
 
             <div
@@ -327,27 +302,18 @@ export default function GenerateControls() {
                 alignContent: "center",
               }}
             >
-              <div className="input-label">
-                <label htmlFor="iw">X</label>
-                <input
-                  type="number"
-                  name="iw"
-                  id="iw"
-                  onChange={(e) => handleImagePosition(e, "x")}
-                  value={model.image.x}
-                />
-              </div>
-
-              <div className="input-label">
-                <label htmlFor="ig">Y</label>
-                <input
-                  type="number"
-                  name="ih"
-                  id="ih"
-                  onChange={(e) => handleImagePosition(e, "y")}
-                  value={model.image.y}
-                />
-              </div>
+              <NumberInput
+                name="ix"
+                label="X"
+                onChange={(e: any) => handleImagePosition(e, "x")}
+                value={model.image.x}
+              />
+              <NumberInput
+                name="iy"
+                label="Y"
+                onChange={(e: any) => handleImagePosition(e, "y")}
+                value={model.image.y}
+              />
             </div>
           </>
         );
@@ -440,36 +406,24 @@ export default function GenerateControls() {
 
                     <p className="title">{t("lights.lights.position")}</p>
                     <div className="position">
-                      <div className="input-label">
-                        <label htmlFor="lx">X</label>
-                        <input
-                          type="number"
-                          name="lx"
-                          id="lx"
-                          onChange={(e) => handleDirLightPosition(e, "x", i)}
-                          value={light.position.x}
-                        />
-                      </div>
-                      <div className="input-label">
-                        <label htmlFor="ly">Y</label>
-                        <input
-                          type="number"
-                          name="ly"
-                          id="ly"
-                          onChange={(e) => handleDirLightPosition(e, "y", i)}
-                          value={light.position.y}
-                        />
-                      </div>
-                      <div className="input-label">
-                        <label htmlFor="lz">Z</label>
-                        <input
-                          type="number"
-                          name="lz"
-                          id="lz"
-                          onChange={(e) => handleDirLightPosition(e, "z", i)}
-                          value={light.position.z}
-                        />
-                      </div>
+                      <NumberInput
+                        name="lx"
+                        label="X"
+                        onChange={(e: any) => handleDirLightPosition(e, "x", i)}
+                        value={light.position.x}
+                      />
+                      <NumberInput
+                        name="ly"
+                        label="Y"
+                        onChange={(e: any) => handleDirLightPosition(e, "y", i)}
+                        value={light.position.y}
+                      />
+                      <NumberInput
+                        name="lz"
+                        label="Z"
+                        onChange={(e: any) => handleDirLightPosition(e, "z", i)}
+                        value={light.position.z}
+                      />
                     </div>
 
                     <p className="title">{t("lights.lights.color")}</p>

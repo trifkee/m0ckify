@@ -92,4 +92,4 @@ export const IMAGE_SETTINGS = {
   dimensionDivider: 100,
 };
 
-export const IMAGE_TYPES = ["PNG", "JPG", "WEBP", "SVG"];
+export const IMAGE_TYPES = ["PNG", "JPEG", "WEBP"];
