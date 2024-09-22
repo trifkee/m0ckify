@@ -1,20 +1,44 @@
 @import "variables.scss";
 
-.freeroam {
+.additional-ctas {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  height: calc(100% - 2rem) !important;
   width: min-content !important;
   max-width: fit-content !important;
-  z-index: 9999;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  flex-direction: column;
 
-  &.y {
-    svg,
-    path {
-      color: $primary-clr-500;
+  .button {
+    aspect-ratio: 1;
+    padding: 0.85rem;
+    width: fit-content;
+    z-index: 1;
+  }
+
+  .help {
+    background: rgb($yellow-clr-500, 0.12);
+    border: 1px solid rgb($yellow-clr-500, 0.45);
+    color: rgb($yellow-clr-500, 0.85);
+
+    &:hover {
+      background: rgb($yellow-clr-500, 0.25);
+      border: 1px solid rgb($yellow-clr-500, 0.45);
     }
+  }
 
-    border: 1px solid $secondary-clr-400;
-    background: rgb($secondary-clr-700, 0.5);
+  .freeroam {
+    &.y {
+      svg,
+      path {
+        color: $primary-clr-500;
+      }
+
+      border: 1px solid $secondary-clr-400;
+      background: rgb($secondary-clr-700, 0.5);
+    }
   }
 }

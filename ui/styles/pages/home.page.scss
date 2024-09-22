@@ -34,7 +34,6 @@
     .ctas {
       display: flex;
       gap: clamp(0.25rem, 0.5rem, 1rem);
-      align-items: center;
 
       .login {
         border-radius: 0.25rem;
@@ -47,14 +46,14 @@
         gap: 0.5rem;
         transition: 0.2s ease;
         height: 100%;
+        align-items: center;
+
+        svg {
+          color: black !important;
+        }
 
         &:hover {
           background-color: rgb(black, 0.125);
-        }
-
-        svg,
-        path {
-          color: black !important;
         }
       }
     }

@@ -12,17 +12,18 @@ import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
 import Button from "../components/atoms/Button.atom";
 import GenearateLoader from "../components/atoms/GenerateLoader.atom";
-import { IoMove } from "react-icons/io5";
+import { IoHelpOutline, IoMove } from "react-icons/io5";
 
 import { RenderType } from "@/lib/types/model.type";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
+import { LucideHelpCircle, LucideRotate3D } from "lucide-react";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument, setRender } = useContext(Context);
+  const { sceneDocument, setRender, setShowHelp } = useContext(Context);
   const [freeroam, setFreeroam] = useState(false);
 
   useEffect(() => {
@@ -36,13 +37,23 @@ export default function ModelProvider() {
   return (
     <div className="model" id="canvasModel" ref={parentRef}>
       <Suspense fallback={null}>
-        <Button
-          className={`freeroam ${freeroam ? "y" : "n"}`}
-          onClick={() => setFreeroam((prev) => !prev)}
-          variant="editor"
-        >
-          <IoMove />
-        </Button>
+        <div className="additional-ctas">
+          <Button
+            className={`freeroam ${freeroam ? "y" : "n"}`}
+            onClick={() => setFreeroam((prev) => !prev)}
+            variant="editor"
+          >
+            <LucideRotate3D />
+          </Button>
+
+          <Button
+            variant="editor"
+            onClick={() => setShowHelp(true)}
+            className="help"
+          >
+            <LucideHelpCircle />
+          </Button>
+        </div>
         <Canvas
           gl={{
             preserveDrawingBuffer: true,

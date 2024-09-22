@@ -16,6 +16,7 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
 
 import "@/ui/styles/pages/home.page.scss";
+import { LucideUser, LucideUser2 } from "lucide-react";
 
 export default function Home({
   params: { locale },
@@ -47,7 +48,7 @@ export default function Home({
 
           <div className="ctas">
             <Link className="login" href={"/login"}>
-              <IoPersonCircleOutline />
+              <LucideUser />
               Log in
             </Link>
             <LanguagePicker variant="editor" locale={locale} />
