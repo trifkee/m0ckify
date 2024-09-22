@@ -1,18 +1,20 @@
 "use client";
 
-import { useContext, useState } from "react";
-import Context from "@/ui/providers/ContextProvider.provider";
+import { ChangeEvent, useState } from "react";
+import { useRecoilState } from "recoil";
 
 import { SceneDocumentType } from "@/lib/types/model.type";
+
+import { sceneDocumentAtom } from "@/lib/atoms/generator";
 
 import "@/ui/styles/moleculs/generateDocumentTitle.molecul.scss";
 
 export default function GenerateDocumentTitle() {
-  const { sceneDocument, setSceneDocument } = useContext(Context);
+  const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
 
   const [isEditable, setIsEditable] = useState(false);
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     return setSceneDocument((prev: SceneDocumentType) => ({
       ...prev,
       title: e.target.value,

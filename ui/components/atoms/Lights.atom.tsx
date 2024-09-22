@@ -1,10 +1,11 @@
-import { useContext } from "react";
-import Context from "@/ui/providers/ContextProvider.provider";
+import { useRecoilValue } from "recoil";
 
+import { sceneDocumentAtom, sceneLightsAtom } from "@/lib/atoms/generator";
 import { SceneLightsType } from "@/lib/types/model.type";
 
 export default function Lights() {
-  const { sceneDocument, sceneLights } = useContext(Context);
+  const sceneDocument = useRecoilValue(sceneDocumentAtom);
+  const sceneLights = useRecoilValue(sceneLightsAtom);
 
   return (
     <>

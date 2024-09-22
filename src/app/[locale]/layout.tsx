@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { ContextProvider } from "@/ui/providers/ContextProvider.provider";
-
 // TRANSLATIONS
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -11,6 +9,7 @@ import "./globals.css";
 import "@/ui/styles/global.scss";
 import QueryProvider from "@/ui/providers/QueryProvider.provider";
 import Head from "next/head";
+import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,8 +32,8 @@ export default async function RootLayout({
 
   return (
     <>
-      <QueryProvider>
-        <ContextProvider>
+      <RecoilProvider>
+        <QueryProvider>
           <html lang={locale}>
             <Head>
               <meta property="og:title" content="Mockify" />
@@ -58,8 +57,8 @@ export default async function RootLayout({
               </NextIntlClientProvider>
             </body>
           </html>
-        </ContextProvider>
-      </QueryProvider>
+        </QueryProvider>
+      </RecoilProvider>
     </>
   );
 }

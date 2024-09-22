@@ -1,11 +1,11 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useRecoilValue } from "recoil";
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "@/navigation";
-import Context from "@/ui/providers/ContextProvider.provider";
 
 import GenerateDocumentTitle from "@/ui/components/moleculs/GenerateDocumentTItle.moleculs";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
@@ -13,17 +13,11 @@ import Button from "@/ui/components/atoms/Button.atom";
 
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 
-import {
-  IoEnterOutline,
-  IoExitOutline,
-  IoMenuSharp,
-  IoSaveSharp,
-  IoSyncSharp,
-} from "react-icons/io5";
+import { userAtom } from "@/lib/atoms/user";
 
 import logo from "@/public/images/logo-white.png";
 
-import "@/ui/styles/organism/generateNavigation.organism.scss";
+import { IoMenuSharp } from "react-icons/io5";
 import {
   LucideDownload,
   LucideLogIn,
@@ -31,12 +25,17 @@ import {
   LucideRotateCcw,
 } from "lucide-react";
 
+import "@/ui/styles/organism/generateNavigation.organism.scss";
+import useUser from "@/ui/hooks/useUser.hook";
+
 export default function GenerateNavigation({ locale }: { locale: string }) {
   const t = useTranslations("generate");
   const { resetModelPosition, handleSave } = useGenerator();
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
 
-  const { user, handleLogout } = useContext(Context);
+  const { handleLogout } = useUser();
+
+  const user = useRecoilValue(userAtom);
 
   return (
     <motion.nav

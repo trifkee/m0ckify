@@ -1,19 +1,19 @@
 "use client";
 
-import { useContext } from "react";
-import Image from "next/image";
+import { useRecoilValue } from "recoil";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 import Spinner from "./Spinner.atom";
 
-import Context from "@/ui/providers/ContextProvider.provider";
+import { isGeneratingAtom } from "@/lib/atoms/generator";
 
 import logo from "@/public/images/logo-white.png";
 
 import "@/ui/styles/atoms/generateLoading.atom.scss";
 
 export default function GenerateLoading() {
-  const { isGenerateLoading } = useContext(Context);
+  const isGenerateLoading = useRecoilValue(isGeneratingAtom);
 
   return (
     <>

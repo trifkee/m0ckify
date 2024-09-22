@@ -1,8 +1,6 @@
 "use client";
 
-import React, { ChangeEvent, useContext, useEffect } from "react";
-
-import Context from "@/ui/providers/ContextProvider.provider";
+import React, { ChangeEvent, useEffect } from "react";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import {
@@ -13,19 +11,21 @@ import {
 } from "@/lib/types/model.type";
 
 import fallbackImage from "@/public/images/mockify-starter.jpg";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+  modelAtom,
+  renderAtom,
+  sceneDocumentAtom,
+  sceneLightsAtom,
+  selectedModelAtom,
+} from "@/lib/atoms/generator";
 
 export default function useGenerator() {
-  const {
-    model,
-    setModel,
-    sceneDocument,
-    setSceneDocument,
-    sceneLights,
-    setSceneLights,
-    setSelectedModel,
-    render,
-    setRender,
-  } = useContext(Context);
+  const [selectedModel, setSelectedModel] = useRecoilState(selectedModelAtom);
+  const [model, setModel] = useRecoilState(modelAtom);
+  const [render, setRender] = useRecoilState(renderAtom);
+  const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
+  const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
 
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ export default function useGenerator() {
         ...prev,
         image: {
           ...prev.image,
-          src: result,
+          src: result as string,
           isDefault: false,
         },
       }));
@@ -298,9 +298,33 @@ export default function useGenerator() {
   const handleChangeRenderImageType = (e: ChangeEvent<HTMLSelectElement>) => {
     setRender((prev: RenderType) => ({
       ...prev,
-      type: e.target.value,
+      type: e.target.value as "JPEG" | "WEBP" | "PNG",
     }));
   };
+
+  useEffect(() => {
+    if (selectedModel === "tv") {
+      setModel((prev: ModelType) => ({
+        ...prev,
+        image: {
+          ...prev.image,
+          src: fallbackImage.src as any,
+        },
+      }));
+      return;
+    }
+
+    if (selectedModel === "iphone" || selectedModel === "android") {
+      setModel((prev: ModelType) => ({
+        ...prev,
+        image: {
+          ...prev.image,
+          src: fallbackImage.src as any,
+        },
+      }));
+      return;
+    }
+  }, [selectedModel]);
 
   useEffect(() => {
     setSelectedModel("iphone");

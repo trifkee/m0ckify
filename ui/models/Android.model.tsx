@@ -1,10 +1,10 @@
 import * as THREE from "three";
-import React, { useContext } from "react";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
-import Context from "../providers/ContextProvider.provider";
 import { useLoader } from "@react-three/fiber";
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
+import { useRecoilValue } from "recoil";
+import { modelAtom } from "@/lib/atoms/generator";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -27,9 +27,12 @@ type GLTFResult = GLTF & {
 export default function Model(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("/models/android.gltf") as GLTFResult;
 
-  const { model } = useContext(Context);
+  const model = useRecoilValue(modelAtom);
 
-  const texture: any = useLoader(THREE.TextureLoader, model.image.src);
+  const texture: any = useLoader(
+    THREE.TextureLoader,
+    model.image.src as string
+  );
 
   /* SCREEN MOCKUP */
   const image = model.image;
