@@ -1,1 +1,9 @@
 @import "variables.scss";
+
+svg {
+  width: 16px !important;
+  height: 16px !important;
+  font-size: 0.5rem;
+  color: inherit;
+  aspect-ratio: 1;
+}

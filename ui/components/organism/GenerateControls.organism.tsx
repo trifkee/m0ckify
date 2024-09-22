@@ -50,6 +50,18 @@ import mockifyImage from "@/public/images/bg.jpg";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 import NumberInput from "../atoms/NumberInput.atom";
+import {
+  LucideCamera,
+  LucideImage,
+  LucideInfo,
+  LucidePlusCircle,
+  LucideSettings,
+  LucideSmartphone,
+  LucideSun,
+  LucideTrash2,
+  LucideUser2,
+  LucideWand2,
+} from "lucide-react";
 
 const promptLen = 30;
 
@@ -193,7 +205,7 @@ export default function GenerateControls() {
 
                     <p className="title additional-info">
                       {t("magicfy.errors.noSavingKeys")}
-                      <IoInformationCircle />
+                      <LucideInfo />
                     </p>
                     <input
                       className="input"
@@ -222,7 +234,7 @@ export default function GenerateControls() {
                   variant="editor"
                 >
                   {t("magicfy.cta")}
-                  <IoColorWand />
+                  <LucideWand2 />
                 </Button>
               )}
             </div>
@@ -252,7 +264,7 @@ export default function GenerateControls() {
                 <img src={model.image.src} alt="model" />
               ) : (
                 <>
-                  <IoImageSharp />
+                  <LucideImage />
                   <p style={{ fontSize: ".75rem" }}>{t("image.noImage")}</p>
                 </>
               )}
@@ -260,7 +272,7 @@ export default function GenerateControls() {
 
             <Button variant="editor">
               <p>{t("image.add")}</p>
-              <IoImageSharp />
+              <LucideImage />
 
               <input
                 onChange={handleImageChange}
@@ -388,7 +400,7 @@ export default function GenerateControls() {
                       className="danger"
                       onClick={() => handleRemoveLight(i)}
                     >
-                      <IoTrashBinSharp />
+                      <LucideTrash2 />
                     </Button>
                   </summary>
 
@@ -577,7 +589,7 @@ export default function GenerateControls() {
             className="control user"
           >
             <summary className="control__title">
-              {t("user.title")} <IoPerson />
+              {t("user.title")} <LucideUser2 />
             </summary>
             {getMenu("user")}
           </motion.details>
@@ -600,7 +612,7 @@ export default function GenerateControls() {
           className="control user"
         >
           <summary className="control__title">
-            {t("magicfy.title")} <IoColorWand />
+            {t("magicfy.title")} <LucideWand2 />
           </summary>
           {getMenu("magic")}
         </motion.details>
@@ -621,7 +633,7 @@ export default function GenerateControls() {
           className="control image"
         >
           <summary className="control__title">
-            {t("render.title")} <IoCamera />
+            {t("render.title")} <LucideCamera />
           </summary>
 
           <div className="control__section">{getMenu("render")}</div>
@@ -643,7 +655,7 @@ export default function GenerateControls() {
           className="control image"
         >
           <summary className="control__title">
-            {t("image.title")} <IoImage />
+            {t("image.title")} <LucideImage />
           </summary>
 
           <div className="control__section">{getMenu("image")}</div>
@@ -665,7 +677,7 @@ export default function GenerateControls() {
           className="control model select"
         >
           <summary className="control__title">
-            {t("model.title")} <IoPhonePortrait />
+            {t("model.title")} <LucideSmartphone />
           </summary>
           {getMenu("model")}
         </motion.details>
@@ -686,7 +698,7 @@ export default function GenerateControls() {
           className="control env select"
         >
           <summary className="control__title">
-            {t("environment.title")} <IoSunny />
+            {t("environment.title")} <LucideSun />
           </summary>
           {getMenu("environment")}
         </motion.details>
@@ -719,7 +731,7 @@ export default function GenerateControls() {
             </p>
 
             <Button onClick={handleAddNewLight} variant="editor">
-              {t("lights.add")} <IoAdd />
+              {t("lights.add")} <LucidePlusCircle />
             </Button>
             {/* <IoBulb /> */}
           </summary>
@@ -743,7 +755,7 @@ export default function GenerateControls() {
           className="control actions"
         >
           <summary className="control__title">
-            {t("actions.title")} <IoSettings />
+            {t("actions.title")} <LucideSettings />
           </summary>
           {getMenu("action")}
         </motion.details>

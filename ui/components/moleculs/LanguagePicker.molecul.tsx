@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { IoEarthSharp } from "react-icons/io5";
 
 import "@/ui/styles/moleculs/languagePicker.molecul.scss";
+import { LucideGlobe } from "lucide-react";
 
 const languages = [
   {
@@ -71,7 +72,8 @@ export default function LanguagePicker({
     <article className={`lang-picker ${type} ${variant}`}>
       {lang && (
         <div className="current lang">
-          <IoEarthSharp />
+          <LucideGlobe />
+
           {type === "full" && <p>{lang?.name}</p>}
         </div>
       )}

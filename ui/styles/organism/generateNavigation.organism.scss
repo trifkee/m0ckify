@@ -16,13 +16,29 @@
 
   a {
     min-height: 100%;
-    width: min-content;
+    width: fit-content;
+    max-width: fit-content;
+    font-size: 1rem;
+
+    .button {
+      padding: 0.5rem;
+      min-height: 100%;
+      width: fit-content;
+      max-width: fit-content;
+      // padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
   }
 
   .button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
     min-height: 100%;
     width: fit-content;
-    padding: 0.5rem 1rem;
+    max-width: fit-content;
+    padding: 0.5rem;
+    // padding: 0.5rem 1rem;
     font-size: 1rem;
   }
 }
