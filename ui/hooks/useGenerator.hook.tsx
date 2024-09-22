@@ -1,12 +1,13 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import React, { ChangeEvent, useContext, useEffect } from "react";
 
 import Context from "@/ui/providers/ContextProvider.provider";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import {
   ModelType,
+  RenderType,
   SceneDocumentType,
   SceneLightsType,
 } from "@/lib/types/model.type";
@@ -22,6 +23,8 @@ export default function useGenerator() {
     sceneLights,
     setSceneLights,
     setSelectedModel,
+    render,
+    setRender,
   } = useContext(Context);
 
   /* Read image from user PC */
@@ -57,8 +60,8 @@ export default function useGenerator() {
   };
 
   /* Save Image to user PC */
-  const handleSave = () => {
-    saveImageFromCanvas({ title: sceneDocument.title });
+  const handleSave = (options: RenderType) => {
+    saveImageFromCanvas({ title: sceneDocument.title, ...options });
   };
 
   /* Model Customization */
@@ -285,6 +288,20 @@ export default function useGenerator() {
     }
   };
 
+  const handleChangeRenderSize = (e: ChangeEvent<HTMLInputElement>) => {
+    setRender((prev: RenderType) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleChangeRenderImageType = (e: ChangeEvent<HTMLSelectElement>) => {
+    setRender((prev: RenderType) => ({
+      ...prev,
+      type: e.target.value,
+    }));
+  };
+
   useEffect(() => {
     setSelectedModel("iphone");
   }, []);
@@ -293,6 +310,7 @@ export default function useGenerator() {
     model,
     sceneDocument,
     sceneLights,
+    render,
     handleImageChange,
     handleReadAIImage,
     handleImagePosition,
@@ -309,5 +327,7 @@ export default function useGenerator() {
     handleRemoveLight,
     handleModelChange,
     handleChangeReflection,
+    handleChangeRenderSize,
+    handleChangeRenderImageType,
   };
 }
