@@ -89,7 +89,7 @@ export const helpAtom = atom({
 
 export const isGeneratingAtom = atom({
   key: "isGenerating",
-  default: false,
+  default: true,
 });
 
 export const openAiKeyAtom = atom({
