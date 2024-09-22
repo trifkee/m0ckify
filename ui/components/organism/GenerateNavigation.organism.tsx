@@ -24,6 +24,12 @@ import {
 import logo from "@/public/images/logo-white.png";
 
 import "@/ui/styles/organism/generateNavigation.organism.scss";
+import {
+  LucideDownload,
+  LucideLogIn,
+  LucideLogOut,
+  LucideRotateCcw,
+} from "lucide-react";
 
 export default function GenerateNavigation({ locale }: { locale: string }) {
   const t = useTranslations("generate");
@@ -55,12 +61,12 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       <div className="gen-ctas">
         {user ? (
           <Button onClick={handleLogout} variant="editor" className="danger">
-            <IoExitOutline />
+            <LucideLogOut />
           </Button>
         ) : (
           <Link href={"/login"}>
             <Button variant="editor" className="download">
-              <IoEnterOutline />
+              <LucideLogIn />
             </Button>
           </Link>
         )}
@@ -141,7 +147,7 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
                 className="danger  model__reset-cta"
               >
                 <p>{t("actions.reset")}</p>
-                <IoSyncSharp />
+                <LucideRotateCcw />
               </Button>
               <Button
                 onClick={handleSave}
@@ -149,7 +155,7 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
                 className="download"
               >
                 <p>{t("actions.download")}</p>
-                <IoSaveSharp />
+                <LucideDownload />
               </Button>
             </motion.div>
           </motion.div>

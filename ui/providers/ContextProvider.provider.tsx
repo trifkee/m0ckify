@@ -22,6 +22,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     null
   );
 
+  const [showHelp, setShowHelp] = useState(false);
+
   const [openAiKey, setOpenAiKey] = useState("");
   const [isGenerateLoading, setIsGenerateLoading] = useState(true);
 
@@ -121,6 +123,15 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
     setUser(userData ?? null);
   }, [userData]);
 
+  useEffect(() => {
+    const userSawHelp = localStorage.getItem("help");
+
+    if (!userSawHelp) {
+      setShowHelp(true);
+      localStorage.setItem("help", "1");
+    }
+  }, []);
+
   return (
     <Context.Provider
       value={{
@@ -141,6 +152,8 @@ export function ContextProvider({ children }: { children: React.ReactNode }) {
         setRender,
         isGenerateLoading,
         setIsGenerateLoading,
+        showHelp,
+        setShowHelp,
       }}
     >
       {children}

@@ -4,6 +4,7 @@ import GenerateNavigation from "@/ui/components/organism/GenerateNavigation.orga
 
 import "@/ui/styles/pages/generate.page.scss";
 import GenerateLoading from "@/ui/components/atoms/GenerateLoading.atom";
+import HelpModal from "@/ui/components/moleculs/Help.molecul";
 
 export default function Generate({
   params: { locale },
@@ -12,6 +13,7 @@ export default function Generate({
 }) {
   return (
     <>
+      <HelpModal />
       <GenerateLoading />
       <main className="generate">
         <GenerateNavigation locale={locale} />
