@@ -1,12 +1,15 @@
 "use client";
 
-import Context from "@/ui/providers/ContextProvider.provider";
-import { Html, useProgress } from "@react-three/drei";
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSetRecoilState } from "recoil";
+import { useProgress } from "@react-three/drei";
+
+import { isGeneratingAtom } from "@/lib/atoms/generator";
 
 export default function GenearateLoader() {
   const { progress } = useProgress();
-  const { setIsGenerateLoading, isGenerateLoading } = useContext(Context);
+
+  const setIsGenerateLoading = useSetRecoilState(isGeneratingAtom);
 
   useEffect(() => {
     if (progress === 100) {

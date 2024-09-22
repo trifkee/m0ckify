@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -12,43 +12,18 @@ import Slider from "@/ui/components/atoms/Slider.atom";
 import Checkbox from "@/ui/components/atoms/Checkbox.atom";
 import Button from "@/ui/components/atoms/Button.atom";
 
+import useUser from "@/ui/hooks/useUser.hook";
+
 import { useGenerateImage } from "@/infrastructure/mutations/generate";
 
-import {
-  ENV_LIST,
-  IMAGE_TYPES,
-  MODELS_LIST,
-  STARTING_PROPMPT,
-  TEXTURE_LIST,
-} from "@/lib/constants/generator";
+import { ENV_LIST, IMAGE_TYPES, MODELS_LIST } from "@/lib/constants/generator";
 
-import {
-  IoAdd,
-  IoBulb,
-  IoCamera,
-  IoColorWand,
-  IoExitOutline,
-  IoImage,
-  IoImageSharp,
-  IoInformationCircle,
-  IoPartlySunny,
-  IoPerson,
-  IoPersonOutline,
-  IoPhonePortrait,
-  IoSaveSharp,
-  IoSettings,
-  IoSunny,
-  IoSyncSharp,
-  IoTrashBinSharp,
-} from "react-icons/io5";
+import { IoExitOutline, IoSaveSharp, IoSyncSharp } from "react-icons/io5";
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 import { SceneLightsType, TabType } from "@/lib/types/model.type";
 
-import Context from "@/ui/providers/ContextProvider.provider";
-
 import mockifyImage from "@/public/images/bg.jpg";
 
-import "@/ui/styles/organism/generateControls.organism.scss";
 import NumberInput from "../atoms/NumberInput.atom";
 import {
   LucideCamera,
@@ -62,6 +37,11 @@ import {
   LucideUser2,
   LucideWand2,
 } from "lucide-react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { userAtom } from "@/lib/atoms/user";
+import { openAiKeyAtom } from "@/lib/atoms/generator";
+
+import "@/ui/styles/organism/generateControls.organism.scss";
 
 const promptLen = 30;
 
@@ -69,7 +49,10 @@ export default function GenerateControls() {
   const t = useTranslations("generate");
   const router = useRouter();
 
-  const { user, handleLogout, setOpenAiKey, openAiKey } = useContext(Context);
+  const { handleLogout } = useUser();
+
+  const user = useRecoilValue(userAtom);
+  const [openAiKey, setOpenAiKey] = useRecoilState(openAiKeyAtom);
 
   const [prompt, setPrompt] = useState("");
 
@@ -245,7 +228,7 @@ export default function GenerateControls() {
         return (
           <div className="user-container">
             <div className="user">
-              <Image src={mockifyImage} alt={user?.username} />
+              <Image src={mockifyImage} alt={user?.username ?? ""} />
               <p>{user?.username}</p>
             </div>
             <div className="logout">
@@ -261,7 +244,7 @@ export default function GenerateControls() {
           <>
             <div className="image-container">
               {!model.image.isDefault ? (
-                <img src={model.image.src} alt="model" />
+                <img src={model.image.src as string} alt="model" />
               ) : (
                 <>
                   <LucideImage />
@@ -346,7 +329,7 @@ export default function GenerateControls() {
                   name="intensity"
                   step={0.01}
                   onChange={(e) => onChangeIntensity(e, "env")}
-                  value={sceneDocument.env.intensity}
+                  value={String(sceneDocument.env.intensity)}
                 />
               </div>
 
@@ -480,7 +463,7 @@ export default function GenerateControls() {
                 name="phone-reflection"
                 onChange={(e) => handleChangeReflection(e, "phone")}
                 step={0.01}
-                value={model.bodyReflection}
+                value={String(model.bodyReflection)}
               />
             </div>
 
@@ -491,7 +474,7 @@ export default function GenerateControls() {
                 htmlName="screen-reflection"
                 onChange={(e) => handleChangeReflection(e, "screen")}
                 title={t("model.screenReflection")}
-                value={model.screenReflection}
+                value={Boolean(model.screenReflection)}
               />
             </div>
 

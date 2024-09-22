@@ -1,13 +1,17 @@
 "use client";
 
-import { ModelType } from "@/lib/types/model.type";
-import Context from "@/ui/providers/ContextProvider.provider";
-import ModelProvider from "@/ui/providers/ModelProvider.provider";
-import { useContext } from "react";
+import { useRecoilState } from "recoil";
+
 import Slider from "../atoms/Slider.atom";
 
+import { modelAtom } from "@/lib/atoms/generator";
+import { ModelType } from "@/lib/types/model.type";
+
+import ModelProvider from "@/ui/providers/ModelProvider.provider";
+import { ChangeEvent } from "react";
+
 export default function GenerateModel() {
-  const { setModel, model } = useContext(Context);
+  const [model, setModel] = useRecoilState(modelAtom);
 
   const onChangeSlider = (e: any, axis: "x" | "y") => {
     return setModel((prev: ModelType) => ({
@@ -26,14 +30,14 @@ export default function GenerateModel() {
         name="x"
         id="x"
         onChange={(e) => onChangeSlider(e, "x")}
-        value={model.position.x}
+        value={String(model.position.x)}
         min={-0.5}
         max={0.5}
         step={0.025}
         className="x"
       />
       <Slider
-        value={model.position.y}
+        value={String(model.position.y)}
         min={-0.5}
         max={0.5}
         step={0.025}
