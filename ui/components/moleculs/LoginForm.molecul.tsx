@@ -1,25 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Link, useRouter } from "@/navigation";
 import Image from "next/image";
-import { AnimatePresence } from "framer-motion";
-import { motion } from "framer-motion";
+import { useRecoilValue } from "recoil";
 import { useTranslations } from "next-intl";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link, useRouter } from "@/navigation";
+
+import Spinner from "../atoms/Spinner.atom";
 
 import { useLogin } from "@/infrastructure/mutations/user";
-
-import logo from "@/public/images/logo.svg";
 
 import Button from "@/ui/components/atoms/Button.atom";
 
 import { IoClose } from "react-icons/io5";
 
-import "@/ui/styles/pages/login.page.scss";
-import Spinner from "../atoms/Spinner.atom";
-import useUser from "@/ui/hooks/useUser.hook";
-import { useRecoilValue } from "recoil";
 import { userAtom } from "@/lib/atoms/user";
+import useUser from "@/ui/hooks/useUser.hook";
+
+import logo from "@/public/images/logo.svg";
+
+import "@/ui/styles/pages/login.page.scss";
 
 export default function LoginForm({ modal }: { modal?: boolean }) {
   const t = useTranslations("auth.login");

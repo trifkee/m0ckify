@@ -1,34 +1,39 @@
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
+import { useSetRecoilState } from "recoil";
 
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import * as THREE from "three";
-import { Environment, OrbitControls, Stage } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
+import { AnimatePresence, motion } from "framer-motion";
 
-import Model from "@/ui/components/atoms/Model.atom";
-import Lights from "@/ui/components/atoms/Lights.atom";
+import CanvasModel from "../components/moleculs/CanvasModel.molecul";
 import Button from "../components/atoms/Button.atom";
-import GenearateLoader from "../components/atoms/GenerateLoader.atom";
 
 import { RenderType } from "@/lib/types/model.type";
 
-import { LucideHelpCircle, LucideRotate3D } from "lucide-react";
-import { helpAtom, renderAtom, sceneDocumentAtom } from "@/lib/atoms/generator";
+import {
+  LucideFilePlus2,
+  LucideHelpCircle,
+  LucideRotate3D,
+} from "lucide-react";
+import { helpAtom, isGeneratingAtom, renderAtom } from "@/lib/atoms/generator";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
+import useGenerator from "../hooks/useGenerator.hook";
 
 export default function ModelProvider() {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const sceneDocument = useRecoilValue(sceneDocumentAtom);
+  const [freeroam, setFreeroam] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+
   const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
-  const [freeroam, setFreeroam] = useState(false);
+  const setIsLoading = useSetRecoilState(isGeneratingAtom);
+
+  const { handleDraggedImage } = useGenerator();
 
   useEffect(() => {
+    setIsLoading(false);
     setRender((prev: RenderType) => ({
       ...prev,
       w: parentRef.current?.clientWidth as number,
@@ -36,74 +41,81 @@ export default function ModelProvider() {
     }));
   }, []);
 
+  // Handle drag enter
+  const handleDragEnter = (e: any) => {
+    e.preventDefault();
+    setIsDragging(true); // Show the drop zone when dragging starts
+  };
+
+  // Handle drag leave
+  const handleDragLeave = (e: any) => {
+    e.preventDefault();
+    setIsDragging(false); // Hide the drop zone when dragging leaves the area
+  };
+
+  // Handle drag over to allow the drop
+  const handleDragOver = (e: any) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: any) => {
+    e.preventDefault();
+    setIsDragging(false);
+    handleDraggedImage(e);
+  };
+
   return (
-    <div className="model" id="canvasModel" ref={parentRef}>
-      <Suspense fallback={null}>
-        <div className="additional-ctas">
-          <Button
-            className={`freeroam ${freeroam ? "y" : "n"}`}
-            onClick={() => setFreeroam((prev) => !prev)}
-            variant="editor"
-          >
-            <LucideRotate3D />
-          </Button>
+    <>
+      <div
+        className="model"
+        onDragEnter={handleDragEnter}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        id="canvasModel"
+        ref={parentRef}
+      >
+        <AnimatePresence>
+          {isDragging && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.25 },
+              }}
+              transition={{ duration: 0.25 }}
+              className="image-dnd"
+            >
+              <div className="zone">
+                <LucideFilePlus2 />
+                <p>Drop your image here</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-          <Button
-            variant="editor"
-            onClick={() => setShowHelp(true)}
-            className="help"
-          >
-            <LucideHelpCircle />
-          </Button>
-        </div>
-        <Canvas
-          gl={{
-            preserveDrawingBuffer: true,
-            toneMapping: THREE.NeutralToneMapping,
-          }}
-          ref={canvasRef}
-          linear
-          shadows={sceneDocument.env.castShadow ? true : false}
-        >
-          <GenearateLoader />
+        <Suspense fallback={null}>
+          <div className="additional-ctas">
+            <Button
+              className={`freeroam ${freeroam ? "y" : "n"}`}
+              onClick={() => setFreeroam((prev) => !prev)}
+              variant="editor"
+            >
+              <LucideRotate3D />
+            </Button>
 
-          <Suspense>
-            {/* TODO:
-              ADD LATER BACKGROUND 
-        */}
-            {/* <color attach="background" args={["#15151a"]} /> */}
-
-            <Lights />
-            {sceneDocument.env.castShadow ? (
-              <Stage
-                environment={sceneDocument.env.preset as PresetType}
-                intensity={sceneDocument.env.intensity}
-              >
-                <Model />
-              </Stage>
-            ) : (
-              <>
-                <Environment preset={sceneDocument.env.preset as PresetType} />
-                <Model />
-              </>
-            )}
-          </Suspense>
-
-          <OrbitControls enableRotate={freeroam} />
-        </Canvas>
-      </Suspense>
-    </div>
+            <Button
+              variant="editor"
+              onClick={() => setShowHelp(true)}
+              className="help"
+            >
+              <LucideHelpCircle />
+            </Button>
+          </div>
+          <CanvasModel freeroam={freeroam} />
+        </Suspense>
+      </div>
+    </>
   );
 }
-
-type PresetType =
-  | "warehouse"
-  | "apartment"
-  | "city"
-  | "dawn"
-  | "forest"
-  | "lobby"
-  | "night"
-  | "park"
-  | "studio"
-  | "sunset";

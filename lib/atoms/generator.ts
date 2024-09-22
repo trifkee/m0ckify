@@ -79,7 +79,7 @@ export const sceneDocumentAtom = atom<SceneDocumentType>({
 
 export const selectedModelAtom = atom<React.ReactNode | null>({
   key: "modelAtom",
-  default: null,
+  default: "iphone",
 });
 
 export const helpAtom = atom({

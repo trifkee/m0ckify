@@ -18,7 +18,7 @@ export default function GenerateLoading() {
   return (
     <>
       <AnimatePresence>
-        {isGenerateLoading && (
+        {isGenerateLoading ? (
           <motion.main
             initial={{
               opacity: 1,
@@ -28,7 +28,7 @@ export default function GenerateLoading() {
             }}
             exit={{
               opacity: 0,
-              transition: { duration: 0.5, delay: 2 },
+              transition: { duration: 0.5, delay: 3 },
             }}
             className="loading-model"
           >
@@ -44,7 +44,7 @@ export default function GenerateLoading() {
             </div>
             <Spinner size="big" />
           </motion.main>
-        )}
+        ) : null}
       </AnimatePresence>
     </>
   );

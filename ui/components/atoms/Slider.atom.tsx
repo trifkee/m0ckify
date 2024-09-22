@@ -10,7 +10,6 @@ type SliderType = {
   step: number;
   name: string;
   id?: string;
-  // type: "x" | "y" | "small";
   onChange: (e: any, axis?: string) => void;
 };
 
@@ -21,7 +20,6 @@ export default function Slider({
   max,
   step,
   name,
-  // type = "small",
   id,
   onChange,
 }: SliderType) {

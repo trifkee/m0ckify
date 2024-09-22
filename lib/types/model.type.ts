@@ -74,3 +74,15 @@ export type TabType =
   | "action"
   | "user"
   | "render";
+
+export type PresetType =
+  | "warehouse"
+  | "apartment"
+  | "city"
+  | "dawn"
+  | "forest"
+  | "lobby"
+  | "night"
+  | "park"
+  | "studio"
+  | "sunset";

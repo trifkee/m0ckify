@@ -15,8 +15,9 @@ import { IoArrowForwardSharp } from "react-icons/io5";
 
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
 
+import { LucideUser } from "lucide-react";
+
 import "@/ui/styles/pages/home.page.scss";
-import { LucideUser, LucideUser2 } from "lucide-react";
 
 export default function Home({
   params: { locale },
@@ -91,9 +92,6 @@ export default function Home({
               delay: 1,
             }}
           >
-            {/* <Button className="learn-more" variant="editor">
-            {t("learnMore")}
-            </Button> */}
             <Link href={"/generate"}>
               <Button className="get-started" variant="editor">
                 {t("getStarted")} <IoArrowForwardSharp />
