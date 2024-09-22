@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-
 import * as THREE from "three";
 import { GLTF } from "three-stdlib";
 import { useGLTF } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 
-import Context from "@/ui/providers/ContextProvider.provider";
-
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
+import { useRecoilValue } from "recoil";
+import { modelAtom } from "@/lib/atoms/generator";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -29,9 +27,12 @@ type GLTFResult = GLTF & {
 export default function Iphone(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("/models/iphone.glb") as GLTFResult;
 
-  const { model } = useContext(Context);
+  const model = useRecoilValue(modelAtom);
 
-  const texture: any = useLoader(THREE.TextureLoader, model.image.src);
+  const texture: any = useLoader(
+    THREE.TextureLoader,
+    model.image.src as string
+  );
   const { gl } = useThree();
 
   /* SCREEN MOCKUP */

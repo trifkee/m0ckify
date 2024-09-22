@@ -1,7 +1,7 @@
 export type RenderType = {
   w: number;
   h: number;
-  type: "JPEG" | "PNG" | "SVG" | "WEBP";
+  type: "JPEG" | "PNG" | "WEBP";
 };
 
 export type ModelType = {
@@ -10,7 +10,7 @@ export type ModelType = {
     y: number;
   };
   image: {
-    src: File | null;
+    src: File | string | null;
     isDefault: boolean;
     width: number;
     height: number;

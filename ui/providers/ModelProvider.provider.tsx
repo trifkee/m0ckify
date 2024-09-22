@@ -1,36 +1,38 @@
 "use client";
 
-import { Suspense, useContext, useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import * as THREE from "three";
 import { Environment, OrbitControls, Stage } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
-
-import Context from "./ContextProvider.provider";
+import { Canvas } from "@react-three/fiber";
 
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
 import Button from "../components/atoms/Button.atom";
 import GenearateLoader from "../components/atoms/GenerateLoader.atom";
-import { IoHelpOutline, IoMove } from "react-icons/io5";
 
 import { RenderType } from "@/lib/types/model.type";
 
-import "@/ui/styles/providers/modelProvider.provider.scss";
 import { LucideHelpCircle, LucideRotate3D } from "lucide-react";
+import { helpAtom, renderAtom, sceneDocumentAtom } from "@/lib/atoms/generator";
+
+import "@/ui/styles/providers/modelProvider.provider.scss";
 
 export default function ModelProvider() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const parentRef = useRef<HTMLDivElement | null>(null);
 
-  const { sceneDocument, setRender, setShowHelp } = useContext(Context);
+  const sceneDocument = useRecoilValue(sceneDocumentAtom);
+  const setRender = useSetRecoilState(renderAtom);
+  const setShowHelp = useSetRecoilState(helpAtom);
   const [freeroam, setFreeroam] = useState(false);
 
   useEffect(() => {
     setRender((prev: RenderType) => ({
       ...prev,
-      w: parentRef.current?.clientWidth,
-      h: parentRef.current?.clientHeight,
+      w: parentRef.current?.clientWidth as number,
+      h: parentRef.current?.clientHeight as number,
     }));
   }, []);
 
@@ -74,14 +76,14 @@ export default function ModelProvider() {
             <Lights />
             {sceneDocument.env.castShadow ? (
               <Stage
-                environment={sceneDocument.env.preset}
+                environment={sceneDocument.env.preset as PresetType}
                 intensity={sceneDocument.env.intensity}
               >
                 <Model />
               </Stage>
             ) : (
               <>
-                <Environment preset={sceneDocument.env.preset} />
+                <Environment preset={sceneDocument.env.preset as PresetType} />
                 <Model />
               </>
             )}
@@ -93,3 +95,15 @@ export default function ModelProvider() {
     </div>
   );
 }
+
+type PresetType =
+  | "warehouse"
+  | "apartment"
+  | "city"
+  | "dawn"
+  | "forest"
+  | "lobby"
+  | "night"
+  | "park"
+  | "studio"
+  | "sunset";

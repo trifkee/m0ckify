@@ -1,9 +1,9 @@
 "use client";
 
-import { useContext } from "react";
-import Context from "@/ui/providers/ContextProvider.provider";
-
+import { useRecoilValue } from "recoil";
 import dynamic from "next/dynamic";
+
+import { selectedModelAtom } from "@/lib/atoms/generator";
 
 const LazyIphone = dynamic(() => import("@/ui/models/Iphone.model"), {
   loading: () => null,
@@ -16,7 +16,7 @@ const LazyTv = dynamic(() => import("@/ui/models/TV.model"), {
 });
 
 export default function Model() {
-  const { selectedModel } = useContext(Context);
+  const selectedModel = useRecoilValue(selectedModelAtom);
 
   const renderedModel = () => {
     switch (selectedModel) {

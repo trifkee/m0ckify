@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouter } from "@/navigation";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
@@ -11,13 +11,15 @@ import { useLogin } from "@/infrastructure/mutations/user";
 
 import logo from "@/public/images/logo.svg";
 
-import Context from "@/ui/providers/ContextProvider.provider";
 import Button from "@/ui/components/atoms/Button.atom";
 
 import { IoClose } from "react-icons/io5";
 
 import "@/ui/styles/pages/login.page.scss";
 import Spinner from "../atoms/Spinner.atom";
+import useUser from "@/ui/hooks/useUser.hook";
+import { useRecoilValue } from "recoil";
+import { userAtom } from "@/lib/atoms/user";
 
 export default function LoginForm({ modal }: { modal?: boolean }) {
   const t = useTranslations("auth.login");
@@ -31,7 +33,9 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
     password: "",
   });
 
-  const { refetchUser, user } = useContext(Context);
+  const { refetchUser } = useUser();
+
+  const user = useRecoilValue(userAtom);
 
   if (user?.username) {
     router.push("/generate");
