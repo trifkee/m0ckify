@@ -1,6 +1,7 @@
 "use client";
 
-import React, { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import {
@@ -10,8 +11,6 @@ import {
   SceneLightsType,
 } from "@/lib/types/model.type";
 
-import fallbackImage from "@/public/images/mockify-starter.jpg";
-import { useRecoilState, useSetRecoilState } from "recoil";
 import {
   modelAtom,
   renderAtom,
@@ -20,8 +19,10 @@ import {
   selectedModelAtom,
 } from "@/lib/atoms/generator";
 
+import fallbackImage from "@/public/images/mockify-starter.jpg";
+
 export default function useGenerator() {
-  const [selectedModel, setSelectedModel] = useRecoilState(selectedModelAtom);
+  const setSelectedModel = useSetRecoilState(selectedModelAtom);
   const [model, setModel] = useRecoilState(modelAtom);
   const [render, setRender] = useRecoilState(renderAtom);
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
@@ -303,32 +304,12 @@ export default function useGenerator() {
   };
 
   useEffect(() => {
-    if (selectedModel === "tv") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          ...prev.image,
-          src: fallbackImage.src as any,
-        },
-      }));
-      return;
-    }
+    const timeout = setTimeout(() => {
+      document.title = sceneDocument.title;
+    }, 2000);
 
-    if (selectedModel === "iphone" || selectedModel === "android") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          ...prev.image,
-          src: fallbackImage.src as any,
-        },
-      }));
-      return;
-    }
-  }, [selectedModel]);
-
-  useEffect(() => {
-    setSelectedModel("iphone");
-  }, []);
+    return () => clearTimeout(timeout);
+  }, [sceneDocument]);
 
   return {
     model,

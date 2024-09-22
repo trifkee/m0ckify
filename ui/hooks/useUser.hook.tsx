@@ -1,10 +1,12 @@
 "use client";
 
-import { useFetchUser } from "@/infrastructure/queries/user/useUsers";
-import { helpAtom } from "@/lib/atoms/generator";
-import { userAtom } from "@/lib/atoms/user";
 import { useEffect } from "react";
 import { useSetRecoilState } from "recoil";
+
+import { useFetchUser } from "@/infrastructure/queries/user/useUsers";
+
+import { helpAtom } from "@/lib/atoms/generator";
+import { userAtom } from "@/lib/atoms/user";
 
 export default function useUser() {
   const { data: userData, refetch: refetchUser } = useFetchUser();

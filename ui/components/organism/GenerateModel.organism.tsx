@@ -1,5 +1,6 @@
 "use client";
 
+import { ChangeEvent } from "react";
 import { useRecoilState } from "recoil";
 
 import Slider from "../atoms/Slider.atom";
@@ -8,12 +9,14 @@ import { modelAtom } from "@/lib/atoms/generator";
 import { ModelType } from "@/lib/types/model.type";
 
 import ModelProvider from "@/ui/providers/ModelProvider.provider";
-import { ChangeEvent } from "react";
 
 export default function GenerateModel() {
   const [model, setModel] = useRecoilState(modelAtom);
 
-  const onChangeSlider = (e: any, axis: "x" | "y") => {
+  const onChangeSlider = (
+    e: ChangeEvent<HTMLInputElement>,
+    axis: "x" | "y"
+  ) => {
     return setModel((prev: ModelType) => ({
       ...prev,
       position: {

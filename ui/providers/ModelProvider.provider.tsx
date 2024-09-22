@@ -10,12 +10,16 @@ import { Canvas } from "@react-three/fiber";
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
 import Button from "../components/atoms/Button.atom";
-import GenearateLoader from "../components/atoms/GenerateLoader.atom";
 
 import { RenderType } from "@/lib/types/model.type";
 
 import { LucideHelpCircle, LucideRotate3D } from "lucide-react";
-import { helpAtom, renderAtom, sceneDocumentAtom } from "@/lib/atoms/generator";
+import {
+  helpAtom,
+  isGeneratingAtom,
+  renderAtom,
+  sceneDocumentAtom,
+} from "@/lib/atoms/generator";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
 
@@ -27,8 +31,10 @@ export default function ModelProvider() {
   const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
   const [freeroam, setFreeroam] = useState(false);
+  const setIsLoading = useSetRecoilState(isGeneratingAtom);
 
   useEffect(() => {
+    setIsLoading(false);
     setRender((prev: RenderType) => ({
       ...prev,
       w: parentRef.current?.clientWidth as number,
@@ -65,8 +71,6 @@ export default function ModelProvider() {
           linear
           shadows={sceneDocument.env.castShadow ? true : false}
         >
-          <GenearateLoader />
-
           <Suspense>
             {/* TODO:
               ADD LATER BACKGROUND 

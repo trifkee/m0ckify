@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from "recoil";
+import { RecoilRoot } from "recoil";
 
 export default function RecoilProvider({
   children,
