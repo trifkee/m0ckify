@@ -31,7 +31,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
 
   const texture: any = useLoader(
     THREE.TextureLoader,
-    model.image.src as string
+    "https://oaidalleapiprodscus.blob.core.windows.net/private/org-27fLUmqo9lKRRVEWnOsAhaRI/user-BYNCB2Db3CuDOXFD2maKjVKX/img-9inthtNUXRYGAB8YB949El4m.png?st=2024-09-24T12%3A00%3A44Z&se=2024-09-24T14%3A00%3A44Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-23T23%3A17%3A03Z&ske=2024-09-24T23%3A17%3A03Z&sks=b&skv=2024-08-04&sig=ltjRcmhMFdajNJuAIJDDW4aBJ1r4TcHP1CBi3ZKVIsc%3D" as string
   );
   const { gl } = useThree();
 

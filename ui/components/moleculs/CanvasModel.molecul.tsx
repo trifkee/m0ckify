@@ -19,7 +19,7 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
     <Canvas
       gl={{
         preserveDrawingBuffer: true,
-        toneMapping: THREE.NeutralToneMapping,
+        // toneMapping: THREE.NeutralToneMapping,
       }}
       ref={canvasRef}
       linear
