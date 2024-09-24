@@ -75,7 +75,14 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
           geometry={nodes.Glass.geometry}
           material={materials.Glas}
           rotation={[0, Math.PI / 2, 0]}
-        />
+        >
+          <meshStandardMaterial
+            attach={"mateial"}
+            {...materials.Glas}
+            transparent
+            opacity={model.screenAlphaReflection}
+          />
+        </mesh>
       )}
       <mesh
         castShadow

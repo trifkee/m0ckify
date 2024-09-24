@@ -17,6 +17,7 @@ export type ModelType = {
     x: number;
     y: number;
   };
+  screenAlphaReflection: number;
   bodyReflection: number;
   screenReflection: number;
   color: string;

@@ -86,17 +86,27 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
           geometry={nodes.Glass.geometry}
           material={materials.Glas}
           rotation={[0, -Math.PI / 2, 0]}
-        />
+        >
+          <meshStandardMaterial
+            attach="material"
+            {...materials.Glas}
+            transparent
+            opacity={model.screenAlphaReflection}
+          />
+        </mesh>
       )}
       <mesh
-        castShadow
-        receiveShadow
         geometry={nodes.Screen.geometry}
         material={materials.Screen}
         position={[0, 0, -0.006]}
         rotation={[0, -Math.PI / 2, 0]}
       >
-        <meshStandardMaterial attach="material" map={texture} />
+        <meshStandardMaterial
+          attach="material"
+          map={texture}
+          envMapIntensity={1.5}
+          metalness={0.2}
+        />
       </mesh>
       <mesh
         castShadow

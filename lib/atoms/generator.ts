@@ -24,6 +24,7 @@ export const modelAtom = atom<ModelType>({
     texture: "plastic",
     bodyReflection: 0,
     screenReflection: 1,
+    screenAlphaReflection: 0.2,
     position: {
       x: 0 as number,
       y: 0 as number,

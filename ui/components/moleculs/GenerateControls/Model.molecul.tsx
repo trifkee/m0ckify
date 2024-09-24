@@ -68,6 +68,18 @@ export default function Model({
           title={t("model.screenReflection")}
           value={Boolean(model.screenReflection)}
         />
+
+        {model.screenReflection ? (
+          <Slider
+            max={0.3}
+            min={0}
+            className="small"
+            name="screen-reflection"
+            onChange={(e) => handleChangeReflection(e, "screenAlpha")}
+            step={0.01}
+            value={String(model.screenAlphaReflection)}
+          />
+        ) : null}
       </div>
 
       <div className="control__section">

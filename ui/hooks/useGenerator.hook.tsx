@@ -273,7 +273,17 @@ export default function useGenerator() {
     }));
   };
 
-  const handleChangeReflection = (e: any, type: "screen" | "phone") => {
+  const handleChangeReflection = (
+    e: any,
+    type: "screen" | "phone" | "screenAlpha"
+  ) => {
+    if (type === "screenAlpha") {
+      return setModel((prev: ModelType) => ({
+        ...prev,
+        screenAlphaReflection: e.target.value,
+      }));
+    }
+
     if (type === "phone") {
       return setModel((prev: ModelType) => ({
         ...prev,

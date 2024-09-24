@@ -86,7 +86,14 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
           geometry={nodes.Glass.geometry}
           material={materials.Glas}
           rotation={[Math.PI / 2, 0, 0]}
-        />
+        >
+          <meshStandardMaterial
+            attach={"material"}
+            {...materials.Glas}
+            transparent
+            opacity={model.screenAlphaReflection}
+          />
+        </mesh>
       )}
     </group>
   );
