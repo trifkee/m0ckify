@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -14,6 +14,7 @@ import {
   LucideFilePlus2,
   LucideHelpCircle,
   LucideRotate3D,
+  LucideSettings2,
 } from "lucide-react";
 import { helpAtom, isGeneratingAtom, renderAtom } from "@/lib/atoms/generator";
 
@@ -22,6 +23,7 @@ import useGenerator from "../hooks/useGenerator.hook";
 import { useTranslations } from "next-intl";
 // import useMouse from "../hooks/useMouse.hook";
 import ContextMenu from "../components/moleculs/ContextMenu.molecul";
+import { showCanvasSliderAtom } from "@/lib/atoms/global";
 
 export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -33,6 +35,7 @@ export default function ModelProvider() {
   const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
   const setIsLoading = useSetRecoilState(isGeneratingAtom);
+  const [sliders, setSliders] = useRecoilState(showCanvasSliderAtom);
 
   const {
     handleDraggedImage,
@@ -112,13 +115,25 @@ export default function ModelProvider() {
 
         <Suspense fallback={null}>
           <div className="additional-ctas">
-            <Button
-              className={`freeroam ${freeroam ? "y" : "n"}`}
-              onClick={() => setFreeroam((prev) => !prev)}
-              variant="editor"
+            <div
+              className="top"
+              style={{ display: "flex", gap: ".5rem", flexDirection: "column" }}
             >
-              <LucideRotate3D />
-            </Button>
+              <Button
+                className={`freeroam ${freeroam ? "y" : "n"}`}
+                onClick={() => setFreeroam((prev) => !prev)}
+                variant="editor"
+              >
+                <LucideRotate3D />
+              </Button>
+              <Button
+                className={`freeroam ${sliders ? "y" : "n"}`}
+                onClick={() => setSliders((prev) => !prev)}
+                variant="editor"
+              >
+                <LucideSettings2 style={{ transform: "rotate(90deg)" }} />
+              </Button>
+            </div>
 
             <Button
               variant="editor"

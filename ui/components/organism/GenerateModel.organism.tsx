@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import Slider from "../atoms/Slider.atom";
 
@@ -9,9 +9,12 @@ import { modelAtom } from "@/lib/atoms/generator";
 import { ModelType } from "@/lib/types/model.type";
 
 import ModelProvider from "@/ui/providers/ModelProvider.provider";
+import { showCanvasSliderAtom } from "@/lib/atoms/global";
+import { AnimatePresence } from "framer-motion";
 
 export default function GenerateModel() {
   const [model, setModel] = useRecoilState(modelAtom);
+  const canvasSliders = useRecoilValue(showCanvasSliderAtom);
 
   const onChangeSlider = (
     e: ChangeEvent<HTMLInputElement>,
@@ -29,6 +32,7 @@ export default function GenerateModel() {
   return (
     <article className="generate__model">
       <ModelProvider />
+
       <Slider
         name="x"
         id="x"
@@ -38,6 +42,7 @@ export default function GenerateModel() {
         max={0.5}
         step={0.025}
         className="x"
+        visible={canvasSliders}
       />
       <Slider
         value={String(model.position.y)}
@@ -48,6 +53,7 @@ export default function GenerateModel() {
         id="y"
         onChange={(e) => onChangeSlider(e, "y")}
         className="y"
+        visible={canvasSliders}
       />
     </article>
   );
