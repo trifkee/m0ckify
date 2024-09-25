@@ -59,7 +59,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
   return (
     <group
       {...props}
-      rotation={[model.position.y, model.position.x, 0]}
+      rotation={[model.position.y, model.position.x, model.position.z]}
       dispose={null}
     >
       <mesh

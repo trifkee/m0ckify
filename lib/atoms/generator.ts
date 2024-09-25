@@ -40,6 +40,7 @@ export const modelAtom = atom<ModelType>({
     position: {
       x: 0 as number,
       y: 0 as number,
+      z: 0 as number,
     },
     image: {
       src: fallbackImage.src as any,
