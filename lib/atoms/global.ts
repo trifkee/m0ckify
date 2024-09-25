@@ -7,3 +7,8 @@ export const contextMenuAtom = atom({
     position: { x: 0, y: 0 },
   },
 });
+
+export const showCanvasSliderAtom = atom({
+  key: "canvasSliders",
+  default: true,
+});
