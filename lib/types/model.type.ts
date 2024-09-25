@@ -8,6 +8,7 @@ export type ModelType = {
   position: {
     x: number;
     y: number;
+    z: number;
   };
   image: {
     src: File | string | null;

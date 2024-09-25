@@ -8,6 +8,7 @@ import { SceneDocumentType } from "@/lib/types/model.type";
 import { sceneDocumentAtom } from "@/lib/atoms/generator";
 
 import "@/ui/styles/moleculs/generateDocumentTitle.molecul.scss";
+import { LucidePencil, LucidePenLine } from "lucide-react";
 
 export default function GenerateDocumentTitle() {
   const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
@@ -33,7 +34,7 @@ export default function GenerateDocumentTitle() {
   };
 
   return (
-    <>
+    <div className={`placeholder ${isEditable ? "editable" : ""}`}>
       {isEditable ? (
         <input
           className="document-title"
@@ -51,6 +52,10 @@ export default function GenerateDocumentTitle() {
           {sceneDocument.title}
         </span>
       )}
-    </>
+
+      <span className="icon">
+        <LucidePencil />
+      </span>
+    </div>
   );
 }

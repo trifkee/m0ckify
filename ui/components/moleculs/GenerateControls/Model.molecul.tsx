@@ -1,6 +1,6 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEvent, ChangeEventHandler } from "react";
 import { useTranslations } from "next-intl";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import { HexColorPicker } from "react-colorful";
 import Slider from "../../atoms/Slider.atom";
@@ -10,6 +10,8 @@ import { modelAtom } from "@/lib/atoms/generator";
 import { MODELS_LIST } from "@/lib/constants/generator";
 
 import { LucideBox } from "lucide-react";
+import { ModelType } from "@/lib/types/model.type";
+import NumberInput from "../../atoms/NumberInput.atom";
 
 export default function Model({
   handleChangeReflection,
@@ -21,13 +23,60 @@ export default function Model({
   handleModelChange: ChangeEventHandler<HTMLSelectElement>;
 }) {
   const t = useTranslations("generate");
-  const model = useRecoilValue(modelAtom);
+  const [model, setModel] = useRecoilState(modelAtom);
+
+  const handleChangePosition = (
+    e: ChangeEvent<HTMLInputElement>,
+    axis: "x" | "y" | "z"
+  ) => {
+    return setModel((prev: ModelType) => ({
+      ...prev,
+      position: {
+        ...prev.position,
+        [axis]: e.target.value,
+      },
+    }));
+  };
 
   return (
     <details className="control model select">
       <summary className="control__title">
         {t("model.title")} <LucideBox />
       </summary>
+
+      <div className="control__section">
+        <p className="title">{t("model.rotation")}</p>
+
+        <div className="position">
+          <NumberInput
+            name="lx"
+            label="X"
+            step={0.02}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangePosition(e, "x")
+            }
+            value={model.position.x}
+          />
+          <NumberInput
+            name="ly"
+            step={0.02}
+            label="Y"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangePosition(e, "y")
+            }
+            value={model.position.y}
+          />
+          <NumberInput
+            name="lz"
+            step={0.02}
+            label="Z"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangePosition(e, "z")
+            }
+            value={model.position.z}
+          />
+        </div>
+      </div>
 
       {/*TODO : ADD LATER TEXTURES FOR THE MODEL */}
       {/* <div className="control__section">

@@ -100,6 +100,7 @@
       "title": "Model",
       "screenReflection": "Refleksija ekrana",
       "bodyReflection": "Refleksija modela",
+      "rotation": "Rotacija modela",
       "texture": {
         "title": "Tekstura",
         "texture": {

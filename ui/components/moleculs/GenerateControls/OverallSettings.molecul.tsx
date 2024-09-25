@@ -1,5 +1,9 @@
 import { canvasOptionsAtom } from "@/lib/atoms/generator";
-import { LucidePaintbrush2 } from "lucide-react";
+import {
+  LucideAperture,
+  LucideMoreHorizontal,
+  LucidePaintbrush2,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRecoilState } from "recoil";
 import Slider from "../../atoms/Slider.atom";
@@ -36,7 +40,9 @@ export default function OverallSettings() {
   return (
     <details className="control model select">
       <summary className="control__title">
-        {t("general.title")} <LucidePaintbrush2 />
+        {t("general.title")}
+        {/* <LucidePaintbrush2 /> */}
+        <LucideMoreHorizontal />
       </summary>
 
       <div className="control__section">
