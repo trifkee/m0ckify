@@ -14,8 +14,12 @@ import Lights from "../moleculs/GenerateControls/Lights.molecul";
 import Actions from "../moleculs/GenerateControls/Actions.molecul";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
+import { userAtom } from "@/lib/atoms/user";
+import { useRecoilValue } from "recoil";
 
 export default function GenerateControls() {
+  const user = useRecoilValue(userAtom);
+
   const {
     handleImageChange,
     handleChangeColor,
@@ -39,7 +43,9 @@ export default function GenerateControls() {
   return (
     <article className="generate__controls">
       <User />
-      <Magicfy handleReadAIImage={handleReadAIImage} />
+      {user?.role === "admin" && (
+        <Magicfy handleReadAIImage={handleReadAIImage} />
+      )}
       <Render
         handleChangeRenderImageType={handleChangeRenderImageType}
         handleChangeRenderSize={handleChangeRenderSize}
