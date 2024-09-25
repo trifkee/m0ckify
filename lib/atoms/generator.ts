@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+
 import {
   ModelType,
   RenderType,
@@ -7,6 +8,7 @@ import {
 } from "../types/model.type";
 
 import fallbackImage from "@/public/images/mockify-starter.jpg";
+import { TONE_MAPPINGS } from "../constants/generator";
 
 export const renderAtom = atom<RenderType>({
   key: "render",
@@ -14,6 +16,16 @@ export const renderAtom = atom<RenderType>({
     w: 1080,
     h: 1920,
     type: "PNG",
+  },
+});
+
+export const canvasOptionsAtom = atom({
+  key: "canvasOptions",
+  default: {
+    toneMappingExposure: 0.5,
+    toneMapping: TONE_MAPPINGS[0].value,
+    grid: false,
+    bloom: 0,
   },
 });
 

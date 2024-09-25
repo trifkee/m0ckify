@@ -1,3 +1,12 @@
+import {
+  ReinhardToneMapping,
+  LinearToneMapping,
+  NoToneMapping,
+  CineonToneMapping,
+  NeutralToneMapping,
+  ACESFilmicToneMapping,
+} from "three";
+
 export const STARTING_PROPMPT =
   "Design a cutting-edge, professional mobile app interface with a focus on UX best practices and visual hierarchy. The layout should feature a highly organized structure with a consistent design system, using a neutral color scheme complemented by a refined accent color for primary actions. Utilize modern typography with strong readability, paired with custom iconography. The home screen should showcase a high-contrast, user-friendly navigation bar, followed by dynamic, modular content sections that adapt seamlessly to different device sizes. Prioritize a polished, minimalist aesthetic with strategic use of whitespace and intuitive interaction cues for an elevated user experience.";
 
@@ -93,3 +102,12 @@ export const IMAGE_SETTINGS = {
 };
 
 export const IMAGE_TYPES = ["PNG", "JPEG", "WEBP"];
+
+export const TONE_MAPPINGS = [
+  { name: "Vivid", value: ReinhardToneMapping },
+  { name: "Linear", value: LinearToneMapping },
+  { name: "Cinematic", value: CineonToneMapping },
+  { name: "Neutral", value: NeutralToneMapping },
+  { name: "Filmic", value: ACESFilmicToneMapping },
+  { name: "No Mapping", value: NoToneMapping },
+];

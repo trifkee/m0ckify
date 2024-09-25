@@ -2,6 +2,25 @@
   "global": {
     "start": "Počni"
   },
+  "help": {
+    "title": "Pomoć",
+    "camera": {
+      "title": "Pomeri Kameru",
+      "text": "Da biste pomerili kameru na željenu poziciju, koristite desni klik miša."
+    },
+    "lights": {
+      "title": "Svetla",
+      "text": "Osnažite svoj model podešavanjem svetla i/ili dodavanjem novih izvora svetlosti u bočnoj navigaciji."
+    },
+    "model": {
+      "title": "Model",
+      "text": "Izaberite željeni model za svoj maket. Uskoro ćemo dodati još ⭐"
+    },
+    "rotate": {
+      "title": "Rotiraj Model",
+      "text": "Rotiranje je po defaultu onemogućeno. Možete omogućiti ovu funkciju klikom na ikonu sa desne strane platna."
+    }
+  },
   "notFound": {
     "title": "Dogodila se greška.",
     "message": "Nismo mogli da pronađemo stranicu koju tražite...",
@@ -44,6 +63,12 @@
     "learnMore": "Saznaj više"
   },
   "generate": {
+    "dropImage": "Otpustite sliku ovde",
+    "general": {
+      "title": "Opšte",
+      "brigthnes": "Jačina osvetljenja",
+      "preset": "Preset"
+    },
     "render": {
       "title": "Renderovanje",
       "imageSize": "Veličina slike",

@@ -2,6 +2,25 @@
   "global": {
     "start": "Commencer"
   },
+  "help": {
+    "title": "Aide",
+    "camera": {
+      "title": "Déplacer la Caméra",
+      "text": "Pour déplacer votre caméra à la position souhaitée, utilisez le clic droit de la souris."
+    },
+    "lights": {
+      "title": "Lumières",
+      "text": "Renforcez votre modèle en ajustant la lumière et/ou en ajoutant de nouvelles sources d'éclairage dans la navigation latérale."
+    },
+    "model": {
+      "title": "Modèle",
+      "text": "Choisissez le modèle souhaité pour votre maquette. Nous en ajouterons bientôt d'autres ⭐"
+    },
+    "rotate": {
+      "title": "Faire Pivoter le Modèle",
+      "text": "Par défaut, la rotation est désactivée. Vous pouvez activer cette fonction en cliquant sur l'icône à droite du canevas."
+    }
+  },
   "notFound": {
     "title": "Quelque chose s'est mal passé",
     "message": "Nous n'avons pas pu trouver la page que vous recherchez...",
@@ -44,6 +63,12 @@
     }
   },
   "generate": {
+    "dropImage": "Déposez votre image ici",
+    "general": {
+      "title": "Général",
+      "brigthnes": "Luminosité",
+      "preset": "Préréglage"
+    },
     "render": {
       "title": "Rendu",
       "imageSize": "Taille de l'image",

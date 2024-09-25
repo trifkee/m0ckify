@@ -2,6 +2,25 @@
   "global": {
     "start": "开始"
   },
+  "help": {
+    "title": "帮助",
+    "camera": {
+      "title": "移动相机",
+      "text": "要将相机移动到所需位置，请使用鼠标右键。"
+    },
+    "lights": {
+      "title": "灯光",
+      "text": "通过调整灯光和/或在侧边导航中添加新的光源来增强您的模型。"
+    },
+    "model": {
+      "title": "模型",
+      "text": "选择您想要的模型作为样板。我们会很快添加更多⭐"
+    },
+    "rotate": {
+      "title": "旋转模型",
+      "text": "默认情况下，旋转功能是禁用的。您可以通过点击画布右侧的图标来启用此功能。"
+    }
+  },
   "notFound": {
     "title": "出了点问题",
     "message": "我们找不到您要找的页面...",
@@ -44,6 +63,12 @@
     }
   },
   "generate": {
+    "dropImage": "将您的图片拖到这里",
+    "general": {
+      "title": "一般",
+      "brigthnes": "亮度",
+      "preset": "预设"
+    },
     "render": {
       "title": "渲染",
       "imageSize": "图片大小",

@@ -2,6 +2,25 @@
   "global": {
     "start": "Starten"
   },
+  "help": {
+    "title": "Hilfe",
+    "camera": {
+      "title": "Kamera Bewegen",
+      "text": "Um Ihre Kamera an die gewünschte Position zu bewegen, verwenden Sie die rechte Maustaste."
+    },
+    "lights": {
+      "title": "Lichter",
+      "text": "Stärken Sie Ihr Modell, indem Sie das Licht anpassen und/oder neue Lichtquellen in der seitlichen Navigation hinzufügen."
+    },
+    "model": {
+      "title": "Modell",
+      "text": "Wählen Sie das gewünschte Modell für Ihr Mockup aus. Bald werden wir mehr hinzufügen ⭐"
+    },
+    "rotate": {
+      "title": "Modell Drehen",
+      "text": "Standardmäßig ist das Drehen deaktiviert. Sie können diese Funktion aktivieren, indem Sie auf das Symbol rechts neben der Leinwand klicken."
+    }
+  },
   "home": {
     "title": "Erstellen Sie wunderschöne benutzerdefinierte Mockups kostenlos",
     "getStarted": "Loslegen",
@@ -44,6 +63,12 @@
     }
   },
   "generate": {
+    "dropImage": "Legen Sie Ihr Bild hier ab",
+    "general": {
+      "title": "Général",
+      "brigthnes": "Luminosité",
+      "preset": "Préréglage"
+    },
     "render": {
       "title": "Rendern",
       "imageSize": "Bildgröße",

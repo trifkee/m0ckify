@@ -2,6 +2,25 @@
   "global": {
     "start": "Start"
   },
+  "help": {
+    "title": "Help",
+    "camera": {
+      "title": "Move Camera",
+      "text": "To move your camera to desired position use right click on the mouse."
+    },
+    "lights": {
+      "title": "Lights",
+      "text": "Empower your model by tweaking light and/or adding new sources for lighting in side navigation."
+    },
+    "model": {
+      "title": "Model",
+      "text": "Pick desired model for your mockup. We'll bring more soon ⭐"
+    },
+    "rotate": {
+      "title": "Rotate Model",
+      "text": "By default rotating is disabled. You can enable this feature by clicking icon on the right side of the canvas."
+    }
+  },
   "notFound": {
     "title": "Something went wrong",
     "message": "We couldn't find the page you are looking for...",
@@ -44,6 +63,12 @@
     }
   },
   "generate": {
+    "dropImage": "Drop your image here",
+    "general": {
+      "title": "General",
+      "brigthnes": "Brigthnes",
+      "preset": "Preset"
+    },
     "render": {
       "title": "Render",
       "imageSize": "Image size",

@@ -16,6 +16,7 @@ import Actions from "../moleculs/GenerateControls/Actions.molecul";
 import "@/ui/styles/organism/generateControls.organism.scss";
 import { userAtom } from "@/lib/atoms/user";
 import { useRecoilValue } from "recoil";
+import OverallSettings from "../moleculs/GenerateControls/OverallSettings.molecul";
 
 export default function GenerateControls() {
   const user = useRecoilValue(userAtom);
@@ -46,6 +47,7 @@ export default function GenerateControls() {
       {user?.role === "admin" && (
         <Magicfy handleReadAIImage={handleReadAIImage} />
       )}
+      <OverallSettings />
       <Render
         handleChangeRenderImageType={handleChangeRenderImageType}
         handleChangeRenderSize={handleChangeRenderSize}

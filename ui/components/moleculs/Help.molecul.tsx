@@ -16,8 +16,10 @@ import {
 } from "lucide-react";
 
 import "@/ui/styles/moleculs/helpModal.molecul.scss";
+import { useTranslations } from "next-intl";
 
 export default function HelpModal() {
+  const t = useTranslations("help");
   const [showHelp, setShowHelp] = useRecoilState(helpAtom);
 
   const handleCloseModal = () => {
@@ -43,7 +45,7 @@ export default function HelpModal() {
       >
         <div className="modal">
           <div className="modal__title">
-            <h2>Help</h2>
+            <h2>{t("title")}</h2>
             <Button
               className="danger"
               variant="editor"
@@ -59,11 +61,8 @@ export default function HelpModal() {
                 <LucideCamera />
               </div>
               <div className="text">
-                <p>Move Camera</p>
-                <p>
-                  To move your camera to desired position use right click on the
-                  mouse.
-                </p>
+                <p>{t("camera.title")}</p>
+                <p>{t("camera.text")}</p>
               </div>
             </div>
 
@@ -72,11 +71,8 @@ export default function HelpModal() {
                 <LucideRotate3D />
               </div>
               <div className="text">
-                <p>Rotate Model</p>
-                <p>
-                  By default rotating is disabled. You can enable this feature
-                  by clicking icon on the right side of the canvas.
-                </p>
+                <p>{t("rotate.title")}</p>
+                <p>{t("rotate.text")}</p>
               </div>
             </div>
 
@@ -85,11 +81,8 @@ export default function HelpModal() {
                 <LucideLightbulb />
               </div>
               <div className="text">
-                <p>Lights</p>
-                <p>
-                  Empower your model by tweaking light and/or adding new sources
-                  for lighting in side navigation.
-                </p>
+                <p>{t("lights.title")}</p>
+                <p>{t("lights.text")}</p>
               </div>
             </div>
 
@@ -98,10 +91,8 @@ export default function HelpModal() {
                 <LucideBox />
               </div>
               <div className="text">
-                <p>Choose Model</p>
-                <p>
-                  Pick desired model for your mockup. We'll bring more soon ⭐
-                </p>
+                <p>{t("model.title")}</p>
+                <p>{t("model.text")}</p>
               </div>
             </div>
           </div>

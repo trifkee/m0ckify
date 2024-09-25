@@ -19,9 +19,13 @@ import { helpAtom, isGeneratingAtom, renderAtom } from "@/lib/atoms/generator";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
 import useGenerator from "../hooks/useGenerator.hook";
+import { useTranslations } from "next-intl";
+// import useMouse from "../hooks/useMouse.hook";
+import ContextMenu from "../components/moleculs/ContextMenu.molecul";
 
 export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
+  const t = useTranslations("generate");
 
   const [freeroam, setFreeroam] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -30,7 +34,13 @@ export default function ModelProvider() {
   const setShowHelp = useSetRecoilState(helpAtom);
   const setIsLoading = useSetRecoilState(isGeneratingAtom);
 
-  const { handleDraggedImage } = useGenerator();
+  const {
+    handleDraggedImage,
+    handleSave,
+    resetModelPosition,
+    handleImageChange,
+  } = useGenerator();
+  // useMouse();
 
   useEffect(() => {
     setIsLoading(false);
@@ -66,6 +76,11 @@ export default function ModelProvider() {
 
   return (
     <>
+      {/* <ContextMenu
+        handleSave={handleSave}
+        handleImageChange={handleImageChange}
+        resetModelPosition={resetModelPosition}
+      /> */}
       <div
         className="model"
         onDragEnter={handleDragEnter}
@@ -89,7 +104,7 @@ export default function ModelProvider() {
             >
               <div className="zone">
                 <LucideFilePlus2 />
-                <p>Drop your image here</p>
+                <p>{t("dropImage")}</p>
               </div>
             </motion.div>
           )}

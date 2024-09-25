@@ -1,6 +1,5 @@
 import { Suspense, useRef } from "react";
 import { useRecoilValue } from "recoil";
-import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls, Stage } from "@react-three/drei";
 
@@ -10,6 +9,7 @@ import Lights from "@/ui/components/atoms/Lights.atom";
 import { sceneDocumentAtom } from "@/lib/atoms/generator";
 
 import { PresetType } from "@/lib/types/model.type";
+import ToneMapping from "../atoms/ToneMapping.atom";
 
 export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -17,21 +17,18 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
 
   return (
     <Canvas
+      id="canvas-window"
       gl={{
         preserveDrawingBuffer: true,
-        toneMappingExposure: 0.5,
-
-        toneMapping: THREE.NeutralToneMapping,
-        // toneMapping: THREE.NeutralToneMapping,
       }}
       ref={canvasRef}
       linear
       shadows={sceneDocument.env.castShadow ? true : false}
     >
+      <ToneMapping />
       <Suspense fallback={null}>
         {/* TODO: ADD LATER BACKGROUND  */}
         {/* <color attach="background" args={["#15151a"]} /> */}
-
         <Lights />
         {sceneDocument.env.castShadow ? (
           <Stage
