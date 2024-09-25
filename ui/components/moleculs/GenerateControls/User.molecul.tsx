@@ -29,7 +29,7 @@ export default function User() {
             <p>{user?.username}</p>
           </div>
           <div className="logout">
-            <Button variant="editor" onClick={handleLogout}>
+            <Button className="danger" variant="editor" onClick={handleLogout}>
               {t("user.logout")} <LucideLogOut />
             </Button>
           </div>

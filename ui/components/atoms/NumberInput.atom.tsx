@@ -5,10 +5,12 @@ type NumberInputType = {
   label?: string;
   onChange: CallableFunction;
   value: number;
+  step?: number;
 };
 
 export default function NumberInput({
   onChange,
+  step = 1,
   value,
   label,
   name,
@@ -17,6 +19,7 @@ export default function NumberInput({
     <div className="input-label">
       <label htmlFor="iw">{label ?? name}</label>
       <input
+        step={step}
         type="number"
         name={name}
         id={name}
