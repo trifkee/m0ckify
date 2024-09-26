@@ -34,6 +34,11 @@ export default function ContextMenu({
         <motion.div
           id="context-menu"
           ref={contextRef}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 50,
+          }}
           initial={{
             opacity: 0,
             height: 0,
