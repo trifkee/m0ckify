@@ -9,6 +9,8 @@ import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
+import ogImg from "@/public/images/mockify-starter-big.jpg";
+
 import "./globals.css";
 import "@/ui/styles/global.scss";
 
@@ -22,7 +24,11 @@ export const metadata: Metadata = {
     title: "Mockify",
     description:
       "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
-    images: ["/images/mockify-starter-big.jpg"],
+    images: [
+      {
+        url: ogImg.src,
+      },
+    ],
     url: "https://m0ckify.vercel.app",
     type: "website",
   },
