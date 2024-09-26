@@ -18,6 +18,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Mockify",
+  openGraph: {
+    title: "Mockify",
+    description:
+      "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
+    images: ["/images/mockify-starter-big.jpg"],
+    url: "https://m0ckify.vercel.app",
+    type: "website",
+  },
   description:
     "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
 };
