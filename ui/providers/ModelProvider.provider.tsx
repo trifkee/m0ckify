@@ -21,7 +21,7 @@ import { helpAtom, isGeneratingAtom, renderAtom } from "@/lib/atoms/generator";
 import "@/ui/styles/providers/modelProvider.provider.scss";
 import useGenerator from "../hooks/useGenerator.hook";
 import { useTranslations } from "next-intl";
-// import useMouse from "../hooks/useMouse.hook";
+import useMouse from "../hooks/useMouse.hook";
 import ContextMenu from "../components/moleculs/ContextMenu.molecul";
 import { showCanvasSliderAtom } from "@/lib/atoms/global";
 
@@ -43,7 +43,7 @@ export default function ModelProvider() {
     resetModelPosition,
     handleImageChange,
   } = useGenerator();
-  // useMouse();
+  useMouse();
 
   useEffect(() => {
     setIsLoading(false);
@@ -79,11 +79,11 @@ export default function ModelProvider() {
 
   return (
     <>
-      {/* <ContextMenu
+      <ContextMenu
         handleSave={handleSave}
         handleImageChange={handleImageChange}
         resetModelPosition={resetModelPosition}
-      /> */}
+      />
       <div
         className="model"
         onDragEnter={handleDragEnter}
