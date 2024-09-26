@@ -1,8 +1,9 @@
 "use client";
 
-import { contextMenuAtom } from "@/lib/atoms/global";
 import { useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
+
+import { contextMenuAtom } from "@/lib/atoms/global";
 
 export default function useMouse() {
   const [contextMenu, setContextMenu] = useRecoilState(contextMenuAtom);
@@ -15,7 +16,6 @@ export default function useMouse() {
         shown: false,
       }));
     }
-    console.log(e.target.id !== "context-menu");
   }
 
   function handleRightClick(e: MouseEvent) {

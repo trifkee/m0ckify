@@ -11,6 +11,7 @@
   gap: 1rem;
   overflow: hidden;
   scrollbar-width: 0;
+  transition: all 0.2s ease-in-out;
 
   &::before {
     content: "";
