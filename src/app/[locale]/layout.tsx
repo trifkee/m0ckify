@@ -9,7 +9,7 @@ import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
-import ogImg from "@/public/images/mockify-starter-big.jpg";
+import ogImage from "@/public/images/mockify-starter-big.jpg";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
@@ -20,20 +20,27 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Mockify",
-  openGraph: {
-    title: "Mockify",
-    description:
-      "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
-    images: [
-      {
-        url: ogImg.src,
-      },
-    ],
-    url: "https://m0ckify.vercel.app",
-    type: "website",
-  },
   description:
     "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
+  metadataBase: new URL(`https://m0ckify.vercel.app`),
+  openGraph: {
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height,
+      },
+    ],
+  },
+  twitter: {
+    images: [
+      {
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height,
+      },
+    ],
+  },
 };
 
 export default async function RootLayout({
@@ -50,22 +57,6 @@ export default async function RootLayout({
       <RecoilProvider>
         <QueryProvider>
           <html lang={locale}>
-            <Head>
-              <meta property="og:title" content="Mockify" />
-              <meta
-                property="og:description"
-                content="Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project."
-              />
-              <meta
-                property="og:image"
-                content="https://m0ckify.vercel.app/_next/static/media/logo.83342317.svg "
-              />
-              <meta property="og:url" content="https://m0ckify.vercel.app" />
-              <meta property="og:type" content="website" />
-            </Head>
-
-            {/* -- */}
-
             <body className={`${inter.className} body`}>
               <NextIntlClientProvider messages={messages}>
                 {children}
