@@ -37,6 +37,9 @@ export const saveImageFromCanvas = ({
 export const readUserImage = (file: File) => {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
+
+    if (!file) return;
+
     fileReader.onload = () => resolve(fileReader.result);
     fileReader.readAsDataURL(file);
   });
