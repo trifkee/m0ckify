@@ -1,17 +1,18 @@
 "use client";
 
-import { contextMenuAtom } from "@/lib/atoms/global";
 import { useRecoilState, useRecoilValue } from "recoil";
-
 import { AnimatePresence, motion } from "framer-motion";
+import { ChangeEventHandler, useRef } from "react";
+import { useTranslations } from "next-intl";
+
+import Button from "../atoms/Button.atom";
+
+import { LucideDownload, LucideImage, LucideXCircle } from "lucide-react";
+import { renderAtom } from "@/lib/atoms/generator";
+import { contextMenuAtom } from "@/lib/atoms/global";
+import { IoSyncSharp } from "react-icons/io5";
 
 import "@/ui/styles/moleculs/contextMenu.molecul.scss";
-import Button from "../atoms/Button.atom";
-import { IoSyncSharp } from "react-icons/io5";
-import { LucideDownload, LucideImage, LucideXCircle } from "lucide-react";
-import { useTranslations } from "next-intl";
-import { renderAtom } from "@/lib/atoms/generator";
-import { ChangeEventHandler, useEffect, useRef } from "react";
 
 export default function ContextMenu({
   handleSave,

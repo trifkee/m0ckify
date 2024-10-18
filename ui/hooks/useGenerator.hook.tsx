@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import {
@@ -16,35 +16,33 @@ import {
   renderAtom,
   sceneDocumentAtom,
   sceneLightsAtom,
-  selectedModelAtom,
+  selectedLayerAtom,
 } from "@/lib/atoms/generator";
 
-import fallbackImage from "@/public/images/mockify-starter.jpg";
-
 export default function useGenerator() {
-  const setSelectedModel = useSetRecoilState(selectedModelAtom);
   const [model, setModel] = useRecoilState(ObjectsLayersAtom);
   const [render, setRender] = useRecoilState(renderAtom);
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
   const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
 
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
+
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const id = e.target.dataset.id;
     const image = e.target.files?.[0];
 
     if (!image) return;
 
-    handleReadImage(image, +id!);
+    handleReadImage(image);
   };
 
-  const handleReadImage = (file: File, id: number) => {
+  const handleReadImage = (file: File) => {
     readUserImage(file)
       .then((result) => {
         if (typeof result === "string") {
           setModel((prev: ModelType[]) =>
             prev.map((obj, i: number) =>
-              i === id
+              i === selectedLayer
                 ? {
                     ...obj,
                     image: { ...obj.image, src: result, isDefault: false },
@@ -140,11 +138,7 @@ export default function useGenerator() {
     }
   };
 
-  const onChangeIntensity = (
-    e: any,
-    type: "env" | "dirLights",
-    index?: number
-  ) => {
+  const onChangeIntensity = (e: any, type: "env" | "dirLights") => {
     if (type === "env") {
       setSceneDocument((prev: SceneDocumentType) => ({
         ...prev,
@@ -160,7 +154,7 @@ export default function useGenerator() {
     if (type === "dirLights") {
       setSceneLights(
         sceneLights.map((light: SceneLightsType, i: number) =>
-          i === index ? { ...light, intensity: e.target.value } : light
+          i === selectedLayer ? { ...light, intensity: e.target.value } : light
         )
       );
 
@@ -176,7 +170,7 @@ export default function useGenerator() {
     if (type === "model") {
       setModel((prev) =>
         prev.map((n, i) =>
-          i === index
+          i === selectedLayer
             ? {
                 ...n,
                 color,
@@ -266,17 +260,26 @@ export default function useGenerator() {
   };
 
   const handleModelChange = (e: any) => {
-    const model = e.target.value;
+    const type = e.target.value;
 
-    return setSelectedModel(model);
+    return setModel((prev) =>
+      prev.map((n, i) =>
+        i === selectedLayer
+          ? {
+              ...n,
+              type,
+            }
+          : n
+      )
+    );
   };
 
-  const handleImageSize = (e: any, type: "width" | "height", index: number) => {
+  const handleImageSize = (e: any, type: "width" | "height") => {
     const size = Number(e.target.value);
 
     setModel((prev) =>
       prev.map((n, i) =>
-        i === index
+        i === selectedLayer
           ? {
               ...n,
               image: {
@@ -289,12 +292,12 @@ export default function useGenerator() {
     );
   };
 
-  const handleImagePosition = (e: any, position: "x" | "y", index: number) => {
+  const handleImagePosition = (e: any, position: "x" | "y") => {
     const positionVal = Number(e.target.value);
 
     setModel((prev) =>
       prev.map((n, i) =>
-        i === index
+        i === selectedLayer
           ? {
               ...n,
               image: {
@@ -309,13 +312,12 @@ export default function useGenerator() {
 
   const handleChangeReflection = (
     e: any,
-    type: "screen" | "phone" | "screenAlpha",
-    index: number
+    type: "screen" | "phone" | "screenAlpha"
   ) => {
     if (type === "screenAlpha") {
       return setModel((prev) =>
         prev.map((n, i) =>
-          i === index
+          i === selectedLayer
             ? {
                 ...n,
                 screenAlphaReflection: e.target.value,
@@ -328,7 +330,7 @@ export default function useGenerator() {
     if (type === "phone") {
       return setModel((prev) =>
         prev.map((n, i) =>
-          i === index
+          i === selectedLayer
             ? {
                 ...n,
                 bodyReflection: e.target.value,
@@ -341,7 +343,7 @@ export default function useGenerator() {
     if (type === "screen") {
       return setModel((prev) =>
         prev.map((n, i) =>
-          i === index
+          i === selectedLayer
             ? {
                 ...n,
                 screenReflection: e.target.checked ? 1 : 0,
@@ -354,12 +356,11 @@ export default function useGenerator() {
 
   function handleChangeRotation(
     e: ChangeEvent<HTMLInputElement>,
-    axis: "x" | "y" | "z",
-    index: number
+    axis: "x" | "y" | "z"
   ) {
     return setModel((prev: ModelType[]) =>
       prev.map((model, i) =>
-        i === index
+        i === selectedLayer
           ? {
               ...model,
               rotation: {
@@ -374,12 +375,12 @@ export default function useGenerator() {
 
   function handleChangePosition(
     e: ChangeEvent<HTMLInputElement>,
-    axis: "x" | "y" | "z",
-    index: number
+    axis: "x" | "y" | "z"
   ) {
-    return setModel((prev: ModelType[]) =>
+    console.log(selectedLayer, e.target.value, axis);
+    return setModel((prev) =>
       prev.map((model, i) =>
-        i === index
+        i === selectedLayer
           ? {
               ...model,
               position: {
@@ -411,7 +412,7 @@ export default function useGenerator() {
 
     const image = e.dataTransfer.files;
 
-    handleReadImage(image[0], index ?? 0);
+    handleReadImage(image[0]);
   };
 
   useEffect(() => {

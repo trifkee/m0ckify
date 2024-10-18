@@ -3,17 +3,57 @@
 .generate__controls.objects {
   border-right: 1px solid $dashboard-border-clr;
   background: $dashboard-gray-clr;
-  //   min-width: 160px;
-  // & > * {
-  //   padding: 0.5rem;
-  // }
+
+  .no-layers {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      svg {
+        --size: 24px;
+
+        width: var(--size) !important;
+        height: var(--size) !important;
+      }
+    }
+  }
 
   .heading {
     padding: 0.5rem;
   }
 
+  input[type="text"] {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.25rem;
+    border-bottom: 1px solid rgb($primary-clr-500, 1);
+    width: 100%;
+    margin-right: 1rem;
+    outline: none;
+  }
+
   .layers {
     .control {
+      &.active {
+        & > .control__title {
+          border-top: 1px solid rgb($primary-clr-500, 1);
+          border-radius: 0;
+          border-bottom: 1px solid $secondary-clr-400;
+          background: rgb($secondary-clr-500, 0.5);
+          color: rgb($primary-clr-500, 1);
+        }
+        background: rgb($light-gray-clr, 0.2);
+      }
+
       &__title {
         display: flex;
         align-items: center;

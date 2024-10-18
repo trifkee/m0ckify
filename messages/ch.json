@@ -78,6 +78,9 @@
       "title": "账户",
       "logout": "退出登录"
     },
+    "position": {
+      "title": "位置"
+    },
     "magicfy": {
       "title": "魔法生成",
       "generateTitle": "生成魔法模型",
@@ -101,6 +104,7 @@
       "screenReflection": "屏幕反射",
       "bodyReflection": "模型反射",
       "rotation": "模型旋转",
+      "position": "模型位置",
       "texture": {
         "title": "材质",
         "texture": {

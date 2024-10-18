@@ -17,15 +17,11 @@ export default function Model({
   handleChangeReflection,
   handleChangeColor,
   handleModelChange,
-  handleChangeRotation,
-  handleChangePosition,
 }: {
   index: number;
   handleChangeColor: CallableFunction;
   handleChangeReflection: CallableFunction;
   handleModelChange: ChangeEventHandler<HTMLSelectElement>;
-  handleChangeRotation: CallableFunction;
-  handleChangePosition: CallableFunction;
 }) {
   const t = useTranslations("generate");
   const model = useRecoilValue(ObjectsLayersAtom);
@@ -35,75 +31,6 @@ export default function Model({
       <summary className="control__title">
         {t("model.title")} <LucideBox />
       </summary>
-
-      {/* POSITION */}
-      <div className="control__section">
-        <p className="title">{t("model.position")}</p>
-
-        <div className="position">
-          <NumberInput
-            name="lx"
-            label="X"
-            step={0.02}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangePosition(e, "x", index)
-            }
-            value={model?.[index].position.x}
-          />
-          <NumberInput
-            name="ly"
-            step={0.02}
-            label="Y"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangePosition(e, "y", index)
-            }
-            value={model?.[index].position.y}
-          />
-          <NumberInput
-            name="lz"
-            step={0.02}
-            label="Z"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangePosition(e, "z", index)
-            }
-            value={model?.[index].position.z}
-          />
-        </div>
-      </div>
-      {/* ROTATION */}
-      <div className="control__section">
-        <p className="title">{t("model.rotation")}</p>
-
-        <div className="position">
-          <NumberInput
-            name="lx"
-            label="X"
-            step={0.02}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangeRotation(e, "x", index)
-            }
-            value={model?.[index].rotation.x}
-          />
-          <NumberInput
-            name="ly"
-            step={0.02}
-            label="Y"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangeRotation(e, "y", index)
-            }
-            value={model?.[index].rotation.y}
-          />
-          <NumberInput
-            name="lz"
-            step={0.02}
-            label="Z"
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangeRotation(e, "z", index)
-            }
-            value={model?.[index].rotation.z}
-          />
-        </div>
-      </div>
 
       {/*TODO : ADD LATER TEXTURES FOR THE MODEL */}
       {/* <div className="control__section">

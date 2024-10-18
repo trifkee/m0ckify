@@ -3,7 +3,7 @@
 import { useRecoilValue } from "recoil";
 import dynamic from "next/dynamic";
 
-import { selectedModelAtom } from "@/lib/atoms/generator";
+import { modelAtom, selectedModelAtom } from "@/lib/atoms/generator";
 import { ModelType } from "@/lib/types/model.type";
 
 const LazyIphone = dynamic(() => import("@/ui/models/Iphone.model"), {
@@ -17,10 +17,8 @@ const LazyTv = dynamic(() => import("@/ui/models/TV.model"), {
 });
 
 export default function Model(options: ModelType) {
-  const selectedModel = useRecoilValue(selectedModelAtom);
-
   const renderedModel = () => {
-    switch (selectedModel) {
+    switch (options.type) {
       case "iphone":
         return <LazyIphone options={options} scale={0.5} />;
       case "android":

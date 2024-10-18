@@ -1,80 +1,73 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import Button from "../atoms/Button.atom";
-import Images from "../moleculs/GenerateControls/Image.molecul";
-import Model from "../moleculs/GenerateControls/Model.molecul";
+import ObjectLayer from "../moleculs/ObjectLayer.molecul";
 
-import useGenerator from "@/ui/hooks/useGenerator.hook";
+import {
+  modelAtom,
+  ObjectsLayersAtom,
+  selectedLayerAtom,
+} from "@/lib/atoms/generator";
 
-import { modelAtom, ObjectsLayersAtom } from "@/lib/atoms/generator";
+import { LucideBox, LucidePlusCircle } from "lucide-react";
 
-import { LucidePlusCircle, LucideTrash2 } from "lucide-react";
-
-import "@/ui/styles/organism/generateObjects.organism.scss";
 import "@/ui/styles/organism/generateControls.organism.scss";
+import "@/ui/styles/organism/generateObjects.organism.scss";
 
 export default function GenerateObjects() {
+  const layersRef = useRef<HTMLDivElement | null>(null);
   const [layers, setLayers] = useRecoilState(ObjectsLayersAtom);
   const newModel = useRecoilValue(modelAtom);
+
+  const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
 
   function handleAddNewObject() {
     return setLayers((prev) => [...prev, { ...newModel }]);
   }
 
-  function handleRemoveObject(index: number) {
-    return setLayers((prev) => prev.filter((_, i) => i !== index));
-  }
+  useEffect(() => {
+    if (layersRef.current) {
+      //  @ts-ignore
+      const n: HTMLDetailsElement[] = layersRef.current.children;
 
-  const {
-    handleImageChange,
-    handleChangeColor,
-    handleModelChange,
-    handleImageSize,
-    handleImagePosition,
-    handleChangePosition,
-    handleChangeRotation,
-    handleChangeReflection,
-  } = useGenerator();
+      Array.from(n).forEach((child, i) => {
+        if (selectedLayer !== i) {
+          child.open = false;
+        }
+      });
+    }
+  }, [selectedLayer]);
 
   return (
     <article className="generate__controls objects">
-      <div className="heading">
-        <Button onClick={handleAddNewObject} variant="editor">
-          New object <LucidePlusCircle />
-        </Button>
-      </div>
-      <div className="layers">
-        {layers?.map((layer, i) => (
-          <details key={i} className="control">
-            <summary className="control__title">
-              {layer.title}
-              <Button
-                onClick={() => handleRemoveObject(i)}
-                variant="editor"
-                className="danger"
-              >
-                <LucideTrash2 />
-              </Button>
-            </summary>
-            <Images
-              index={i}
-              handleImageChange={handleImageChange}
-              handleImagePosition={handleImagePosition}
-              handleImageSize={handleImageSize}
-            />
-            <Model
-              index={i}
-              handleChangePosition={handleChangePosition}
-              handleChangeRotation={handleChangeRotation}
-              handleChangeColor={handleChangeColor}
-              handleChangeReflection={handleChangeReflection}
-              handleModelChange={handleModelChange}
-            />
-          </details>
-        ))}
-      </div>
+      {layers.length > 0 ? (
+        <>
+          <div className="heading">
+            <Button onClick={handleAddNewObject} variant="editor">
+              New object <LucidePlusCircle />
+            </Button>
+          </div>
+
+          <div ref={layersRef} className="layers">
+            {layers?.map((layer, i) => (
+              <ObjectLayer key={i} layer={layer} index={i} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="no-layers">
+          <h2>
+            Add Model
+            <LucideBox />
+          </h2>
+          <Button onClick={handleAddNewObject} variant="editor">
+            New object <LucidePlusCircle />
+          </Button>
+        </div>
+      )}
     </article>
   );
 }

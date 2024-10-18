@@ -60,7 +60,16 @@ export default function Model(props: ModelT) {
   return (
     <group
       {...props}
-      rotation={[model.position.y, model.position.x, 0]}
+      rotation={[
+        props.options.rotation.y,
+        props.options.rotation.x,
+        props.options.rotation.z,
+      ]}
+      position={[
+        props.options.position.y,
+        props.options.position.x,
+        props.options.position.z,
+      ]}
       dispose={null}
     >
       <mesh

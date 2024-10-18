@@ -18,6 +18,11 @@ export const renderAtom = atom<RenderType>({
   },
 });
 
+export const selectedLayerAtom = atom({
+  key: "selectedLayer",
+  default: 0,
+});
+
 export const canvasOptionsAtom = atom({
   key: "canvasOptions",
   default: {

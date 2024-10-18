@@ -15,7 +15,7 @@
 
   width: 100%;
   grid-template-rows: 0.25fr repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr) 0.75fr;
+  grid-template-columns: 0.75fr repeat(3, 1fr) 0.75fr;
   grid-template-areas:
     "navigation navigation navigation navigation navigation"
     "objects model model model menu"
