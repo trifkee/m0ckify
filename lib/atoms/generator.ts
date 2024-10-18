@@ -33,6 +33,11 @@ export const canvasOptionsAtom = atom({
   },
 });
 
+export const layersTabMobileAtom = atom({
+  key: "layerCta",
+  default: false,
+});
+
 export const modelAtom = atom<ModelType>({
   key: "model",
   default: { ...DEFAULT_OBJECT_OPTIONS },

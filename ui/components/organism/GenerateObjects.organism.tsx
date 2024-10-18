@@ -7,6 +7,7 @@ import Button from "../atoms/Button.atom";
 import ObjectLayer from "../moleculs/ObjectLayer.molecul";
 
 import {
+  layersTabMobileAtom,
   modelAtom,
   ObjectsLayersAtom,
   selectedLayerAtom,
@@ -22,6 +23,7 @@ export default function GenerateObjects() {
   const [layers, setLayers] = useRecoilState(ObjectsLayersAtom);
   const newModel = useRecoilValue(modelAtom);
 
+  const isLayers = useRecoilValue(layersTabMobileAtom);
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
 
   function handleAddNewObject() {
@@ -42,7 +44,9 @@ export default function GenerateObjects() {
   }, [selectedLayer]);
 
   return (
-    <article className="generate__controls objects">
+    <article
+      className={`generate__controls objects ${isLayers ? "active" : ""}`}
+    >
       {layers.length > 0 ? (
         <>
           <div className="heading">

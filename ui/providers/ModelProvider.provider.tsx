@@ -13,17 +13,22 @@ import { RenderType } from "@/lib/types/model.type";
 import {
   LucideFilePlus2,
   LucideHelpCircle,
+  LucideLayers,
   LucideRotate3D,
   LucideSettings2,
 } from "lucide-react";
-import { helpAtom, isGeneratingAtom, renderAtom } from "@/lib/atoms/generator";
+import {
+  helpAtom,
+  isGeneratingAtom,
+  layersTabMobileAtom,
+  renderAtom,
+} from "@/lib/atoms/generator";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
 import useGenerator from "../hooks/useGenerator.hook";
 import { useTranslations } from "next-intl";
 import useMouse from "../hooks/useMouse.hook";
 import ContextMenu from "../components/moleculs/ContextMenu.molecul";
-import { showCanvasSliderAtom } from "@/lib/atoms/global";
 
 export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -32,10 +37,11 @@ export default function ModelProvider() {
   const [freeroam, setFreeroam] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
+  const [isLayer, setIsLayer] = useRecoilState(layersTabMobileAtom);
+
   const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
   const setIsLoading = useSetRecoilState(isGeneratingAtom);
-  const [sliders, setSliders] = useRecoilState(showCanvasSliderAtom);
 
   const {
     handleDraggedImage,
@@ -125,6 +131,13 @@ export default function ModelProvider() {
                 variant="editor"
               >
                 <LucideRotate3D />
+              </Button>
+              <Button
+                variant="editor"
+                onClick={() => setIsLayer((prev) => !prev)}
+                className={`freeroam editor-layers-cta ${isLayer ? "y" : "n"}`}
+              >
+                <LucideLayers />
               </Button>
               {/* <Button
                 className={`freeroam ${sliders ? "y" : "n"}`}
