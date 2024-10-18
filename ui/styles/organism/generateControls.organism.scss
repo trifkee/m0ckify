@@ -28,6 +28,9 @@
 
   // ----
   .control {
+    &:has(> .control) {
+      padding: 0;
+    }
     padding: 0.5rem;
     border-bottom: 1px solid $dashboard-border-clr;
 

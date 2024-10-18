@@ -1,28 +1,23 @@
 "use client";
-
-import { useEffect } from "react";
-
+import { useRecoilValue } from "recoil";
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 
 import Render from "../moleculs/GenerateControls/Render.molecul";
 import Magicfy from "../moleculs/GenerateControls/Magicfy.molecul";
 import User from "../moleculs/GenerateControls/User.molecul";
-import Images from "../moleculs/GenerateControls/Image.molecul";
-import Model from "../moleculs/GenerateControls/Model.molecul";
 import Env from "../moleculs/GenerateControls/Env.molecul";
 import Lights from "../moleculs/GenerateControls/Lights.molecul";
+import OverallSettings from "../moleculs/GenerateControls/OverallSettings.molecul";
 import Actions from "../moleculs/GenerateControls/Actions.molecul";
 
-import "@/ui/styles/organism/generateControls.organism.scss";
 import { userAtom } from "@/lib/atoms/user";
-import { useRecoilValue } from "recoil";
-import OverallSettings from "../moleculs/GenerateControls/OverallSettings.molecul";
+
+import "@/ui/styles/organism/generateControls.organism.scss";
 
 export default function GenerateControls() {
   const user = useRecoilValue(userAtom);
 
   const {
-    handleImageChange,
     handleChangeColor,
     handleReadAIImage,
     onChangeIntensity,
@@ -33,10 +28,6 @@ export default function GenerateControls() {
     resetModelPosition,
     handleAddNewLight,
     handleRemoveLight,
-    handleModelChange,
-    handleImageSize,
-    handleImagePosition,
-    handleChangeReflection,
     handleChangeRenderSize,
     handleChangeRenderImageType,
   } = useGenerator();
@@ -51,16 +42,6 @@ export default function GenerateControls() {
       <Render
         handleChangeRenderImageType={handleChangeRenderImageType}
         handleChangeRenderSize={handleChangeRenderSize}
-      />
-      <Images
-        handleImageChange={handleImageChange}
-        handleImagePosition={handleImagePosition}
-        handleImageSize={handleImageSize}
-      />
-      <Model
-        handleChangeColor={handleChangeColor}
-        handleChangeReflection={handleChangeReflection}
-        handleModelChange={handleModelChange}
       />
       <Env
         handleChangeColor={handleChangeColor}

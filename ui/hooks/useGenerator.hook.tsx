@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, useEffect } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 import { readUserImage, saveImageFromCanvas } from "@/lib/helpers/model";
 import {
@@ -12,21 +12,20 @@ import {
 } from "@/lib/types/model.type";
 
 import {
-  modelAtom,
+  ObjectsLayersAtom,
   renderAtom,
   sceneDocumentAtom,
   sceneLightsAtom,
-  selectedModelAtom,
+  selectedLayerAtom,
 } from "@/lib/atoms/generator";
 
-import fallbackImage from "@/public/images/mockify-starter.jpg";
-
 export default function useGenerator() {
-  const setSelectedModel = useSetRecoilState(selectedModelAtom);
-  const [model, setModel] = useRecoilState(modelAtom);
+  const [model, setModel] = useRecoilState(ObjectsLayersAtom);
   const [render, setRender] = useRecoilState(renderAtom);
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
   const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
+
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
 
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,26 +37,38 @@ export default function useGenerator() {
   };
 
   const handleReadImage = (file: File) => {
-    readUserImage(file).then((result) => {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          ...prev.image,
-          src: result as string,
-          isDefault: false,
-        },
-      }));
-    });
+    readUserImage(file)
+      .then((result) => {
+        if (typeof result === "string") {
+          setModel((prev: ModelType[]) =>
+            prev.map((obj, i: number) =>
+              i === selectedLayer
+                ? {
+                    ...obj,
+                    image: { ...obj.image, src: result, isDefault: false },
+                  }
+                : obj
+            )
+          );
+        } else {
+          console.error("Invalid image result", result);
+        }
+      })
+      .catch((error) => {
+        console.error("Error reading image", error);
+      });
   };
+
+  // TODO : FIX THIS FOR MASTER TESIS
   const handleReadAIImage = (image: string) => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: {
-        ...prev.image,
-        src: image ?? fallbackImage,
-        isDefault: false,
-      },
-    }));
+    //   setModel((prev: ModelType) => ({
+    //     ...prev,
+    //     image: {
+    //       ...prev.image,
+    //       src: image ?? fallbackImage,
+    //       isDefault: false,
+    //     },
+    //   }));
   };
 
   /* Save Image to user PC */
@@ -67,16 +78,17 @@ export default function useGenerator() {
 
   /* Model Customization */
   const resetModelPosition = () => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      color: "#fff",
-      texture: "plastic",
-      position: {
-        x: 0,
-        y: 0,
-        z: 0,
-      },
-    }));
+    // TODO :FIX THIS
+    // setModel((prev: ModelType) => ({
+    //   ...prev,
+    //   color: "#fff",
+    //   texture: "plastic",
+    //   position: {
+    //     x: 0,
+    //     y: 0,
+    //     z: 0,
+    //   },
+    // }));
 
     setSceneDocument((prev: SceneDocumentType) => ({
       ...prev,
@@ -126,11 +138,7 @@ export default function useGenerator() {
     }
   };
 
-  const onChangeIntensity = (
-    e: any,
-    type: "env" | "dirLights",
-    index?: number
-  ) => {
+  const onChangeIntensity = (e: any, type: "env" | "dirLights") => {
     if (type === "env") {
       setSceneDocument((prev: SceneDocumentType) => ({
         ...prev,
@@ -146,7 +154,7 @@ export default function useGenerator() {
     if (type === "dirLights") {
       setSceneLights(
         sceneLights.map((light: SceneLightsType, i: number) =>
-          i === index ? { ...light, intensity: e.target.value } : light
+          i === selectedLayer ? { ...light, intensity: e.target.value } : light
         )
       );
 
@@ -160,10 +168,16 @@ export default function useGenerator() {
     index?: number
   ) => {
     if (type === "model") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        color: color,
-      }));
+      setModel((prev) =>
+        prev.map((n, i) =>
+          i === selectedLayer
+            ? {
+                ...n,
+                color,
+              }
+            : n
+        )
+      );
 
       return;
     }
@@ -200,10 +214,11 @@ export default function useGenerator() {
   };
 
   const handleChangeModelTexture = (e: any) => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      texture: e.target.name,
-    }));
+    // TODO :FIX THIS
+    // setModel((prev: ModelType) => ({
+    //   ...prev,
+    //   texture: e.target.name,
+    // }));
   };
 
   const handleDirLightPosition = (
@@ -245,33 +260,54 @@ export default function useGenerator() {
   };
 
   const handleModelChange = (e: any) => {
-    const model = e.target.value;
+    const type = e.target.value;
 
-    return setSelectedModel(model);
+    return setModel((prev) =>
+      prev.map((n, i) =>
+        i === selectedLayer
+          ? {
+              ...n,
+              type,
+            }
+          : n
+      )
+    );
   };
 
   const handleImageSize = (e: any, type: "width" | "height") => {
     const size = Number(e.target.value);
 
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: {
-        ...prev.image,
-        [type]: size,
-      },
-    }));
+    setModel((prev) =>
+      prev.map((n, i) =>
+        i === selectedLayer
+          ? {
+              ...n,
+              image: {
+                ...n.image,
+                [type]: size,
+              },
+            }
+          : n
+      )
+    );
   };
 
   const handleImagePosition = (e: any, position: "x" | "y") => {
     const positionVal = Number(e.target.value);
 
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: {
-        ...prev.image,
-        [position]: positionVal,
-      },
-    }));
+    setModel((prev) =>
+      prev.map((n, i) =>
+        i === selectedLayer
+          ? {
+              ...n,
+              image: {
+                ...n.image,
+                [position]: positionVal,
+              },
+            }
+          : n
+      )
+    );
   };
 
   const handleChangeReflection = (
@@ -279,26 +315,83 @@ export default function useGenerator() {
     type: "screen" | "phone" | "screenAlpha"
   ) => {
     if (type === "screenAlpha") {
-      return setModel((prev: ModelType) => ({
-        ...prev,
-        screenAlphaReflection: e.target.value,
-      }));
+      return setModel((prev) =>
+        prev.map((n, i) =>
+          i === selectedLayer
+            ? {
+                ...n,
+                screenAlphaReflection: e.target.value,
+              }
+            : n
+        )
+      );
     }
 
     if (type === "phone") {
-      return setModel((prev: ModelType) => ({
-        ...prev,
-        bodyReflection: e.target.value,
-      }));
+      return setModel((prev) =>
+        prev.map((n, i) =>
+          i === selectedLayer
+            ? {
+                ...n,
+                bodyReflection: e.target.value,
+              }
+            : n
+        )
+      );
     }
 
     if (type === "screen") {
-      return setModel((prev: ModelType) => ({
-        ...prev,
-        screenReflection: e.target.checked ? 1 : 0,
-      }));
+      return setModel((prev) =>
+        prev.map((n, i) =>
+          i === selectedLayer
+            ? {
+                ...n,
+                screenReflection: e.target.checked ? 1 : 0,
+              }
+            : n
+        )
+      );
     }
   };
+
+  function handleChangeRotation(
+    e: ChangeEvent<HTMLInputElement>,
+    axis: "x" | "y" | "z"
+  ) {
+    return setModel((prev: ModelType[]) =>
+      prev.map((model, i) =>
+        i === selectedLayer
+          ? {
+              ...model,
+              rotation: {
+                ...model.rotation,
+                [axis]: Number(e.target.value),
+              },
+            }
+          : model
+      )
+    );
+  }
+
+  function handleChangePosition(
+    e: ChangeEvent<HTMLInputElement>,
+    axis: "x" | "y" | "z"
+  ) {
+    console.log(selectedLayer, e.target.value, axis);
+    return setModel((prev) =>
+      prev.map((model, i) =>
+        i === selectedLayer
+          ? {
+              ...model,
+              position: {
+                ...model.position,
+                [axis]: Number(e.target.value),
+              },
+            }
+          : model
+      )
+    );
+  }
 
   const handleChangeRenderSize = (e: ChangeEvent<HTMLInputElement>) => {
     setRender((prev: RenderType) => ({
@@ -314,7 +407,7 @@ export default function useGenerator() {
     }));
   };
 
-  const handleDraggedImage = (e: any) => {
+  const handleDraggedImage = (e: any, index?: number) => {
     e.preventDefault();
 
     const image = e.dataTransfer.files;
@@ -341,6 +434,8 @@ export default function useGenerator() {
     handleImageSize,
     handleSave,
     resetModelPosition,
+    handleChangePosition,
+    handleChangeRotation,
     handleChangeShadow,
     handleChangeModelTexture,
     handleDirLightPosition,

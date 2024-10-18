@@ -6,6 +6,7 @@ import { useLoader, useThree } from "@react-three/fiber";
 
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
 import { modelAtom } from "@/lib/atoms/generator";
+import { ModelType } from "@/lib/types/model.type";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -24,19 +25,21 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Iphone(props: JSX.IntrinsicElements["group"]) {
-  const { nodes, materials } = useGLTF("/models/iphone.glb") as GLTFResult;
+type ModelT = JSX.IntrinsicElements["group"] & {
+  options: ModelType;
+};
 
-  const model = useRecoilValue(modelAtom);
+export default function Iphone(props: ModelT) {
+  const { nodes, materials } = useGLTF("/models/iphone.glb") as GLTFResult;
 
   const texture: any = useLoader(
     THREE.TextureLoader,
-    model.image.src as string
+    props.options.image.src as string
   );
   const { gl } = useThree();
 
   /* SCREEN MOCKUP */
-  const image = model.image;
+  const image = props.options.image;
 
   texture.center.set(0.5, 0.5);
 
@@ -59,7 +62,16 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
   return (
     <group
       {...props}
-      rotation={[model.position.y, model.position.x, model.position.z]}
+      rotation={[
+        props.options.rotation.y,
+        props.options.rotation.x,
+        props.options.rotation.z,
+      ]}
+      position={[
+        props.options.position.y,
+        props.options.position.x,
+        props.options.position.z,
+      ]}
       dispose={null}
     >
       <mesh
@@ -70,8 +82,8 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
         rotation={[0, -Math.PI / 2, 0]}
       >
         <meshStandardMaterial
-          color={model.color}
-          roughness={model.bodyReflection}
+          color={props.options.color}
+          roughness={props.options.bodyReflection}
         />
       </mesh>
       <mesh
@@ -81,7 +93,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
         material={materials.Black}
         rotation={[0, -Math.PI / 2, 0]}
       />
-      {model.screenReflection && (
+      {props.options.screenReflection && (
         <mesh
           geometry={nodes.Glass.geometry}
           material={materials.Glas}
@@ -91,7 +103,7 @@ export default function Iphone(props: JSX.IntrinsicElements["group"]) {
             attach="material"
             {...materials.Glas}
             transparent
-            opacity={model.screenAlphaReflection}
+            opacity={props.options.screenAlphaReflection}
           />
         </mesh>
       )}

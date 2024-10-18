@@ -78,6 +78,9 @@
       "title": "Konto",
       "logout": "Abmelden"
     },
+    "position": {
+      "title": "Position"
+    },
     "magicfy": {
       "title": "Magifizieren",
       "generateTitle": "Magische Mockup generieren",
@@ -101,6 +104,7 @@
       "screenReflection": "Bildschirmreflexion",
       "bodyReflection": "Modellreflexion",
       "rotation": "Modellrotation",
+      "position": "Modellposition",
       "texture": {
         "title": "Textur",
         "texture": {

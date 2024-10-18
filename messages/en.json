@@ -91,6 +91,9 @@
         "noSavingKeys": "Your key won't be saved!"
       }
     },
+    "position": {
+      "title": "Position"
+    },
     "image": {
       "title": "Image",
       "add": "Add Image",
@@ -101,6 +104,8 @@
       "screenReflection": "Screen Reflection",
       "bodyReflection": "Model Reflection",
       "rotation": "Model Rotation",
+      "position": "Model Position",
+
       "texture": {
         "title": "Texture",
         "texture": {

@@ -78,6 +78,9 @@
       "title": "Nalog",
       "logout": "Odjavi se"
     },
+    "position": {
+      "title": "Pozicija"
+    },
     "magicfy": {
       "title": "Magicfy",
       "generateTitle": "Generiši magični mokap",
@@ -101,6 +104,8 @@
       "screenReflection": "Refleksija ekrana",
       "bodyReflection": "Refleksija modela",
       "rotation": "Rotacija modela",
+      "position": "Model Position",
+
       "texture": {
         "title": "Tekstura",
         "texture": {

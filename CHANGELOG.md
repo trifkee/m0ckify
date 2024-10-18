@@ -17,3 +17,15 @@
 - Install react three fiber
 - Install Next intl for localization
 - Created serbian locales
+
+### [2.0.0] 2024.10.18
+
+## Added
+
+- Add more objects to the canvas
+- Manipulate with position, rotation
+- Added additional translations
+
+## Changed
+
+- Moved object options to the other navigation panel

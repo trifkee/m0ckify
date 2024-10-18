@@ -5,7 +5,14 @@ export type RenderType = {
 };
 
 export type ModelType = {
+  type: "iphone" | "android" | "tv";
+  title: string;
   position: {
+    x: number;
+    y: number;
+    z: number;
+  };
+  rotation: {
     x: number;
     y: number;
     z: number;
@@ -35,26 +42,6 @@ export type SceneDocumentType = {
     color: string;
     castShadow: boolean;
   };
-  // lights: {
-  //   leftDirectional: {
-  //     intensity: number;
-  //     color: string;
-  //     position: {
-  //       x: number;
-  //       y: number;
-  //       z: number;
-  //     };
-  //   };
-  //   rightDirectional: {
-  //     intensity: number;
-  //     color: string;
-  //     position: {
-  //       x: number;
-  //       y: number;
-  //       z: number;
-  //     };
-  //   };
-  // };
 };
 
 export type SceneLightsType = {

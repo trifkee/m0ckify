@@ -7,6 +7,8 @@ import {
   ACESFilmicToneMapping,
 } from "three";
 
+import fallbackImage from "@/public/images/mockify-starter.jpg";
+
 export const STARTING_PROPMPT =
   "Design a cutting-edge, professional mobile app interface with a focus on UX best practices and visual hierarchy. The layout should feature a highly organized structure with a consistent design system, using a neutral color scheme complemented by a refined accent color for primary actions. Utilize modern typography with strong readability, paired with custom iconography. The home screen should showcase a high-contrast, user-friendly navigation bar, followed by dynamic, modular content sections that adapt seamlessly to different device sizes. Prioritize a polished, minimalist aesthetic with strategic use of whitespace and intuitive interaction cues for an elevated user experience.";
 
@@ -111,3 +113,31 @@ export const TONE_MAPPINGS = [
   { name: "Filmic", value: ACESFilmicToneMapping },
   { name: "No Mapping", value: NoToneMapping },
 ];
+
+export const DEFAULT_OBJECT_OPTIONS = {
+  title: "Mockify model",
+  type: "iphone" as "iphone",
+  color: "#fff",
+  texture: "plastic" as "plastic",
+  bodyReflection: 0,
+  screenReflection: 1,
+  screenAlphaReflection: 0.2,
+  position: {
+    x: 0 as number,
+    y: 0 as number,
+    z: 0 as number,
+  },
+  rotation: {
+    x: 0 as number,
+    y: 0 as number,
+    z: 0 as number,
+  },
+  image: {
+    src: fallbackImage.src as any,
+    isDefault: true,
+    width: 0 as number,
+    height: 0 as number,
+    x: 0,
+    y: 0,
+  },
+};

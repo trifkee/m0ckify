@@ -15,13 +15,17 @@
 
   width: 100%;
   grid-template-rows: 0.25fr repeat(4, 1fr);
-  grid-template-columns: repeat(4, 1fr) 0.75fr;
+  grid-template-columns: 0.75fr repeat(3, 1fr) 0.75fr;
   grid-template-areas:
     "navigation navigation navigation navigation navigation"
-    "model model model model menu"
-    "model  model model model menu"
-    "model model model model menu"
-    "model model model model menu";
+    "objects model model model menu"
+    "objects  model model model menu"
+    "objects model model model menu"
+    "objects model model model menu";
+
+  &__controls.objects {
+    grid-area: objects;
+  }
 
   &__navigation {
     width: 100%;
@@ -97,7 +101,7 @@
 
   &__model {
     grid-area: model;
-    position: relative;
+    // position: relative;
     width: 100%;
     overflow: hidden;
     display: grid;
