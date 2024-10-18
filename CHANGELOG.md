@@ -29,3 +29,4 @@
 ## Changed
 
 - Moved object options to the other navigation panel
+- Changed UI on mobile screen
