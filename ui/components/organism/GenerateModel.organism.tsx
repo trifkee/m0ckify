@@ -33,7 +33,7 @@ export default function GenerateModel() {
     <article className="generate__model">
       <ModelProvider />
 
-      <Slider
+      {/* <Slider
         name="x"
         id="x"
         onChange={(e) => onChangeSlider(e, "x")}
@@ -54,7 +54,7 @@ export default function GenerateModel() {
         onChange={(e) => onChangeSlider(e, "y")}
         className="y"
         visible={canvasSliders}
-      />
+      /> */}
     </article>
   );
 }

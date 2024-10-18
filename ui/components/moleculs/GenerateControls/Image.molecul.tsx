@@ -7,20 +7,22 @@ import NumberInput from "../../atoms/NumberInput.atom";
 
 import Button from "../../atoms/Button.atom";
 
-import { modelAtom } from "@/lib/atoms/generator";
+import { ObjectsLayersAtom } from "@/lib/atoms/generator";
 
 export default function Images({
+  index,
   handleImagePosition,
   handleImageSize,
   handleImageChange,
 }: {
+  index: number;
   handleImageSize: CallableFunction;
   handleImagePosition: CallableFunction;
   handleImageChange: ChangeEventHandler<HTMLInputElement>;
 }) {
   const t = useTranslations("generate");
 
-  const model = useRecoilValue(modelAtom);
+  const model = useRecoilValue(ObjectsLayersAtom);
 
   return (
     <details className="control image">
@@ -30,8 +32,8 @@ export default function Images({
 
       <div className="control__section">
         <div className="image-container">
-          {!model.image.isDefault ? (
-            <img src={model.image.src as string} alt="model" />
+          {!model?.[index].image.isDefault ? (
+            <img src={model?.[index].image.src as string} alt="model" />
           ) : (
             <>
               <LucideImage />
@@ -51,6 +53,7 @@ export default function Images({
             id="avatar"
             name="avatar"
             accept="image/*"
+            data-id={index}
           />
         </Button>
 
@@ -65,14 +68,14 @@ export default function Images({
           <NumberInput
             name="iw"
             label="W"
-            onChange={(e: any) => handleImageSize(e, "width")}
-            value={model.image.width}
+            onChange={(e: any) => handleImageSize(e, "width", index)}
+            value={model?.[index].image.width}
           />
           <NumberInput
             name="ih"
             label="H"
-            onChange={(e: any) => handleImageSize(e, "height")}
-            value={model.image.height}
+            onChange={(e: any) => handleImageSize(e, "height", index)}
+            value={model?.[index].image.height}
           />
         </div>
 
@@ -87,14 +90,14 @@ export default function Images({
           <NumberInput
             name="ix"
             label="X"
-            onChange={(e: any) => handleImagePosition(e, "x")}
-            value={model.image.x}
+            onChange={(e: any) => handleImagePosition(e, "x", index)}
+            value={model?.[index].image.x}
           />
           <NumberInput
             name="iy"
             label="Y"
-            onChange={(e: any) => handleImagePosition(e, "y")}
-            value={model.image.y}
+            onChange={(e: any) => handleImagePosition(e, "y", index)}
+            value={model?.[index].image.y}
           />
         </div>
       </div>

@@ -126,13 +126,13 @@ export default function ModelProvider() {
               >
                 <LucideRotate3D />
               </Button>
-              <Button
+              {/* <Button
                 className={`freeroam ${sliders ? "y" : "n"}`}
                 onClick={() => setSliders((prev) => !prev)}
                 variant="editor"
               >
                 <LucideSettings2 style={{ transform: "rotate(90deg)" }} />
-              </Button>
+              </Button> */}
             </div>
 
             <Button

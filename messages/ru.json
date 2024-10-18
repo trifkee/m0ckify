@@ -78,6 +78,9 @@
       "title": "Аккаунт",
       "logout": "Выйти"
     },
+    "position": {
+      "title": "Позиция"
+    },
     "magicfy": {
       "title": "Магификация",
       "generateTitle": "Создать магический мокап",
@@ -101,6 +104,7 @@
       "screenReflection": "Отражение экрана",
       "bodyReflection": "Отражение модели",
       "rotation": "Вращение модели",
+      "position": "Позиция модели",
       "texture": {
         "title": "Текстура",
         "texture": {
