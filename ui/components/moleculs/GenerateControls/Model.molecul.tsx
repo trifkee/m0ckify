@@ -1,42 +1,34 @@
 import { ChangeEvent, ChangeEventHandler } from "react";
 import { useTranslations } from "next-intl";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
 import { HexColorPicker } from "react-colorful";
 import Slider from "../../atoms/Slider.atom";
 import Checkbox from "../../atoms/Checkbox.atom";
 
-import { modelAtom } from "@/lib/atoms/generator";
+import { ObjectsLayersAtom } from "@/lib/atoms/generator";
 import { MODELS_LIST } from "@/lib/constants/generator";
 
 import { LucideBox } from "lucide-react";
-import { ModelType } from "@/lib/types/model.type";
 import NumberInput from "../../atoms/NumberInput.atom";
 
 export default function Model({
+  index,
   handleChangeReflection,
   handleChangeColor,
   handleModelChange,
+  handleChangeRotation,
+  handleChangePosition,
 }: {
+  index: number;
   handleChangeColor: CallableFunction;
   handleChangeReflection: CallableFunction;
   handleModelChange: ChangeEventHandler<HTMLSelectElement>;
+  handleChangeRotation: CallableFunction;
+  handleChangePosition: CallableFunction;
 }) {
   const t = useTranslations("generate");
-  const [model, setModel] = useRecoilState(modelAtom);
-
-  const handleChangePosition = (
-    e: ChangeEvent<HTMLInputElement>,
-    axis: "x" | "y" | "z"
-  ) => {
-    return setModel((prev: ModelType) => ({
-      ...prev,
-      position: {
-        ...prev.position,
-        [axis]: e.target.value,
-      },
-    }));
-  };
+  const model = useRecoilValue(ObjectsLayersAtom);
 
   return (
     <details className="control model select">
@@ -44,6 +36,41 @@ export default function Model({
         {t("model.title")} <LucideBox />
       </summary>
 
+      {/* POSITION */}
+      <div className="control__section">
+        <p className="title">{t("model.position")}</p>
+
+        <div className="position">
+          <NumberInput
+            name="lx"
+            label="X"
+            step={0.02}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangePosition(e, "x", index)
+            }
+            value={model?.[index].position.x}
+          />
+          <NumberInput
+            name="ly"
+            step={0.02}
+            label="Y"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangePosition(e, "y", index)
+            }
+            value={model?.[index].position.y}
+          />
+          <NumberInput
+            name="lz"
+            step={0.02}
+            label="Z"
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              handleChangePosition(e, "z", index)
+            }
+            value={model?.[index].position.z}
+          />
+        </div>
+      </div>
+      {/* ROTATION */}
       <div className="control__section">
         <p className="title">{t("model.rotation")}</p>
 
@@ -53,27 +80,27 @@ export default function Model({
             label="X"
             step={0.02}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangePosition(e, "x")
+              handleChangeRotation(e, "x", index)
             }
-            value={model.position.x}
+            value={model?.[index].rotation.x}
           />
           <NumberInput
             name="ly"
             step={0.02}
             label="Y"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangePosition(e, "y")
+              handleChangeRotation(e, "y", index)
             }
-            value={model.position.y}
+            value={model?.[index].rotation.y}
           />
           <NumberInput
             name="lz"
             step={0.02}
             label="Z"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              handleChangePosition(e, "z")
+              handleChangeRotation(e, "z", index)
             }
-            value={model.position.z}
+            value={model?.[index].rotation.z}
           />
         </div>
       </div>
@@ -102,9 +129,9 @@ export default function Model({
           min={0}
           className="small"
           name="phone-reflection"
-          onChange={(e) => handleChangeReflection(e, "phone")}
+          onChange={(e) => handleChangeReflection(e, "phone", index)}
           step={0.01}
-          value={String(model.bodyReflection)}
+          value={String(model?.[index].bodyReflection)}
         />
       </div>
 
@@ -113,20 +140,20 @@ export default function Model({
         {/* TODO: THIS IS BY TYPE NUMBER, CHECK HOW TO MAKE ALPHA CHANNEL, FOR NOW THIS WILL BE LIKE BOOL ( 1 True, 0 False ) */}
         <Checkbox
           htmlName="screen-reflection"
-          onChange={(e) => handleChangeReflection(e, "screen")}
+          onChange={(e) => handleChangeReflection(e, "screen", index)}
           title={t("model.screenReflection")}
-          value={Boolean(model.screenReflection)}
+          value={Boolean(model?.[index].screenReflection)}
         />
 
-        {model.screenReflection ? (
+        {model?.[index].screenReflection ? (
           <Slider
             max={0.3}
             min={0}
             className="small"
             name="screen-reflection"
-            onChange={(e) => handleChangeReflection(e, "screenAlpha")}
+            onChange={(e) => handleChangeReflection(e, "screenAlpha", index)}
             step={0.01}
-            value={String(model.screenAlphaReflection)}
+            value={String(model?.[index].screenAlphaReflection)}
           />
         ) : null}
       </div>
@@ -151,8 +178,8 @@ export default function Model({
       <div className="control__section ">
         <p className="title">{t("model.color.title")}</p>
         <HexColorPicker
-          color={model.color}
-          onChange={(e) => handleChangeColor(e, "model")}
+          color={model?.[index].color}
+          onChange={(e) => handleChangeColor(e, "model", index)}
         />
       </div>
     </details>

@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import "@/ui/styles/moleculs/contextMenu.molecul.scss";
 import Button from "../atoms/Button.atom";
 import { IoSyncSharp } from "react-icons/io5";
-import { LucideDownload, LucideImage } from "lucide-react";
+import { LucideDownload, LucideImage, LucideXCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { renderAtom } from "@/lib/atoms/generator";
 import { ChangeEventHandler, useEffect, useRef } from "react";
@@ -34,11 +34,6 @@ export default function ContextMenu({
         <motion.div
           id="context-menu"
           ref={contextRef}
-          transition={{
-            type: "spring",
-            stiffness: 100,
-            damping: 50,
-          }}
           initial={{
             opacity: 0,
             height: 0,
@@ -50,7 +45,6 @@ export default function ContextMenu({
           exit={{
             opacity: 0,
             height: 0,
-            transition: { duration: 0.25 },
           }}
           className="context-menu"
           style={{
@@ -59,8 +53,21 @@ export default function ContextMenu({
             display: context.shown ? "flex" : "none",
           }}
         >
-          <p>Quick Actions</p>
-
+          <div className="heading">
+            <p>Quick Actions</p>
+            <Button
+              onClick={() =>
+                setContex((prev) => ({
+                  ...prev,
+                  shown: false,
+                }))
+              }
+              variant="editor"
+              className="danger"
+            >
+              <LucideXCircle />
+            </Button>
+          </div>
           <div className="actions">
             <Button variant="editor">
               <p>{t("image.add")}</p>

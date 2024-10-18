@@ -1,0 +1,55 @@
+@import "variables.scss";
+
+.generate__controls.objects {
+  border-right: 1px solid $dashboard-border-clr;
+  background: $dashboard-gray-clr;
+  //   min-width: 160px;
+  // & > * {
+  //   padding: 0.5rem;
+  // }
+
+  .heading {
+    padding: 0.5rem;
+  }
+
+  .layers {
+    .control {
+      &__title {
+        display: flex;
+        align-items: center;
+
+        .button {
+          width: fit-content;
+          aspect-ratio: 1;
+          padding: 0.35rem;
+        }
+      }
+    }
+    &:has(+ .control) {
+      border-bottom: 1px solid red !important;
+    }
+  }
+
+  //   .heading {
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: center;
+  //     justify-content: center;
+  //     gap: 0.5rem;
+  //     height: 100%;
+
+  //     svg {
+  //       --size: 20px;
+
+  //       width: var(--size) !important;
+  //       height: var(--size) !important;
+  //     }
+
+  //     h2 {
+  //       font-weight: 500;
+  //       line-height: 1.1;
+  //       text-align: center;
+  //       font-size: clamp(0.85rem, 1rem, 1.25rem);
+  //     }
+  //   }
+}

@@ -20,6 +20,7 @@ export default function useMouse() {
 
   function handleRightClick(e: MouseEvent) {
     e.preventDefault();
+
     setContextMenu({
       position: {
         x: e.pageX,

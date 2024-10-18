@@ -12,7 +12,7 @@ import {
 } from "@/lib/types/model.type";
 
 import {
-  modelAtom,
+  ObjectsLayersAtom,
   renderAtom,
   sceneDocumentAtom,
   sceneLightsAtom,
@@ -23,41 +23,54 @@ import fallbackImage from "@/public/images/mockify-starter.jpg";
 
 export default function useGenerator() {
   const setSelectedModel = useSetRecoilState(selectedModelAtom);
-  const [model, setModel] = useRecoilState(modelAtom);
+  const [model, setModel] = useRecoilState(ObjectsLayersAtom);
   const [render, setRender] = useRecoilState(renderAtom);
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
   const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
 
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const id = e.target.dataset.id;
     const image = e.target.files?.[0];
 
     if (!image) return;
 
-    handleReadImage(image);
+    handleReadImage(image, +id!);
   };
 
-  const handleReadImage = (file: File) => {
-    readUserImage(file).then((result) => {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        image: {
-          ...prev.image,
-          src: result as string,
-          isDefault: false,
-        },
-      }));
-    });
+  const handleReadImage = (file: File, id: number) => {
+    readUserImage(file)
+      .then((result) => {
+        if (typeof result === "string") {
+          setModel((prev: ModelType[]) =>
+            prev.map((obj, i: number) =>
+              i === id
+                ? {
+                    ...obj,
+                    image: { ...obj.image, src: result, isDefault: false },
+                  }
+                : obj
+            )
+          );
+        } else {
+          console.error("Invalid image result", result);
+        }
+      })
+      .catch((error) => {
+        console.error("Error reading image", error);
+      });
   };
+
+  // TODO : FIX THIS FOR MASTER TESIS
   const handleReadAIImage = (image: string) => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: {
-        ...prev.image,
-        src: image ?? fallbackImage,
-        isDefault: false,
-      },
-    }));
+    //   setModel((prev: ModelType) => ({
+    //     ...prev,
+    //     image: {
+    //       ...prev.image,
+    //       src: image ?? fallbackImage,
+    //       isDefault: false,
+    //     },
+    //   }));
   };
 
   /* Save Image to user PC */
@@ -67,16 +80,17 @@ export default function useGenerator() {
 
   /* Model Customization */
   const resetModelPosition = () => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      color: "#fff",
-      texture: "plastic",
-      position: {
-        x: 0,
-        y: 0,
-        z: 0,
-      },
-    }));
+    // TODO :FIX THIS
+    // setModel((prev: ModelType) => ({
+    //   ...prev,
+    //   color: "#fff",
+    //   texture: "plastic",
+    //   position: {
+    //     x: 0,
+    //     y: 0,
+    //     z: 0,
+    //   },
+    // }));
 
     setSceneDocument((prev: SceneDocumentType) => ({
       ...prev,
@@ -160,10 +174,16 @@ export default function useGenerator() {
     index?: number
   ) => {
     if (type === "model") {
-      setModel((prev: ModelType) => ({
-        ...prev,
-        color: color,
-      }));
+      setModel((prev) =>
+        prev.map((n, i) =>
+          i === index
+            ? {
+                ...n,
+                color,
+              }
+            : n
+        )
+      );
 
       return;
     }
@@ -200,10 +220,11 @@ export default function useGenerator() {
   };
 
   const handleChangeModelTexture = (e: any) => {
-    setModel((prev: ModelType) => ({
-      ...prev,
-      texture: e.target.name,
-    }));
+    // TODO :FIX THIS
+    // setModel((prev: ModelType) => ({
+    //   ...prev,
+    //   texture: e.target.name,
+    // }));
   };
 
   const handleDirLightPosition = (
@@ -250,55 +271,126 @@ export default function useGenerator() {
     return setSelectedModel(model);
   };
 
-  const handleImageSize = (e: any, type: "width" | "height") => {
+  const handleImageSize = (e: any, type: "width" | "height", index: number) => {
     const size = Number(e.target.value);
 
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: {
-        ...prev.image,
-        [type]: size,
-      },
-    }));
+    setModel((prev) =>
+      prev.map((n, i) =>
+        i === index
+          ? {
+              ...n,
+              image: {
+                ...n.image,
+                [type]: size,
+              },
+            }
+          : n
+      )
+    );
   };
 
-  const handleImagePosition = (e: any, position: "x" | "y") => {
+  const handleImagePosition = (e: any, position: "x" | "y", index: number) => {
     const positionVal = Number(e.target.value);
 
-    setModel((prev: ModelType) => ({
-      ...prev,
-      image: {
-        ...prev.image,
-        [position]: positionVal,
-      },
-    }));
+    setModel((prev) =>
+      prev.map((n, i) =>
+        i === index
+          ? {
+              ...n,
+              image: {
+                ...n.image,
+                [position]: positionVal,
+              },
+            }
+          : n
+      )
+    );
   };
 
   const handleChangeReflection = (
     e: any,
-    type: "screen" | "phone" | "screenAlpha"
+    type: "screen" | "phone" | "screenAlpha",
+    index: number
   ) => {
     if (type === "screenAlpha") {
-      return setModel((prev: ModelType) => ({
-        ...prev,
-        screenAlphaReflection: e.target.value,
-      }));
+      return setModel((prev) =>
+        prev.map((n, i) =>
+          i === index
+            ? {
+                ...n,
+                screenAlphaReflection: e.target.value,
+              }
+            : n
+        )
+      );
     }
 
     if (type === "phone") {
-      return setModel((prev: ModelType) => ({
-        ...prev,
-        bodyReflection: e.target.value,
-      }));
+      return setModel((prev) =>
+        prev.map((n, i) =>
+          i === index
+            ? {
+                ...n,
+                bodyReflection: e.target.value,
+              }
+            : n
+        )
+      );
     }
 
     if (type === "screen") {
-      return setModel((prev: ModelType) => ({
-        ...prev,
-        screenReflection: e.target.checked ? 1 : 0,
-      }));
+      return setModel((prev) =>
+        prev.map((n, i) =>
+          i === index
+            ? {
+                ...n,
+                screenReflection: e.target.checked ? 1 : 0,
+              }
+            : n
+        )
+      );
     }
   };
+
+  function handleChangeRotation(
+    e: ChangeEvent<HTMLInputElement>,
+    axis: "x" | "y" | "z",
+    index: number
+  ) {
+    return setModel((prev: ModelType[]) =>
+      prev.map((model, i) =>
+        i === index
+          ? {
+              ...model,
+              rotation: {
+                ...model.rotation,
+                [axis]: Number(e.target.value),
+              },
+            }
+          : model
+      )
+    );
+  }
+
+  function handleChangePosition(
+    e: ChangeEvent<HTMLInputElement>,
+    axis: "x" | "y" | "z",
+    index: number
+  ) {
+    return setModel((prev: ModelType[]) =>
+      prev.map((model, i) =>
+        i === index
+          ? {
+              ...model,
+              position: {
+                ...model.position,
+                [axis]: Number(e.target.value),
+              },
+            }
+          : model
+      )
+    );
+  }
 
   const handleChangeRenderSize = (e: ChangeEvent<HTMLInputElement>) => {
     setRender((prev: RenderType) => ({
@@ -314,12 +406,12 @@ export default function useGenerator() {
     }));
   };
 
-  const handleDraggedImage = (e: any) => {
+  const handleDraggedImage = (e: any, index?: number) => {
     e.preventDefault();
 
     const image = e.dataTransfer.files;
 
-    handleReadImage(image[0]);
+    handleReadImage(image[0], index ?? 0);
   };
 
   useEffect(() => {
@@ -341,6 +433,8 @@ export default function useGenerator() {
     handleImageSize,
     handleSave,
     resetModelPosition,
+    handleChangePosition,
+    handleChangeRotation,
     handleChangeShadow,
     handleChangeModelTexture,
     handleDirLightPosition,

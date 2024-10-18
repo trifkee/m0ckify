@@ -1,10 +1,12 @@
 import * as THREE from "three";
+import { useRecoilValue } from "recoil";
 import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useLoader } from "@react-three/fiber";
+
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
-import { useRecoilValue } from "recoil";
 import { modelAtom } from "@/lib/atoms/generator";
+import { ModelType } from "@/lib/types/model.type";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -24,7 +26,11 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Model(props: JSX.IntrinsicElements["group"]) {
+type ModelT = JSX.IntrinsicElements["group"] & {
+  options: ModelType;
+};
+
+export default function Model(props: ModelT) {
   const { nodes, materials } = useGLTF("/models/android.gltf") as GLTFResult;
 
   const model = useRecoilValue(modelAtom);
@@ -35,7 +41,8 @@ export default function Model(props: JSX.IntrinsicElements["group"]) {
   );
 
   /* SCREEN MOCKUP */
-  const image = model.image;
+  const image = props.options.image;
+
   texture.center.set(0.5, 0.5);
 
   texture.rotation = Math.PI / 2;

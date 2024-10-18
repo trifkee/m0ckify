@@ -6,6 +6,7 @@ import { useLoader } from "@react-three/fiber";
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
 import { modelAtom } from "@/lib/atoms/generator";
 import { useRecoilValue } from "recoil";
+import { ModelType } from "@/lib/types/model.type";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,7 +22,11 @@ type GLTFResult = GLTF & {
   };
 };
 
-export default function Model(props: JSX.IntrinsicElements["group"]) {
+type ModelT = JSX.IntrinsicElements["group"] & {
+  options: ModelType;
+};
+
+export default function Model(props: ModelT) {
   const { nodes, materials } = useGLTF("/models/tv.gltf") as GLTFResult;
 
   const model = useRecoilValue(modelAtom);

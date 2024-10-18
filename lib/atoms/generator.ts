@@ -7,8 +7,7 @@ import {
   SceneLightsType,
 } from "../types/model.type";
 
-import fallbackImage from "@/public/images/mockify-starter.jpg";
-import { TONE_MAPPINGS } from "../constants/generator";
+import { DEFAULT_OBJECT_OPTIONS, TONE_MAPPINGS } from "../constants/generator";
 
 export const renderAtom = atom<RenderType>({
   key: "render",
@@ -31,26 +30,12 @@ export const canvasOptionsAtom = atom({
 
 export const modelAtom = atom<ModelType>({
   key: "model",
-  default: {
-    color: "#fff",
-    texture: "plastic",
-    bodyReflection: 0,
-    screenReflection: 1,
-    screenAlphaReflection: 0.2,
-    position: {
-      x: 0 as number,
-      y: 0 as number,
-      z: 0 as number,
-    },
-    image: {
-      src: fallbackImage.src as any,
-      isDefault: true,
-      width: 0 as number,
-      height: 0 as number,
-      x: 0,
-      y: 0,
-    },
-  },
+  default: { ...DEFAULT_OBJECT_OPTIONS },
+});
+
+export const ObjectsLayersAtom = atom<ModelType[] | []>({
+  key: "objectLayers",
+  default: [],
 });
 
 export const sceneLightsAtom = atom<SceneLightsType[]>({

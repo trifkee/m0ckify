@@ -6,7 +6,7 @@ import { Environment, OrbitControls, Stage } from "@react-three/drei";
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
 
-import { sceneDocumentAtom } from "@/lib/atoms/generator";
+import { ObjectsLayersAtom, sceneDocumentAtom } from "@/lib/atoms/generator";
 
 import { PresetType } from "@/lib/types/model.type";
 import ToneMapping from "../atoms/ToneMapping.atom";
@@ -14,6 +14,10 @@ import ToneMapping from "../atoms/ToneMapping.atom";
 export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const sceneDocument = useRecoilValue(sceneDocumentAtom);
+
+  const layers = useRecoilValue(ObjectsLayersAtom);
+
+  const mappedModels = layers?.map((model, i) => <Model key={i} {...model} />);
 
   return (
     <Canvas
@@ -35,12 +39,12 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
             environment={sceneDocument.env.preset as PresetType}
             intensity={sceneDocument.env.intensity}
           >
-            <Model />
+            {mappedModels}
           </Stage>
         ) : (
           <>
             <Environment preset={sceneDocument.env.preset as PresetType} />
-            <Model />
+            {mappedModels}
           </>
         )}
       </Suspense>
