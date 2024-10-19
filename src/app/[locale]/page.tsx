@@ -1,28 +1,21 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import Button from "@/ui/components/atoms/Button.atom";
+import { Fragment } from "react";
+import { motion } from "framer-motion";
 import { Link } from "@/navigation";
-
-import { delay, motion } from "framer-motion";
-
-import { IoLogIn, IoPersonCircleOutline } from "react-icons/io5";
-
 import Image from "next/image";
-import logo from "@/public/images/logo-white.png";
-
-import { IoArrowForwardSharp } from "react-icons/io5";
 
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
 
 import { LucideChevronRight, LucideUser, X } from "lucide-react";
 
+import logo from "@/public/images/logo-white.png";
 import heroImage from "@/public/images/hero-image.png";
 import bgImage from "@/public/images/bg.jpg";
 import grids from "@/public/images/home-grid.png";
 
 import "@/ui/styles/pages/home.page.scss";
-import { Fragment } from "react";
 
 const animateProps = {
   opacity: 1,
@@ -202,76 +195,3 @@ export default function Home({
     </main>
   );
 }
-
-//  <>
-//     <main className="home">
-//       <motion.nav
-//         className="navigation"
-//         initial={{
-//           opacity: 0,
-//           y: -10,
-//         }}
-//         animate={{
-//           opacity: 1,
-//           y: 0,
-//         }}
-//         transition={{
-//           delay: 0.5,
-//         }}
-//       >
-//         <Image className="logo" src={logo} alt="Mockify" />
-
-//         <div className="ctas">
-//           <Link className="login" href={"/login"}>
-//             <LucideUser />
-//             Log in
-//           </Link>
-//           <LanguagePicker variant="editor" locale={locale} />
-//         </div>
-//       </motion.nav>
-
-//       <section className="home__header">
-//         <p className="title">
-//           {slicedTitle.map((n, i) => (
-//             <motion.span
-//               initial={{
-//                 y: -10,
-//                 opacity: 0,
-//               }}
-//               animate={{
-//                 y: 0,
-//                 opacity: 1,
-//               }}
-//               transition={{
-//                 duration: 0.5,
-//                 ease: "easeInOut",
-//                 delay: i * 0.1,
-//               }}
-//               key={i}
-//             >
-//               {n}
-//             </motion.span>
-//           ))}
-//         </p>
-
-//         <motion.div
-//           className="ctas"
-//           initial={{
-//             opacity: 0,
-//           }}
-//           animate={{
-//             opacity: 1,
-//           }}
-//           transition={{
-//             delay: 1,
-//           }}
-//         >
-//           <Link href={"/generate"}>
-//             <Button className="get-started" variant="editor">
-//               {t("getStarted")} <IoArrowForwardSharp />
-//             </Button>
-//           </Link>
-//         </motion.div>
-//       </section>
-//     </main>
-//   </>

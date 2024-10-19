@@ -377,7 +377,6 @@ export default function useGenerator() {
     e: ChangeEvent<HTMLInputElement>,
     axis: "x" | "y" | "z"
   ) {
-    console.log(selectedLayer, e.target.value, axis);
     return setModel((prev) =>
       prev.map((model, i) =>
         i === selectedLayer

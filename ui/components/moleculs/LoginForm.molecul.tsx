@@ -75,7 +75,7 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
       {modal ? (
         <Image
           src={logo}
-          alt="'.."
+          alt=""
           style={{
             maxWidth: "8rem",
           }}
