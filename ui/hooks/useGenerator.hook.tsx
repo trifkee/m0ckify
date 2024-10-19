@@ -138,7 +138,11 @@ export default function useGenerator() {
     }
   };
 
-  const onChangeIntensity = (e: any, type: "env" | "dirLights") => {
+  const onChangeIntensity = (
+    e: any,
+    type: "env" | "dirLights",
+    index?: number
+  ) => {
     if (type === "env") {
       setSceneDocument((prev: SceneDocumentType) => ({
         ...prev,
@@ -154,7 +158,7 @@ export default function useGenerator() {
     if (type === "dirLights") {
       setSceneLights(
         sceneLights.map((light: SceneLightsType, i: number) =>
-          i === selectedLayer ? { ...light, intensity: e.target.value } : light
+          i === index ? { ...light, intensity: e.target.value } : light
         )
       );
 
