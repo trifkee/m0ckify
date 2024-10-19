@@ -41,6 +41,9 @@ export const metadata: Metadata = {
       },
     ],
   },
+  verification: {
+    google: "PhJ-F7fYI2vv60Isk-_Wf3zRnHf_UWhm-oE0xbYnEEo",
+  },
 };
 
 export default async function RootLayout({
@@ -57,12 +60,6 @@ export default async function RootLayout({
       <RecoilProvider>
         <QueryProvider>
           <html lang={locale}>
-            <Head>
-              <meta
-                name="google-site-verification"
-                content="PhJ-F7fYI2vv60Isk-_Wf3zRnHf_UWhm-oE0xbYnEEo"
-              />
-            </Head>
             <body className={`${inter.className} body`}>
               <NextIntlClientProvider messages={messages}>
                 {children}
