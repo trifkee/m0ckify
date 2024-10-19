@@ -22,6 +22,7 @@ export default function GenerateLoading() {
           <motion.main
             initial={{
               opacity: 1,
+              position: "fixed",
             }}
             animate={{
               opacity: 1,
@@ -32,15 +33,8 @@ export default function GenerateLoading() {
             }}
             className="loading-model"
           >
-            <div
-              style={{ position: "relative", width: "12rem", height: "12rem" }}
-            >
-              <Image
-                src={logo}
-                layout="fill"
-                objectFit="contain"
-                alt="Mockify"
-              />
+            <div style={{ position: "relative", width: "12rem" }}>
+              <Image priority={true} src={logo} alt="Mockify" />
             </div>
             <Spinner size="big" />
           </motion.main>
