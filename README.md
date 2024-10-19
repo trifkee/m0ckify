@@ -1,3 +1,4 @@
-### IN Progress
+### Mockify
+## Show your ideas to the world with Mockify
 
-Create mockup with custom made 3D models without any watermarks
+Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project
