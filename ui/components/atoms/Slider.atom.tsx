@@ -27,29 +27,6 @@ export default function Slider({
   visible = true,
   onChange,
 }: SliderType) {
-  const initialVariants = {
-    y: { bottom: "-100%" },
-    x: { right: "-100%" },
-  };
-
-  const animateVariants = {
-    y: {
-      bottom: 0,
-    },
-    x: {
-      right: 0,
-    },
-  };
-
-  const exitVariants = {
-    y: {
-      bottom: "-200%",
-    },
-    x: {
-      right: "-200%",
-    },
-  };
-
   return (
     <AnimatePresence presenceAffectsLayout>
       {visible && (
@@ -82,3 +59,26 @@ export default function Slider({
     </AnimatePresence>
   );
 }
+
+const initialVariants = {
+  y: { bottom: "-100%" },
+  x: { right: "-100%" },
+};
+
+const animateVariants = {
+  y: {
+    bottom: 0,
+  },
+  x: {
+    right: 0,
+  },
+};
+
+const exitVariants = {
+  y: {
+    bottom: "-200%",
+  },
+  x: {
+    right: "-200%",
+  },
+};
