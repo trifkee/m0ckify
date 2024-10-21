@@ -30,3 +30,15 @@
 
 - Moved object options to the other navigation panel
 - Changed UI on mobile screen
+
+### [2.1.0] 2024.21.10
+
+## Added
+
+- Added Pivot controls
+
+## Changed
+
+- Changed look of app
+- Added layers
+- Added animations for layers
