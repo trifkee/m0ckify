@@ -5,6 +5,7 @@ export type RenderType = {
 };
 
 export type ModelType = {
+  id: string;
   type: "iphone" | "android" | "tv";
   title: string;
   position: {

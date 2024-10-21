@@ -6,6 +6,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import Button from "../atoms/Button.atom";
 import ObjectLayer from "../moleculs/ObjectLayer.molecul";
 
+import { v4 as uuidv4 } from "uuid";
+
 import {
   layersTabMobileAtom,
   modelAtom,
@@ -27,8 +29,16 @@ export default function GenerateObjects() {
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
 
   function handleAddNewObject() {
-    return setLayers((prev) => [...prev, { ...newModel }]);
+    return setLayers((prev) => [
+      {
+        ...newModel,
+        id: uuidv4(),
+      },
+      ...prev,
+    ]);
   }
+
+  console.log(layers);
 
   useEffect(() => {
     if (layersRef.current) {
