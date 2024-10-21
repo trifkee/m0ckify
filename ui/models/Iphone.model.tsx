@@ -1,11 +1,15 @@
 import * as THREE from "three";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { GLTF } from "three-stdlib";
-import { useGLTF } from "@react-three/drei";
+import { PivotControls, useGLTF } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
-import { modelAtom, selectedLayerAtom } from "@/lib/atoms/generator";
+import {
+  modelAtom,
+  pivotControlsAtom,
+  selectedLayerAtom,
+} from "@/lib/atoms/generator";
 import { ModelType } from "@/lib/types/model.type";
 
 type GLTFResult = GLTF & {
@@ -32,7 +36,8 @@ type ModelT = JSX.IntrinsicElements["group"] & {
 export default function Iphone(props: ModelT) {
   const { nodes, materials } = useGLTF("/models/iphone.glb") as GLTFResult;
 
-  const setSelectedLayer = useSetRecoilState(selectedLayerAtom);
+  const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
+  const pivotControls = useRecoilValue(pivotControlsAtom);
 
   const texture: any = useLoader(
     THREE.TextureLoader,
@@ -62,78 +67,87 @@ export default function Iphone(props: ModelT) {
     0 + image.y / IMAGE_SETTINGS.positionDivider
   );
   return (
-    <group
-      onClick={() =>
-        setSelectedLayer({ id: props.options.id, layer: props.options })
-      }
-      {...props}
-      rotation={[
-        props.options.rotation.y,
-        props.options.rotation.x,
-        props.options.rotation.z,
-      ]}
-      position={[
-        props.options.position.y,
-        props.options.position.x,
-        props.options.position.z,
-      ]}
-      dispose={null}
+    <PivotControls
+      offset={[0, 0, 0.1]}
+      depthTest={true}
+      lineWidth={2}
+      disableScaling
+      // disableSliders
+      visible={pivotControls && props.options.id === selectedLayer?.id}
     >
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Phone.geometry}
-        material={materials.Body}
-        rotation={[0, -Math.PI / 2, 0]}
+      <group
+        onClick={() =>
+          setSelectedLayer({ id: props.options.id, layer: props.options })
+        }
+        {...props}
+        rotation={[
+          props.options.rotation.y,
+          props.options.rotation.x,
+          props.options.rotation.z,
+        ]}
+        position={[
+          props.options.position.y,
+          props.options.position.x,
+          props.options.position.z,
+        ]}
+        dispose={null}
       >
-        <meshStandardMaterial
-          color={props.options.color}
-          roughness={props.options.bodyReflection}
-        />
-      </mesh>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.CutAround.geometry}
-        material={materials.Black}
-        rotation={[0, -Math.PI / 2, 0]}
-      />
-      {props.options.screenReflection && (
         <mesh
-          geometry={nodes.Glass.geometry}
-          material={materials.Glas}
+          castShadow
+          receiveShadow
+          geometry={nodes.Phone.geometry}
+          material={materials.Body}
+          rotation={[0, -Math.PI / 2, 0]}
+        >
+          <meshStandardMaterial
+            color={props.options.color}
+            roughness={props.options.bodyReflection}
+          />
+        </mesh>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.CutAround.geometry}
+          material={materials.Black}
+          rotation={[0, -Math.PI / 2, 0]}
+        />
+        {props.options.screenReflection && (
+          <mesh
+            geometry={nodes.Glass.geometry}
+            material={materials.Glas}
+            rotation={[0, -Math.PI / 2, 0]}
+          >
+            <meshStandardMaterial
+              attach="material"
+              {...materials.Glas}
+              transparent
+              opacity={props.options.screenAlphaReflection}
+            />
+          </mesh>
+        )}
+        <mesh
+          geometry={nodes.Screen.geometry}
+          material={materials.Screen}
+          position={[0, 0, -0.006]}
           rotation={[0, -Math.PI / 2, 0]}
         >
           <meshStandardMaterial
             attach="material"
-            {...materials.Glas}
-            transparent
-            opacity={props.options.screenAlphaReflection}
+            map={texture}
+            envMapIntensity={1.5}
+            metalness={0.2}
           />
         </mesh>
-      )}
-      <mesh
-        geometry={nodes.Screen.geometry}
-        material={materials.Screen}
-        position={[0, 0, -0.006]}
-        rotation={[0, -Math.PI / 2, 0]}
-      >
-        <meshStandardMaterial
-          attach="material"
-          map={texture}
-          envMapIntensity={1.5}
-          metalness={0.2}
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.CameraHOle.geometry}
+          material={materials["Black.001"]}
+          position={[0.002, 3.154, 0.068]}
+          rotation={[0, -Math.PI / 2, 0]}
         />
-      </mesh>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.CameraHOle.geometry}
-        material={materials["Black.001"]}
-        position={[0.002, 3.154, 0.068]}
-        rotation={[0, -Math.PI / 2, 0]}
-      />
-    </group>
+      </group>
+    </PivotControls>
   );
 }
 

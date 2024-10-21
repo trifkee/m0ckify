@@ -105,3 +105,8 @@ export const openAiKeyAtom = atom({
   key: "openAiKey",
   default: "",
 });
+
+export const pivotControlsAtom = atom({
+  key: "PivotControls",
+  default: true,
+});
