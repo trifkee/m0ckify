@@ -7,33 +7,34 @@ import NumberInput from "../../atoms/NumberInput.atom";
 
 import Button from "../../atoms/Button.atom";
 
-import { ObjectsLayersAtom } from "@/lib/atoms/generator";
+import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 
 export default function Images({
-  index,
   handleImagePosition,
   handleImageSize,
   handleImageChange,
 }: {
-  index: number;
   handleImageSize: CallableFunction;
   handleImagePosition: CallableFunction;
   handleImageChange: ChangeEventHandler<HTMLInputElement>;
 }) {
   const t = useTranslations("generate");
 
-  const model = useRecoilValue(ObjectsLayersAtom);
+  const layers = useRecoilValue(ObjectsLayersAtom);
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
+
+  const [obj] = layers.filter((n) => n.id === selectedLayer?.id);
 
   return (
-    <details className="control image">
+    <details open={false} className="control image">
       <summary className="control__title">
         {t("image.title")} <LucideImage />
       </summary>
 
       <div className="control__section">
         <div className="image-container">
-          {!model?.[index].image.isDefault ? (
-            <img src={model?.[index].image.src as string} alt="model" />
+          {!obj?.image.isDefault ? (
+            <img src={obj?.image.src as string} alt="model" />
           ) : (
             <>
               <LucideImage />
@@ -53,7 +54,7 @@ export default function Images({
             id="avatar"
             name="avatar"
             accept="image/*"
-            data-id={index}
+            data-id={selectedLayer?.id}
           />
         </Button>
 
@@ -68,14 +69,18 @@ export default function Images({
           <NumberInput
             name="iw"
             label="W"
-            onChange={(e: any) => handleImageSize(e, "width", index)}
-            value={model?.[index].image.width}
+            onChange={(e: any) =>
+              handleImageSize(e, "width", selectedLayer?.id)
+            }
+            value={obj?.image.width ?? 0}
           />
           <NumberInput
             name="ih"
             label="H"
-            onChange={(e: any) => handleImageSize(e, "height", index)}
-            value={model?.[index].image.height}
+            onChange={(e: any) =>
+              handleImageSize(e, "height", selectedLayer?.id)
+            }
+            value={obj?.image.height ?? 0}
           />
         </div>
 
@@ -90,14 +95,18 @@ export default function Images({
           <NumberInput
             name="ix"
             label="X"
-            onChange={(e: any) => handleImagePosition(e, "x", index)}
-            value={model?.[index].image.x}
+            onChange={(e: any) =>
+              handleImagePosition(e, "x", selectedLayer?.id)
+            }
+            value={obj?.image.x ?? 0}
           />
           <NumberInput
             name="iy"
             label="Y"
-            onChange={(e: any) => handleImagePosition(e, "y", index)}
-            value={model?.[index].image.y}
+            onChange={(e: any) =>
+              handleImagePosition(e, "y", selectedLayer?.id)
+            }
+            value={obj?.image.y ?? 0}
           />
         </div>
       </div>

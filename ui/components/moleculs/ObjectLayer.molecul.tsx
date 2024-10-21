@@ -1,10 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
+
+import { easeIn, motion } from "framer-motion";
 
 import Images from "../moleculs/GenerateControls/Image.molecul";
 import Model from "../moleculs/GenerateControls/Model.molecul";
 import Button from "../atoms/Button.atom";
+import GeneratePosition from "./GenerateControls/Position.molecul";
 
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 
@@ -12,29 +16,36 @@ import { ModelType } from "@/lib/types/model.type";
 import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 
 import { LucideCheck, LucidePencilLine, LucideTrash2 } from "lucide-react";
-import { useState } from "react";
-import GeneratePosition from "./GenerateControls/Position.molecul";
 
-export default function ObjectLayer({
-  layer,
-  index,
-}: {
-  layer: ModelType;
-  index: number;
-}) {
+export default function ObjectLayer({ layer }: { layer: ModelType }) {
+  const {
+    handleImageChange,
+    handleChangeColor,
+    handleModelChange,
+    handleImageSize,
+    handleImagePosition,
+    handleChangePosition,
+    handleChangeRotation,
+    handleChangeReflection,
+  } = useGenerator();
+
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
   const setLayers = useSetRecoilState(ObjectsLayersAtom);
 
   const [isRenaming, setIsRenaming] = useState(false);
 
-  function handleRemoveObject(index: number) {
-    return setLayers((prev) => prev.filter((_, i) => i !== index));
+  function handleRemoveObject(index: string) {
+    if (selectedLayer?.id === index) {
+      setSelectedLayer(null);
+    }
+
+    return setLayers((prev) => prev.filter((n) => n.id !== index));
   }
 
   function handleChange(e: any) {
     return setLayers((prev) =>
-      prev.map((n, i) =>
-        i === index
+      prev.map((n) =>
+        n.id === layer.id
           ? {
               ...n,
               title: e.target.value,
@@ -48,27 +59,39 @@ export default function ObjectLayer({
     setIsRenaming(false);
   }
 
-  const {
-    handleImageChange,
-    handleChangeColor,
-    handleModelChange,
-    handleImageSize,
-    handleImagePosition,
-    handleChangePosition,
-    handleChangeRotation,
-    handleChangeReflection,
-  } = useGenerator();
-
-  function handleClick(i: number) {
-    setSelectedLayer(i);
-  }
-
   return (
-    <details
-      onClick={() => handleClick(index)}
-      className={`control ${index === selectedLayer ? "active" : ""}`}
+    <motion.details
+      initial={{
+        opacity: 0,
+        x: -50,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        transition: {
+          stiffness: 260,
+          damping: 20,
+        },
+      }}
+      exit={{
+        opacity: 0,
+        x: 50,
+        transition: {
+          stiffness: 260,
+          damping: 20,
+        },
+      }}
+      transition={{
+        duration: 0.3,
+        type: "spring",
+      }}
+      onClick={() => setSelectedLayer({ id: layer.id, layer })}
+      className={`control ${layer.id === selectedLayer?.id ? "active" : ""}`}
     >
-      <summary className="control__title">
+      <summary
+        onDoubleClick={() => (isRenaming ? null : setIsRenaming(true))}
+        className="control__title"
+      >
         {isRenaming ? (
           <>
             <input
@@ -96,7 +119,7 @@ export default function ObjectLayer({
                 <LucidePencilLine />
               </Button>
               <Button
-                onClick={() => handleRemoveObject(index)}
+                onClick={() => handleRemoveObject(layer.id)}
                 variant="editor"
                 className="danger"
               >
@@ -107,22 +130,19 @@ export default function ObjectLayer({
         )}
       </summary>
       <Images
-        index={index}
         handleImageChange={handleImageChange}
         handleImagePosition={handleImagePosition}
         handleImageSize={handleImageSize}
       />
       <Model
-        index={index}
         handleChangeColor={handleChangeColor}
         handleChangeReflection={handleChangeReflection}
         handleModelChange={handleModelChange}
       />
       <GeneratePosition
-        index={index}
         handleChangePosition={handleChangePosition}
         handleChangeRotation={handleChangeRotation}
       />
-    </details>
+    </motion.details>
   );
 }

@@ -18,9 +18,9 @@ export const renderAtom = atom<RenderType>({
   },
 });
 
-export const selectedLayerAtom = atom({
+export const selectedLayerAtom = atom<{ id: string; layer: ModelType } | null>({
   key: "selectedLayer",
-  default: 0,
+  default: null,
 });
 
 export const canvasOptionsAtom = atom({

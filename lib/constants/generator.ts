@@ -115,6 +115,7 @@ export const TONE_MAPPINGS = [
 ];
 
 export const DEFAULT_OBJECT_OPTIONS = {
+  id: "0",
   title: "Mockify model",
   type: "iphone" as "iphone",
   color: "#fff",

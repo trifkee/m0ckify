@@ -1,11 +1,11 @@
 import * as THREE from "three";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { GLTF } from "three-stdlib";
 import { useGLTF } from "@react-three/drei";
 import { useLoader, useThree } from "@react-three/fiber";
 
 import { IMAGE_SETTINGS } from "@/lib/constants/generator";
-import { modelAtom } from "@/lib/atoms/generator";
+import { modelAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 import { ModelType } from "@/lib/types/model.type";
 
 type GLTFResult = GLTF & {
@@ -31,6 +31,8 @@ type ModelT = JSX.IntrinsicElements["group"] & {
 
 export default function Iphone(props: ModelT) {
   const { nodes, materials } = useGLTF("/models/iphone.glb") as GLTFResult;
+
+  const setSelectedLayer = useSetRecoilState(selectedLayerAtom);
 
   const texture: any = useLoader(
     THREE.TextureLoader,
@@ -61,6 +63,9 @@ export default function Iphone(props: ModelT) {
   );
   return (
     <group
+      onClick={() =>
+        setSelectedLayer({ id: props.options.id, layer: props.options })
+      }
       {...props}
       rotation={[
         props.options.rotation.y,

@@ -24,8 +24,7 @@ export default function useGenerator() {
   const [render, setRender] = useRecoilState(renderAtom);
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
   const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
-
-  const selectedLayer = useRecoilValue(selectedLayerAtom);
+  const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
 
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,13 +40,13 @@ export default function useGenerator() {
       .then((result) => {
         if (typeof result === "string") {
           setModel((prev: ModelType[]) =>
-            prev.map((obj, i: number) =>
-              i === selectedLayer
+            prev.map((n) =>
+              n.id === selectedLayer?.id
                 ? {
-                    ...obj,
-                    image: { ...obj.image, src: result, isDefault: false },
+                    ...n,
+                    image: { ...n.image, src: result, isDefault: false },
                   }
-                : obj
+                : n
             )
           );
         } else {
@@ -173,8 +172,8 @@ export default function useGenerator() {
   ) => {
     if (type === "model") {
       setModel((prev) =>
-        prev.map((n, i) =>
-          i === selectedLayer
+        prev.map((n) =>
+          n.id === selectedLayer?.id
             ? {
                 ...n,
                 color,
@@ -267,8 +266,8 @@ export default function useGenerator() {
     const type = e.target.value;
 
     return setModel((prev) =>
-      prev.map((n, i) =>
-        i === selectedLayer
+      prev.map((n) =>
+        n.id === selectedLayer?.id
           ? {
               ...n,
               type,
@@ -282,8 +281,8 @@ export default function useGenerator() {
     const size = Number(e.target.value);
 
     setModel((prev) =>
-      prev.map((n, i) =>
-        i === selectedLayer
+      prev.map((n) =>
+        n.id === selectedLayer?.id
           ? {
               ...n,
               image: {
@@ -300,8 +299,8 @@ export default function useGenerator() {
     const positionVal = Number(e.target.value);
 
     setModel((prev) =>
-      prev.map((n, i) =>
-        i === selectedLayer
+      prev.map((n) =>
+        n.id === selectedLayer?.id
           ? {
               ...n,
               image: {
@@ -320,8 +319,8 @@ export default function useGenerator() {
   ) => {
     if (type === "screenAlpha") {
       return setModel((prev) =>
-        prev.map((n, i) =>
-          i === selectedLayer
+        prev.map((n) =>
+          n.id === selectedLayer?.id
             ? {
                 ...n,
                 screenAlphaReflection: e.target.value,
@@ -333,8 +332,8 @@ export default function useGenerator() {
 
     if (type === "phone") {
       return setModel((prev) =>
-        prev.map((n, i) =>
-          i === selectedLayer
+        prev.map((n) =>
+          n.id === selectedLayer?.id
             ? {
                 ...n,
                 bodyReflection: e.target.value,
@@ -346,8 +345,8 @@ export default function useGenerator() {
 
     if (type === "screen") {
       return setModel((prev) =>
-        prev.map((n, i) =>
-          i === selectedLayer
+        prev.map((n) =>
+          n.id === selectedLayer?.id
             ? {
                 ...n,
                 screenReflection: e.target.checked ? 1 : 0,
@@ -363,16 +362,16 @@ export default function useGenerator() {
     axis: "x" | "y" | "z"
   ) {
     return setModel((prev: ModelType[]) =>
-      prev.map((model, i) =>
-        i === selectedLayer
+      prev.map((n) =>
+        n.id === selectedLayer?.id
           ? {
-              ...model,
+              ...n,
               rotation: {
-                ...model.rotation,
+                ...n.rotation,
                 [axis]: Number(e.target.value),
               },
             }
-          : model
+          : n
       )
     );
   }
@@ -382,16 +381,16 @@ export default function useGenerator() {
     axis: "x" | "y" | "z"
   ) {
     return setModel((prev) =>
-      prev.map((model, i) =>
-        i === selectedLayer
+      prev.map((n) =>
+        n.id === selectedLayer?.id
           ? {
-              ...model,
+              ...n,
               position: {
-                ...model.position,
+                ...n.position,
                 [axis]: Number(e.target.value),
               },
             }
-          : model
+          : n
       )
     );
   }
