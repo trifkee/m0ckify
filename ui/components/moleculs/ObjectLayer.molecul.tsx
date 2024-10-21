@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
+import { easeIn, motion } from "framer-motion";
+
 import Images from "../moleculs/GenerateControls/Image.molecul";
 import Model from "../moleculs/GenerateControls/Model.molecul";
 import Button from "../atoms/Button.atom";
@@ -58,7 +60,31 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
   }
 
   return (
-    <details
+    <motion.details
+      initial={{
+        opacity: 0,
+        x: -50,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+        transition: {
+          stiffness: 260,
+          damping: 20,
+        },
+      }}
+      exit={{
+        opacity: 0,
+        x: 50,
+        transition: {
+          stiffness: 260,
+          damping: 20,
+        },
+      }}
+      transition={{
+        duration: 0.3,
+        type: "spring",
+      }}
       onClick={() => setSelectedLayer({ id: layer.id, layer })}
       className={`control ${layer.id === selectedLayer?.id ? "active" : ""}`}
     >
@@ -117,6 +143,6 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
         handleChangePosition={handleChangePosition}
         handleChangeRotation={handleChangeRotation}
       />
-    </details>
+    </motion.details>
   );
 }

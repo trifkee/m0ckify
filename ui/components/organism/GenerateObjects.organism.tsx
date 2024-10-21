@@ -19,6 +19,7 @@ import { LucideBox, LucidePlusCircle } from "lucide-react";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 import "@/ui/styles/organism/generateObjects.organism.scss";
+import { AnimatePresence } from "framer-motion";
 
 export default function GenerateObjects() {
   const layersRef = useRef<HTMLDivElement | null>(null);
@@ -64,9 +65,11 @@ export default function GenerateObjects() {
           </div>
 
           <div ref={layersRef} className="layers">
-            {layers?.map((layer, i) => (
-              <ObjectLayer key={i} layer={layer} />
-            ))}
+            <AnimatePresence>
+              {layers?.map((layer, i) => (
+                <ObjectLayer key={i} layer={layer} />
+              ))}
+            </AnimatePresence>
           </div>
         </>
       ) : (

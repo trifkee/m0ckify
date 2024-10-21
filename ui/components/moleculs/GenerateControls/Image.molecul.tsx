@@ -33,7 +33,7 @@ export default function Images({
 
       <div className="control__section">
         <div className="image-container">
-          {!obj.image.isDefault ? (
+          {!obj?.image.isDefault ? (
             <img src={obj?.image.src as string} alt="model" />
           ) : (
             <>
