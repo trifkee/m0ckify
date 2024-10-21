@@ -19,6 +19,10 @@
     "rotate": {
       "title": "Faire Pivoter le Modèle",
       "text": "Par défaut, la rotation est désactivée. Vous pouvez activer cette fonction en cliquant sur l'icône à droite du canevas."
+    },
+    "select": {
+      "title": "Sélectionner un objet",
+      "text": "Double-cliquez sur le modèle pour le sélectionner directement à partir de la toile."
     }
   },
   "notFound": {

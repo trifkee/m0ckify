@@ -19,6 +19,10 @@
     "rotate": {
       "title": "Rotiraj Model",
       "text": "Rotiranje je po defaultu onemogućeno. Možete omogućiti ovu funkciju klikom na ikonu sa desne strane platna."
+    },
+    "select": {
+      "title": "Izaberite Objekt",
+      "text": "Dvaput kliknite na model da biste ga direktno izabrali sa platna."
     }
   },
   "notFound": {

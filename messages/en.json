@@ -19,6 +19,10 @@
     "rotate": {
       "title": "Rotate Model",
       "text": "By default rotating is disabled. You can enable this feature by clicking icon on the right side of the canvas."
+    },
+    "select": {
+      "title": "Select Object",
+      "text": "Double click on model to select it directly from canvas."
     }
   },
   "notFound": {

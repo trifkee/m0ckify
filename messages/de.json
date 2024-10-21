@@ -19,6 +19,10 @@
     "rotate": {
       "title": "Modell Drehen",
       "text": "Standardmäßig ist das Drehen deaktiviert. Sie können diese Funktion aktivieren, indem Sie auf das Symbol rechts neben der Leinwand klicken."
+    },
+    "select": {
+      "title": "Objekt auswählen",
+      "text": "Doppelklicken Sie auf das Modell, um es direkt aus der Leinwand auszuwählen."
     }
   },
   "home": {

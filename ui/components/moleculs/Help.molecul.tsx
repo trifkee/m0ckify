@@ -12,6 +12,7 @@ import {
   LucideBox,
   LucideCamera,
   LucideLightbulb,
+  LucideMousePointerClick,
   LucideRotate3D,
 } from "lucide-react";
 
@@ -56,6 +57,16 @@ export default function HelpModal() {
           </div>
 
           <div className="modal__body">
+            <div className="item">
+              <div className="icon">
+                <LucideMousePointerClick />
+              </div>
+              <div className="text">
+                <p>{t("select.title")}</p>
+                <p>{t("select.text")}</p>
+              </div>
+            </div>
+
             <div className="item">
               <div className="icon">
                 <LucideCamera />

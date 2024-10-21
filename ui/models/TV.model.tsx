@@ -68,7 +68,7 @@ export default function Model(props: ModelT) {
       visible={pivotControls && props.options.id === selectedLayer?.id}
     >
       <group
-        onClick={() =>
+        onDoubleClick={() =>
           setSelectedLayer({ id: props.options.id, layer: props.options })
         }
         {...props}
