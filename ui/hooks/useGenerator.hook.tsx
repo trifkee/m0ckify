@@ -72,7 +72,14 @@ export default function useGenerator() {
 
   /* Save Image to user PC */
   const handleSave = (options: RenderType) => {
+    let l = selectedLayer;
+    setSelectedLayer(null);
+
     saveImageFromCanvas({ title: sceneDocument.title, ...options });
+
+    setTimeout(() => {
+      setSelectedLayer(l);
+    }, 300);
   };
 
   /* Model Customization */

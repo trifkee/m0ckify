@@ -16,11 +16,15 @@ import {
   LucideLayers,
   LucideRotate3D,
   LucideSettings2,
+  Move3D,
+  Move3d,
+  Move3dIcon,
 } from "lucide-react";
 import {
   helpAtom,
   isGeneratingAtom,
   layersTabMobileAtom,
+  pivotControlsAtom,
   renderAtom,
 } from "@/lib/atoms/generator";
 
@@ -39,6 +43,7 @@ export default function ModelProvider() {
 
   const [isLayer, setIsLayer] = useRecoilState(layersTabMobileAtom);
 
+  const [pivotControls, setPivotControls] = useRecoilState(pivotControlsAtom);
   const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
   const setIsLoading = useSetRecoilState(isGeneratingAtom);
@@ -131,6 +136,13 @@ export default function ModelProvider() {
                 variant="editor"
               >
                 <LucideRotate3D />
+              </Button>
+              <Button
+                className={`freeroam ${pivotControls ? "y" : "n"}`}
+                onClick={() => setPivotControls((prev) => !prev)}
+                variant="editor"
+              >
+                <Move3dIcon />
               </Button>
               <Button
                 variant="editor"
