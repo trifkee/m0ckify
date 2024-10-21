@@ -6,28 +6,26 @@ import { HexColorPicker } from "react-colorful";
 import Slider from "../../atoms/Slider.atom";
 import Checkbox from "../../atoms/Checkbox.atom";
 
-import { ObjectsLayersAtom } from "@/lib/atoms/generator";
+import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 import { MODELS_LIST } from "@/lib/constants/generator";
 
 import { LucideBox } from "lucide-react";
-import NumberInput from "../../atoms/NumberInput.atom";
 
 export default function Model({
-  index,
   handleChangeReflection,
   handleChangeColor,
   handleModelChange,
 }: {
-  index: number;
   handleChangeColor: CallableFunction;
   handleChangeReflection: CallableFunction;
   handleModelChange: ChangeEventHandler<HTMLSelectElement>;
 }) {
   const t = useTranslations("generate");
-  const model = useRecoilValue(ObjectsLayersAtom);
+
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
 
   return (
-    <details className="control model select">
+    <details open={false} className="control model select">
       <summary className="control__title">
         {t("model.title")} <LucideBox />
       </summary>
@@ -56,9 +54,11 @@ export default function Model({
           min={0}
           className="small"
           name="phone-reflection"
-          onChange={(e) => handleChangeReflection(e, "phone", index)}
+          onChange={(e) =>
+            handleChangeReflection(e, "phone", selectedLayer?.id)
+          }
           step={0.01}
-          value={String(model?.[index].bodyReflection)}
+          value={String(selectedLayer?.layer.bodyReflection)}
         />
       </div>
 
@@ -67,20 +67,24 @@ export default function Model({
         {/* TODO: THIS IS BY TYPE NUMBER, CHECK HOW TO MAKE ALPHA CHANNEL, FOR NOW THIS WILL BE LIKE BOOL ( 1 True, 0 False ) */}
         <Checkbox
           htmlName="screen-reflection"
-          onChange={(e) => handleChangeReflection(e, "screen", index)}
+          onChange={(e) =>
+            handleChangeReflection(e, "screen", selectedLayer?.id)
+          }
           title={t("model.screenReflection")}
-          value={Boolean(model?.[index].screenReflection)}
+          value={Boolean(selectedLayer?.layer.screenReflection)}
         />
 
-        {model?.[index].screenReflection ? (
+        {selectedLayer?.layer.screenReflection ? (
           <Slider
             max={0.3}
             min={0}
             className="small"
             name="screen-reflection"
-            onChange={(e) => handleChangeReflection(e, "screenAlpha", index)}
+            onChange={(e) =>
+              handleChangeReflection(e, "screenAlpha", selectedLayer?.id)
+            }
             step={0.01}
-            value={String(model?.[index].screenAlphaReflection)}
+            value={String(selectedLayer?.layer.screenAlphaReflection)}
           />
         ) : null}
       </div>
@@ -105,8 +109,8 @@ export default function Model({
       <div className="control__section ">
         <p className="title">{t("model.color.title")}</p>
         <HexColorPicker
-          color={model?.[index].color}
-          onChange={(e) => handleChangeColor(e, "model", index)}
+          color={selectedLayer?.layer.color}
+          onChange={(e) => handleChangeColor(e, "model", selectedLayer?.id)}
         />
       </div>
     </details>

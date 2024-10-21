@@ -4,14 +4,14 @@ type NumberInputType = {
   name: string;
   label?: string;
   onChange: CallableFunction;
-  value: number;
+  value?: number;
   step?: number;
 };
 
 export default function NumberInput({
   onChange,
   step = 1,
-  value,
+  value = 0,
   label,
   name,
 }: NumberInputType) {

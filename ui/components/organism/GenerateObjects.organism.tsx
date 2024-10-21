@@ -26,7 +26,7 @@ export default function GenerateObjects() {
   const newModel = useRecoilValue(modelAtom);
 
   const isLayers = useRecoilValue(layersTabMobileAtom);
-  const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
 
   function handleAddNewObject() {
     return setLayers((prev) => [
@@ -38,20 +38,18 @@ export default function GenerateObjects() {
     ]);
   }
 
-  console.log(layers);
-
   useEffect(() => {
     if (layersRef.current) {
       //  @ts-ignore
       const n: HTMLDetailsElement[] = layersRef.current.children;
 
-      Array.from(n).forEach((child, i) => {
-        if (selectedLayer !== i) {
-          child.open = false;
+      Array.from(n).forEach((n) => {
+        if (selectedLayer?.id !== n.id) {
+          n.open = false;
         }
       });
     }
-  }, [selectedLayer]);
+  }, [selectedLayer?.id, layers?.length]);
 
   return (
     <article
@@ -67,7 +65,7 @@ export default function GenerateObjects() {
 
           <div ref={layersRef} className="layers">
             {layers?.map((layer, i) => (
-              <ObjectLayer key={i} layer={layer} index={i} />
+              <ObjectLayer key={i} layer={layer} />
             ))}
           </div>
         </>
