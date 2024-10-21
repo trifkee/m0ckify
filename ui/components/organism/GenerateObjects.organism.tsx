@@ -6,6 +6,8 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import Button from "../atoms/Button.atom";
 import ObjectLayer from "../moleculs/ObjectLayer.molecul";
 
+import { v4 as uuidv4 } from "uuid";
+
 import {
   layersTabMobileAtom,
   modelAtom,
@@ -17,6 +19,7 @@ import { LucideBox, LucidePlusCircle } from "lucide-react";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 import "@/ui/styles/organism/generateObjects.organism.scss";
+import { AnimatePresence } from "framer-motion";
 
 export default function GenerateObjects() {
   const layersRef = useRef<HTMLDivElement | null>(null);
@@ -24,10 +27,16 @@ export default function GenerateObjects() {
   const newModel = useRecoilValue(modelAtom);
 
   const isLayers = useRecoilValue(layersTabMobileAtom);
-  const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
 
   function handleAddNewObject() {
-    return setLayers((prev) => [...prev, { ...newModel }]);
+    return setLayers((prev) => [
+      {
+        ...newModel,
+        id: uuidv4(),
+      },
+      ...prev,
+    ]);
   }
 
   useEffect(() => {
@@ -35,13 +44,13 @@ export default function GenerateObjects() {
       //  @ts-ignore
       const n: HTMLDetailsElement[] = layersRef.current.children;
 
-      Array.from(n).forEach((child, i) => {
-        if (selectedLayer !== i) {
-          child.open = false;
+      Array.from(n).forEach((n) => {
+        if (selectedLayer?.id !== n.id) {
+          n.open = false;
         }
       });
     }
-  }, [selectedLayer]);
+  }, [selectedLayer?.id, layers?.length]);
 
   return (
     <article
@@ -56,9 +65,11 @@ export default function GenerateObjects() {
           </div>
 
           <div ref={layersRef} className="layers">
-            {layers?.map((layer, i) => (
-              <ObjectLayer key={i} layer={layer} index={i} />
-            ))}
+            <AnimatePresence>
+              {layers?.map((layer, i) => (
+                <ObjectLayer key={i} layer={layer} />
+              ))}
+            </AnimatePresence>
           </div>
         </>
       ) : (
