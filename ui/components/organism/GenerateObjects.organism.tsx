@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { MouseEvent, useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import { AnimatePresence } from "framer-motion";
 
 import Button from "../atoms/Button.atom";
 import ObjectLayer from "../moleculs/ObjectLayer.molecul";
@@ -15,11 +16,10 @@ import {
   selectedLayerAtom,
 } from "@/lib/atoms/generator";
 
-import { LucideBox, LucidePlusCircle } from "lucide-react";
+import { LucideBox, LucidePlusCircle, Trash2 } from "lucide-react";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 import "@/ui/styles/organism/generateObjects.organism.scss";
-import { AnimatePresence } from "framer-motion";
 
 export default function GenerateObjects() {
   const layersRef = useRef<HTMLDivElement | null>(null);
@@ -27,7 +27,7 @@ export default function GenerateObjects() {
   const newModel = useRecoilValue(modelAtom);
 
   const isLayers = useRecoilValue(layersTabMobileAtom);
-  const selectedLayer = useRecoilValue(selectedLayerAtom);
+  const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
 
   function handleAddNewObject() {
     return setLayers((prev) => [
@@ -37,6 +37,18 @@ export default function GenerateObjects() {
       },
       ...prev,
     ]);
+  }
+
+  function handleParentClick(e: MouseEvent) {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    setSelectedLayer(null);
+  }
+
+  function handleRemoveAll() {
+    setLayers([]);
   }
 
   useEffect(() => {
@@ -54,22 +66,32 @@ export default function GenerateObjects() {
 
   return (
     <article
+      onClick={(e) => handleParentClick(e)}
       className={`generate__controls objects ${isLayers ? "active" : ""}`}
     >
       {layers.length > 0 ? (
         <>
-          <div className="heading">
-            <Button onClick={handleAddNewObject} variant="editor">
-              New object <LucidePlusCircle />
-            </Button>
-          </div>
-
           <div ref={layersRef} className="layers">
             <AnimatePresence>
               {layers?.map((layer, i) => (
                 <ObjectLayer key={i} layer={layer} />
               ))}
             </AnimatePresence>
+          </div>
+
+          <div className="heading" style={{}}>
+            <Button onClick={handleAddNewObject} variant="editor">
+              New object <LucidePlusCircle />
+            </Button>
+            {layers.length > 1 && (
+              <Button
+                className="danger"
+                onClick={handleRemoveAll}
+                variant="editor"
+              >
+                Clear <Trash2 />
+              </Button>
+            )}
           </div>
         </>
       ) : (

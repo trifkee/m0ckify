@@ -81,7 +81,7 @@ export const sceneDocumentAtom = atom<SceneDocumentType>({
       preset: "warehouse",
       intensity: 0.25,
       color: "#fff",
-      castShadow: true,
+      castShadow: false,
     },
   },
 });
@@ -109,4 +109,14 @@ export const openAiKeyAtom = atom({
 export const pivotControlsAtom = atom({
   key: "PivotControls",
   default: true,
+});
+
+export const pivotEnabledControlsAtom = atom({
+  key: "PivotEnabledControls",
+  default: {
+    move: false,
+    rotate: true,
+    scale: true,
+    axes: true,
+  },
 });
