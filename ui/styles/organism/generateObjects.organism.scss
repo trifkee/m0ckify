@@ -5,6 +5,7 @@
   border: none;
   border-right: 1px solid $dashboard-border-clr;
   background: $dashboard-gray-clr;
+  height: 100%;
 
   .no-layers {
     height: 100%;
@@ -30,6 +31,10 @@
   }
 
   .heading {
+    margin-top: auto;
+    display: flex;
+    gap: 0.5rem;
+    border-top: 1px solid rgb($dashboard-border-clr, 1);
     padding: 0.5rem;
   }
 
@@ -44,8 +49,41 @@
   }
 
   .layers {
+    // background: red;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+      width: 0.75rem;
+      background: $dark-gray-clr;
+      padding: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb($dashboard-border-clr, 1);
+      border-radius: 0.5rem;
+    }
     .control {
+      .ctas {
+        position: relative;
+        right: -100%;
+        transition: all 0.3s ease;
+        opacity: 0;
+      }
+
+      &:hover {
+        .ctas {
+          opacity: 1;
+          right: 0;
+        }
+      }
+
       &.active {
+        .ctas {
+          right: 0;
+          opacity: 1;
+        }
+
         & > .control__title {
           border: none;
           border-right: 1px solid rgb($primary-clr-500, 1);

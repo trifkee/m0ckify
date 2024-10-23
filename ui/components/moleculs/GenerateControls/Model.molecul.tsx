@@ -23,6 +23,9 @@ export default function Model({
   const t = useTranslations("generate");
 
   const selectedLayer = useRecoilValue(selectedLayerAtom);
+  const layers = useRecoilValue(ObjectsLayersAtom);
+
+  const [obj] = layers.filter((n) => n.id === selectedLayer?.id);
 
   return (
     <details open={false} className="control model select">
@@ -58,7 +61,7 @@ export default function Model({
             handleChangeReflection(e, "phone", selectedLayer?.id)
           }
           step={0.01}
-          value={String(selectedLayer?.layer.bodyReflection)}
+          value={String(obj?.bodyReflection)}
         />
       </div>
 
@@ -71,7 +74,7 @@ export default function Model({
             handleChangeReflection(e, "screen", selectedLayer?.id)
           }
           title={t("model.screenReflection")}
-          value={Boolean(selectedLayer?.layer.screenReflection)}
+          value={Boolean(obj?.screenReflection)}
         />
 
         {selectedLayer?.layer.screenReflection ? (
@@ -84,7 +87,7 @@ export default function Model({
               handleChangeReflection(e, "screenAlpha", selectedLayer?.id)
             }
             step={0.01}
-            value={String(selectedLayer?.layer.screenAlphaReflection)}
+            value={String(obj?.screenAlphaReflection)}
           />
         ) : null}
       </div>
@@ -109,7 +112,7 @@ export default function Model({
       <div className="control__section ">
         <p className="title">{t("model.color.title")}</p>
         <HexColorPicker
-          color={selectedLayer?.layer.color}
+          color={obj?.color}
           onChange={(e) => handleChangeColor(e, "model", selectedLayer?.id)}
         />
       </div>

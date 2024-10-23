@@ -59,75 +59,66 @@ export default function Model(props: ModelT) {
     0.35 + image.y / IMAGE_SETTINGS.positionDivider
   );
   return (
-    <PivotControls
-      offset={[0, 0, 0.1]}
-      depthTest={true}
-      lineWidth={2}
-      disableScaling
-      // disableSliders
-      visible={pivotControls && props.options.id === selectedLayer?.id}
+    <group
+      onDoubleClick={() =>
+        setSelectedLayer({ id: props.options.id, layer: props.options })
+      }
+      {...props}
+      rotation={[
+        props.options.rotation.y,
+        props.options.rotation.x,
+        props.options.rotation.z,
+      ]}
+      position={[
+        props.options.position.y,
+        props.options.position.x,
+        props.options.position.z,
+      ]}
+      dispose={null}
     >
-      <group
-        onDoubleClick={() =>
-          setSelectedLayer({ id: props.options.id, layer: props.options })
-        }
-        {...props}
-        rotation={[
-          props.options.rotation.y,
-          props.options.rotation.x,
-          props.options.rotation.z,
-        ]}
-        position={[
-          props.options.position.y,
-          props.options.position.x,
-          props.options.position.z,
-        ]}
-        dispose={null}
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Body.geometry}
+        material={materials.Body}
+        rotation={[Math.PI / 2, 0, 0]}
       >
+        <meshStandardMaterial
+          roughness={model.bodyReflection}
+          color={model.color}
+        />
+      </mesh>
+      <mesh
+        geometry={nodes.Screen.geometry}
+        material={materials.Screen}
+        rotation={[Math.PI / 2, 0, 0]}
+      >
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Reciever.geometry}
+        material={materials.Body}
+        position={[0, -0.3, 0]}
+      />
+      {model.screenReflection && (
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Body.geometry}
-          material={materials.Body}
+          geometry={nodes.Glass.geometry}
+          material={materials.Glas}
           rotation={[Math.PI / 2, 0, 0]}
         >
           <meshStandardMaterial
-            roughness={model.bodyReflection}
-            color={model.color}
+            attach={"material"}
+            {...materials.Glas}
+            transparent
+            opacity={model.screenAlphaReflection}
           />
         </mesh>
-        <mesh
-          geometry={nodes.Screen.geometry}
-          material={materials.Screen}
-          rotation={[Math.PI / 2, 0, 0]}
-        >
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Reciever.geometry}
-          material={materials.Body}
-          position={[0, -0.3, 0]}
-        />
-        {model.screenReflection && (
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Glass.geometry}
-            material={materials.Glas}
-            rotation={[Math.PI / 2, 0, 0]}
-          >
-            <meshStandardMaterial
-              attach={"material"}
-              {...materials.Glas}
-              transparent
-              opacity={model.screenAlphaReflection}
-            />
-          </mesh>
-        )}
-      </group>
-    </PivotControls>
+      )}
+    </group>
   );
 }
 
