@@ -46,6 +46,7 @@ export default function Home({
         }}
       >
         <h1>product mockup free online</h1>
+        <h2>Mockify - Free 3D online mockup generator</h2>
         <h2>how to do product mockup</h2>
         <h2>product mockup free</h2>
         <h2>product mockup generator</h2>
@@ -68,7 +69,11 @@ export default function Home({
           }}
         >
           <div className="logo">
-            <Image className="logo" src={logo} alt="Mockify" />
+            <Image
+              className="logo"
+              src={logo}
+              alt="Product mockup generator Free - Mockify"
+            />
           </div>
 
           <div className="ctas">
@@ -204,8 +209,11 @@ export default function Home({
           <LucideChevronRight />
         </Link>
         <div className="images">
-          <Image src={grids} alt="" />
-          <Image src={bgImage} alt="" />
+          <Image src={grids} alt="product mockup free online" />
+          <Image
+            src={bgImage}
+            alt="Mockify - Free 3D online mockup generator"
+          />
         </div>
       </main>
     </>
