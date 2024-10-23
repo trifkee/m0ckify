@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useRef, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -11,21 +11,28 @@ import Button from "../components/atoms/Button.atom";
 import { RenderType } from "@/lib/types/model.type";
 
 import {
+  Axis3d,
   LucideFilePlus2,
   LucideHelpCircle,
   LucideLayers,
   LucideRotate3D,
   LucideSettings2,
+  Maximize,
+  Move,
   Move3D,
   Move3d,
   Move3dIcon,
+  RefreshCw,
+  Scale3d,
 } from "lucide-react";
 import {
   helpAtom,
   isGeneratingAtom,
   layersTabMobileAtom,
   pivotControlsAtom,
+  pivotEnabledControlsAtom,
   renderAtom,
+  selectedLayerAtom,
 } from "@/lib/atoms/generator";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
@@ -47,6 +54,19 @@ export default function ModelProvider() {
   const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
   const setIsLoading = useSetRecoilState(isGeneratingAtom);
+  const [pivotControlsEnabled, setPivotControlsEnabled] = useRecoilState(
+    pivotEnabledControlsAtom
+  );
+  const selectedLayer = useRecoilValue(selectedLayerAtom);
+
+  function handleEnabledPivotControls(
+    key: "move" | "scale" | "rotate" | "axes"
+  ) {
+    setPivotControlsEnabled((prev) => ({
+      ...prev,
+      [key]: !pivotControlsEnabled[key],
+    }));
+  }
 
   const {
     handleDraggedImage,
@@ -168,6 +188,67 @@ export default function ModelProvider() {
               <LucideHelpCircle />
             </Button>
           </div>
+
+          <AnimatePresence>
+            {selectedLayer && pivotControls && (
+              <motion.div
+                initial={{ x: "-100%", opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{
+                  x: "-100%",
+                  opacity: 0,
+                }}
+                className="additional-ctas left"
+                style={{ left: "1rem" }}
+              >
+                <div
+                  className="top"
+                  style={{
+                    display: "flex",
+                    gap: ".5rem",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Button
+                    variant="editor"
+                    className={`freeroam ${
+                      !pivotControlsEnabled.move ? "y" : "n"
+                    }`}
+                    onClick={() => handleEnabledPivotControls("move")}
+                  >
+                    <Move />
+                  </Button>
+                  <Button
+                    variant="editor"
+                    className={` freeroam ${
+                      !pivotControlsEnabled.rotate ? "y" : "n"
+                    }`}
+                    onClick={() => handleEnabledPivotControls("rotate")}
+                  >
+                    <RefreshCw />
+                  </Button>
+                  <Button
+                    variant="editor"
+                    className={`freeroam ${
+                      !pivotControlsEnabled.scale ? "y" : "n"
+                    }`}
+                    onClick={() => handleEnabledPivotControls("scale")}
+                  >
+                    <Scale3d />
+                  </Button>
+                  <Button
+                    variant="editor"
+                    className={`freeroam ${
+                      !pivotControlsEnabled.axes ? "y" : "n"
+                    }`}
+                    onClick={() => handleEnabledPivotControls("axes")}
+                  >
+                    <Maximize />
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <CanvasModel freeroam={freeroam} />
         </Suspense>
       </div>

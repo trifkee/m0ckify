@@ -1,7 +1,12 @@
 import { Suspense, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, Stage } from "@react-three/drei";
+import {
+  ContactShadows,
+  Environment,
+  OrbitControls,
+  Stage,
+} from "@react-three/drei";
 
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
@@ -27,15 +32,19 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
       }}
       ref={canvasRef}
       linear
-      shadows={sceneDocument.env.castShadow ? true : false}
+      shadows={sceneDocument.env.castShadow}
     >
       <ToneMapping />
       <Suspense fallback={null}>
         {/* TODO: ADD LATER BACKGROUND  */}
-        {/* <color attach="background" args={["#15151a"]} /> */}
+        {/* <color attach="background" args={[0, 0, 0]} /> */}
         <Lights />
         {sceneDocument.env.castShadow ? (
           <Stage
+            preset={"soft"}
+            shadows={"contact"}
+            receiveShadow={sceneDocument.env.castShadow}
+            castShadow={sceneDocument.env.castShadow}
             environment={sceneDocument.env.preset as PresetType}
             intensity={sceneDocument.env.intensity}
           >

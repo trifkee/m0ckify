@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
 import { easeIn, motion } from "framer-motion";
@@ -40,6 +40,14 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
     }
 
     return setLayers((prev) => prev.filter((n) => n.id !== index));
+  }
+
+  function handleSelectLayer(e: MouseEvent) {
+    if (e.target !== e.currentTarget) {
+      return;
+    }
+
+    setSelectedLayer({ id: layer.id, layer });
   }
 
   function handleChange(e: any) {
@@ -85,10 +93,10 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
         duration: 0.3,
         type: "spring",
       }}
-      onClick={() => setSelectedLayer({ id: layer.id, layer })}
       className={`control ${layer.id === selectedLayer?.id ? "active" : ""}`}
     >
       <summary
+        onClick={(e) => handleSelectLayer(e)}
         onDoubleClick={() => (isRenaming ? null : setIsRenaming(true))}
         className="control__title"
       >

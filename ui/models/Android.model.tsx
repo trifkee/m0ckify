@@ -64,110 +64,101 @@ export default function Model(props: ModelT) {
   );
 
   return (
-    <PivotControls
-      offset={[0, 0, 0.1]}
-      depthTest={true}
-      lineWidth={2}
-      disableScaling
-      // disableSliders
-      visible={pivotControls && props.options.id === selectedLayer?.id}
+    <group
+      onDoubleClick={() =>
+        setSelectedLayer({
+          id: props.options.id,
+          layer: props.options,
+        })
+      }
+      {...props}
+      rotation={[
+        props.options.rotation.y,
+        props.options.rotation.x,
+        props.options.rotation.z,
+      ]}
+      position={[
+        props.options.position.y,
+        props.options.position.x,
+        props.options.position.z,
+      ]}
+      dispose={null}
     >
-      <group
-        onDoubleClick={() =>
-          setSelectedLayer({
-            id: props.options.id,
-            layer: props.options,
-          })
-        }
-        {...props}
-        rotation={[
-          props.options.rotation.y,
-          props.options.rotation.x,
-          props.options.rotation.z,
-        ]}
-        position={[
-          props.options.position.y,
-          props.options.position.x,
-          props.options.position.z,
-        ]}
-        dispose={null}
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Phone.geometry}
+        material={materials.Body}
+        rotation={[0, Math.PI / 2, 0]}
       >
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Phone.geometry}
-          material={materials.Body}
-          rotation={[0, Math.PI / 2, 0]}
-        >
-          <meshStandardMaterial
-            color={model.color}
-            roughness={model.bodyReflection}
-          />
-        </mesh>
-        {model.screenReflection && (
-          <mesh
-            castShadow
-            receiveShadow
-            geometry={nodes.Glass.geometry}
-            material={materials.Glas}
-            rotation={[0, Math.PI / 2, 0]}
-          >
-            <meshStandardMaterial
-              attach={"mateial"}
-              {...materials.Glas}
-              transparent
-              opacity={model.screenAlphaReflection}
-            />
-          </mesh>
-        )}
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.camerahole.geometry}
-          material={materials.Black}
-          position={[0, 3.4, 0]}
+        <meshStandardMaterial
+          color={model.color}
+          roughness={model.bodyReflection}
         />
+      </mesh>
+      {model.screenReflection && (
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.sidebutton1.geometry}
-          material={materials.Body}
-          position={[1.7, 1.8, 0]}
-        >
-          <meshStandardMaterial
-            color={model.color}
-            roughness={model.bodyReflection}
-          />
-        </mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.sidebutton2.geometry}
-          material={materials.Body}
-          position={[1.7, 0.6, 0]}
-          scale={[1, 0.5, 1]}
-        >
-          <meshStandardMaterial
-            color={model.color}
-            roughness={model.bodyReflection}
-          />
-        </mesh>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.aroundphone.geometry}
-          material={materials.Black}
+          geometry={nodes.Glass.geometry}
+          material={materials.Glas}
           rotation={[0, Math.PI / 2, 0]}
+        >
+          <meshStandardMaterial
+            attach={"mateial"}
+            {...materials.Glas}
+            transparent
+            opacity={model.screenAlphaReflection}
+          />
+        </mesh>
+      )}
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.camerahole.geometry}
+        material={materials.Black}
+        position={[0, 3.4, 0]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.sidebutton1.geometry}
+        material={materials.Body}
+        position={[1.7, 1.8, 0]}
+      >
+        <meshStandardMaterial
+          color={model.color}
+          roughness={model.bodyReflection}
         />
-        <mesh
-          geometry={nodes.Screen001.geometry}
-          material={materials.Screen}
-          rotation={[0, Math.PI / 2, 0]}
-        >
-          <meshBasicMaterial attach="material" map={texture} />
-        </mesh>
-      </group>
-    </PivotControls>
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.sidebutton2.geometry}
+        material={materials.Body}
+        position={[1.7, 0.6, 0]}
+        scale={[1, 0.5, 1]}
+      >
+        <meshStandardMaterial
+          color={model.color}
+          roughness={model.bodyReflection}
+        />
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.aroundphone.geometry}
+        material={materials.Black}
+        rotation={[0, Math.PI / 2, 0]}
+      />
+      <mesh
+        geometry={nodes.Screen001.geometry}
+        material={materials.Screen}
+        rotation={[0, Math.PI / 2, 0]}
+      >
+        <meshBasicMaterial attach="material" map={texture} />
+      </mesh>
+    </group>
   );
 }
 
