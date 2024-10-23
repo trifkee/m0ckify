@@ -19,9 +19,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mockify",
+  title: "Mockify - Online Mockups Generator",
   description:
-    "Craft stunning mockups using custom-built 3D models tailored to your vision. Elevate your designs with personalized creations, delivering a unique touch to every project.",
+    "Craft stunning  free mockups using custom-built 3D models. Elevate your designs with personalized creations, delivering a unique touch to every project.",
   metadataBase: new URL(`https://m0ckify.vercel.app`),
   openGraph: {
     images: [
