@@ -31,6 +31,7 @@ type GLTFResult = GLTF & {
 
 type ModelT = JSX.IntrinsicElements["group"] & {
   options: ModelType;
+  reference: any;
 };
 
 export default function Iphone(props: ModelT) {
@@ -67,6 +68,7 @@ export default function Iphone(props: ModelT) {
   );
   return (
     <group
+      ref={props.reference}
       castShadow
       receiveShadow
       onDoubleClick={() =>
@@ -74,13 +76,13 @@ export default function Iphone(props: ModelT) {
       }
       {...props}
       rotation={[
-        props.options.rotation.y,
         props.options.rotation.x,
+        props.options.rotation.y,
         props.options.rotation.z,
       ]}
       position={[
-        props.options.position.y,
         props.options.position.x,
+        props.options.position.y,
         props.options.position.z,
       ]}
       dispose={null}
