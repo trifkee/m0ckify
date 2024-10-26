@@ -1,3 +1,41 @@
+### [2.2.0] 2024.27.10
+
+## Added
+
+- Created logic for adding more than one project as user
+- Created new window for creating, deleting or duplicating mockify projects
+- Saving data from project and capturing thumbnail periodically
+
+## Changed
+
+- Changed URL structure, now any project is /generate/[id]
+- Changed PIVOT controls, now controls are visible trough faces
+
+### [2.1.0] 2024.21.10
+
+## Added
+
+- Added Pivot controls
+
+## Changed
+
+- Changed look of app
+- Added layers
+- Added animations for layers
+
+### [2.0.0] 2024.10.18
+
+## Added
+
+- Add more objects to the canvas
+- Manipulate with position, rotation
+- Added additional translations
+
+## Changed
+
+- Moved object options to the other navigation panel
+- Changed UI on mobile screen
+
 ### [0.0.3] 2025.06.02
 
 - Added three js fiber
@@ -17,28 +55,3 @@
 - Install react three fiber
 - Install Next intl for localization
 - Created serbian locales
-
-### [2.0.0] 2024.10.18
-
-## Added
-
-- Add more objects to the canvas
-- Manipulate with position, rotation
-- Added additional translations
-
-## Changed
-
-- Moved object options to the other navigation panel
-- Changed UI on mobile screen
-
-### [2.1.0] 2024.21.10
-
-## Added
-
-- Added Pivot controls
-
-## Changed
-
-- Changed look of app
-- Added layers
-- Added animations for layers
