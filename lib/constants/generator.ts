@@ -142,3 +142,38 @@ export const DEFAULT_OBJECT_OPTIONS = {
     y: 0,
   },
 };
+
+export const DEFAULT_CANVAS_OPTIONS = {
+  toneMappingExposure: 0.5,
+  toneMapping: TONE_MAPPINGS[0].value,
+  grid: false,
+  bloom: 0,
+};
+
+export const DEFAULT_LIGHT_OPTIONS = [
+  {
+    color: "#fff",
+    intensity: 0.5,
+    position: {
+      x: -2,
+      y: 1,
+      z: 5,
+    },
+  },
+  {
+    color: "#fff",
+    intensity: 0.5,
+    position: {
+      x: 5,
+      y: -10,
+      z: 15,
+    },
+  },
+];
+
+export const DEFAULT_ENV_OPTIONS = {
+  preset: "warehouse",
+  intensity: 0.25,
+  color: "#fff",
+  castShadow: false,
+};

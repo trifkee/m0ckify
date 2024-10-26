@@ -26,20 +26,7 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
 
   return (
-    <motion.nav
-      initial={{
-        y: 10,
-        opacity: 0,
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-      }}
-      transition={{
-        delay: 0.5,
-      }}
-      className="generate__navigation"
-    >
+    <nav className="generate__navigation">
       <Link href={"/"}>
         <Image src={logo} className="navigation-logo" alt="Mockify" />
       </Link>
@@ -135,6 +122,6 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   );
 }

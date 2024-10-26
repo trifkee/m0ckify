@@ -1,36 +1,76 @@
-import dynamic from "next/dynamic";
+"use client";
 
-import GenerateModel from "@/ui/components/organism/GenerateModel.organism";
-import GenerateControls from "@/ui/components/organism/GenerateControls.organism";
-import GenerateNavigation from "@/ui/components/organism/GenerateNavigation.organism";
-import GenerateObjects from "@/ui/components/organism/GenerateObjects.organism";
+import { useRecoilState } from "recoil";
+import { AnimatePresence } from "framer-motion";
+import { Suspense } from "react";
 
-import GenerateLoading from "@/ui/components/atoms/GenerateLoading.atom";
+import { LucideFilePlus2 } from "lucide-react";
+import { v4 as uuid } from "uuid";
 
-import "@/ui/styles/pages/generate.page.scss";
+import {
+  DEFAULT_CANVAS_OPTIONS,
+  DEFAULT_ENV_OPTIONS,
+  DEFAULT_LIGHT_OPTIONS,
+  DEFAULT_OBJECT_OPTIONS,
+} from "@/lib/constants/generator";
 
-const LazyHelpModal = dynamic(
-  () => import("@/ui/components/moleculs/Help.molecul"),
-  {
-    loading: () => null,
+import img from "@/public/images/mockify-starter.jpg";
+import { isWindowsUndefined } from "@/lib/helpers/helpers";
+import ProjectCard from "@/ui/components/moleculs/ProjectCard.molecul";
+import { projectListAtom } from "@/lib/atoms/generator";
+
+import "@/ui/styles/pages/generateMenu.page.scss";
+
+export default function Generate() {
+  const [projects, setProjects] = useRecoilState(projectListAtom);
+
+  function handleCreateNewProject() {
+    if (isWindowsUndefined()) {
+      const newProjectID = uuid();
+
+      const project = {
+        id: newProjectID,
+        title: "Untitled",
+        options: {
+          layers: [DEFAULT_OBJECT_OPTIONS],
+          env: DEFAULT_ENV_OPTIONS,
+          lights: DEFAULT_LIGHT_OPTIONS,
+          canvas: DEFAULT_CANVAS_OPTIONS,
+        },
+      };
+
+      const arr = { ...projects, [newProjectID]: project };
+
+      setProjects((prev: any) => ({ ...prev, [newProjectID]: project }));
+      localStorage.setItem(`projects`, JSON.stringify(arr));
+    }
   }
-);
 
-export default function Generate({
-  params: { locale },
-}: {
-  params: { locale: string };
-}) {
   return (
-    <>
-      <LazyHelpModal />
-      <GenerateLoading />
-      <main className="generate">
-        <GenerateNavigation locale={locale} />
-        <GenerateModel />
-        <GenerateControls />
-        <GenerateObjects />
+    <Suspense fallback={null}>
+      <main className="generate-menu">
+        <section className="generate-menu__cards">
+          <article onClick={handleCreateNewProject} className="card add-new">
+            <p className="card__title">
+              <LucideFilePlus2 />
+              <span>Create new Project</span>
+            </p>
+          </article>
+          <AnimatePresence>
+            {Object.entries(projects).map(([key, project], i) => {
+              return (
+                <ProjectCard
+                  img={img}
+                  key={key}
+                  id={key}
+                  index={i}
+                  project={project}
+                />
+              );
+            })}
+          </AnimatePresence>
+        </section>
       </main>
-    </>
+    </Suspense>
   );
 }

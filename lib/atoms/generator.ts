@@ -8,6 +8,7 @@ import {
 } from "../types/model.type";
 
 import { DEFAULT_OBJECT_OPTIONS, TONE_MAPPINGS } from "../constants/generator";
+import { isWindowsUndefined } from "../helpers/helpers";
 
 export const renderAtom = atom<RenderType>({
   key: "render",
@@ -119,4 +120,11 @@ export const pivotEnabledControlsAtom = atom({
     scale: true,
     axes: true,
   },
+});
+
+export const projectListAtom = atom({
+  key: "projectLIst",
+  default:
+    isWindowsUndefined() &&
+    JSON.parse(localStorage.getItem("projects") || "[]"),
 });
