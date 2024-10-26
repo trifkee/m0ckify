@@ -45,7 +45,7 @@ export default function Model(options: ModelType) {
   return (
     <PivotControls
       offset={[0, 0, 0.1]}
-      depthTest={true}
+      depthTest={false}
       lineWidth={2}
       disableRotations={pivotControlsEnabled.rotate}
       disableAxes={pivotControlsEnabled.move}
