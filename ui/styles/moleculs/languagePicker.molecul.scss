@@ -4,6 +4,7 @@
   min-width: 7rem;
   height: fit-content;
   position: relative;
+  z-index: 99;
 
   &:hover {
     .langs {

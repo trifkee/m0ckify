@@ -1,0 +1,62 @@
+@import "variables.scss";
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(45deg, rgb(#fff, 0.05), rgb(#6b6363, 0.1));
+  border-bottom: 1px solid rgb(white, 0.25);
+  padding: 1rem;
+  backdrop-filter: blur(12px);
+  z-index: 9;
+  position: relative;
+
+  .ctas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    & > * {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login {
+      border-radius: 0.25rem;
+      padding: 0.5rem 1rem;
+      background-color: rgb(black, 0.25);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: 0.2s ease;
+      height: 100%;
+      align-items: center;
+
+      svg {
+        color: black !important;
+      }
+
+      &:hover {
+        background-color: rgb(black, 0.125);
+      }
+    }
+  }
+
+  .logo {
+    position: relative;
+    height: 1.5rem;
+    width: 100%;
+    max-width: 6rem;
+
+    & > img {
+      max-width: 100%;
+      position: absolute;
+      object-fit: contain;
+    }
+  }
+}

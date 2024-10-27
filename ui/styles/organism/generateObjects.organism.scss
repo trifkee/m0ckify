@@ -7,6 +7,32 @@
   background: $dashboard-gray-clr;
   height: 100%;
 
+  .projects-link {
+    padding: 1rem;
+    background: rgb($light-gray-clr, 0.2);
+    display: flex;
+    justify-content: space-between;
+    transition: 0.2s ease background;
+    border-bottom: 1px solid transparent;
+
+    svg,
+    path {
+      position: relative;
+      transition: 0.2s ease all;
+      left: 0;
+    }
+
+    &:hover {
+      svg,
+      path {
+        left: -0.5rem;
+      }
+
+      border-bottom: 1px solid rgb($dashboard-border-clr, 1);
+      background: rgb($light-gray-clr, 0.4);
+    }
+  }
+
   .no-layers {
     height: 100%;
     display: flex;

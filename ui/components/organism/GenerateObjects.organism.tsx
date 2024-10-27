@@ -3,11 +3,11 @@
 import { MouseEvent, useEffect, useRef } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { AnimatePresence } from "framer-motion";
+import { Link } from "@/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 import Button from "../atoms/Button.atom";
 import ObjectLayer from "../moleculs/ObjectLayer.molecul";
-
-import { v4 as uuidv4 } from "uuid";
 
 import {
   layersTabMobileAtom,
@@ -16,7 +16,12 @@ import {
   selectedLayerAtom,
 } from "@/lib/atoms/generator";
 
-import { LucideBox, LucidePlusCircle, Trash2 } from "lucide-react";
+import {
+  LucideBox,
+  LucideChevronLeft,
+  LucidePlusCircle,
+  Trash2,
+} from "lucide-react";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 import "@/ui/styles/organism/generateObjects.organism.scss";

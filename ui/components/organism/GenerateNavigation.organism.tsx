@@ -16,7 +16,12 @@ import useGenerator from "@/ui/hooks/useGenerator.hook";
 import logo from "@/public/images/logo-white.png";
 
 import { IoMenuSharp } from "react-icons/io5";
-import { LucideDownload, LucideRotateCcw } from "lucide-react";
+import {
+  LucideChevronLeft,
+  LucideDownload,
+  LucideFolder,
+  LucideRotateCcw,
+} from "lucide-react";
 
 import "@/ui/styles/organism/generateNavigation.organism.scss";
 
@@ -27,9 +32,16 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
 
   return (
     <nav className="generate__navigation">
-      <Link href={"/"}>
-        <Image src={logo} className="navigation-logo" alt="Mockify" />
-      </Link>
+      <div className="links">
+        <Link href={"/"}>
+          <Image src={logo} className="navigation-logo" alt="Mockify" />
+        </Link>
+        <Link className="projects-link" href="/generate">
+          <Button variant="editor">
+            <LucideFolder /> <span>Projects</span>
+          </Button>
+        </Link>
+      </div>
       <GenerateDocumentTitle />
 
       <NavigationCtas locale={locale} />

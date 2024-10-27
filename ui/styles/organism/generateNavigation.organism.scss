@@ -1,12 +1,33 @@
 @import "variables.scss";
 
 .generate__navigation {
-  a > img {
-    height: 100%;
-    object-fit: contain;
+  justify-content: space-between;
+
+  .links {
+    display: flex;
+    margin-right: auto;
+    gap: 0.5rem;
+
+    .projects-link {
+      width: fit-content;
+
+      @media (max-width: 768px) {
+        span {
+          display: none;
+        }
+      }
+    }
+
+    a > img {
+      height: 100%;
+      object-fit: contain;
+    }
   }
 }
 
+.placeholder {
+  margin: 0 auto;
+}
 .gen-ctas {
   display: flex;
   align-items: center;

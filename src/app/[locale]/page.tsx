@@ -6,16 +6,14 @@ import { motion } from "framer-motion";
 import { Link } from "@/navigation";
 import Image from "next/image";
 
-import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
-
 import { LucideChevronRight, LucideUser, X } from "lucide-react";
 
-import logo from "@/public/images/logo-white.png";
 import heroImage from "@/public/images/hero-image.png";
 import bgImage from "@/public/images/bg.jpg";
 import grids from "@/public/images/home-grid.png";
 
 import "@/ui/styles/pages/home.page.scss";
+import Navigation from "@/ui/components/moleculs/Navigation.molecul";
 
 const animateProps = {
   opacity: 1,
@@ -54,37 +52,7 @@ export default function Home({
         <h2>how to do product mockup</h2>
       </div>
       <main className="home">
-        <motion.nav
-          className="navigation"
-          initial={{
-            opacity: 0,
-            y: -10,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            delay: 0.5,
-          }}
-        >
-          <div className="logo">
-            <Image
-              className="logo"
-              src={logo}
-              alt="Product mockup generator Free - Mockify"
-            />
-          </div>
-
-          <div className="ctas">
-            <Link className="login" href={"/login"}>
-              <LucideUser />
-              Log in
-            </Link>
-            <LanguagePicker variant="editor" locale={locale} />
-          </div>
-        </motion.nav>
-
+        <Navigation locale={locale} />
         <div className="home__header">
           <div className="info">
             <p className="title">

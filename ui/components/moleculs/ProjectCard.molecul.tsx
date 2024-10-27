@@ -13,6 +13,8 @@ import { ModelType } from "@/lib/types/model.type";
 
 import { LucideCopy, LucideTrash2 } from "lucide-react";
 
+import "@/ui/styles/moleculs/projectCard.molecul.scss";
+
 export default function ProjectCard({
   id,
   project,
@@ -63,15 +65,15 @@ export default function ProjectCard({
     >
       <Link className="card__image" href={`/generate/${id}`}>
         <Image
-          // {/* @ts-ignore */}
-          src={project.thumbnail ?? img}
+          // @ts-expect-errors
+          src={project?.thumbnail ?? img}
           width={1920}
           height={1080}
           alt="Mockify - Generate free mockups online"
         />
       </Link>
       <div className="card__title">
-        {/* @ts-ignore */}
+        {/* @ts-expect-errors */}
         <p>{project?.title}</p>
 
         <div className="actions">
