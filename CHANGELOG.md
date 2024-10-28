@@ -1,3 +1,40 @@
+### [2.2.0] 2024.28.10
+
+## Added
+
+- Added Translation for homepage text
+- Created footer
+- Added social links
+
+## Changed
+
+- Redesigned home page
+
+### [2.1.0] 2024.21.10
+
+## Added
+
+- Added Pivot controls
+
+## Changed
+
+- Changed look of app
+- Added layers
+- Added animations for layers
+
+### [2.0.0] 2024.10.18
+
+## Added
+
+- Add more objects to the canvas
+- Manipulate with position, rotation
+- Added additional translations
+
+## Changed
+
+- Moved object options to the other navigation panel
+- Changed UI on mobile screen
+
 ### [0.0.3] 2025.06.02
 
 - Added three js fiber
@@ -17,28 +54,3 @@
 - Install react three fiber
 - Install Next intl for localization
 - Created serbian locales
-
-### [2.0.0] 2024.10.18
-
-## Added
-
-- Add more objects to the canvas
-- Manipulate with position, rotation
-- Added additional translations
-
-## Changed
-
-- Moved object options to the other navigation panel
-- Changed UI on mobile screen
-
-### [2.1.0] 2024.21.10
-
-## Added
-
-- Added Pivot controls
-
-## Changed
-
-- Changed look of app
-- Added layers
-- Added animations for layers

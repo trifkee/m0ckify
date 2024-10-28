@@ -2,6 +2,16 @@
   "global": {
     "start": "Start"
   },
+  "footer": {
+    "sitemap": {
+      "title": "Sitemap",
+      "generate": "Generate"
+    },
+    "links": {
+      "title": "Links"
+    },
+    "copyright": "All rights reserved."
+  },
   "help": {
     "title": "Help",
     "camera": {
@@ -34,9 +44,36 @@
     }
   },
   "home": {
-    "title": "Create beautiful custom mockups for free",
+    "title": "Create Stunning Mockups Instantly.",
+    "subtitle": "Your all-in-one tool for professional, customizable 3D mockups!",
     "getStarted": "Get Started",
-    "learnMore": "Learn More"
+    "learnMore": "Learn More",
+    "cards": {
+      "lang": {
+        "title": "Multi-Language Support",
+        "subtitle": "Available in multiple languages for global reach."
+      },
+      "lights": {
+        "title": "Lighting & Environment Controls",
+        "subtitle": "Customize lighting and backgrounds for perfect mockups."
+      },
+      "edit": {
+        "title": "Real Time Edit",
+        "subtitle": "Make changes instantly and see results as you go!"
+      },
+      "renders": {
+        "title": "High-Quality Renders.",
+        "subtitle": "Export mockups in stunning resolution."
+      },
+      "models": {
+        "title": "Custom Made Models",
+        "subtitle": "Access unique models tailored to your needs."
+      },
+      "layers": {
+        "title": "Layering Models",
+        "subtitle": "Easily add and arrange multiple models in the scene to build complex mockups."
+      }
+    }
   },
   "auth": {
     "login": {

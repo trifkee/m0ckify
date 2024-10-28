@@ -2,6 +2,16 @@
   "global": {
     "start": "Starten"
   },
+  "footer": {
+    "sitemap": {
+      "title": "Seitenübersicht",
+      "generate": "Erstellen"
+    },
+    "links": {
+      "title": "Links"
+    },
+    "copyright": "Alle Rechte vorbehalten."
+  },
   "help": {
     "title": "Hilfe",
     "camera": {
@@ -26,10 +36,38 @@
     }
   },
   "home": {
-    "title": "Erstellen Sie wunderschöne benutzerdefinierte Mockups kostenlos",
+    "title": "Erstellen Sie Beeindruckende Mockups Sofort.",
+    "subtitle": "Ihr All-in-One-Tool für professionelle, anpassbare 3D-Mockups!",
     "getStarted": "Loslegen",
-    "learnMore": "Mehr erfahren"
+    "learnMore": "Mehr Erfahren",
+    "cards": {
+      "lang": {
+        "title": "Mehrsprachige Unterstützung",
+        "subtitle": "In mehreren Sprachen für globale Reichweite verfügbar."
+      },
+      "lights": {
+        "title": "Licht- und Umgebungssteuerung",
+        "subtitle": "Passen Sie Licht und Hintergründe für perfekte Mockups an."
+      },
+      "edit": {
+        "title": "Echtzeit-Bearbeitung",
+        "subtitle": "Nehmen Sie Änderungen sofort vor und sehen Sie die Ergebnisse in Echtzeit!"
+      },
+      "renders": {
+        "title": "Hochwertige Renderings",
+        "subtitle": "Exportieren Sie Mockups in beeindruckender Auflösung."
+      },
+      "models": {
+        "title": "Benutzerdefinierte Modelle",
+        "subtitle": "Greifen Sie auf einzigartige Modelle zu, die Ihren Bedürfnissen entsprechen."
+      },
+      "layers": {
+        "title": "Schichten von Modellen",
+        "subtitle": "Fügen Sie mehrere Modelle hinzu und ordnen Sie sie an, um komplexe Mockups zu erstellen."
+      }
+    }
   },
+
   "notFound": {
     "title": "Etwas ist schief gelaufen",
     "message": "Wir konnten die Seite, die du suchst, nicht finden...",

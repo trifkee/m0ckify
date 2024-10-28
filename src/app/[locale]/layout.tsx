@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Head from "next/head";
-import { Inter } from "next/font/google";
+import { Inter, Allura } from "next/font/google";
 
 import QueryProvider from "@/ui/providers/QueryProvider.provider";
 import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
@@ -13,6 +13,11 @@ import ogImage from "@/public/images/mockify-starter-big.jpg";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
+
+const allura = Allura({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,7 +65,7 @@ export default async function RootLayout({
       <RecoilProvider>
         <QueryProvider>
           <html lang={locale}>
-            <body className={`${inter.className} body`}>
+            <body className={`${allura.className} ${inter.className}  body`}>
               <NextIntlClientProvider messages={messages}>
                 {children}
               </NextIntlClientProvider>

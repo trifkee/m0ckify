@@ -2,6 +2,16 @@
   "global": {
     "start": "开始"
   },
+  "footer": {
+    "sitemap": {
+      "title": "网站地图",
+      "generate": "生成"
+    },
+    "links": {
+      "title": "链接"
+    },
+    "copyright": "版权所有。"
+  },
   "help": {
     "title": "帮助",
     "camera": {
@@ -33,10 +43,38 @@
       "generate": "开始工作吧！"
     }
   },
+
   "home": {
-    "title": "免费创建漂亮的自定义模型",
-    "getStarted": "开始",
-    "learnMore": "了解更多"
+    "title": "Erstellen Sie Beeindruckende Mockups Sofort.",
+    "subtitle": "Ihr All-in-One-Tool für professionelle, anpassbare 3D-Mockups!",
+    "getStarted": "Loslegen",
+    "learnMore": "Mehr Erfahren",
+    "cards": {
+      "lang": {
+        "title": "Mehrsprachige Unterstützung",
+        "subtitle": "In mehreren Sprachen für globale Reichweite verfügbar."
+      },
+      "lights": {
+        "title": "Licht- und Umgebungssteuerung",
+        "subtitle": "Passen Sie Licht und Hintergründe für perfekte Mockups an."
+      },
+      "edit": {
+        "title": "Echtzeit-Bearbeitung",
+        "subtitle": "Nehmen Sie Änderungen sofort vor und sehen Sie die Ergebnisse in Echtzeit!"
+      },
+      "renders": {
+        "title": "Hochwertige Renderings",
+        "subtitle": "Exportieren Sie Mockups in beeindruckender Auflösung."
+      },
+      "models": {
+        "title": "Benutzerdefinierte Modelle",
+        "subtitle": "Greifen Sie auf einzigartige Modelle zu, die Ihren Bedürfnissen entsprechen."
+      },
+      "layers": {
+        "title": "Schichten von Modellen",
+        "subtitle": "Fügen Sie mehrere Modelle hinzu und ordnen Sie sie an, um komplexe Mockups zu erstellen."
+      }
+    }
   },
   "auth": {
     "login": {
