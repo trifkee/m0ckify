@@ -2,6 +2,16 @@
   "global": {
     "start": "Počni"
   },
+  "footer": {
+    "sitemap": {
+      "title": "Mapa Sajta",
+      "generate": "Generiši"
+    },
+    "links": {
+      "title": "Linkovi"
+    },
+    "copyright": "Sva prava zadržana."
+  },
   "help": {
     "title": "Pomoć",
     "camera": {
@@ -62,9 +72,36 @@
     }
   },
   "home": {
-    "title": "Napravite prelepe prilagođene mockupe besplatno",
-    "getStarted": "Započni",
-    "learnMore": "Saznaj više"
+    "title": "Kreirajte Zapanjujuće Makete Trenutno.",
+    "subtitle": "Vaš sve-u-jednom alat za profesionalne, prilagodljive 3D makete!",
+    "getStarted": "Počni",
+    "learnMore": "Saznaj Više",
+    "cards": {
+      "lang": {
+        "title": "Podrška za Više Jezika",
+        "subtitle": "Dostupno na više jezika za globalni domet."
+      },
+      "lights": {
+        "title": "Kontrole Osvetljenja i Okruženja",
+        "subtitle": "Prilagodite osvetljenje i pozadinu za savršene makete."
+      },
+      "edit": {
+        "title": "Uređivanje u Realnom Vremenu",
+        "subtitle": "Pravite promene odmah i gledajte rezultate dok radite!"
+      },
+      "renders": {
+        "title": "Visokokvalitetni Renderi",
+        "subtitle": "Izvezite makete u zadivljujućoj rezoluciji."
+      },
+      "models": {
+        "title": "Prilagođeni Modeli",
+        "subtitle": "Pristupite jedinstvenim modelima prilagođenim vašim potrebama."
+      },
+      "layers": {
+        "title": "Slojevi Modela",
+        "subtitle": "Lako dodajte i organizujte više modela u sceni za izradu složenih maketa."
+      }
+    }
   },
   "generate": {
     "dropImage": "Otpustite sliku ovde",

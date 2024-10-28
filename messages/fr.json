@@ -2,6 +2,16 @@
   "global": {
     "start": "Commencer"
   },
+  "footer": {
+    "sitemap": {
+      "title": "Plan du Site",
+      "generate": "Générer"
+    },
+    "links": {
+      "title": "Liens"
+    },
+    "copyright": "Tous droits réservés."
+  },
   "help": {
     "title": "Aide",
     "camera": {
@@ -34,9 +44,36 @@
     }
   },
   "home": {
-    "title": "Créez de superbes maquettes personnalisées gratuitement",
+    "title": "Créez des Mockups Époustouflants Instanément.",
+    "subtitle": "Votre outil tout-en-un pour des mockups 3D professionnels et personnalisables !",
     "getStarted": "Commencer",
-    "learnMore": "En savoir plus"
+    "learnMore": "En savoir plus",
+    "cards": {
+      "lang": {
+        "title": "Support Multilingue",
+        "subtitle": "Disponible en plusieurs langues pour un accès mondial."
+      },
+      "lights": {
+        "title": "Contrôles de Lumière et d’Environnement",
+        "subtitle": "Personnalisez la lumière et les arrière-plans pour des mockups parfaits."
+      },
+      "edit": {
+        "title": "Édition en Temps Réel",
+        "subtitle": "Faites des modifications instantanément et voyez les résultats en temps réel !"
+      },
+      "renders": {
+        "title": "Rendus de Haute Qualité",
+        "subtitle": "Exportez des mockups en résolution époustouflante."
+      },
+      "models": {
+        "title": "Modèles Personnalisés",
+        "subtitle": "Accédez à des modèles uniques adaptés à vos besoins."
+      },
+      "layers": {
+        "title": "Modèles en Couches",
+        "subtitle": "Ajoutez et organisez facilement plusieurs modèles pour créer des mockups complexes."
+      }
+    }
   },
   "auth": {
     "login": {
