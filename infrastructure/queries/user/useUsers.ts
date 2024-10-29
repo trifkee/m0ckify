@@ -6,7 +6,10 @@ export function useFetchUser(): UseQueryResult<UserType> {
   return useQuery({
     queryKey: ["user"],
     queryFn: () => me(),
-    enabled: typeof window !== "undefined" ? true : false,
+    enabled:
+      typeof window !== "undefined" && localStorage.getItem("token")
+        ? true
+        : false,
     select: (data) => data.data._doc,
   });
 }
