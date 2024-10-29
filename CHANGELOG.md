@@ -1,3 +1,13 @@
+### [2.2.1] 2024.29.10
+
+## Added
+
+- Moved app to new URL
+
+## Changed
+
+- Changed Google Search Optimization code
+
 ### [2.2.0] 2024.28.10
 
 ## Added
