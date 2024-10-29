@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   title: "Mockify - Online Mockups Generator",
   description:
     "Craft stunning  free mockups using custom-built 3D models. Elevate your designs with personalized creations, delivering a unique touch to every project.",
-  metadataBase: new URL(`https://m0ckify.vercel.app`),
+  metadataBase: new URL(`https://m0ckify.tech`),
   openGraph: {
     images: [
       {
