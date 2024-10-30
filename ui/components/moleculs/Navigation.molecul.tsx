@@ -1,20 +1,16 @@
-import "@/ui/styles/moleculs/navigation.molecul.scss";
-import Image from "next/image";
+"use client";
+
 import { motion } from "framer-motion";
-import logo from "@/public/images/logo-white.png";
-import { Link } from "@/navigation";
-import { LucideUser } from "lucide-react";
+import Image from "next/image";
+
 import LanguagePicker from "./LanguagePicker.molecul";
 
-const animateProps = {
-  opacity: 1,
-  scale: 1,
-  rotateY: 0,
-  rotateX: 0,
-  rotateZ: 0,
-  left: 0,
-  bottom: 0,
-};
+import { Link } from "@/navigation";
+
+import { LucideUser } from "lucide-react";
+import logo from "@/public/images/logo-white.png";
+
+import "@/ui/styles/moleculs/navigation.molecul.scss";
 
 export default function Navigation({ locale }: { locale: string }) {
   return (
