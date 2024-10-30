@@ -53,7 +53,7 @@ export default function GenerateObjects() {
 
   useEffect(() => {
     if (layersRef.current) {
-      //  @ts-ignore
+      // @ts-expect-error
       const n: HTMLDetailsElement[] = layersRef.current.children;
 
       Array.from(n).forEach((n) => {

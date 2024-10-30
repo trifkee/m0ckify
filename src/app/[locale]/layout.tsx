@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Head from "next/head";
 import { Inter, Allura } from "next/font/google";
 
 import QueryProvider from "@/ui/providers/QueryProvider.provider";
