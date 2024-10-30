@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/navigation";
 import Image from "next/image";
 
 import logo from "@/public/images/logo-white.png";
@@ -39,11 +39,16 @@ export default function Footer() {
           <ul>
             <li>
               <IoLogoGithub />
-              <Link href={"https://github.com/trifkee"}>GitHub</Link>
+              <Link target="_blank" href={"https://github.com/trifkee"}>
+                GitHub
+              </Link>
             </li>
             <li>
               <IoLogoLinkedin />
-              <Link href={"https://www.linkedin.com/in/lazartrifunovic/"}>
+              <Link
+                target="_blank"
+                href={"https://www.linkedin.com/in/lazartrifunovic/"}
+              >
                 LinkedIn
               </Link>
             </li>
