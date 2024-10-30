@@ -43,36 +43,35 @@
       "generate": "开始工作吧！"
     }
   },
-
   "home": {
-    "title": "Erstellen Sie Beeindruckende Mockups Sofort.",
-    "subtitle": "Ihr All-in-One-Tool für professionelle, anpassbare 3D-Mockups!",
-    "getStarted": "Loslegen",
-    "learnMore": "Mehr Erfahren",
+    "title": "立即创建惊艳的模型。",
+    "subtitle": "您的一体化专业3D模型自定义工具！",
+    "getStarted": "开始",
+    "learnMore": "了解更多",
     "cards": {
       "lang": {
-        "title": "Mehrsprachige Unterstützung",
-        "subtitle": "In mehreren Sprachen für globale Reichweite verfügbar."
+        "title": "多语言支持",
+        "subtitle": "提供多种语言，满足全球需求。"
       },
       "lights": {
-        "title": "Licht- und Umgebungssteuerung",
-        "subtitle": "Passen Sie Licht und Hintergründe für perfekte Mockups an."
+        "title": "灯光与环境控制",
+        "subtitle": "自定义灯光和背景，打造完美模型。"
       },
       "edit": {
-        "title": "Echtzeit-Bearbeitung",
-        "subtitle": "Nehmen Sie Änderungen sofort vor und sehen Sie die Ergebnisse in Echtzeit!"
+        "title": "实时编辑",
+        "subtitle": "即时更改，实时查看效果！"
       },
       "renders": {
-        "title": "Hochwertige Renderings",
-        "subtitle": "Exportieren Sie Mockups in beeindruckender Auflösung."
+        "title": "高质量渲染",
+        "subtitle": "以惊艳的分辨率导出模型。"
       },
       "models": {
-        "title": "Benutzerdefinierte Modelle",
-        "subtitle": "Greifen Sie auf einzigartige Modelle zu, die Ihren Bedürfnissen entsprechen."
+        "title": "定制模型",
+        "subtitle": "访问专为您需求设计的独特模型。"
       },
       "layers": {
-        "title": "Schichten von Modellen",
-        "subtitle": "Fügen Sie mehrere Modelle hinzu und ordnen Sie sie an, um komplexe Mockups zu erstellen."
+        "title": "模型分层",
+        "subtitle": "轻松添加和排列多个模型，构建复杂模型。"
       }
     }
   },

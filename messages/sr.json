@@ -72,34 +72,34 @@
     }
   },
   "home": {
-    "title": "Kreirajte Zapanjujuće Makete Trenutno.",
-    "subtitle": "Vaš sve-u-jednom alat za profesionalne, prilagodljive 3D makete!",
-    "getStarted": "Počni",
-    "learnMore": "Saznaj Više",
+    "title": "Brzo kreiraj impresivne mockup-ove.",
+    "subtitle": "Tvoj kompletan alat za profesionalne i prilagodljive 3D mockup-ove!",
+    "getStarted": "Započni",
+    "learnMore": "Saznaj više",
     "cards": {
       "lang": {
-        "title": "Podrška za Više Jezika",
-        "subtitle": "Dostupno na više jezika za globalni domet."
+        "title": "Višejezična podrška",
+        "subtitle": "Dostupan na više jezika za globalni pristup."
       },
       "lights": {
-        "title": "Kontrole Osvetljenja i Okruženja",
-        "subtitle": "Prilagodite osvetljenje i pozadinu za savršene makete."
+        "title": "Podešavanje svetla i okruženja",
+        "subtitle": "Prilagodi osvetljenje i pozadinu za idealan izgled."
       },
       "edit": {
-        "title": "Uređivanje u Realnom Vremenu",
-        "subtitle": "Pravite promene odmah i gledajte rezultate dok radite!"
+        "title": "Izmene u realnom vremenu",
+        "subtitle": "Prati rezultate odmah dok praviš promene!"
       },
       "renders": {
-        "title": "Visokokvalitetni Renderi",
-        "subtitle": "Izvezite makete u zadivljujućoj rezoluciji."
+        "title": "Renderi visoke rezolucije",
+        "subtitle": "Izvezi mockup-ove u vrhunskom kvalitetu."
       },
       "models": {
-        "title": "Prilagođeni Modeli",
-        "subtitle": "Pristupite jedinstvenim modelima prilagođenim vašim potrebama."
+        "title": "Prilagođeni modeli",
+        "subtitle": "Pristup jedinstvenim modelima skrojenim po tvojim potrebama."
       },
       "layers": {
-        "title": "Slojevi Modela",
-        "subtitle": "Lako dodajte i organizujte više modela u sceni za izradu složenih maketa."
+        "title": "Višeslojni modeli",
+        "subtitle": "Lako dodaj i organizuj više modela u sceni za kompleksne mockup-ove."
       }
     }
   },
