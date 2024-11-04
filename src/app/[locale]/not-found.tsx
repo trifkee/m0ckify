@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "@/ui/components/atoms/Button.atom";
 
 import mockifyBackground from "@/public/images/bg.jpg";
