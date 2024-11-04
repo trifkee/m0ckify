@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react";
+
 import { Inter, Allura } from "next/font/google";
 
 import QueryProvider from "@/ui/providers/QueryProvider.provider";
@@ -68,6 +70,7 @@ export default async function RootLayout({
               <NextIntlClientProvider messages={messages}>
                 {children}
               </NextIntlClientProvider>
+              <Analytics />
             </body>
           </html>
         </QueryProvider>
