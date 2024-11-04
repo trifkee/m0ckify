@@ -71,3 +71,7 @@
 body {
   overflow: hidden;
 }
+
+:root {
+  interpolate-size: allow-keywords;
+}
