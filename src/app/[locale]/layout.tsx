@@ -70,6 +70,7 @@ export default async function RootLayout({
               <NextIntlClientProvider messages={messages}>
                 {children}
               </NextIntlClientProvider>
+              <Analytics />
             </body>
           </html>
         </QueryProvider>
