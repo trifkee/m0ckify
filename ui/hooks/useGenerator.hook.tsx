@@ -58,16 +58,17 @@ export default function useGenerator() {
       });
   };
 
-  // TODO : FIX THIS FOR MASTER TESIS
   const handleReadAIImage = (image: string) => {
-    //   setModel((prev: ModelType) => ({
-    //     ...prev,
-    //     image: {
-    //       ...prev.image,
-    //       src: image ?? fallbackImage,
-    //       isDefault: false,
-    //     },
-    //   }));
+    setModel((prev: ModelType[]) =>
+      prev.map((n) =>
+        n.id === selectedLayer?.id
+          ? {
+              ...n,
+              image: { ...n.image, src: image, isDefault: false },
+            }
+          : n
+      )
+    );
   };
 
   /* Save Image to user PC */

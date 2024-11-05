@@ -126,6 +126,8 @@
     "magicfy": {
       "title": "Magifizieren",
       "generateTitle": "Magische Mockup generieren",
+      "generatingMessage": "Ich generiere, bitte warten...",
+      "getApiKey": "API-Schlüssel hier abrufen",
       "generateDescription": "Erstellen Sie ein magisches Mockup für meine mobile App...",
       "cta": "Generieren",
       "errors": {

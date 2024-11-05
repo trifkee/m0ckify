@@ -1,3 +1,14 @@
+### [2.3.0] 2024.05.11
+
+## Added
+
+- Implemented Stability AI for image generation
+- Server action for generating image
+
+## Fixed
+
+- Fixed useGenerator hook for AI Read and generation
+
 ### [2.2.1] 2024.29.10
 
 ## Added

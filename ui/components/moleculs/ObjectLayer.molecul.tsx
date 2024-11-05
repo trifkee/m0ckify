@@ -1,7 +1,7 @@
 "use client";
 
 import { MouseEvent, useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 import { easeIn, motion } from "framer-motion";
 
@@ -16,9 +16,14 @@ import { ModelType } from "@/lib/types/model.type";
 import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 
 import { LucideCheck, LucidePencilLine, LucideTrash2 } from "lucide-react";
+import Magicfy from "./GenerateControls/Magicfy.molecul";
+import { userAtom } from "@/lib/atoms/user";
 
 export default function ObjectLayer({ layer }: { layer: ModelType }) {
+  const user = useRecoilValue(userAtom);
+
   const {
+    handleReadAIImage,
     handleImageChange,
     handleChangeColor,
     handleModelChange,
@@ -78,7 +83,7 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
         x: 0,
         transition: {
           stiffness: 260,
-          damping: 20,
+          damping: 10,
         },
       }}
       exit={{
@@ -86,7 +91,7 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
         x: 50,
         transition: {
           stiffness: 260,
-          damping: 20,
+          damping: 10,
         },
       }}
       transition={{
@@ -137,6 +142,9 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
           </>
         )}
       </summary>
+      {user?.role === "admin" && (
+        <Magicfy handleReadAIImage={handleReadAIImage} />
+      )}
       <Images
         handleImageChange={handleImageChange}
         handleImagePosition={handleImagePosition}

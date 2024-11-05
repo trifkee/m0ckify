@@ -17,3 +17,7 @@ img {
   max-width: 100%;
   font-style: italic;
 }
+
+:root {
+  interpolate-size: allow-keywords;
+}

@@ -121,7 +121,9 @@
     },
     "magicfy": {
       "title": "Magicfy",
+      "generatingMessage": "I am generating, please wait...",
       "generateTitle": "Generate Magic Mockup",
+      "getApiKey": "Get API key here",
       "generateDescription": "Generate a magic mockup for my mobile app...",
       "cta": "Generate",
       "errors": {

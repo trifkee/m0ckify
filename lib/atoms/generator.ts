@@ -101,8 +101,8 @@ export const isGeneratingAtom = atom({
   default: true,
 });
 
-export const openAiKeyAtom = atom({
-  key: "openAiKey",
+export const aiKeyAtom = atom({
+  key: "aiKeyApi",
   default: "",
 });
 
