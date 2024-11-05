@@ -150,7 +150,7 @@
   }
 
   &.magic {
-    box-shadow: 0 0 1px rgba(255, 255, 255, 1), 0 0 1px rgba(255, 0, 255, 0.8);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0), 0 0 5px rgba(255, 0, 255, 0);
     color: white;
     position: relative;
     cursor: pointer;
@@ -158,8 +158,7 @@
     animation: rotate-border 5s linear infinite;
 
     &:hover {
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
-        0 0 10px rgba(255, 0, 255, 0.8);
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 5px #00ffea;
     }
   }
 

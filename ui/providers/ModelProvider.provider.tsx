@@ -2,29 +2,18 @@
 
 import { Suspense, useEffect, useRef, useState } from "react";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-
+import { useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "framer-motion";
+
+import useGenerator from "../hooks/useGenerator.hook";
+import useMouse from "../hooks/useMouse.hook";
 
 import CanvasModel from "../components/moleculs/CanvasModel.molecul";
 import Button from "../components/atoms/Button.atom";
+import ContextMenu from "../components/moleculs/ContextMenu.molecul";
 
 import { RenderType } from "@/lib/types/model.type";
 
-import {
-  Axis3d,
-  LucideFilePlus2,
-  LucideHelpCircle,
-  LucideLayers,
-  LucideRotate3D,
-  LucideSettings2,
-  Maximize,
-  Move,
-  Move3D,
-  Move3d,
-  Move3dIcon,
-  RefreshCw,
-  Scale3d,
-} from "lucide-react";
 import {
   helpAtom,
   isGeneratingAtom,
@@ -35,11 +24,19 @@ import {
   selectedLayerAtom,
 } from "@/lib/atoms/generator";
 
+import {
+  LucideFilePlus2,
+  LucideHelpCircle,
+  LucideLayers,
+  LucideRotate3D,
+  Maximize,
+  Move,
+  Move3dIcon,
+  RefreshCw,
+  Scale3d,
+} from "lucide-react";
+
 import "@/ui/styles/providers/modelProvider.provider.scss";
-import useGenerator from "../hooks/useGenerator.hook";
-import { useTranslations } from "next-intl";
-import useMouse from "../hooks/useMouse.hook";
-import ContextMenu from "../components/moleculs/ContextMenu.molecul";
 
 export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -191,22 +188,116 @@ export default function ModelProvider() {
 
           <AnimatePresence>
             {selectedLayer && pivotControls && (
-              <motion.div
-                initial={{ x: "-100%", opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                exit={{
-                  x: "-100%",
-                  opacity: 0,
-                }}
-                className="additional-ctas left"
-                style={{ left: "1rem" }}
-              >
+              <div className="additional-ctas left" style={{ left: "1rem" }}>
                 <div
                   className="top"
                   style={{
                     display: "flex",
                     gap: ".5rem",
                     flexDirection: "column",
+                  }}
+                >
+                  <motion.div
+                    initial={{ x: "-100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{
+                      x: "-100%",
+                      opacity: 0,
+                    }}
+                    transition={{
+                      delay: 0.01,
+                    }}
+                  >
+                    <Button
+                      variant="editor"
+                      className={`freeroam ${
+                        !pivotControlsEnabled.move ? "y" : "n"
+                      }`}
+                      onClick={() => handleEnabledPivotControls("move")}
+                    >
+                      <Move />
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: "-100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{
+                      x: "-100%",
+                      opacity: 0,
+                    }}
+                    transition={{
+                      delay: 0.05,
+                    }}
+                  >
+                    <Button
+                      variant="editor"
+                      className={` freeroam ${
+                        !pivotControlsEnabled.rotate ? "y" : "n"
+                      }`}
+                      onClick={() => handleEnabledPivotControls("rotate")}
+                    >
+                      <RefreshCw />
+                    </Button>
+                  </motion.div>
+                  <motion.div
+                    initial={{ x: "-100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{
+                      x: "-100%",
+                      opacity: 0,
+                    }}
+                    transition={{
+                      delay: 0.1,
+                    }}
+                  >
+                    <Button
+                      variant="editor"
+                      className={`freeroam ${
+                        !pivotControlsEnabled.scale ? "y" : "n"
+                      }`}
+                      onClick={() => handleEnabledPivotControls("scale")}
+                    >
+                      <Scale3d />
+                    </Button>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ x: "-100%", opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    exit={{
+                      x: "-100%",
+                      opacity: 0,
+                    }}
+                    transition={{
+                      delay: 0.15,
+                    }}
+                  >
+                    <Button
+                      variant="editor"
+                      className={`freeroam ${
+                        !pivotControlsEnabled.axes ? "y" : "n"
+                      }`}
+                      onClick={() => handleEnabledPivotControls("axes")}
+                    >
+                      <Maximize />
+                    </Button>
+                  </motion.div>
+                </div>
+              </div>
+            )}
+          </AnimatePresence>
+          {/* <AnimatePresence>
+            {selectedLayer && pivotControls && (
+              <div className="top-left controls">
+                <motion.div
+                  initial={{ x: "-100%", opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{
+                    x: "-100%",
+                    opacity: 0,
+                  }}
+                  transition={{
+                    delay: 0,
                   }}
                 >
                   <Button
@@ -218,6 +309,18 @@ export default function ModelProvider() {
                   >
                     <Move />
                   </Button>
+                </motion.div>
+                <motion.div
+                  initial={{ x: "-100%", opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{
+                    x: "-100%",
+                    opacity: 0,
+                  }}
+                  transition={{
+                    delay: 0.05,
+                  }}
+                >
                   <Button
                     variant="editor"
                     className={` freeroam ${
@@ -227,6 +330,18 @@ export default function ModelProvider() {
                   >
                     <RefreshCw />
                   </Button>
+                </motion.div>
+                <motion.div
+                  initial={{ x: "-100%", opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{
+                    x: "-100%",
+                    opacity: 0,
+                  }}
+                  transition={{
+                    delay: 0.1,
+                  }}
+                >
                   <Button
                     variant="editor"
                     className={`freeroam ${
@@ -236,6 +351,19 @@ export default function ModelProvider() {
                   >
                     <Scale3d />
                   </Button>
+                </motion.div>
+
+                <motion.div
+                  initial={{ x: "-100%", opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{
+                    x: "-100%",
+                    opacity: 0,
+                  }}
+                  transition={{
+                    delay: 0.15,
+                  }}
+                >
                   <Button
                     variant="editor"
                     className={`freeroam ${
@@ -245,10 +373,10 @@ export default function ModelProvider() {
                   >
                     <Maximize />
                   </Button>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             )}
-          </AnimatePresence>
+          </AnimatePresence> */}
           <CanvasModel freeroam={freeroam} />
         </Suspense>
       </div>

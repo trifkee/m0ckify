@@ -125,6 +125,8 @@
     "magicfy": {
       "title": "Magifier",
       "generateTitle": "Générer une maquette magique",
+      "generatingMessage": "Je génère, veuillez patienter...",
+      "getApiKey": "Obtenez la clé API ici",
       "generateDescription": "Générer une maquette magique pour mon application mobile...",
       "cta": "Générer",
       "errors": {
