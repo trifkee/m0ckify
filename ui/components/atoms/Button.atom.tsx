@@ -29,7 +29,9 @@ export default function Button({
       disabled={disabled}
       type={type || "button"}
       onClick={() => (onClick ? onClick() : null)}
-      className={`button ${variant ? variant : ""} ${className} ${disabled}`}
+      className={`button ${variant ? variant : ""} ${
+        className ?? ""
+      } ${disabled}`}
     >
       {children}
     </button>

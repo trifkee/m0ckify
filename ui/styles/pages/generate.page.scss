@@ -147,6 +147,27 @@
         height: 100%;
       }
 
+      .top-left.controls {
+        display: flex;
+        gap: 0.5rem;
+        flex-direction: column;
+        height: fit-content;
+        width: fit-content;
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        z-index: 2;
+
+        & > * {
+          aspect-ratio: 1;
+          height: 100%;
+
+          & > .button {
+            height: inherit;
+          }
+        }
+      }
+
       canvas {
         position: absolute;
         width: 100%;

@@ -125,6 +125,8 @@
     "magicfy": {
       "title": "Magicfy",
       "generateTitle": "Generiši magični mokap",
+      "generatingMessage": "Generišem, molim sačekajte...",
+      "getApiKey": "Preuzmite API ključ ovde",
       "generateDescription": "Generiši magični mokap za moju mobilnu aplikaciju...",
       "cta": "Generiši",
       "errors": {

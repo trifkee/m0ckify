@@ -125,6 +125,8 @@
     "magicfy": {
       "title": "魔法生成",
       "generateTitle": "生成魔法模型",
+      "generatingMessage": "正在生成，请稍候...",
+      "getApiKey": "在此获取 API 密钥",
       "generateDescription": "为我的移动应用生成魔法模型...",
       "cta": "生成",
       "errors": {

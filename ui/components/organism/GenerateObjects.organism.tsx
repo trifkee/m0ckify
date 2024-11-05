@@ -20,6 +20,7 @@ import { LucideBox, LucidePlusCircle, Trash2 } from "lucide-react";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 import "@/ui/styles/organism/generateObjects.organism.scss";
+import useGenerator from "@/ui/hooks/useGenerator.hook";
 
 export default function GenerateObjects() {
   const layersRef = useRef<HTMLDivElement | null>(null);

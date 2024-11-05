@@ -1,35 +1,50 @@
 import { STARTING_PROPMPT } from "@/lib/constants/generator";
+import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
-import OpenAI from "openai";
+
+const baseUrl = "https://api.stability.ai/v2beta/stable-image/generate/core";
 
 export async function POST(req: NextRequest) {
   try {
-    const { prompt, openAiKey } = await req.json();
+    const { prompt, apiKey } = await req.json();
 
-    const openai = new OpenAI({
-      apiKey: openAiKey ? openAiKey : process.env.OPEN_AI_KEY,
-    });
+    const res = await axios.post(
+      baseUrl,
+      {
+        prompt: `${STARTING_PROPMPT} ${prompt}`,
+        output_format: "webp",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey ?? process.env.STABILITY_KEY}`,
+          Accept: "image/*",
+          "Content-Type": "multipart/form-data",
+        },
+        validateStatus: undefined,
+        responseType: "arraybuffer",
+      }
+    );
 
-    const res = await openai.images.generate({
-      prompt: STARTING_PROPMPT + prompt,
-      model: "dall-e-3",
-      quality: "standard",
-      size: "1024x1792",
-      n: 1,
-    });
+    const base64Image = Buffer.from(res.data, "binary").toString("base64");
+    const imageData = `data:image/webp;base64,${base64Image}`;
 
-    if (!res.data) {
-      throw new Error("Failed to generate image");
+    if (res.status === 401) {
+      return NextResponse.json({
+        status: 401,
+        message: "Invalid API key",
+      });
     }
 
-    const imgUrl = res.data[0].url;
-
-    return NextResponse.json({ imgUrl });
-  } catch (error) {
     return NextResponse.json({
-      status: 500,
-      // @ts-ignore
-      message: `Failed to generate image: ${error.error.message}`,
+      image: imageData,
+    });
+  } catch (error: unknown) {
+    const err = error as AxiosError;
+
+    return NextResponse.json({
+      status: err.status,
+      errorName: err.name,
+      message: `Something went wrong: ${err.message} `,
     });
   }
 }
