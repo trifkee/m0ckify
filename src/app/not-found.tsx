@@ -7,7 +7,7 @@ import Button from "@/ui/components/atoms/Button.atom";
 
 import { Inter } from "next/font/google";
 
-import logo from "@/public/images/logo.png";
+import logo from "@/public/images/logo-main-light.png";
 import mockifyBackground from "@/public/images/bg.jpg";
 
 import "@/ui/styles/pages/notFound.page.scss";
