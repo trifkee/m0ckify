@@ -1,14 +1,15 @@
 "use client";
 
+import Link from "next/link";
+import { useTranslations } from "next-intl";
+import Image from "next/image";
+
 import Button from "@/ui/components/atoms/Button.atom";
 
+import logo from "@/public/images/logo-main-light.png";
 import mockifyBackground from "@/public/images/bg.jpg";
-import logo from "@/public/images/logo.png";
 
 import "@/ui/styles/pages/notFound.page.scss";
-import Image from "next/image";
-import { Link } from "@/navigation";
-import { useTranslations } from "next-intl";
 
 export default function NotFound() {
   const t = useTranslations("notFound");
@@ -26,10 +27,12 @@ export default function NotFound() {
         </div>
         <div className="links">
           <Link href={"/"}>
-            <Button variant="primary">{t("ctas.homepage")}</Button>
+            <Button variant="editor">{t("ctas.homepage")}</Button>
           </Link>
           <Link href={"/generate"}>
-            <Button variant="danger">{t("ctas.generate")}</Button>
+            <Button variant="editor" className="danger">
+              {t("ctas.generate")}
+            </Button>
           </Link>
         </div>
       </div>

@@ -27,21 +27,21 @@
     display: none;
   }
 
-  // DETAILS
-  details {
-    overflow: hidden;
-  }
+  // // DETAILS
+  // details {
+  //   overflow: hidden;
+  // }
 
-  details::details-content {
-    block-size: 0;
+  // details::details-content {
+  //   block-size: 0;
 
-    transition: block-size 1s, content-visibility 1s;
-    transition-behavior: allow-discrete;
-  }
+  //   transition: block-size 1s, content-visibility 1s;
+  //   transition-behavior: allow-discrete;
+  // }
 
-  details[open]::details-content {
-    block-size: auto;
-  }
+  // details[open]::details-content {
+  //   block-size: fit-content;
+  // }
 
   &__controls.objects {
     grid-area: objects;
