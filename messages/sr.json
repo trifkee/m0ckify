@@ -130,10 +130,9 @@
       "generateDescription": "Generiši magični mokap za moju mobilnu aplikaciju...",
       "cta": "Generiši",
       "errors": {
-        "noCredit": [
-          "Hej, izgleda da smo ostali bez tokena na našem nalogu.",
-          "Ako želiš da isprobaš naš proizvod, slobodno postavi svoj API ključ i nastavi da koristiš aplikaciju."
-        ],
+        "unknown": "Unknown Error",
+        "invalidApiKey": "Invalid API Key",
+        "noCredit": "Hej, izgleda da smo ostali bez tokena na našem nalogu. Ako želiš da isprobaš naš proizvod, slobodno postavi svoj API ključ i nastavi da koristiš aplikaciju.",
         "noSavingKeys": "Vaš ključ neće biti sačuvan!"
       }
     },

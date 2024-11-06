@@ -130,10 +130,9 @@
       "generateDescription": "Générer une maquette magique pour mon application mobile...",
       "cta": "Générer",
       "errors": {
-        "noCredit": [
-          "Hé, on dirait que nous n'avons plus de jetons sur notre compte.",
-          "Si vous voulez essayer notre produit, n'hésitez pas à définir votre propre clé API et à continuer d'utiliser l'application."
-        ],
+        "unknown": "Unknown Error",
+        "invalidApiKey": "Invalid API Key",
+        "noCredit": "Hé, on dirait que nous n'avons plus de jetons sur notre compte. Si vous voulez essayer notre produit, n'hésitez pas à définir votre propre clé API et à continuer d'utiliser l'application.",
         "noSavingKeys": "Votre clé ne sera pas sauvegardée !"
       }
     },

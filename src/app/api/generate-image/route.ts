@@ -4,6 +4,19 @@ import { NextRequest, NextResponse } from "next/server";
 
 const baseUrl = "https://api.stability.ai/v2beta/stable-image/generate/core";
 
+function checkErrorMessage(status: number) {
+  switch (status) {
+    case 401:
+      return "invalidApiKey";
+
+    case 402:
+      return "noCredit";
+
+    default:
+      return "unknown";
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { prompt, apiKey } = await req.json();
@@ -28,14 +41,15 @@ export async function POST(req: NextRequest) {
     const base64Image = Buffer.from(res.data, "binary").toString("base64");
     const imageData = `data:image/webp;base64,${base64Image}`;
 
-    if (res.status === 401) {
+    if (res.status !== 200) {
       return NextResponse.json({
-        status: 401,
-        message: "Invalid API key",
+        status: res.status,
+        message: checkErrorMessage(res.status),
       });
     }
 
     return NextResponse.json({
+      status: 200,
       image: imageData,
     });
   } catch (error: unknown) {
