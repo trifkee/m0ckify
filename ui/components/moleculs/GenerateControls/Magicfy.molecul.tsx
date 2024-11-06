@@ -14,6 +14,8 @@ import { LucideInfo, LucideWand2, SquareArrowOutUpRight } from "lucide-react";
 
 import mockifyImage from "@/public/images/bg.jpg";
 import Link from "next/link";
+import { AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const promptLen = 30;
 
@@ -34,7 +36,7 @@ export default function Magicfy({
   const onSuccessGenerate = (data: any) => {
     const status = data?.data?.status;
 
-    if (status === 401 || status === 500) {
+    if (status !== 200) {
       setShowMoreOptions(true);
       return;
     }
@@ -68,18 +70,33 @@ export default function Magicfy({
             <p className="title">{t("magicfy.title")}</p>
             {showMoreOptions && (
               <>
-                <p className="title information">
-                  {data?.data.message ? (
-                    data?.data.message
-                  ) : (
-                    <>
-                      {t("magicfy.errors.noCredit.0")}
-                      <br />
-                      <br />
-                      {t("magicfy.errors.noCredit.1")}
-                    </>
+                <AnimatePresence>
+                  {data?.data?.message && (
+                    <motion.p
+                      initial={{
+                        opacity: 0,
+                        x: -50,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                        transition: {
+                          duration: 0.25,
+                        },
+                      }}
+                      exit={{
+                        opacity: 0,
+                        x: -50,
+                        transition: {
+                          duration: 0.25,
+                        },
+                      }}
+                      className="title information"
+                    >
+                      {t(`magicfy.errors.${data?.data?.message}`)}
+                    </motion.p>
                   )}
-                </p>
+                </AnimatePresence>
 
                 <p className="title additional-info">
                   {t("magicfy.errors.noSavingKeys")}

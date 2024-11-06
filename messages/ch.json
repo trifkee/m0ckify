@@ -130,10 +130,9 @@
       "generateDescription": "为我的移动应用生成魔法模型...",
       "cta": "生成",
       "errors": {
-        "noCredit": [
-          "嘿，看起来我们的账户中没有足够的令牌了。",
-          "如果你想试用我们的产品，欢迎设置你自己的API密钥并继续使用应用程序。"
-        ],
+        "unknown": "Unknown Error",
+        "invalidApiKey": "Invalid API Key",
+        "noCredit": "嘿，看起来我们的账户中没有足够的令牌了。如果你想试用我们的产品，欢迎设置你自己的API密钥并继续使用应用程序。",
         "noSavingKeys": "你的密钥不会被保存！"
       }
     },
