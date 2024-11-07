@@ -106,11 +106,33 @@
   },
   "generate": {
     "dropImage": "Legen Sie Ihr Bild hier ab",
+
     "general": {
-      "title": "Général",
-      "brigthnes": "Luminosité",
-      "preset": "Préréglage"
+      "title": "Allgemein",
+      "world": {
+        "title": "Welt",
+        "brigthnes": "Helligkeit",
+        "preset": "Voreinstellung"
+      },
+      "fog": {
+        "title": "Nebel",
+        "enable": "Aktiviert",
+        "minFog": "Minimaler Nebel",
+        "maxFog": "Maximaler Nebel"
+      },
+      "reflections": {
+        "title": "Reflexionen",
+        "enable": "Bodenreflexionen",
+        "roughness": "Rauheit",
+        "treshold": "Schwelle",
+        "strength": "Stärke"
+      },
+      "background": {
+        "title": "Hintergrund",
+        "enable": "Aktiviert"
+      }
     },
+
     "render": {
       "title": "Rendern",
       "imageSize": "Bildgröße",

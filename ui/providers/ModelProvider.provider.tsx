@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
+import useModel from "../hooks/useModel.hook";
 
 export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -65,13 +66,14 @@ export default function ModelProvider() {
     }));
   }
 
+  const { handleSave } = useGenerator();
+  useMouse();
+
   const {
     handleDraggedImage,
-    handleSave,
-    resetModelPosition,
+    // resetModelPosition,
     handleImageChange,
-  } = useGenerator();
-  useMouse();
+  } = useModel();
 
   useEffect(() => {
     setIsLoading(false);
@@ -110,7 +112,7 @@ export default function ModelProvider() {
       <ContextMenu
         handleSave={handleSave}
         handleImageChange={handleImageChange}
-        resetModelPosition={resetModelPosition}
+        // resetModelPosition={resetModelPosition}
       />
       <div
         className="model"

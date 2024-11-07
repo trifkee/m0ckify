@@ -9,20 +9,12 @@ import NumberInput from "../../atoms/NumberInput.atom";
 import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 
 import { LucideMove } from "lucide-react";
+import useModel from "@/ui/hooks/useModel.hook";
 
-type ValuesT = {
-  position: { x: number; y: number; z: number };
-  rotation: { x: number; y: number; z: number };
-};
-
-export default function GeneratePosition({
-  handleChangeRotation,
-  handleChangePosition,
-}: {
-  handleChangeRotation: CallableFunction;
-  handleChangePosition: CallableFunction;
-}) {
+export default function GeneratePosition() {
   const t = useTranslations("generate");
+
+  const { handleChangeRotation, handleChangePosition } = useModel();
 
   const layers = useRecoilValue(ObjectsLayersAtom);
   const selectedLayer = useRecoilValue(selectedLayerAtom);

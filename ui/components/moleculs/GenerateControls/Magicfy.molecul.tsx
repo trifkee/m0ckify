@@ -16,16 +16,16 @@ import mockifyImage from "@/public/images/bg.jpg";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
+import useModel from "@/ui/hooks/useModel.hook";
 
 const promptLen = 30;
 
-export default function Magicfy({
-  handleReadAIImage,
-}: {
-  handleReadAIImage: CallableFunction;
-}) {
+export default function Magicfy() {
   const t = useTranslations("generate");
   const router = useRouter();
+
+  const { handleReadAIImage } = useModel();
+
   const [aiKey, setAiKey] = useRecoilState(aiKeyAtom);
 
   const [showMoreOptions, setShowMoreOptions] = useState(false);

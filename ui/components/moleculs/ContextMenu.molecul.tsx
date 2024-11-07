@@ -17,10 +17,10 @@ import "@/ui/styles/moleculs/contextMenu.molecul.scss";
 export default function ContextMenu({
   handleSave,
   handleImageChange,
-  resetModelPosition,
-}: {
+}: // resetModelPosition,
+{
   handleImageChange: ChangeEventHandler<HTMLInputElement>;
-  resetModelPosition: CallableFunction;
+  // resetModelPosition: CallableFunction;
   handleSave: CallableFunction;
 }) {
   const t = useTranslations("generate");
@@ -85,7 +85,7 @@ export default function ContextMenu({
             </Button>
 
             <Button
-              onClick={resetModelPosition}
+              // onClick={resetModelPosition}
               variant="editor"
               className="danger  model__reset-cta"
             >

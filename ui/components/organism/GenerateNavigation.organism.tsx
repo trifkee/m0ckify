@@ -22,7 +22,10 @@ import "@/ui/styles/organism/generateNavigation.organism.scss";
 
 export default function GenerateNavigation({ locale }: { locale: string }) {
   const t = useTranslations("generate");
-  const { resetModelPosition, handleSave } = useGenerator();
+  const {
+    //  resetModelPosition,
+    handleSave,
+  } = useGenerator();
   const [isOpenedMenu, setIsOpenedMenu] = useState(false);
 
   return (
@@ -115,14 +118,14 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
               className="mobile-nav__content"
               style={{ display: "flex", gap: ".5rem" }}
             >
-              <Button
+              {/* <Button
                 onClick={resetModelPosition}
                 variant="editor"
                 className="danger  model__reset-cta"
               >
                 <p>{t("actions.reset")}</p>
                 <LucideRotateCcw />
-              </Button>
+              </Button> */}
               <Button
                 onClick={handleSave}
                 variant="editor"

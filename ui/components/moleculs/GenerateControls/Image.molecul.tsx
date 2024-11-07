@@ -8,17 +8,13 @@ import NumberInput from "../../atoms/NumberInput.atom";
 import Button from "../../atoms/Button.atom";
 
 import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
+import useModel from "@/ui/hooks/useModel.hook";
 
-export default function Images({
-  handleImagePosition,
-  handleImageSize,
-  handleImageChange,
-}: {
-  handleImageSize: CallableFunction;
-  handleImagePosition: CallableFunction;
-  handleImageChange: ChangeEventHandler<HTMLInputElement>;
-}) {
+export default function Images() {
   const t = useTranslations("generate");
+
+  const { handleImagePosition, handleImageSize, handleImageChange } =
+    useModel();
 
   const layers = useRecoilValue(ObjectsLayersAtom);
   const selectedLayer = useRecoilValue(selectedLayerAtom);
@@ -69,17 +65,13 @@ export default function Images({
           <NumberInput
             name="iw"
             label="W"
-            onChange={(e: any) =>
-              handleImageSize(e, "width", selectedLayer?.id)
-            }
+            onChange={(e: any) => handleImageSize(e, "width")}
             value={obj?.image.width ?? 0}
           />
           <NumberInput
             name="ih"
             label="H"
-            onChange={(e: any) =>
-              handleImageSize(e, "height", selectedLayer?.id)
-            }
+            onChange={(e: any) => handleImageSize(e, "height")}
             value={obj?.image.height ?? 0}
           />
         </div>
@@ -95,17 +87,13 @@ export default function Images({
           <NumberInput
             name="ix"
             label="X"
-            onChange={(e: any) =>
-              handleImagePosition(e, "x", selectedLayer?.id)
-            }
+            onChange={(e: any) => handleImagePosition(e, "x")}
             value={obj?.image.x ?? 0}
           />
           <NumberInput
             name="iy"
             label="Y"
-            onChange={(e: any) =>
-              handleImagePosition(e, "y", selectedLayer?.id)
-            }
+            onChange={(e: any) => handleImagePosition(e, "y")}
             value={obj?.image.y ?? 0}
           />
         </div>

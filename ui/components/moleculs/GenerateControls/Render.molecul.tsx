@@ -4,15 +4,13 @@ import NumberInput from "../../atoms/NumberInput.atom";
 import { useRecoilValue } from "recoil";
 import { renderAtom } from "@/lib/atoms/generator";
 import { IMAGE_TYPES } from "@/lib/constants/generator";
+import useRender from "@/ui/hooks/useRender.hook";
 
-export default function Render({
-  handleChangeRenderSize,
-  handleChangeRenderImageType,
-}: {
-  handleChangeRenderSize: CallableFunction;
-  handleChangeRenderImageType: CallableFunction;
-}) {
+export default function Render() {
   const t = useTranslations("generate");
+
+  const { handleChangeRenderSize, handleChangeRenderImageType } = useRender();
+
   const render = useRecoilValue(renderAtom);
 
   return (

@@ -1,8 +1,9 @@
 import "@/ui/styles/atoms/numberInput.atom.scss";
+import { ReactNode } from "react";
 
 type NumberInputType = {
   name: string;
-  label?: string;
+  label?: string | ReactNode;
   onChange: CallableFunction;
   value?: number;
   step?: number;

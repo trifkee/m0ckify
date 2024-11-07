@@ -120,3 +120,32 @@ export const pivotEnabledControlsAtom = atom({
     axes: true,
   },
 });
+
+export const fogControlsAtom = atom({
+  key: "fogControls",
+  default: {
+    enabled: true,
+    minFog: 0,
+    maxFog: 20,
+  },
+});
+
+export const floorReflectionAtom = atom({
+  key: "floorReflection",
+  default: {
+    enabled: true,
+    roughness: 0.5,
+    strength: 1,
+    depth: 1,
+    minTreshold: 0,
+    maxTreshold: 1,
+  },
+});
+
+export const backgroundSettingsAtom = atom({
+  key: "background",
+  default: {
+    enabled: true,
+    color: "black",
+  },
+});

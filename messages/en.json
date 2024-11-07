@@ -107,8 +107,28 @@
     "dropImage": "Drop your image here",
     "general": {
       "title": "General",
-      "brigthnes": "Brigthnes",
-      "preset": "Preset"
+      "world": {
+        "title": "World",
+        "brigthnes": "Brigthnes",
+        "preset": "Preset"
+      },
+      "fog": {
+        "title": "Fog",
+        "enable": "Enabled",
+        "minFog": "Minimum Fog",
+        "maxFog": "Max Fog"
+      },
+      "reflections": {
+        "title": "Reflections",
+        "enable": "Floor Reflections",
+        "roughness": "Roughness",
+        "treshold": "Treshold",
+        "strength": "Strength"
+      },
+      "background": {
+        "title": "Background",
+        "enable": "Enabled"
+      }
     },
     "render": {
       "title": "Render",
