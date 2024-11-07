@@ -107,8 +107,28 @@
     "dropImage": "Déposez votre image ici",
     "general": {
       "title": "Général",
-      "brigthnes": "Luminosité",
-      "preset": "Préréglage"
+      "world": {
+        "title": "Monde",
+        "brigthnes": "Luminosité",
+        "preset": "Préréglage"
+      },
+      "fog": {
+        "title": "Brouillard",
+        "enable": "Activé",
+        "minFog": "Brouillard Minimum",
+        "maxFog": "Brouillard Maximum"
+      },
+      "reflections": {
+        "title": "Réflexions",
+        "enable": "Réflexions au Sol",
+        "roughness": "Rugosité",
+        "treshold": "Seuil",
+        "strength": "Force"
+      },
+      "background": {
+        "title": "Arrière-plan",
+        "enable": "Activé"
+      }
     },
     "render": {
       "title": "Rendu",

@@ -6,19 +6,17 @@ import { HexColorPicker } from "react-colorful";
 import { useRecoilValue } from "recoil";
 import Checkbox from "../../atoms/Checkbox.atom";
 import Slider from "../../atoms/Slider.atom";
+import useDocument from "@/ui/hooks/useDocument.hook";
 
-export default function Env({
-  handleChangeShadow,
-  handleChangeColor,
-  onChangeIntensity,
-  handleSelectChange,
-}: {
-  handleSelectChange: CallableFunction;
-  handleChangeShadow: CallableFunction;
-  onChangeIntensity: CallableFunction;
-  handleChangeColor: CallableFunction;
-}) {
+export default function Env() {
   const t = useTranslations("generate");
+
+  const {
+    handleChangeColor,
+    handleChangeShadow,
+    handleSelectChange,
+    onChangeIntensity,
+  } = useDocument();
 
   const sceneDocument = useRecoilValue(sceneDocumentAtom);
 
@@ -38,7 +36,7 @@ export default function Env({
             min={0}
             name="intensity"
             step={0.01}
-            onChange={(e) => onChangeIntensity(e, "env")}
+            onChange={(e) => onChangeIntensity(e)}
             value={String(sceneDocument.env.intensity)}
           />
         </div>
@@ -57,7 +55,7 @@ export default function Env({
         <p className="title">{t("environment.preset")}</p>
 
         <select
-          onChange={(e) => handleSelectChange(e, "env")}
+          onChange={(e) => handleSelectChange(e)}
           defaultValue={ENV_LIST[0].title}
         >
           {ENV_LIST.map((env) => {
@@ -74,7 +72,7 @@ export default function Env({
         <p className="title">{t("environment.ambientLight.color")}</p>
         <HexColorPicker
           color={sceneDocument.env.color}
-          onChange={(e) => handleChangeColor(e, "ambient")}
+          onChange={handleChangeColor}
         />
       </div>
     </details>

@@ -22,18 +22,6 @@ import { userAtom } from "@/lib/atoms/user";
 export default function ObjectLayer({ layer }: { layer: ModelType }) {
   const user = useRecoilValue(userAtom);
 
-  const {
-    handleReadAIImage,
-    handleImageChange,
-    handleChangeColor,
-    handleModelChange,
-    handleImageSize,
-    handleImagePosition,
-    handleChangePosition,
-    handleChangeRotation,
-    handleChangeReflection,
-  } = useGenerator();
-
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
   const setLayers = useSetRecoilState(ObjectsLayersAtom);
 
@@ -142,23 +130,10 @@ export default function ObjectLayer({ layer }: { layer: ModelType }) {
           </>
         )}
       </summary>
-      {user?.role === "admin" && (
-        <Magicfy handleReadAIImage={handleReadAIImage} />
-      )}
-      <Images
-        handleImageChange={handleImageChange}
-        handleImagePosition={handleImagePosition}
-        handleImageSize={handleImageSize}
-      />
-      <Model
-        handleChangeColor={handleChangeColor}
-        handleChangeReflection={handleChangeReflection}
-        handleModelChange={handleModelChange}
-      />
-      <GeneratePosition
-        handleChangePosition={handleChangePosition}
-        handleChangeRotation={handleChangeRotation}
-      />
+      {user?.role === "admin" && <Magicfy />}
+      <Images />
+      <Model />
+      <GeneratePosition />
     </motion.details>
   );
 }

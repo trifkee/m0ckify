@@ -105,10 +105,31 @@
   },
   "generate": {
     "dropImage": "Перетащите ваше изображение сюда",
+
     "general": {
-      "title": "Общее",
-      "brigthnes": "Яркость",
-      "preset": "Предустановка"
+      "title": "Общие",
+      "world": {
+        "title": "Мир",
+        "brigthnes": "Яркость",
+        "preset": "Предустановка"
+      },
+      "fog": {
+        "title": "Туман",
+        "enable": "Включено",
+        "minFog": "Минимальный Туман",
+        "maxFog": "Максимальный Туман"
+      },
+      "reflections": {
+        "title": "Отражения",
+        "enable": "Отражения на Полу",
+        "roughness": "Шероховатость",
+        "treshold": "Порог",
+        "strength": "Сила"
+      },
+      "background": {
+        "title": "Фон",
+        "enable": "Включено"
+      }
     },
     "render": {
       "title": "Рендеринг",

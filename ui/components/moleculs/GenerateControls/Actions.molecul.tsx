@@ -6,11 +6,11 @@ import { useRecoilValue } from "recoil";
 import { renderAtom } from "@/lib/atoms/generator";
 
 export default function Actions({
-  resetModelPosition,
+  // resetModelPosition,
   handleSave,
 }: {
   handleSave: CallableFunction;
-  resetModelPosition: CallableFunction;
+  // resetModelPosition: CallableFunction;
 }) {
   const t = useTranslations("generate");
 
@@ -23,14 +23,14 @@ export default function Actions({
       </summary>
 
       <div className="control__section">
-        <Button
+        {/* <Button
           onClick={resetModelPosition}
           variant="editor"
           className="danger  model__reset-cta"
         >
           <p>{t("actions.reset")}</p>
           <IoSyncSharp />
-        </Button>
+        </Button> */}
         <Button
           onClick={() =>
             handleSave({
