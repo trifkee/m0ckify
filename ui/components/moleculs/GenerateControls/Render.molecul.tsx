@@ -9,7 +9,7 @@ import useRender from "@/ui/hooks/useRender.hook";
 export default function Render() {
   const t = useTranslations("generate");
 
-  const { handleChangeRenderSize, handleChangeRenderImageType } = useRender();
+  const { handleChange } = useRender();
 
   const render = useRecoilValue(renderAtom);
 
@@ -35,13 +35,13 @@ export default function Render() {
                 <NumberInput
                   name="w"
                   label="W"
-                  onChange={handleChangeRenderSize}
+                  onChange={handleChange}
                   value={render.w}
                 />
                 <NumberInput
                   name="h"
                   label="H"
-                  onChange={handleChangeRenderSize}
+                  onChange={handleChange}
                   value={render.h}
                 />
               </div>
@@ -50,7 +50,8 @@ export default function Render() {
             <div className="control__section env select">
               <p className="title">{t("render.imageType")}</p>
               <select
-                onChange={(e) => handleChangeRenderImageType(e)}
+                name="type"
+                onChange={handleChange}
                 defaultValue={IMAGE_TYPES[0]}
               >
                 {IMAGE_TYPES.map((type) => {

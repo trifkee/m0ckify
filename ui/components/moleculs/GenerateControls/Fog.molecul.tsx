@@ -16,7 +16,7 @@ import { CloudFog } from "lucide-react";
 export default function Fog() {
   const t = useTranslations("generate.general.fog");
 
-  const { handleFogSize, handleFogEnable } = useFog();
+  const { handleChange } = useFog();
 
   const fogSettings = useRecoilValue(fogControlsAtom);
 
@@ -29,9 +29,9 @@ export default function Fog() {
       <div className="control__section">
         <Checkbox
           title={t("enable")}
-          htmlName="Enabled"
+          htmlName="enabled"
           value={fogSettings.enabled}
-          onChange={handleFogEnable}
+          onChange={handleChange}
         />
       </div>
 
@@ -43,7 +43,7 @@ export default function Fog() {
               label="-"
               name="minFog"
               value={fogSettings.minFog}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleFogSize(e)}
+              onChange={handleChange}
             />
           </div>
 
@@ -53,7 +53,7 @@ export default function Fog() {
               label="+"
               name="maxFog"
               value={fogSettings.maxFog}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleFogSize(e)}
+              onChange={handleChange}
             />
           </div>
         </div>

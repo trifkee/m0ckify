@@ -20,28 +20,6 @@ export default function useDocument() {
   //     },
   //   }));
 
-  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-
-    setSceneDocument((prev: SceneDocumentType) => ({
-      ...prev,
-      env: {
-        ...prev.env,
-        preset: value,
-      },
-    }));
-  };
-
-  const onChangeIntensity = (e: ChangeEvent<HTMLInputElement>) => {
-    setSceneDocument((prev: SceneDocumentType) => ({
-      ...prev,
-      env: {
-        ...prev.env,
-        intensity: Number(e.target.value),
-      },
-    }));
-  };
-
   const handleChangeColor = (color: string) => {
     setSceneDocument((prev: SceneDocumentType) => ({
       ...prev,
@@ -52,15 +30,18 @@ export default function useDocument() {
     }));
   };
 
-  const handleChangeShadow = (e: ChangeEvent<HTMLInputElement>) => {
-    setSceneDocument((prev: SceneDocumentType) => ({
+  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    setSceneDocument((prev) => ({
       ...prev,
       env: {
         ...prev.env,
-        castShadow: e.target.checked ? true : false,
+        [e.target.name]:
+          e.target.type === "checkbox"
+            ? (e.target as HTMLInputElement).checked
+            : e.target.value,
       },
     }));
-  };
+  }
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -70,10 +51,5 @@ export default function useDocument() {
     return () => clearTimeout(timeout);
   }, [sceneDocument.title]);
 
-  return {
-    handleChangeShadow,
-    handleChangeColor,
-    onChangeIntensity,
-    handleSelectChange,
-  };
+  return { handleChangeColor, handleChange };
 }

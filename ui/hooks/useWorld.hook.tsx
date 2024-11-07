@@ -7,36 +7,15 @@ import { useSetRecoilState } from "recoil";
 export default function useWorld() {
   const setCanvasSettings = useSetRecoilState(canvasOptionsAtom);
 
-  const handleUpdateCanvasBrightness = (e: ChangeEvent<HTMLInputElement>) => {
-    setCanvasSettings((prev: any) => ({
+  function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    setCanvasSettings((prev) => ({
       ...prev,
-      toneMappingExposure: e.target.value,
+      [e.target.name]:
+        e.target.type === "checkbox"
+          ? (e.target as HTMLInputElement).checked
+          : e.target.value,
     }));
-  };
+  }
 
-  const handleToneMappingChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    return setCanvasSettings((prev: any) => ({
-      ...prev,
-      toneMapping: e.target.value,
-    }));
-  };
-
-  const handleChangeGridShow = (e: ChangeEvent<HTMLInputElement>) => {
-    return setCanvasSettings((prev: any) => ({
-      ...prev,
-      grid: e.target.checked,
-    }));
-  };
-
-  return {
-    handleUpdateCanvasBrightness,
-    handleToneMappingChange,
-    handleChangeGridShow,
-  };
+  return { handleChange };
 }
-
-// 'use client'
-
-// export default function useWorld() {
-//     return {}
-// }

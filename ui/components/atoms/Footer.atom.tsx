@@ -19,7 +19,7 @@ export default function Footer() {
           <Image src={logo} alt="Mockify" />
         </div>
         <p>
-          V2.3.0 <span>- BETA</span>
+          V2.4.1 <span>- BETA</span>
         </p>
       </div>
 

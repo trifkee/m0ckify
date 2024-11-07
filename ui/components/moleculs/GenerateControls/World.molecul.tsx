@@ -15,7 +15,7 @@ import { Globe } from "lucide-react";
 export default function World() {
   const t = useTranslations("generate.general.world");
 
-  const { handleUpdateCanvasBrightness, handleToneMappingChange } = useWorld();
+  const { handleChange } = useWorld();
 
   const canvasSettings = useRecoilValue(canvasOptionsAtom);
 
@@ -31,8 +31,8 @@ export default function World() {
           max={2}
           min={0}
           className="small"
-          name="overall-lightning"
-          onChange={(e) => handleUpdateCanvasBrightness(e)}
+          name="toneMappingExposure"
+          onChange={handleChange}
           step={0.01}
           value={String(canvasSettings.toneMappingExposure)}
         />
@@ -42,7 +42,8 @@ export default function World() {
         <p className="title">{t("preset")}</p>
 
         <select
-          onChange={handleToneMappingChange}
+          name="toneMapping"
+          onChange={handleChange}
           defaultValue={TONE_MAPPINGS[0].value}
         >
           {TONE_MAPPINGS.map((tone, i) => {

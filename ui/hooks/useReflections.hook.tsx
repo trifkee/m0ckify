@@ -7,22 +7,13 @@ import { useSetRecoilState } from "recoil";
 export default function useReflections() {
   const setReflectionSettings = useSetRecoilState(floorReflectionAtom);
 
-  const handleReflectionEnable = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e?.target.checked);
-
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setReflectionSettings((prev) => ({
       ...prev,
-      enabled: e?.target.checked,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
     }));
-  };
+  }
 
-  const handleReflectionInputs = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.name, e.target.value);
-    setReflectionSettings((prev) => ({
-      ...prev,
-      [e.target.name]: Number(e.target.value),
-    }));
-  };
-
-  return { handleReflectionEnable, handleReflectionInputs };
+  return { handleChange };
 }

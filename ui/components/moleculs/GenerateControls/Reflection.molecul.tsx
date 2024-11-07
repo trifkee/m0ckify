@@ -16,7 +16,7 @@ import { FlipVertical2 } from "lucide-react";
 
 export default function Reflection() {
   const t = useTranslations("generate.general.reflections");
-  const { handleReflectionEnable, handleReflectionInputs } = useReflections();
+  const { handleChange } = useReflections();
 
   const reflectionSettings = useRecoilValue(floorReflectionAtom);
 
@@ -29,8 +29,8 @@ export default function Reflection() {
       <div className="control__section">
         <Checkbox
           title={t("enable")}
-          htmlName="floorReflection"
-          onChange={(e) => handleReflectionEnable(e)}
+          htmlName="enabled"
+          onChange={handleChange}
           value={reflectionSettings.enabled}
         />
       </div>
@@ -44,7 +44,7 @@ export default function Reflection() {
               min={0}
               className="small"
               name="roughness"
-              onChange={(e) => handleReflectionInputs(e)}
+              onChange={handleChange}
               step={0.01}
               value={String(reflectionSettings.roughness)}
             />
@@ -57,17 +57,13 @@ export default function Reflection() {
                 label="-"
                 name="minTreshold"
                 value={reflectionSettings.minTreshold}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleReflectionInputs(e)
-                }
+                onChange={handleChange}
               />
               <NumberInput
                 label="+"
                 name="maxTreshold"
                 value={reflectionSettings.maxTreshold}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  handleReflectionInputs(e)
-                }
+                onChange={handleChange}
               />
             </div>
           </div>
@@ -79,7 +75,7 @@ export default function Reflection() {
               min={0}
               className="small"
               name="strength"
-              onChange={(e) => handleReflectionInputs(e)}
+              onChange={handleChange}
               step={0.01}
               value={String(reflectionSettings.strength)}
             />

@@ -11,12 +11,7 @@ import useDocument from "@/ui/hooks/useDocument.hook";
 export default function Env() {
   const t = useTranslations("generate");
 
-  const {
-    handleChangeColor,
-    handleChangeShadow,
-    handleSelectChange,
-    onChangeIntensity,
-  } = useDocument();
+  const { handleChangeColor, handleChange } = useDocument();
 
   const sceneDocument = useRecoilValue(sceneDocumentAtom);
 
@@ -36,7 +31,7 @@ export default function Env() {
             min={0}
             name="intensity"
             step={0.01}
-            onChange={(e) => onChangeIntensity(e)}
+            onChange={handleChange}
             value={String(sceneDocument.env.intensity)}
           />
         </div>
@@ -47,7 +42,7 @@ export default function Env() {
           title={t("environment.castShadow.shadow")}
           htmlName="castShadow"
           value={sceneDocument.env.castShadow}
-          onChange={(e) => handleChangeShadow(e)}
+          onChange={handleChange}
         />
       </div>
 
@@ -55,7 +50,8 @@ export default function Env() {
         <p className="title">{t("environment.preset")}</p>
 
         <select
-          onChange={(e) => handleSelectChange(e)}
+          name="preset"
+          onChange={handleChange}
           defaultValue={ENV_LIST[0].title}
         >
           {ENV_LIST.map((env) => {

@@ -20,6 +20,7 @@ export default function useGenerator() {
 
     setTimeout(() => {
       setSelectedLayer(l);
+      l = null;
     }, 300);
   };
 

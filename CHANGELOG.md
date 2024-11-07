@@ -1,3 +1,10 @@
+### [2.4.1] 2024.07.11
+
+## Changed
+
+- Changed hooks to be more reusable
+- Footer version
+
 ### [2.4.0] 2024.07.11
 
 ## Added
