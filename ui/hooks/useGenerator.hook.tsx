@@ -512,8 +512,6 @@ export default function useGenerator() {
     return () => clearTimeout(timeout);
   }, [sceneDocument.title]);
 
-  console.log("SSSSS");
-
   return {
     model,
     sceneDocument,

@@ -107,8 +107,28 @@
     "dropImage": "Otpustite sliku ovde",
     "general": {
       "title": "Opšte",
-      "brigthnes": "Jačina osvetljenja",
-      "preset": "Preset"
+      "world": {
+        "title": "Svet",
+        "brigthnes": "Svetlina",
+        "preset": "Podešavanje"
+      },
+      "fog": {
+        "title": "Magla",
+        "enable": "Omogućeno",
+        "minFog": "Minimalna Magla",
+        "maxFog": "Maksimalna Magla"
+      },
+      "reflections": {
+        "title": "Refleksije",
+        "enable": "Refleksije na Podu",
+        "roughness": "Hrapavost",
+        "treshold": "Prag",
+        "strength": "Jačina"
+      },
+      "background": {
+        "title": "Pozadina",
+        "enable": "Omogućeno"
+      }
     },
     "render": {
       "title": "Renderovanje",

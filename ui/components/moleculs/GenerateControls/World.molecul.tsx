@@ -13,7 +13,7 @@ import { canvasOptionsAtom } from "@/lib/atoms/generator";
 import { Globe } from "lucide-react";
 
 export default function World() {
-  const t = useTranslations("generate");
+  const t = useTranslations("generate.general.world");
 
   const { handleUpdateCanvasBrightness, handleToneMappingChange } =
     useGenerator();
@@ -23,11 +23,11 @@ export default function World() {
   return (
     <details className="control">
       <summary className="control__title">
-        World <Globe />
+        {t("title")} <Globe />
       </summary>
 
       <div className="control__section">
-        <p className="title">{t("general.brigthnes")}</p>
+        <p className="title">{t("brigthnes")}</p>
         <Slider
           max={2}
           min={0}
@@ -40,7 +40,7 @@ export default function World() {
       </div>
 
       <div className="control__section">
-        <p className="title">{t("general.preset")}</p>
+        <p className="title">{t("preset")}</p>
 
         <select
           onChange={handleToneMappingChange}

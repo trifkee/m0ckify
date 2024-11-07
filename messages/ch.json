@@ -105,10 +105,31 @@
   },
   "generate": {
     "dropImage": "将您的图片拖到这里",
+
     "general": {
-      "title": "一般",
-      "brigthnes": "亮度",
-      "preset": "预设"
+      "title": "通用",
+      "world": {
+        "title": "世界",
+        "brigthnes": "亮度",
+        "preset": "预设"
+      },
+      "fog": {
+        "title": "雾",
+        "enable": "启用",
+        "minFog": "最小雾",
+        "maxFog": "最大雾"
+      },
+      "reflections": {
+        "title": "反射",
+        "enable": "地面反射",
+        "roughness": "粗糙度",
+        "treshold": "阈值",
+        "strength": "强度"
+      },
+      "background": {
+        "title": "背景",
+        "enable": "启用"
+      }
     },
     "render": {
       "title": "渲染",
