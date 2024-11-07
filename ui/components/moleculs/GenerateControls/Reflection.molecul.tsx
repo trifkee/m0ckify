@@ -75,7 +75,7 @@ export default function Reflection() {
           <div className="control__section">
             <p className="title">{t("strength")}</p>
             <Slider
-              max={2}
+              max={100}
               min={0}
               className="small"
               name="strength"

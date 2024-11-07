@@ -1,3 +1,16 @@
+### [2.4.0] 2024.07.11
+
+## Added
+
+- Added options for fog
+- added options for world
+- added options for reflections
+- added options for background
+
+## Changed
+
+- Changed structure of hooks
+
 ### [2.3.0] 2024.05.11
 
 ## Added

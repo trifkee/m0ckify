@@ -1,8 +1,10 @@
 "use client";
 
-import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
-import { readUserImage } from "@/lib/helpers/model";
 import { ChangeEvent } from "react";
+
+import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
+
+import { readUserImage } from "@/lib/helpers/model";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
 export default function useModel() {
