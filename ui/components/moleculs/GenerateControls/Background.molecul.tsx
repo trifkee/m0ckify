@@ -1,20 +1,20 @@
 "use client";
 
-import { HexColorPicker } from "react-colorful";
 import { useRecoilValue } from "recoil";
+import { HexColorPicker } from "react-colorful";
+import { useTranslations } from "next-intl";
 
 import Checkbox from "@/ui/components/atoms/Checkbox.atom";
 
-import useGenerator from "@/ui/hooks/useGenerator.hook";
+import useBackground from "@/ui/hooks/useBackground.hook";
 
 import { backgroundSettingsAtom } from "@/lib/atoms/generator";
 
 import { Frame } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 export default function Background() {
   const t = useTranslations("generate.general.background");
-  const { handleBackgroundEnable, handleBackgroundSettings } = useGenerator();
+  const { handleBackgroundEnable, handleBackgroundSettings } = useBackground();
   const backgroundSettings = useRecoilValue(backgroundSettingsAtom);
 
   return (

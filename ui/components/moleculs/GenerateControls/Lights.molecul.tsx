@@ -11,20 +11,17 @@ import { LucidePlusCircle, LucideTrash2 } from "lucide-react";
 import { SceneLightsType } from "@/lib/types/model.type";
 import { useRecoilValue } from "recoil";
 import { sceneLightsAtom } from "@/lib/atoms/generator";
+import useLights from "@/ui/hooks/useLights.hook";
 
-export default function Lights({
-  handleChangeColor,
-  handleRemoveLight,
-  handleAddNewLight,
-  onChangeIntensity,
-  handleDirLightPosition,
-}: {
-  handleDirLightPosition: CallableFunction;
-  handleRemoveLight: CallableFunction;
-  handleAddNewLight: CallableFunction;
-  handleChangeColor: CallableFunction;
-  onChangeIntensity: CallableFunction;
-}) {
+export default function Lights() {
+  const {
+    handleChangeColor,
+    handleRemoveLight,
+    handleAddNewLight,
+    onChangeIntensity,
+    handleDirLightPosition,
+  } = useLights();
+
   const t = useTranslations("generate");
   const sceneLights = useRecoilValue(sceneLightsAtom);
 
@@ -68,7 +65,7 @@ export default function Lights({
                 min={0}
                 name={t("lights.lights.intensity")}
                 step={1}
-                onChange={(e) => onChangeIntensity(e, "dirLights", i)}
+                onChange={(e) => onChangeIntensity(e, i)}
                 value={String(light.intensity)}
               />
 
@@ -97,7 +94,7 @@ export default function Lights({
               <p className="title">{t("lights.lights.color")}</p>
               <HexColorPicker
                 color={light.color}
-                onChange={(e) => handleChangeColor(e, "dirLight", i)}
+                onChange={(e) => handleChangeColor(e, i)}
               />
             </div>
           </details>

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useRecoilValue } from "recoil";
 import Slider from "@/ui/components/atoms/Slider.atom";
 
-import useGenerator from "@/ui/hooks/useGenerator.hook";
+import useWorld from "@/ui/hooks/useWorld.hook";
 
 import { TONE_MAPPINGS } from "@/lib/constants/generator";
 
@@ -15,8 +15,7 @@ import { Globe } from "lucide-react";
 export default function World() {
   const t = useTranslations("generate.general.world");
 
-  const { handleUpdateCanvasBrightness, handleToneMappingChange } =
-    useGenerator();
+  const { handleUpdateCanvasBrightness, handleToneMappingChange } = useWorld();
 
   const canvasSettings = useRecoilValue(canvasOptionsAtom);
 

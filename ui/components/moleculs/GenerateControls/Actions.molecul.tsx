@@ -23,14 +23,14 @@ export default function Actions({
       </summary>
 
       <div className="control__section">
-        <Button
+        {/* <Button
           onClick={resetModelPosition}
           variant="editor"
           className="danger  model__reset-cta"
         >
           <p>{t("actions.reset")}</p>
           <IoSyncSharp />
-        </Button>
+        </Button> */}
         <Button
           onClick={() =>
             handleSave({

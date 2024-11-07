@@ -10,17 +10,13 @@ import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
 import { MODELS_LIST } from "@/lib/constants/generator";
 
 import { LucideBox } from "lucide-react";
+import useModel from "@/ui/hooks/useModel.hook";
 
-export default function Model({
-  handleChangeReflection,
-  handleChangeColor,
-  handleModelChange,
-}: {
-  handleChangeColor: CallableFunction;
-  handleChangeReflection: CallableFunction;
-  handleModelChange: ChangeEventHandler<HTMLSelectElement>;
-}) {
+export default function Model() {
   const t = useTranslations("generate");
+
+  const { handleChangeReflection, handleChangeColor, handleModelChange } =
+    useModel();
 
   const selectedLayer = useRecoilValue(selectedLayerAtom);
   const layers = useRecoilValue(ObjectsLayersAtom);
@@ -57,9 +53,7 @@ export default function Model({
           min={0}
           className="small"
           name="phone-reflection"
-          onChange={(e) =>
-            handleChangeReflection(e, "phone", selectedLayer?.id)
-          }
+          onChange={(e) => handleChangeReflection(e, "phone")}
           step={0.01}
           value={String(obj?.bodyReflection)}
         />
@@ -70,9 +64,7 @@ export default function Model({
         {/* TODO: THIS IS BY TYPE NUMBER, CHECK HOW TO MAKE ALPHA CHANNEL, FOR NOW THIS WILL BE LIKE BOOL ( 1 True, 0 False ) */}
         <Checkbox
           htmlName="screen-reflection"
-          onChange={(e) =>
-            handleChangeReflection(e, "screen", selectedLayer?.id)
-          }
+          onChange={(e) => handleChangeReflection(e, "screen")}
           title={t("model.screenReflection")}
           value={Boolean(obj?.screenReflection)}
         />
@@ -83,9 +75,7 @@ export default function Model({
             min={0}
             className="small"
             name="screen-reflection"
-            onChange={(e) =>
-              handleChangeReflection(e, "screenAlpha", selectedLayer?.id)
-            }
+            onChange={(e) => handleChangeReflection(e, "screenAlpha")}
             step={0.01}
             value={String(obj?.screenAlphaReflection)}
           />
@@ -113,7 +103,7 @@ export default function Model({
         <p className="title">{t("model.color.title")}</p>
         <HexColorPicker
           color={obj?.color}
-          onChange={(e) => handleChangeColor(e, "model", selectedLayer?.id)}
+          onChange={(e) => handleChangeColor(e)}
         />
       </div>
     </details>

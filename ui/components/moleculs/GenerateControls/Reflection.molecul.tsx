@@ -2,21 +2,21 @@
 
 import { ChangeEvent } from "react";
 import { useRecoilValue } from "recoil";
+import { useTranslations } from "next-intl";
 
 import Slider from "@/ui/components/atoms/Slider.atom";
 import Checkbox from "@/ui/components/atoms/Checkbox.atom";
 import NumberInput from "@/ui/components/atoms/NumberInput.atom";
 
-import useGenerator from "@/ui/hooks/useGenerator.hook";
+import useReflections from "@/ui/hooks/useReflections.hook";
 
 import { floorReflectionAtom } from "@/lib/atoms/generator";
 
 import { FlipVertical2 } from "lucide-react";
-import { useTranslations } from "next-intl";
 
 export default function Reflection() {
   const t = useTranslations("generate.general.reflections");
-  const { handleReflectionEnable, handleReflectionInputs } = useGenerator();
+  const { handleReflectionEnable, handleReflectionInputs } = useReflections();
 
   const reflectionSettings = useRecoilValue(floorReflectionAtom);
 

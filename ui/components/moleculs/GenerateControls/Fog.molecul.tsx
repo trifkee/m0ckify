@@ -1,17 +1,22 @@
 "use client";
 
-import useGenerator from "@/ui/hooks/useGenerator.hook";
-import { CloudFog, Plus } from "lucide-react";
-import Checkbox from "../../atoms/Checkbox.atom";
-import NumberInput from "../../atoms/NumberInput.atom";
 import { useRecoilValue } from "recoil";
-import { fogControlsAtom } from "@/lib/atoms/generator";
-import { ChangeEvent, ReactNode } from "react";
+import { ChangeEvent } from "react";
 import { useTranslations } from "next-intl";
+
+import Checkbox from "@/ui/components/atoms/Checkbox.atom";
+import NumberInput from "@/ui/components/atoms/NumberInput.atom";
+
+import useFog from "@/ui/hooks/useFog.hook";
+
+import { fogControlsAtom } from "@/lib/atoms/generator";
+
+import { CloudFog } from "lucide-react";
 
 export default function Fog() {
   const t = useTranslations("generate.general.fog");
-  const { handleFogSize, handleFogEnable } = useGenerator();
+
+  const { handleFogSize, handleFogEnable } = useFog();
 
   const fogSettings = useRecoilValue(fogControlsAtom);
 
