@@ -11,45 +11,18 @@ import Actions from "../moleculs/GenerateControls/Actions.molecul";
 import "@/ui/styles/organism/generateControls.organism.scss";
 
 export default function GenerateControls() {
-  const {
-    handleChangeColor,
-    onChangeIntensity,
-    handleChangeShadow,
-    handleDirLightPosition,
-    handleSave,
-    handleSelectChange,
-    resetModelPosition,
-    handleAddNewLight,
-    handleRemoveLight,
-    handleChangeRenderSize,
-    handleChangeRenderImageType,
-  } = useGenerator();
+  const { handleSave } = useGenerator();
 
   return (
     <article className="generate__controls">
       <User />
       <OverallSettings />
-      <Render
-        handleChangeRenderImageType={handleChangeRenderImageType}
-        handleChangeRenderSize={handleChangeRenderSize}
-      />
-      <Env
-        handleChangeColor={handleChangeColor}
-        onChangeIntensity={onChangeIntensity}
-        handleSelectChange={handleSelectChange}
-        handleChangeShadow={handleChangeShadow}
-      />
-
-      <Lights
-        handleAddNewLight={handleAddNewLight}
-        handleChangeColor={handleChangeColor}
-        handleDirLightPosition={handleDirLightPosition}
-        handleRemoveLight={handleRemoveLight}
-        onChangeIntensity={onChangeIntensity}
-      />
+      <Render />
+      <Env />
+      <Lights />
       <Actions
         handleSave={handleSave}
-        resetModelPosition={resetModelPosition}
+        // resetModelPosition={resetModelPosition}
       />
     </article>
   );

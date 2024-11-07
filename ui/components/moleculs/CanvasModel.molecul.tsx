@@ -37,7 +37,7 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const layers = useRecoilValue(ObjectsLayersAtom);
 
   const mappedModels = layers?.map((model, i) => <Model key={i} {...model} />);
-
+  console.log("canvasRef", canvasRef);
   return (
     <Canvas
       id="canvas-window"

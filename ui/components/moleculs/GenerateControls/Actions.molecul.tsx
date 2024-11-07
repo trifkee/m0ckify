@@ -6,11 +6,11 @@ import { useRecoilValue } from "recoil";
 import { renderAtom } from "@/lib/atoms/generator";
 
 export default function Actions({
-  resetModelPosition,
+  // resetModelPosition,
   handleSave,
 }: {
   handleSave: CallableFunction;
-  resetModelPosition: CallableFunction;
+  // resetModelPosition: CallableFunction;
 }) {
   const t = useTranslations("generate");
 
