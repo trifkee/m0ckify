@@ -1,6 +1,6 @@
 import { Suspense, useRef } from "react";
 import { useRecoilValue } from "recoil";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
   Circle,
   ContactShadows,
@@ -14,15 +14,25 @@ import {
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
 
-import { ObjectsLayersAtom, sceneDocumentAtom } from "@/lib/atoms/generator";
+import {
+  backgroundSettingsAtom,
+  floorReflectionAtom,
+  fogControlsAtom,
+  ObjectsLayersAtom,
+  sceneDocumentAtom,
+} from "@/lib/atoms/generator";
 
 import { PresetType } from "@/lib/types/model.type";
 import ToneMapping from "../atoms/ToneMapping.atom";
-import { Fog } from "three";
 
 export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const sceneDocument = useRecoilValue(sceneDocumentAtom);
+  const reflections = useRecoilValue(floorReflectionAtom);
+  const fog = useRecoilValue(fogControlsAtom);
+  const background = useRecoilValue(backgroundSettingsAtom);
+
+  console.log(background.color);
 
   const layers = useRecoilValue(ObjectsLayersAtom);
 
@@ -38,8 +48,12 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
       linear
       shadows={sceneDocument.env.castShadow}
     >
-      <color attach="background" args={["#2f2e3b"]} />
-      <fog attach="fog" args={["#2f2e3b", 0.1, 10]} />
+      {background.enabled && (
+        <color attach="background" args={[`${background.color}`]} />
+      )}
+      {fog.enabled && (
+        <fog attach="fog" args={[background.color, fog.minFog, fog.maxFog]} />
+      )}
       <ToneMapping />
       <Suspense fallback={null}>
         {/* TODO: ADD LATER BACKGROUND  */}
@@ -54,23 +68,38 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
             intensity={sceneDocument.env.intensity}
           >
             {mappedModels}
-            <Mirror />
           </Stage>
         ) : (
           <>
             <Environment preset={sceneDocument.env.preset as PresetType} />
             {mappedModels}
-            <Mirror />
           </>
         )}
       </Suspense>
 
+      {reflections.enabled && (
+        <Mirror color={background.color} {...reflections} />
+      )}
       <OrbitControls enableRotate={freeroam} />
     </Canvas>
   );
 }
 
-const Mirror = () => {
+const Mirror = ({
+  color,
+  depth,
+  maxTreshold,
+  minTreshold,
+  roughness,
+  strength,
+}: {
+  color: string;
+  roughness: number;
+  strength: number;
+  depth: number;
+  minTreshold: number;
+  maxTreshold: number;
+}) => {
   return (
     <>
       <Circle
@@ -81,19 +110,19 @@ const Mirror = () => {
         position={[0, -2, 0]}
       >
         <MeshReflectorMaterial
-          color={"#2f2e3b"}
+          color={color}
           envMapIntensity={0}
           blur={[512, 512]}
-          mixBlur={1}
+          mixBlur={strength}
           mixStrength={3}
           mixContrast={1}
           resolution={1024}
           mirror={1}
-          depthScale={1}
-          minDepthThreshold={0.8}
-          maxDepthThreshold={1}
+          depthScale={depth}
+          minDepthThreshold={minTreshold}
+          maxDepthThreshold={maxTreshold}
           depthToBlurRatioBias={0.45}
-          roughness={1}
+          roughness={roughness}
         />
       </Circle>
     </>

@@ -12,6 +12,10 @@ import {
 } from "@/lib/types/model.type";
 
 import {
+  backgroundSettingsAtom,
+  canvasOptionsAtom,
+  floorReflectionAtom,
+  fogControlsAtom,
   ObjectsLayersAtom,
   renderAtom,
   sceneDocumentAtom,
@@ -25,6 +29,13 @@ export default function useGenerator() {
   const [sceneLights, setSceneLights] = useRecoilState(sceneLightsAtom);
   const [sceneDocument, setSceneDocument] = useRecoilState(sceneDocumentAtom);
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
+  const [fogSettings, setFogSettings] = useRecoilState(fogControlsAtom);
+  const [reflectionSettings, setReflectionSettings] =
+    useRecoilState(floorReflectionAtom);
+  const [backgroundSettings, setBackgroundSettings] = useRecoilState(
+    backgroundSettingsAtom
+  );
+  const [canvasSettings, setCanvasSettings] = useRecoilState(canvasOptionsAtom);
 
   /* Read image from user PC */
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -425,13 +436,83 @@ export default function useGenerator() {
     handleReadImage(image[0]);
   };
 
+  // Fog controls
+  const handleFogEnable = (e: ChangeEvent<HTMLInputElement>) => {
+    setFogSettings((prev) => ({
+      ...prev,
+      enabled: e.target.checked,
+    }));
+  };
+
+  const handleFogSize = (e: ChangeEvent<HTMLInputElement>) => {
+    setFogSettings((prev) => ({
+      ...prev,
+      [e.target.name]: Number(e.target.value),
+    }));
+  };
+
+  // Reflections
+  const handleReflectionEnable = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e?.target.checked);
+
+    setReflectionSettings((prev) => ({
+      ...prev,
+      enabled: e?.target.checked,
+    }));
+  };
+
+  const handleReflectionInputs = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.name, e.target.value);
+    setReflectionSettings((prev) => ({
+      ...prev,
+      [e.target.name]: Number(e.target.value),
+    }));
+  };
+
+  // Background
+  const handleBackgroundEnable = () => {
+    setBackgroundSettings((prev) => ({ ...prev, enabled: !prev.enabled }));
+  };
+
+  const handleBackgroundSettings = (color: string) => {
+    setBackgroundSettings((prev) => ({
+      ...prev,
+      color,
+    }));
+  };
+
+  // Canvas
+
+  const handleUpdateCanvasBrightness = (e: ChangeEvent<HTMLInputElement>) => {
+    setCanvasSettings((prev: any) => ({
+      ...prev,
+      toneMappingExposure: e.target.value,
+    }));
+  };
+
+  const handleToneMappingChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    return setCanvasSettings((prev: any) => ({
+      ...prev,
+      toneMapping: e.target.value,
+    }));
+  };
+
+  const handleChangeGridShow = (e: ChangeEvent<HTMLInputElement>) => {
+    return setCanvasSettings((prev: any) => ({
+      ...prev,
+      grid: e.target.checked,
+    }));
+  };
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       document.title = sceneDocument.title;
     }, 2000);
 
     return () => clearTimeout(timeout);
-  }, [sceneDocument]);
+  }, [sceneDocument.title]);
+
+  console.log("SSSSS");
 
   return {
     model,
@@ -459,5 +540,18 @@ export default function useGenerator() {
     handleChangeRenderSize,
     handleChangeRenderImageType,
     handleDraggedImage,
+    handleFogEnable,
+    handleFogSize,
+    handleReflectionEnable,
+    handleReflectionInputs,
+    handleBackgroundEnable,
+    handleBackgroundSettings,
+    handleUpdateCanvasBrightness,
+    handleToneMappingChange,
+    handleChangeGridShow,
+    canvasSettings,
+    fogSettings,
+    reflectionSettings,
+    backgroundSettings,
   };
 }
