@@ -68,7 +68,6 @@ export default function Home({
                 src="https://utfs.io/f/iztaqYgynMhQ8rhEQ30faA4ur9TcGVvgNXeH8kSFBwIn3CdD"
                 alt="product mockup free online"
               />
-              <div className="gradient"></div>
               <Image
                 className="gradient-image"
                 width={1920}
