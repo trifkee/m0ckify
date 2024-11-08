@@ -7,8 +7,6 @@ import {
   ACESFilmicToneMapping,
 } from "three";
 
-import fallbackImage from "@/public/images/mockify-starter.jpg";
-
 export const STARTING_PROPMPT = `
 You are an expert UI designer focused on creating visually appealing and functional mobile application interfaces. Your goal is to design intuitive, user-friendly mobile UIs optimized for small screens. Ensure that the generated designs are displayed as clean, standalone screens with no additional device frames or background elements.
 
@@ -162,7 +160,7 @@ export const DEFAULT_OBJECT_OPTIONS = {
     z: 0 as number,
   },
   image: {
-    src: fallbackImage.src as any,
+    src: "https://utfs.io/f/iztaqYgynMhQGVusXe06v8KgA1e97Xs5kZPHB3DW4qwS2coV",
     isDefault: true,
     width: 0 as number,
     height: 0 as number,

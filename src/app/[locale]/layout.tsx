@@ -12,8 +12,6 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
-import ogImage from "@/public/images/mockify-starter-big.jpg";
-
 import "./globals.css";
 import "@/ui/styles/global.scss";
 
@@ -70,22 +68,12 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Mockify",
     url: "https://m0ckify.tech",
-    images: [
-      {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height,
-      },
-    ],
+    images:
+      "https://utfs.io/f/iztaqYgynMhQPaA2hanVqDAuyXGdB4ZWMrwavjHCFQch5sSo",
   },
   twitter: {
-    images: [
-      {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height,
-      },
-    ],
+    images:
+      "https://utfs.io/f/iztaqYgynMhQPaA2hanVqDAuyXGdB4ZWMrwavjHCFQch5sSo",
   },
   verification: {
     google: "5G3Db-j5HWTjNgCV9bFBv4GGKa_J415AjCi8PLQYX6k",

@@ -13,8 +13,6 @@ import NavigationCtas from "../moleculs/NavigationCtas.molecul";
 
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 
-import logo from "@/public/images/logo-white.png";
-
 import { IoMenuSharp } from "react-icons/io5";
 import { LucideDownload } from "lucide-react";
 
@@ -44,7 +42,13 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       className="generate__navigation"
     >
       <Link href={"/"}>
-        <Image src={logo} className="navigation-logo" alt="Mockify" />
+        <Image
+          width={200}
+          height={200}
+          src="https://utfs.io/f/iztaqYgynMhQXx85JIkd6zTj9k0Rqr1sHcIoWt7YFQxwDNbE"
+          className="navigation-logo"
+          alt="Mockify"
+        />
       </Link>
       <GenerateDocumentTitle />
 

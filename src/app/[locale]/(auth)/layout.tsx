@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import mockifyBackground from "@/public/images/bg.jpg";
-
 import "@/ui/styles/pages/home.page.scss";
 import "@/ui/styles/pages/auth.page.scss";
 
@@ -14,7 +12,12 @@ export default function AuthLayout({
     <main className="auth-section">
       {children}
       <section className="auth-section__right">
-        <Image src={mockifyBackground} alt="Mockify" />
+        <Image
+          width={200}
+          height={1200}
+          src="https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
+          alt="Mockify"
+        />
       </section>
     </main>
   );

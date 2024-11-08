@@ -34,7 +34,9 @@ type ModelT = JSX.IntrinsicElements["group"] & {
 };
 
 export default function Iphone(props: ModelT) {
-  const { nodes, materials } = useGLTF("/models/iphone.glb") as GLTFResult;
+  const { nodes, materials } = useGLTF(
+    "https://utfs.io/f/iztaqYgynMhQRXgvxozf9hOL4n8ui0ZkTtv5JNqdAw1xbFSC"
+  ) as GLTFResult;
 
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
 
@@ -143,4 +145,6 @@ export default function Iphone(props: ModelT) {
   );
 }
 
-useGLTF.preload("/models/iphone.glb");
+useGLTF.preload(
+  "https://utfs.io/f/iztaqYgynMhQRXgvxozf9hOL4n8ui0ZkTtv5JNqdAw1xbFSC"
+);

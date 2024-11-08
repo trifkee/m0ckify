@@ -8,7 +8,6 @@ import LanguagePicker from "./LanguagePicker.molecul";
 import { Link } from "@/i18n/routing";
 
 import { LucideUser } from "lucide-react";
-import logo from "@/public/images/logo-white.png";
 
 import "@/ui/styles/moleculs/navigation.molecul.scss";
 
@@ -31,8 +30,10 @@ export default function Navigation({ locale }: { locale: string }) {
       <div className="wrapper">
         <div className="logo">
           <Image
+            width={200}
+            height={200}
             className="logo"
-            src={logo}
+            src="https://utfs.io/f/iztaqYgynMhQXx85JIkd6zTj9k0Rqr1sHcIoWt7YFQxwDNbE"
             alt="Product mockup generator Free - Mockify"
           />
         </div>

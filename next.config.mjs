@@ -12,6 +12,15 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, "ui/styles")],
   },
+  images: {
+    // unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);

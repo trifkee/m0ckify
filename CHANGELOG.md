@@ -2,6 +2,7 @@
 
 ## Changed
 
+- Moved all files from public folder to external resource ( UploadThing )
 - Updated Next-Intl version
 
 ## Fixed

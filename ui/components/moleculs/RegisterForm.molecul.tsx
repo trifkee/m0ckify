@@ -12,7 +12,6 @@ import Spinner from "@/ui/components/atoms/Spinner.atom";
 import { useRegisterUser } from "@/infrastructure/mutations/user";
 
 import { IoClose } from "react-icons/io5";
-import logo from "@/public/images/logo.svg";
 
 export default function RegisterForm() {
   const t = useTranslations("auth");
@@ -95,7 +94,12 @@ export default function RegisterForm() {
   return (
     <form className="form login" onSubmit={handleSubmit}>
       <Link href={"/"}>
-        <Image src={logo} alt="" />
+        <Image
+          width={200}
+          height={200}
+          src="https://utfs.io/f/iztaqYgynMhQAAScNDp45cXet67xjMIG139haKqJYUSiEkFB"
+          alt="Mockify"
+        />
       </Link>
 
       <AnimatePresence presenceAffectsLayout mode="wait">

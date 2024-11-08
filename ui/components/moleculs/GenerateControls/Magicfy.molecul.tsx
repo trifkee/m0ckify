@@ -12,7 +12,6 @@ import { userAtom } from "@/lib/atoms/user";
 
 import { LucideInfo, LucideWand2, SquareArrowOutUpRight } from "lucide-react";
 
-import mockifyImage from "@/public/images/bg.jpg";
 import Link from "next/link";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
@@ -41,7 +40,10 @@ export default function Magicfy() {
       return;
     }
 
-    handleReadAIImage(data.data.image ?? mockifyImage);
+    handleReadAIImage(
+      data.data.image ??
+        "https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
+    );
   };
 
   const {
