@@ -1,7 +1,5 @@
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
-
-import logo from "@/public/images/logo-white.png";
 
 import { LucideMoveUpRight } from "lucide-react";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
@@ -16,10 +14,15 @@ export default function Footer() {
     <footer className="footer">
       <div className="top">
         <div className="logo">
-          <Image src={logo} alt="Mockify" />
+          <Image
+            width={200}
+            height={200}
+            src="https://utfs.io/f/iztaqYgynMhQXx85JIkd6zTj9k0Rqr1sHcIoWt7YFQxwDNbE"
+            alt="Mockify"
+          />
         </div>
         <p>
-          V2.4.1 <span>- BETA</span>
+          V2.4.2 <span>- BETA</span>
         </p>
       </div>
 

@@ -7,9 +7,6 @@ import Button from "@/ui/components/atoms/Button.atom";
 
 import { Inter } from "next/font/google";
 
-import logo from "@/public/images/logo-main-light.png";
-import mockifyBackground from "@/public/images/bg.jpg";
-
 import "@/ui/styles/pages/notFound.page.scss";
 
 const inter = Inter({
@@ -23,7 +20,12 @@ export default function NotFound() {
         <main className="not-found">
           <div className="left">
             <Link href={"/"}>
-              <Image src={logo} alt="Mockify" />
+              <Image
+                width={200}
+                height={200}
+                src="https://utfs.io/f/iztaqYgynMhQMLo4SplnI4ZRhWzuXoUb73aQgJ65ADEsY8Hq"
+                alt="Mockify"
+              />
             </Link>
 
             <div className="text">
@@ -42,7 +44,12 @@ export default function NotFound() {
             </div>
           </div>
           <div className="right">
-            <Image src={mockifyBackground} alt="Mockify" />
+            <Image
+              width={200}
+              height={200}
+              src="https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
+              alt="Mockify"
+            />
           </div>
         </main>
         {/* <Error statusCode={404} /> */}

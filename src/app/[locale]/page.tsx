@@ -1,18 +1,13 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
 import Image from "next/image";
+import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/routing";
 
 import Button from "@/ui/components/atoms/Button.atom";
 import Footer from "@/ui/components/atoms/Footer.atom";
 import Navigation from "@/ui/components/moleculs/Navigation.molecul";
 
 import { LucideChevronRight, LucidePencilRuler } from "lucide-react";
-
-import bgImage from "@/public/images/bg.jpg";
-import grids from "@/public/images/home-grid.png";
-
-import phoneImage from "@/public/images/phones.png";
-import noise from "@/public/images/noise.png";
 
 import "@/ui/styles/pages/home.page.scss";
 
@@ -21,6 +16,9 @@ export default function Home({
 }: {
   params: { locale: string };
 }) {
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const t = useTranslations("home");
 
   return (
@@ -56,10 +54,26 @@ export default function Home({
             </Link>
 
             <div className="images">
-              <Image alt="noise" className="noise-texture" src={noise} />
-              <Image src={grids} alt="product mockup free online" />
               <Image
-                src={bgImage}
+                width={1920}
+                height={720}
+                alt="noise"
+                className="noise-texture"
+                src="https://utfs.io/f/iztaqYgynMhQFdAQ7icHfoiTCmg0VdB1rRxAQEyM3pJjKPqG"
+              />
+              <Image
+                width={1920}
+                height={720}
+                className="grids"
+                src="https://utfs.io/f/iztaqYgynMhQ8rhEQ30faA4ur9TcGVvgNXeH8kSFBwIn3CdD"
+                alt="product mockup free online"
+              />
+              <div className="gradient"></div>
+              <Image
+                className="gradient-image"
+                width={1920}
+                height={720}
+                src="https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
                 alt="Mockify - Free 3D online mockup generator"
               />
             </div>
@@ -73,7 +87,13 @@ export default function Home({
               <span>{t("cards.lang.subtitle")}</span>
             </div>
             <div className="grid-item image">
-              <Image className="phones" src={phoneImage} alt="mockify" />
+              <Image
+                width={720}
+                height={720}
+                className="phones"
+                src="https://utfs.io/f/iztaqYgynMhQkPUrU3NqlQBZ07fnWrAYcRzET3u8DeptXVao"
+                alt="mockify"
+              />
             </div>
             <div className="grid-item empty"></div>
             <div className="grid-item empty"></div>
@@ -125,7 +145,13 @@ export default function Home({
 
             <div className="grid-item empty"></div>
             <div className="grid-item image">
-              <Image className="phones" src={phoneImage} alt="mockify" />
+              <Image
+                width={720}
+                height={720}
+                className="phones"
+                src="https://utfs.io/f/iztaqYgynMhQkPUrU3NqlQBZ07fnWrAYcRzET3u8DeptXVao"
+                alt="mockify"
+              />
             </div>
             <div className="grid-item empty"></div>
 

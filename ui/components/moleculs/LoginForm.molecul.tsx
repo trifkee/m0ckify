@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useRouter } from "@/navigation";
+import { Link, useRouter } from "@/i18n/routing";
 
 import Spinner from "../atoms/Spinner.atom";
 
@@ -17,8 +17,6 @@ import { IoClose } from "react-icons/io5";
 
 import { userAtom } from "@/lib/atoms/user";
 import useUser from "@/ui/hooks/useUser.hook";
-
-import logo from "@/public/images/logo.svg";
 
 import "@/ui/styles/pages/login.page.scss";
 
@@ -74,7 +72,9 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
     <form className="form login" onSubmit={handleSubmit}>
       {modal ? (
         <Image
-          src={logo}
+          width={200}
+          height={200}
+          src="https://utfs.io/f/iztaqYgynMhQRl15Jb0zf9hOL4n8ui0ZkTtv5JNqdAw1xbFS"
           alt=""
           style={{
             maxWidth: "8rem",
@@ -82,7 +82,12 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
         />
       ) : (
         <Link href={modal ? "/generate" : "/"}>
-          <Image src={logo} alt="" />
+          <Image
+            width={200}
+            height={200}
+            src="https://utfs.io/f/iztaqYgynMhQAAScNDp45cXet67xjMIG139haKqJYUSiEkFB"
+            alt=""
+          />
         </Link>
       )}
 

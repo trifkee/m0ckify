@@ -70,6 +70,56 @@
         top: 0;
         left: 0;
 
+        .gradient-image {
+          opacity: 1 !important;
+          mix-blend-mode: soft-light;
+        }
+
+        .grid {
+          position: relative;
+          z-index: 9;
+          mix-blend-mode: normal;
+        }
+
+        .gradient {
+          position: absolute;
+          z-index: -1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: radial-gradient(
+            #090c11,
+            #c03424 50%,
+            #f39438,
+            #fce848,
+            #c03424,
+            #090c11,
+            #fce848
+          );
+          opacity: 0.75;
+          background-size: 200% 200%; /* Larger background to create movement */
+          animation: gradientAnimation 16s ease-in-out infinite;
+
+          @keyframes gradientAnimation {
+            0% {
+              background-position: 0% 50%;
+              rotate: 0deg;
+              scale: 1.5;
+            }
+            50% {
+              rotate: 180deg;
+              background-position: 100% 50%;
+              scale: 4;
+            }
+            100% {
+              scale: 1.5;
+              background-position: 0% 50%;
+              rotate: 360deg;
+            }
+          }
+        }
+
         .noise-texture {
           mix-blend-mode: overlay;
           opacity: 0.1;

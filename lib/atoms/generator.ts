@@ -124,7 +124,7 @@ export const pivotEnabledControlsAtom = atom({
 export const fogControlsAtom = atom({
   key: "fogControls",
   default: {
-    enabled: true,
+    enabled: false,
     minFog: 0,
     maxFog: 20,
   },
@@ -133,7 +133,7 @@ export const fogControlsAtom = atom({
 export const floorReflectionAtom = atom({
   key: "floorReflection",
   default: {
-    enabled: true,
+    enabled: false,
     roughness: 0.5,
     strength: 1,
     depth: 1,
@@ -145,7 +145,7 @@ export const floorReflectionAtom = atom({
 export const backgroundSettingsAtom = atom({
   key: "background",
   default: {
-    enabled: true,
+    enabled: false,
     color: "black",
   },
 });

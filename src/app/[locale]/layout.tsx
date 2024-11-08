@@ -8,9 +8,9 @@ import RecoilProvider from "@/ui/providers/RecoilProvider.provider";
 
 // TRANSLATIONS
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-
-import ogImage from "@/public/images/mockify-starter-big.jpg";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
 
 import "./globals.css";
 import "@/ui/styles/global.scss";
@@ -68,22 +68,12 @@ export const metadata: Metadata = {
   openGraph: {
     siteName: "Mockify",
     url: "https://m0ckify.tech",
-    images: [
-      {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height,
-      },
-    ],
+    images:
+      "https://utfs.io/f/iztaqYgynMhQPaA2hanVqDAuyXGdB4ZWMrwavjHCFQch5sSo",
   },
   twitter: {
-    images: [
-      {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height,
-      },
-    ],
+    images:
+      "https://utfs.io/f/iztaqYgynMhQPaA2hanVqDAuyXGdB4ZWMrwavjHCFQch5sSo",
   },
   verification: {
     google: "5G3Db-j5HWTjNgCV9bFBv4GGKa_J415AjCi8PLQYX6k",
@@ -97,6 +87,13 @@ export default async function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const messages = await getMessages();
 
   return (
@@ -115,4 +112,8 @@ export default async function RootLayout({
       </RecoilProvider>
     </>
   );
+}
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
 }
