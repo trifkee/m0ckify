@@ -64,10 +64,13 @@ export default function Home({
               <Image
                 width={1920}
                 height={720}
+                className="grids"
                 src="https://utfs.io/f/iztaqYgynMhQ8rhEQ30faA4ur9TcGVvgNXeH8kSFBwIn3CdD"
                 alt="product mockup free online"
               />
+              <div className="gradient"></div>
               <Image
+                className="gradient-image"
                 width={1920}
                 height={720}
                 src="https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
