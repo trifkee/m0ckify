@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/navigation";
+import { Link, useRouter } from "@/i18n/routing";
 
 import Button from "@/ui/components/atoms/Button.atom";
 import Spinner from "@/ui/components/atoms/Spinner.atom";
@@ -12,7 +12,6 @@ import Spinner from "@/ui/components/atoms/Spinner.atom";
 import { useRegisterUser } from "@/infrastructure/mutations/user";
 
 import { IoClose } from "react-icons/io5";
-import logo from "@/public/images/logo.svg";
 
 export default function RegisterForm() {
   const t = useTranslations("auth");
@@ -95,7 +94,12 @@ export default function RegisterForm() {
   return (
     <form className="form login" onSubmit={handleSubmit}>
       <Link href={"/"}>
-        <Image src={logo} alt="" />
+        <Image
+          width={200}
+          height={200}
+          src="https://utfs.io/f/iztaqYgynMhQAAScNDp45cXet67xjMIG139haKqJYUSiEkFB"
+          alt="Mockify"
+        />
       </Link>
 
       <AnimatePresence presenceAffectsLayout mode="wait">

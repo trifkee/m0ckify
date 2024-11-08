@@ -8,7 +8,6 @@ import { userAtom } from "@/lib/atoms/user";
 
 import { LucideLogOut, LucideUser2 } from "lucide-react";
 
-import mockifyImage from "@/public/images/bg.jpg";
 import Button from "../../atoms/Button.atom";
 
 export default function User() {
@@ -25,7 +24,12 @@ export default function User() {
         </summary>
         <div className="user-container">
           <div className="user">
-            <Image src={mockifyImage} alt={user?.username ?? ""} />
+            <Image
+              height={200}
+              width={200}
+              src="https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
+              alt={user?.username ?? ""}
+            />
             <p>{user?.username}</p>
           </div>
           <div className="logout">

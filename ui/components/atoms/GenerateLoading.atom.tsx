@@ -8,8 +8,6 @@ import Spinner from "./Spinner.atom";
 
 import { isGeneratingAtom } from "@/lib/atoms/generator";
 
-import logo from "@/public/images/logo-white.png";
-
 import "@/ui/styles/atoms/generateLoading.atom.scss";
 
 export default function GenerateLoading() {
@@ -34,7 +32,13 @@ export default function GenerateLoading() {
             className="loading-model"
           >
             <div style={{ position: "relative", width: "12rem" }}>
-              <Image priority={true} src={logo} alt="Mockify" />
+              <Image
+                width={200}
+                height={200}
+                priority={true}
+                src="https://utfs.io/f/iztaqYgynMhQXx85JIkd6zTj9k0Rqr1sHcIoWt7YFQxwDNbE"
+                alt="Mockify"
+              />
             </div>
             <Spinner size="big" />
           </motion.main>

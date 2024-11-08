@@ -46,10 +46,14 @@
       gap: 0.5rem;
     }
     a {
-      //   padding: 0.5rem;
-      //   color: black;
       color: inherit;
-      border-radius: 0.25rem;
+      height: fit-content;
+
+      img {
+        width: 120px;
+        height: fit-content;
+        object-fit: contain;
+      }
     }
   }
 
@@ -60,6 +64,7 @@
     overflow: hidden;
 
     img {
+      width: 100%;
       // border-radius: 0.5rem;
       height: 100%;
       object-fit: cover;

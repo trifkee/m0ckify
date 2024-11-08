@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 import LanguagePicker from "./LanguagePicker.molecul";
 import Button from "../atoms/Button.atom";

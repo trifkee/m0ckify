@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 import GenerateDocumentTitle from "@/ui/components/moleculs/GenerateDocumentTItle.moleculs";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
@@ -13,10 +13,8 @@ import NavigationCtas from "../moleculs/NavigationCtas.molecul";
 
 import useGenerator from "@/ui/hooks/useGenerator.hook";
 
-import logo from "@/public/images/logo-white.png";
-
 import { IoMenuSharp } from "react-icons/io5";
-import { LucideDownload, LucideRotateCcw } from "lucide-react";
+import { LucideDownload } from "lucide-react";
 
 import "@/ui/styles/organism/generateNavigation.organism.scss";
 
@@ -44,7 +42,13 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       className="generate__navigation"
     >
       <Link href={"/"}>
-        <Image src={logo} className="navigation-logo" alt="Mockify" />
+        <Image
+          width={200}
+          height={200}
+          src="https://utfs.io/f/iztaqYgynMhQXx85JIkd6zTj9k0Rqr1sHcIoWt7YFQxwDNbE"
+          className="navigation-logo"
+          alt="Mockify"
+        />
       </Link>
       <GenerateDocumentTitle />
 

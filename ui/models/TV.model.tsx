@@ -31,7 +31,9 @@ type ModelT = JSX.IntrinsicElements["group"] & {
 };
 
 export default function Model(props: ModelT) {
-  const { nodes, materials } = useGLTF("/models/tv.gltf") as GLTFResult;
+  const { nodes, materials } = useGLTF(
+    "https://utfs.io/f/iztaqYgynMhQDKjxVEkYBW8jr3RpnMo1Ntv4c6OSDq0EVkhe"
+  ) as GLTFResult;
 
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
   const pivotControls = useRecoilValue(pivotControlsAtom);
@@ -122,4 +124,6 @@ export default function Model(props: ModelT) {
   );
 }
 
-useGLTF.preload("/models/tv.gltf");
+useGLTF.preload(
+  "https://utfs.io/f/iztaqYgynMhQDKjxVEkYBW8jr3RpnMo1Ntv4c6OSDq0EVkhe"
+);

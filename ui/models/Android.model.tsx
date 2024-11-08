@@ -35,7 +35,9 @@ type ModelT = JSX.IntrinsicElements["group"] & {
 };
 
 export default function Model(props: ModelT) {
-  const { nodes, materials } = useGLTF("/models/android.gltf") as GLTFResult;
+  const { nodes, materials } = useGLTF(
+    "https://utfs.io/f/iztaqYgynMhQ3Hyylhwmk9ZuqxISp4MiYo08Vn5eNDEabWH2"
+  ) as GLTFResult;
 
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
   const pivotControls = useRecoilValue(pivotControlsAtom);
@@ -162,4 +164,6 @@ export default function Model(props: ModelT) {
   );
 }
 
-useGLTF.preload("/models/android.gltf");
+useGLTF.preload(
+  "https://utfs.io/f/iztaqYgynMhQ3Hyylhwmk9ZuqxISp4MiYo08Vn5eNDEabWH2"
+);
