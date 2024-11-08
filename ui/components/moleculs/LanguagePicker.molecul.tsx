@@ -1,6 +1,6 @@
 "use client";
 
-import { Link, usePathname } from "@/navigation";
+import { Link, usePathname } from "@/i18n/routing";
 import { useEffect, useState } from "react";
 
 import { LucideGlobe } from "lucide-react";

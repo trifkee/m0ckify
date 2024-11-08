@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import LanguagePicker from "./LanguagePicker.molecul";
 
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 import { LucideUser } from "lucide-react";
 import logo from "@/public/images/logo-white.png";

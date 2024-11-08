@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useTranslations } from "next-intl";
-import { useRouter } from "@/navigation";
+import { useRouter } from "@/i18n/routing";
 
 import Button from "../../atoms/Button.atom";
 

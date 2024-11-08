@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRecoilValue } from "recoil";
 import { useTranslations } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link, useRouter } from "@/navigation";
+import { Link, useRouter } from "@/i18n/routing";
 
 import Spinner from "../atoms/Spinner.atom";
 

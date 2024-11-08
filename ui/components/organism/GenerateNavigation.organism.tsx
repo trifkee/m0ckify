@@ -4,7 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/navigation";
+import { Link } from "@/i18n/routing";
 
 import GenerateDocumentTitle from "@/ui/components/moleculs/GenerateDocumentTItle.moleculs";
 import LanguagePicker from "@/ui/components/moleculs/LanguagePicker.molecul";
@@ -16,7 +16,7 @@ import useGenerator from "@/ui/hooks/useGenerator.hook";
 import logo from "@/public/images/logo-white.png";
 
 import { IoMenuSharp } from "react-icons/io5";
-import { LucideDownload, LucideRotateCcw } from "lucide-react";
+import { LucideDownload } from "lucide-react";
 
 import "@/ui/styles/organism/generateNavigation.organism.scss";
 

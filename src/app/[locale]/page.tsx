@@ -1,5 +1,4 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
 import Image from "next/image";
 
 import Button from "@/ui/components/atoms/Button.atom";
@@ -15,12 +14,17 @@ import phoneImage from "@/public/images/phones.png";
 import noise from "@/public/images/noise.png";
 
 import "@/ui/styles/pages/home.page.scss";
+import { setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/routing";
 
 export default function Home({
   params: { locale },
 }: {
   params: { locale: string };
 }) {
+  // Enable static rendering
+  setRequestLocale(locale);
+
   const t = useTranslations("home");
 
   return (

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/navigation";
+import { Link, useRouter } from "@/i18n/routing";
 
 import Button from "@/ui/components/atoms/Button.atom";
 import Spinner from "@/ui/components/atoms/Spinner.atom";

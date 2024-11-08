@@ -1,3 +1,13 @@
+### [2.4.2] 2024.07.12
+
+## Changed
+
+- Updated Next-Intl version
+
+## Fixed
+
+- Fixed SSG, now all languages for all pages are prerendered on the server
+
 ### [2.4.1] 2024.07.11
 
 ## Changed
