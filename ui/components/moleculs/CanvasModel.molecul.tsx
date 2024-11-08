@@ -1,15 +1,7 @@
 import { Suspense, useRef } from "react";
 import { useRecoilValue } from "recoil";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-  Circle,
-  ContactShadows,
-  Environment,
-  MeshReflectorMaterial,
-  OrbitControls,
-  Reflector,
-  Stage,
-} from "@react-three/drei";
+import { Canvas } from "@react-three/fiber";
+import { Environment, OrbitControls, Stage } from "@react-three/drei";
 
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
@@ -24,6 +16,7 @@ import {
 
 import { PresetType } from "@/lib/types/model.type";
 import ToneMapping from "../atoms/ToneMapping.atom";
+import CanvasMirror from "../atoms/CanvasMirror.atom";
 
 export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -75,53 +68,9 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
       </Suspense>
 
       {reflections.enabled && (
-        <Mirror color={background.color} {...reflections} />
+        <CanvasMirror color={background.color} {...reflections} />
       )}
       <OrbitControls enableRotate={freeroam} />
     </Canvas>
   );
 }
-
-const Mirror = ({
-  color,
-  depth,
-  maxTreshold,
-  minTreshold,
-  roughness,
-  strength,
-}: {
-  color: string;
-  roughness: number;
-  strength: number;
-  depth: number;
-  minTreshold: number;
-  maxTreshold: number;
-}) => {
-  return (
-    <>
-      <Circle
-        args={[1, 16]}
-        receiveShadow
-        scale={100}
-        rotation-x={-Math.PI / 2}
-        position={[0, -2, 0]}
-      >
-        <MeshReflectorMaterial
-          color={color}
-          envMapIntensity={0}
-          blur={[512, 512]}
-          mixBlur={strength}
-          mixStrength={3}
-          mixContrast={1}
-          resolution={1024}
-          mirror={1}
-          depthScale={depth}
-          minDepthThreshold={minTreshold}
-          maxDepthThreshold={maxTreshold}
-          depthToBlurRatioBias={0.45}
-          roughness={roughness}
-        />
-      </Circle>
-    </>
-  );
-};
