@@ -142,13 +142,14 @@ export const TONE_MAPPINGS = [
 
 export const DEFAULT_OBJECT_OPTIONS = {
   id: "0",
+  realistic: true,
   title: "Mockify model",
   type: "iphone" as "iphone",
   color: "#fff",
   texture: "plastic" as "plastic",
   bodyReflection: 0,
   screenReflection: 1,
-  screenAlphaReflection: 0.2,
+  screenAlphaReflection: 0.1,
   position: {
     x: 0 as number,
     y: 0 as number,

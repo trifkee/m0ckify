@@ -2,7 +2,7 @@
 
 .generate {
   overflow: hidden;
-  height: 100vh;
+  height: 100dvh;
   display: grid;
 
   background-color: rgb($dark-gray-clr, 1);
@@ -54,7 +54,7 @@
     height: 4rem;
     position: relative;
     padding: 1.5rem;
-    z-index: 2;
+    z-index: 10;
 
     display: flex;
     align-items: center;

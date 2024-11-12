@@ -1,3 +1,5 @@
+import * as THREE from "three";
+
 import { RenderType } from "../types/model.type";
 
 type SaveType = RenderType & {
@@ -44,3 +46,9 @@ export const readUserImage = (file: File) => {
     fileReader.readAsDataURL(file);
   });
 };
+
+export function darkenColor(color: string, factor = 0.1) {
+  const c = new THREE.Color(color);
+  c.multiplyScalar(0.95 - factor); // Darkens by multiplying with a value less than 1
+  return `#${c.getHexString()}`;
+}

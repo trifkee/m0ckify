@@ -211,7 +211,16 @@ export default function useModel() {
   //   // }));
   // };
 
+  function handleChangeModelStyle(e: ChangeEvent<HTMLInputElement>) {
+    setModel((prev) =>
+      prev.map((n) =>
+        n.id === selectedLayer?.id ? { ...n, realistic: e.target.checked } : n
+      )
+    );
+  }
+
   return {
+    handleChangeModelStyle,
     handleChangeReflection,
     handleChangeColor,
     handleModelChange,

@@ -167,6 +167,7 @@
       "bodyReflection": "Réflexion du modèle",
       "rotation": "Rotation du modèle",
       "position": "Position du modèle",
+      "style": "Réaliste",
       "texture": {
         "title": "Texture",
         "texture": {

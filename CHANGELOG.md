@@ -1,4 +1,14 @@
-### [2.4.2] 2024.07.12
+### [2.4.3] 2024.12.11
+
+## Changed
+
+- Replaced Iphone model, Android mode, TV Model
+
+## Fixed
+
+- Fixed styles for navigation panel
+
+### [2.4.2] 2024.07.11
 
 ## Changed
 

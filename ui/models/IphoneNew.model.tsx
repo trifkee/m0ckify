@@ -1,0 +1,526 @@
+import { useSetRecoilState } from "recoil";
+import * as THREE from "three";
+import { useGLTF } from "@react-three/drei";
+
+import { useLoader, useThree } from "@react-three/fiber";
+
+import { ModelType } from "@/lib/types/model.type";
+import { selectedLayerAtom } from "@/lib/atoms/generator";
+import { IMAGE_SETTINGS } from "@/lib/constants/generator";
+import { darkenColor } from "@/lib/helpers/model";
+import { IphoneType } from "@/lib/types/threejs.type";
+
+type ModelT = IphoneType & {
+  options: ModelType;
+  scale: number;
+};
+
+export default function Model(props: ModelT) {
+  const { nodes, materials } = useGLTF(
+    "https://utfs.io/f/iztaqYgynMhQxxu5eJdhVdGyenAiTuXx53lIPraqvcLsDRUH"
+  ) as IphoneType;
+
+  const setSelectedLayer = useSetRecoilState(selectedLayerAtom);
+
+  const texture: any = useLoader(
+    THREE.TextureLoader,
+    props.options.image.src as string
+  );
+
+  const { gl } = useThree();
+
+  const image = props.options.image;
+  texture.center.set(0.5, 0.5);
+  texture.rotation = Math.PI / 1;
+  texture.anisotropy = gl.capabilities.getMaxAnisotropy();
+
+  texture.repeat.set(
+    1.85 + image.width / IMAGE_SETTINGS.dimensionDivider,
+    -1 + image.height / IMAGE_SETTINGS.dimensionDivider
+  );
+
+  texture.offset.set(
+    0 + image.x / IMAGE_SETTINGS.positionDivider,
+    0 + image.y / IMAGE_SETTINGS.positionDivider
+  );
+
+  return (
+    <group
+      {...props}
+      castShadow
+      receiveShadow
+      onDoubleClick={() =>
+        setSelectedLayer({ id: props.options.id, layer: props.options })
+      }
+      {...props}
+      rotation={[
+        props.options.rotation.y,
+        props.options.rotation.x,
+        props.options.rotation.z,
+      ]}
+      position={[
+        props.options.position.y,
+        props.options.position.x,
+        props.options.position.z,
+      ]}
+      dispose={null}
+    >
+      <group
+        position={[0, -0.173, 0]}
+        rotation={[-Math.PI / 2, 0, -Math.PI]}
+        scale={2.1}
+      >
+        <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.UCttAeyROPsgmix.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          {props.options.screenReflection && (
+            <mesh
+              castShadow
+              receiveShadow
+              geometry={nodes.glass.geometry}
+              material={materials.glass}
+            >
+              <meshStandardMaterial
+                attach="material"
+                {...materials.glass}
+                transparent
+                opacity={props.options.screenAlphaReflection}
+              />
+            </mesh>
+          )}
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.rrqFqyfckTuyRuI.geometry}
+            material={materials.CSNzlRnZuvCyxNL}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.XbtrdVaOWYmkEiU.geometry}
+            material={materials.YiceMpFVTpnmoaq}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.AbxQOpRbGREHXRG.geometry}
+            material={materials.IDdMwJVCyuFpUnA}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.alSOKOYgFKIcUtR.geometry}
+            material={materials.sWxYOtHGWTcXRMx}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.FjhETOCBEeiBmch.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.lxsKwuOPNvmzBKg_0.geometry}
+            material={materials.KhJiSWFcsscOusf}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.tWfjYtMZCfucxRt.geometry}
+            material={materials.fdfRsQCrfvPBPfQ}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.aYjPeBrpBRopJbp.geometry}
+            material={materials.ramColorInside}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.BeQtuLXtpSTrzAH.geometry}
+            material={materials.initialShadingGroup}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.KUDomTaVduCyevu.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.QaGkMzxNzKPcqRy.geometry}
+            material={materials.iEhZxWeNLTDdgxm}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.QOfJIBEXOvXfSUh.geometry}
+            material={materials.vsSJQngPxBJTVZb}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.RUMRNTkptJGDMpy.geometry}
+            material={materials.ramDividerColor}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.BDLCJBydsNjizog_0.geometry}
+            material={materials.fGwijctGaiRaYJC}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.GWEiavWnRxbogtw_0.geometry}
+            material={materials.FsunUcGyajFpQmW}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.JUTNJcWwqyxbGDZ_0.geometry}
+            material={materials.ramDividerColor}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.PLFTnNQeqVAxicS.geometry}
+            material={materials.BLpVAsLWNICZYGG}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.RFqaqXLpuCDBIGV_0.geometry}
+            material={materials.nJRBoEsOhzMSqCz}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.tWBbDznHihIxXam.geometry}
+            material={materials.OStzgRHtVBLWwiD}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.aVmapfDgqkPkjUf.geometry}
+            material={materials.sideButtons}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={darkenColor(props.options.color)}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.CAQeTxdpUcbxQyT.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.lgnGJJmNebyRbHq_0.geometry}
+            material={materials.ramColor}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+              roughness={props.options.bodyReflection}
+            />
+          </mesh>
+
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.qsTxqfACkdoWeLQ.geometry}
+            material={materials.mutePhoneColor}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.tQCDizUpBYNcvFA.geometry}
+            material={materials.LtesZnUOMbBEAoi}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.zPPSOvNamLQVyvv.geometry}
+            material={materials.qEGySvwsouNnVcn}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.MoTJNOoMxqdxNvQ.geometry}
+            material={materials.mutePhoneColor}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.mZxrNiCtMrMjOMv.geometry}
+            material={materials.sideButtons}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={darkenColor(props.options.color)}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.YPGjoywokSeoQFr.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.rJeCWUNsVVXXAbI.geometry}
+            material={materials["ramColorBack(camera)"]}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={darkenColor(props.options.color)}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.rqSonbcVVSPWFfa_0.geometry}
+            material={materials.back}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={darkenColor(darkenColor(props.options.color))}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.vauUojKrKkLLDtY.geometry}
+            material={materials.HvAGJeQTAiWbceX}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.wjSYkRykuFHJNPw.geometry}
+            material={materials.KxzouvBYEgdZhMo}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.yqmgDmvGsmuPwXx_0.geometry}
+            material={materials.bmOZLlCkCKhIIVe}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.dNDonqESZOxUcei_0.geometry}
+            material={materials.cameraLensColor}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.IuMgFUHIyRWENxG_0.geometry}
+            material={materials.LcWBQfBvCzxThpp}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.nJYGEbPQybRBbiN.geometry}
+            material={materials.tDZQoaroJfCIQtF}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.RGbIswEcCTzqNsn_0.geometry}
+            material={materials.FlDKBWPodPcEeGy}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.XeFHhVBtRZWPGxR.geometry}
+            material={materials.tfbCjiZQaZkmtHx}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.JyAbjubWrOdfygC_0.geometry}
+            material={materials.back}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+              roughness={props.options.bodyReflection}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.nxFoHsySvfcSLvp.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.oCklTGvTZoDWJrC_0.geometry}
+            material={materials.tfbCjiZQaZkmtHx}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.BhvzCWikxrVeDTV.geometry}
+            material={materials.LtesZnUOMbBEAoi}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.DLfIUIalXuQjJsL.geometry}
+            material={materials.pBMikDFQfUOsKkr}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.ePYqawqlCJbCsNi.geometry}
+            material={materials.CSNzlRnZuvCyxNL}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.FaUtifOQSMTXiZM.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.FGDSbHbILfUmiaH.geometry}
+            material={materials.tfbCjiZQaZkmtHx}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.jQXfQpudiYObSGp.geometry}
+            material={materials.sWxYOtHGWTcXRMx}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.KABLQLZRuEbcLWk.geometry}
+            material={materials.fdfRsQCrfvPBPfQ}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.knexoFNknstHgiO.geometry}
+            material={materials.KtvhjlxyToKjYkE}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.MMkajxMNWrwGQfi.geometry}
+            material={materials.LtesZnUOMbBEAoi}
+          >
+            <meshStandardMaterial
+              attach={"material"}
+              color={props.options.color}
+            />
+          </mesh>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.OMkeKbwVHRBkBwM.geometry}
+            material={materials.IkWzRHNnDaKQXIi}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.qjXEDwnnBYwWcJn.geometry}
+            material={materials.tfbCjiZQaZkmtHx}
+          />
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.YnrVhXEUDbStWCs.geometry}
+            material={materials.EJpkIDZfhPDUzel}
+          />
+        </group>
+      </group>
+      <group
+        position={[0, -0.173, -0.001]}
+        rotation={[-Math.PI / 2, 0, -Math.PI]}
+        scale={2.1}
+      >
+        <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
+          <mesh
+            castShadow
+            receiveShadow
+            geometry={nodes.Screen001.geometry}
+            material={materials["screen.001"]}
+            position={[0, 0, -0.018]}
+          >
+            <meshStandardMaterial
+              attach="material"
+              map={texture}
+              envMapIntensity={1.5}
+              metalness={0.2}
+            />
+          </mesh>
+        </group>
+      </group>
+    </group>
+  );
+}
+
+useGLTF.preload(
+  "https://utfs.io/f/iztaqYgynMhQxxu5eJdhVdGyenAiTuXx53lIPraqvcLsDRUH"
+);

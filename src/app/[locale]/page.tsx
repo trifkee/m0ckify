@@ -59,7 +59,7 @@ export default function Home({
                 height={720}
                 alt="noise"
                 className="noise-texture"
-                src="https://utfs.io/f/iztaqYgynMhQFdAQ7icHfoiTCmg0VdB1rRxAQEyM3pJjKPqG"
+                src="https://utfs.io/f/iztaqYgynMhQZLksdak2N3mK9FQMEWgPS2C8uVTzJ0cxi1kL"
               />
               <Image
                 width={1920}
