@@ -167,6 +167,7 @@
       "bodyReflection": "Model Reflection",
       "rotation": "Model Rotation",
       "position": "Model Position",
+      "style": "Realistic",
 
       "texture": {
         "title": "Texture",

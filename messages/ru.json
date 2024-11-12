@@ -168,6 +168,7 @@
       "bodyReflection": "Отражение модели",
       "rotation": "Вращение модели",
       "position": "Позиция модели",
+      "style": "Реалистичный",
       "texture": {
         "title": "Текстура",
         "texture": {

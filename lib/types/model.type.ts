@@ -6,6 +6,7 @@ export type RenderType = {
 
 export type ModelType = {
   id: string;
+  realistic: boolean;
   type: "iphone" | "android" | "tv";
   title: string;
   position: {

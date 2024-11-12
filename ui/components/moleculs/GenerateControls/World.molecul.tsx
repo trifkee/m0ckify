@@ -44,7 +44,7 @@ export default function World() {
         <select
           name="toneMapping"
           onChange={handleChange}
-          defaultValue={TONE_MAPPINGS[0].value}
+          defaultValue={TONE_MAPPINGS[2].value}
         >
           {TONE_MAPPINGS.map((tone, i) => {
             return (

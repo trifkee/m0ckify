@@ -13,13 +13,22 @@ import {
 import { ModelType } from "@/lib/types/model.type";
 import { PivotControls } from "@react-three/drei";
 
-const LazyIphone = dynamic(() => import("@/ui/models/Iphone.model"), {
+const LazyIphone = dynamic(() => import("@/ui/models/IphoneNew.model"), {
   loading: () => null,
 });
-const LazyAndroid = dynamic(() => import("@/ui/models/Android.model"), {
+const LazyAndroid = dynamic(() => import("@/ui/models/Samsung.model"), {
   loading: () => null,
 });
-const LazyTv = dynamic(() => import("@/ui/models/TV.model"), {
+const LazyTv = dynamic(() => import("@/ui/models/TVNew.model"), {
+  loading: () => null,
+});
+const LazyIphoneN = dynamic(() => import("@/ui/models/Iphone.model"), {
+  loading: () => null,
+});
+const LazyAndroidN = dynamic(() => import("@/ui/models/Android.model"), {
+  loading: () => null,
+});
+const LazyTvN = dynamic(() => import("@/ui/models/TV.model"), {
   loading: () => null,
 });
 
@@ -27,14 +36,34 @@ export default function Model(options: ModelType) {
   const renderedModel = () => {
     switch (options.type) {
       case "iphone":
-        return <LazyIphone options={options} scale={0.5} />;
+        return options.realistic ? (
+          // @ts-expect-error
+          <LazyIphone options={options} scale={10} />
+        ) : (
+          <LazyIphoneN options={options} scale={0.5} />
+        );
       case "android":
-        return <LazyAndroid options={options} scale={0.5} />;
+        return options.realistic ? (
+          // @ts-expect-error
+          <LazyAndroid options={options} scale={10} />
+        ) : (
+          <LazyAndroidN options={options} scale={0.5} />
+        );
       case "tv":
-        return <LazyTv options={options} scale={0.5} />;
+        return options.realistic ? (
+          // @ts-expect-error
+          <LazyTv options={options} scale={2} />
+        ) : (
+          <LazyTvN options={options} scale={4} />
+        );
 
       default:
-        return <LazyIphone options={options} scale={0.5} />;
+        return options.realistic ? (
+          // @ts-expect-error
+          <LazyIphone options={options} scale={10} />
+        ) : (
+          <LazyIphoneN options={options} scale={0.5} />
+        );
     }
   };
 
@@ -46,7 +75,7 @@ export default function Model(options: ModelType) {
     <PivotControls
       offset={[0, 0, 0.1]}
       depthTest={false}
-      lineWidth={2}
+      lineWidth={3}
       disableRotations={pivotControlsEnabled.rotate}
       disableAxes={pivotControlsEnabled.move}
       disableScaling={pivotControlsEnabled.scale}

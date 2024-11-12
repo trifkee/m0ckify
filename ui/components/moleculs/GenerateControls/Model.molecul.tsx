@@ -15,8 +15,12 @@ import useModel from "@/ui/hooks/useModel.hook";
 export default function Model() {
   const t = useTranslations("generate");
 
-  const { handleChangeReflection, handleChangeColor, handleModelChange } =
-    useModel();
+  const {
+    handleChangeReflection,
+    handleChangeColor,
+    handleModelChange,
+    handleChangeModelStyle,
+  } = useModel();
 
   const selectedLayer = useRecoilValue(selectedLayerAtom);
   const layers = useRecoilValue(ObjectsLayersAtom);
@@ -29,22 +33,15 @@ export default function Model() {
         {t("model.title")} <LucideBox />
       </summary>
 
-      {/*TODO : ADD LATER TEXTURES FOR THE MODEL */}
-      {/* <div className="control__section">
-              <p className="title">{t("model.texture.title")}</p>
-
-              <div className="textures">
-                {TEXTURE_LIST.map((texture, i) => (
-                  <Checkbox
-                    key={i}
-                    title={t(`model.texture.texture.${texture.name}`)}
-                    htmlName={texture.name}
-                    value={texture.name === model.texture}
-                    onChange={(e) => handleChangeModelTexture(e)}
-                  />
-                ))}
-              </div>
-            </div> */}
+      <div className="control__section">
+        <p className="title">{t("model.style")}</p>
+        <Checkbox
+          htmlName="realistic"
+          onChange={handleChangeModelStyle}
+          title={t("model.style")}
+          value={Boolean(obj?.realistic)}
+        />
+      </div>
 
       <div className="control__section">
         <p className="title">{t("model.bodyReflection")}</p>
