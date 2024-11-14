@@ -22,7 +22,7 @@ export default function Footer() {
           />
         </div>
         <p>
-          V2.4.2 <span>- BETA</span>
+          V2.4.4 <span>- BETA</span>
         </p>
       </div>
 
@@ -42,13 +42,20 @@ export default function Footer() {
           <ul>
             <li>
               <IoLogoGithub />
-              <Link target="_blank" href={"https://github.com/trifkee"}>
+              <Link
+                prefetch={false}
+                rel="noopener noreferrer"
+                target="_blank"
+                href={"https://github.com/trifkee"}
+              >
                 GitHub
               </Link>
             </li>
             <li>
               <IoLogoLinkedin />
               <Link
+                prefetch={false}
+                rel="noopener noreferrer"
                 target="_blank"
                 href={"https://www.linkedin.com/in/lazartrifunovic/"}
               >

@@ -41,7 +41,7 @@ export default function GenerateNavigation({ locale }: { locale: string }) {
       }}
       className="generate__navigation"
     >
-      <Link href={"/"}>
+      <Link prefetch={false} href={"/"}>
         <Image
           width={200}
           height={200}

@@ -48,6 +48,7 @@ export default function LanguagePicker({
           .filter((lang: LanguageType) => lang?.locale !== locale)
           .map((lang: LanguageType, i: number) => (
             <Link
+              prefetch={false}
               href={path}
               locale={lang?.locale ?? ("sr" as any)}
               key={i}

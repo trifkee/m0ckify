@@ -14,7 +14,7 @@ export default function NotFound() {
   return (
     <main className="not-found">
       <div className="left">
-        <Link href={"/"}>
+        <Link prefetch={false} href={"/"}>
           <Image
             width={200}
             height={200}
@@ -28,10 +28,10 @@ export default function NotFound() {
           <p>{t("message")}</p>
         </div>
         <div className="links">
-          <Link href={"/"}>
+          <Link prefetch={false} href={"/"}>
             <Button variant="editor">{t("ctas.homepage")}</Button>
           </Link>
-          <Link href={"/generate"}>
+          <Link prefetch={false} href={"/generate"}>
             <Button variant="editor" className="danger">
               {t("ctas.generate")}
             </Button>

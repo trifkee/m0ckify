@@ -93,7 +93,7 @@ export default function RegisterForm() {
 
   return (
     <form className="form login" onSubmit={handleSubmit}>
-      <Link href={"/"}>
+      <Link prefetch={false} href={"/"}>
         <Image
           width={200}
           height={200}
@@ -230,7 +230,9 @@ export default function RegisterForm() {
       {/* <p className="forgot-password">Forgot your password?</p> */}
       <p className="register-cta">
         {t("register.login")}{" "}
-        <Link href="/login">{t("register.loginCta")}</Link>
+        <Link prefetch={false} href="/login">
+          {t("register.loginCta")}
+        </Link>
       </p>
     </form>
   );

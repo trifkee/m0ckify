@@ -1,13 +1,14 @@
 export type RenderType = {
   w: number;
   h: number;
+  quality: number;
   type: "JPEG" | "PNG" | "WEBP";
 };
 
 export type ModelType = {
   id: string;
   realistic: boolean;
-  type: "iphone" | "android" | "tv";
+  type: "iphone" | "android" | "tv" | "laptop";
   title: string;
   position: {
     x: number;

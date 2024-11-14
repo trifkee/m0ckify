@@ -9,6 +9,7 @@ export default function useRender() {
   const setRender = useSetRecoilState(renderAtom);
 
   function handleChange(e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) {
+    console.log(e.target.value);
     setRender((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,

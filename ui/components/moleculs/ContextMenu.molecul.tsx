@@ -27,7 +27,6 @@ export default function ContextMenu({
   const contextRef = useRef<HTMLDivElement | null>(null);
 
   const [context, setContex] = useRecoilState(contextMenuAtom);
-  const render = useRecoilValue(renderAtom);
 
   return (
     <AnimatePresence>
@@ -93,13 +92,7 @@ export default function ContextMenu({
               <IoSyncSharp />
             </Button>
             <Button
-              onClick={() =>
-                handleSave({
-                  type: render.type,
-                  w: render.w,
-                  h: render.h,
-                })
-              }
+              onClick={() => handleSave()}
               variant="editor"
               className="download"
             >

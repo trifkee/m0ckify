@@ -91,8 +91,8 @@ export default async function RootLayout({
     notFound();
   }
 
-  // Enable static rendering
-  setRequestLocale(locale);
+  // // Enable static rendering
+  // setRequestLocale(locale);
 
   const messages = await getMessages();
 
@@ -114,6 +114,6 @@ export default async function RootLayout({
   );
 }
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// export function generateStaticParams() {
+//   return routing.locales.map((locale) => ({ locale }));
+// }

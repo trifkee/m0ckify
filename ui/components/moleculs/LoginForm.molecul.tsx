@@ -81,7 +81,7 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
           }}
         />
       ) : (
-        <Link href={modal ? "/generate" : "/"}>
+        <Link prefetch={false} href={modal ? "/generate" : "/"}>
           <Image
             width={200}
             height={200}
@@ -153,7 +153,10 @@ export default function LoginForm({ modal }: { modal?: boolean }) {
         {isPending ? <Spinner /> : t("submit")}
       </button>
       <p className="register-cta">
-        {t("register")} <Link href="/register">{t("registerCta")}</Link>
+        {t("register")}{" "}
+        <Link prefetch={false} href="/register">
+          {t("registerCta")}
+        </Link>
       </p>
     </form>
   );

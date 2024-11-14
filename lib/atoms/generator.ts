@@ -14,6 +14,7 @@ export const renderAtom = atom<RenderType>({
   default: {
     w: 1080,
     h: 1920,
+    quality: 1,
     type: "PNG",
   },
 });
@@ -138,7 +139,14 @@ export const floorReflectionAtom = atom({
     strength: 1,
     depth: 1,
     minTreshold: 0,
-    maxTreshold: 1,
+    maxTreshold: 10,
+    mixStrength: 3,
+    mixContrast: 1,
+    resolution: 512,
+    depthToBlurRatioBias: 1,
+    blurX: 512,
+    blurY: 512,
+    envMapIntensity: 1,
   },
 });
 

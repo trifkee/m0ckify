@@ -123,7 +123,18 @@
         "enable": "Floor Reflections",
         "roughness": "Roughness",
         "treshold": "Treshold",
-        "strength": "Strength"
+        "strength": "Strength",
+        "depth": "Depth",
+        "depthToRatioBias": "Depth to Ratio",
+        "envMapIntensity": "Intensity",
+        "blur": {
+          "title": "Blur",
+          "x": "Horizontal Blur",
+          "y": "Vertical Blur"
+        },
+        "resolution": "Quality",
+        "mixStrength": "Blur Strength",
+        "mixContrast": "Blur Contrast"
       },
       "background": {
         "title": "Background",
@@ -133,7 +144,8 @@
     "render": {
       "title": "Render",
       "imageSize": "Image size",
-      "imageType": "Image type"
+      "imageType": "Image type",
+      "quality": "Quality"
     },
     "user": {
       "title": "Account",

@@ -3,18 +3,29 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 
 import { saveImageFromCanvas } from "@/lib/helpers/model";
-import { RenderType } from "@/lib/types/model.type";
 
-import { sceneDocumentAtom, selectedLayerAtom } from "@/lib/atoms/generator";
+import {
+  renderAtom,
+  sceneDocumentAtom,
+  selectedLayerAtom,
+} from "@/lib/atoms/generator";
 
 export default function useGenerator() {
   const sceneDocument = useRecoilValue(sceneDocumentAtom);
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
+  const render = useRecoilValue(renderAtom);
 
   /* Save Image to user PC */
-  const handleSave = (options: RenderType) => {
+  const handleSave = () => {
     let l = selectedLayer;
     setSelectedLayer(null);
+
+    const options = {
+      w: render.w,
+      h: render.h,
+      quality: render.quality,
+      type: render.type,
+    };
 
     saveImageFromCanvas({ title: sceneDocument.title, ...options });
 

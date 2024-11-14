@@ -11,6 +11,7 @@ import {
   floorReflectionAtom,
   fogControlsAtom,
   ObjectsLayersAtom,
+  renderAtom,
   sceneDocumentAtom,
 } from "@/lib/atoms/generator";
 
@@ -25,6 +26,7 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const fog = useRecoilValue(fogControlsAtom);
   const background = useRecoilValue(backgroundSettingsAtom);
 
+  const render = useRecoilValue(renderAtom);
   const layers = useRecoilValue(ObjectsLayersAtom);
 
   const mappedModels = layers?.map((model, i) => <Model key={i} {...model} />);
@@ -32,6 +34,10 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
     <Canvas
       id="canvas-window"
       gl={{
+        pixelRatio:
+          typeof window !== "undefined"
+            ? Math.min(window.devicePixelRatio, Math.max(1, render.quality))
+            : 3,
         preserveDrawingBuffer: true,
       }}
       ref={canvasRef}

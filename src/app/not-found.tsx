@@ -19,7 +19,7 @@ export default function NotFound() {
       <body className={` ${inter.className}  body`}>
         <main className="not-found">
           <div className="left">
-            <Link href={"/"}>
+            <Link prefetch={false} href={"/"}>
               <Image
                 width={200}
                 height={200}
@@ -33,10 +33,10 @@ export default function NotFound() {
               <p>We couldn&apos;t find the page you are looking for...</p>
             </div>
             <div className="links">
-              <Link href={"/"}>
+              <Link prefetch={false} href={"/"}>
                 <Button variant="editor">Home Page</Button>
               </Link>
-              <Link href={"/generate"}>
+              <Link prefetch={false} href={"/generate"}>
                 <Button variant="editor" className="danger">
                   Let&apos;s Work!
                 </Button>
