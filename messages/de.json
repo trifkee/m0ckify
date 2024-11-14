@@ -123,9 +123,20 @@
       "reflections": {
         "title": "Reflexionen",
         "enable": "Bodenreflexionen",
-        "roughness": "Rauheit",
+        "roughness": "Rauhigkeit",
         "treshold": "Schwelle",
-        "strength": "Stärke"
+        "strength": "Stärke",
+        "depth": "Tiefe",
+        "depthToRatioBias": "Tiefe zu Verhältnis",
+        "envMapIntensity": "Intensität",
+        "blur": {
+          "title": "Weichzeichnung",
+          "x": "Horizontale Weichzeichnung",
+          "y": "Vertikale Weichzeichnung"
+        },
+        "resolution": "Qualität",
+        "mixStrength": "Weichzeichnungsstärke",
+        "mixContrast": "Weichzeichnungskontrast"
       },
       "background": {
         "title": "Hintergrund",
@@ -136,7 +147,8 @@
     "render": {
       "title": "Rendern",
       "imageSize": "Bildgröße",
-      "imageType": "Bildtyp"
+      "imageType": "Bildtyp",
+      "quality": "Qualität"
     },
     "user": {
       "title": "Konto",

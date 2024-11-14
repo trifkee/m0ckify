@@ -129,6 +129,9 @@ export default function Magicfy() {
                     Don't have key?
                   </p>
                   <Link
+                    prefetch={false}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     href="https://platform.stability.ai/account/keys"
                     className="title error"
                   >

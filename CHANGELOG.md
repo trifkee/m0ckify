@@ -1,3 +1,19 @@
+### [2.4.4] 2024.14.11
+
+## Added
+
+- New features for reflections
+- New Rendered settings
+
+## Fixed
+
+- Fixed footer version
+
+## Changed
+
+- All Links are opted out from prefetching
+- Commented code for generating static pages in favor of less ISR Data charges on Vercel
+
 ### [2.4.3] 2024.12.11
 
 ## Changed

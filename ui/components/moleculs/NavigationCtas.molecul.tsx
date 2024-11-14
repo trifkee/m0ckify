@@ -22,7 +22,7 @@ export default function NavigationCtas({ locale }: { locale: string }) {
           <LucideLogOut />
         </Button>
       ) : (
-        <Link href={"/login"}>
+        <Link prefetch={false} href={"/login"}>
           <Button variant="editor" className="download">
             <LucideLogIn />
           </Button>

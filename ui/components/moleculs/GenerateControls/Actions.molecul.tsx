@@ -1,20 +1,15 @@
-import { LucideDownload, LucideSettings } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { IoSyncSharp } from "react-icons/io5";
+
 import Button from "../../atoms/Button.atom";
-import { useRecoilValue } from "recoil";
-import { renderAtom } from "@/lib/atoms/generator";
+
+import { LucideDownload, LucideSettings } from "lucide-react";
 
 export default function Actions({
-  // resetModelPosition,
   handleSave,
 }: {
   handleSave: CallableFunction;
-  // resetModelPosition: CallableFunction;
 }) {
   const t = useTranslations("generate");
-
-  const render = useRecoilValue(renderAtom);
 
   return (
     <details className="control actions">
@@ -32,13 +27,7 @@ export default function Actions({
           <IoSyncSharp />
         </Button> */}
         <Button
-          onClick={() =>
-            handleSave({
-              type: render.type,
-              w: render.w,
-              h: render.h,
-            })
-          }
+          onClick={() => handleSave()}
           variant="editor"
           className="download"
         >

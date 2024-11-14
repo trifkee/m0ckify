@@ -11,6 +11,7 @@ export const saveImageFromCanvas = ({
   type,
   h,
   w,
+  quality,
 }: SaveType) => {
   const link = document.createElement("a");
   const canvas = document.querySelector("canvas") as HTMLCanvasElement;
@@ -26,7 +27,7 @@ export const saveImageFromCanvas = ({
     const imageType = `image/${type.toLowerCase()}`;
 
     link.setAttribute("download", `${title}.${type.toLowerCase()}`);
-    link.setAttribute("href", canvas.toDataURL(imageType));
+    link.setAttribute("href", canvas.toDataURL(imageType, quality));
 
     link.click();
     link.remove();

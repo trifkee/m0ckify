@@ -121,10 +121,21 @@
       },
       "reflections": {
         "title": "Отражения",
-        "enable": "Отражения на Полу",
+        "enable": "Отражения на полу",
         "roughness": "Шероховатость",
         "treshold": "Порог",
-        "strength": "Сила"
+        "strength": "Сила",
+        "depth": "Глубина",
+        "depthToRatioBias": "Глубина к Соотношению",
+        "envMapIntensity": "Интенсивность",
+        "blur": {
+          "title": "Размытие",
+          "x": "Горизонтальное размытие",
+          "y": "Вертикальное размытие"
+        },
+        "resolution": "Качество",
+        "mixStrength": "Сила размытия",
+        "mixContrast": "Контраст размытия"
       },
       "background": {
         "title": "Фон",
@@ -134,7 +145,8 @@
     "render": {
       "title": "Рендеринг",
       "imageSize": "Размер изображения",
-      "imageType": "Тип изображения"
+      "imageType": "Тип изображения",
+      "quality": "Качество"
     },
     "user": {
       "title": "Аккаунт",

@@ -39,7 +39,7 @@ export default function Navigation({ locale }: { locale: string }) {
         </div>
 
         <div className="ctas">
-          <Link className="login" href={"/login"}>
+          <Link prefetch={false} className="login" href={"/login"}>
             <LucideUser />
             Log in
           </Link>

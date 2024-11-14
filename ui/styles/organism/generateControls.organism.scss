@@ -198,6 +198,40 @@
         width: 100%;
       }
 
+      &.render-quality {
+        .title {
+          width: 100%;
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-left: auto;
+            border-radius: 0.25rem;
+            padding: 0.25rem 0.5rem;
+
+            &.Low {
+              color: rgb(255, 78, 78);
+            }
+
+            &.Bad {
+              color: rgb(243, 148, 6);
+            }
+
+            &.Good {
+              color: rgb(252, 255, 68);
+            }
+
+            &.Very.Good {
+              color: rgb(110, 233, 165);
+            }
+
+            &.Best {
+              color: rgb(15, 224, 32);
+            }
+          }
+        }
+      }
+
       .title {
         font-weight: 300;
         font-size: clamp(0.5rem, 15vw, 0.75rem);

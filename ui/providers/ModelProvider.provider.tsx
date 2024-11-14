@@ -12,7 +12,7 @@ import CanvasModel from "../components/moleculs/CanvasModel.molecul";
 import Button from "../components/atoms/Button.atom";
 import ContextMenu from "../components/moleculs/ContextMenu.molecul";
 
-import { RenderType } from "@/lib/types/model.type";
+// import { RenderType } from "@/lib/types/model.type";
 
 import {
   helpAtom,
@@ -49,7 +49,7 @@ export default function ModelProvider() {
   const [isLayer, setIsLayer] = useRecoilState(layersTabMobileAtom);
 
   const [pivotControls, setPivotControls] = useRecoilState(pivotControlsAtom);
-  const setRender = useSetRecoilState(renderAtom);
+  // const setRender = useSetRecoilState(renderAtom);
   const setShowHelp = useSetRecoilState(helpAtom);
   const setIsLoading = useSetRecoilState(isGeneratingAtom);
   const [pivotControlsEnabled, setPivotControlsEnabled] = useRecoilState(
@@ -77,11 +77,11 @@ export default function ModelProvider() {
 
   useEffect(() => {
     setIsLoading(false);
-    setRender((prev: RenderType) => ({
-      ...prev,
-      w: parentRef.current?.clientWidth as number,
-      h: parentRef.current?.clientHeight as number,
-    }));
+    // setRender((prev: RenderType) => ({
+    //   ...prev,
+    //   w: parentRef.current?.clientWidth as number,
+    //   h: parentRef.current?.clientHeight as number,
+    // }));
   }, []);
 
   // Handle drag enter

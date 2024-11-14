@@ -120,10 +120,21 @@
       },
       "reflections": {
         "title": "Réflexions",
-        "enable": "Réflexions au Sol",
+        "enable": "Réflexions au sol",
         "roughness": "Rugosité",
         "treshold": "Seuil",
-        "strength": "Force"
+        "strength": "Force",
+        "depth": "Profondeur",
+        "depthToRatioBias": "Profondeur au Ratio",
+        "envMapIntensity": "Intensité",
+        "blur": {
+          "title": "Flou",
+          "x": "Flou Horizontal",
+          "y": "Flou Vertical"
+        },
+        "resolution": "Qualité",
+        "mixStrength": "Intensité du Flou",
+        "mixContrast": "Contraste du Flou"
       },
       "background": {
         "title": "Arrière-plan",
@@ -133,7 +144,8 @@
     "render": {
       "title": "Rendu",
       "imageSize": "Taille de l'image",
-      "imageType": "Type d'image"
+      "imageType": "Type d'image",
+      "quality": "Qualité"
     },
     "user": {
       "title": "Compte",

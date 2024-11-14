@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 0.25fr 1fr;
   border: 1px solid rgb($dashboard-border-clr, 1);
+  width: 100%;
 
   label {
     display: flex;

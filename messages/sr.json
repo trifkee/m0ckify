@@ -120,10 +120,21 @@
       },
       "reflections": {
         "title": "Refleksije",
-        "enable": "Refleksije na Podu",
+        "enable": "Refleksije poda",
         "roughness": "Hrapavost",
         "treshold": "Prag",
-        "strength": "Jačina"
+        "strength": "Snaga",
+        "depth": "Dubina",
+        "depthToRatioBias": "Dubina u odnos",
+        "envMapIntensity": "Intenzitet",
+        "blur": {
+          "title": "Zamagljenost",
+          "x": "Horizontalna zamućenost",
+          "y": "Vertikalna zamućenost"
+        },
+        "resolution": "Kvalitet",
+        "mixStrength": "Snaga zamućenja",
+        "mixContrast": "Kontrast zamućenja"
       },
       "background": {
         "title": "Pozadina",
@@ -133,7 +144,8 @@
     "render": {
       "title": "Renderovanje",
       "imageSize": "Veličina slike",
-      "imageType": "Tip slike"
+      "imageType": "Tip slike",
+      "quality": "Kvalitet"
     },
     "user": {
       "title": "Nalog",

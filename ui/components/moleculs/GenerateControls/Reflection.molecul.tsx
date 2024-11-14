@@ -12,7 +12,7 @@ import useReflections from "@/ui/hooks/useReflections.hook";
 
 import { floorReflectionAtom } from "@/lib/atoms/generator";
 
-import { FlipVertical2 } from "lucide-react";
+import { FlipVertical2, LucideFlipVertical } from "lucide-react";
 
 export default function Reflection() {
   const t = useTranslations("generate.general.reflections");
@@ -38,6 +38,58 @@ export default function Reflection() {
       {reflectionSettings.enabled && (
         <>
           <div className="control__section">
+            <div className="control__section">
+              <p className="title">{t("strength")}</p>
+              <Slider
+                max={100}
+                min={0}
+                className="small"
+                name="strength"
+                onChange={handleChange}
+                step={0.01}
+                value={String(reflectionSettings.strength)}
+              />
+            </div>
+
+            <div className="control__section">
+              <p className="title">{t("depth")}</p>
+              <Slider
+                max={100}
+                min={0}
+                className="small"
+                name="depth"
+                onChange={handleChange}
+                step={0.01}
+                value={String(reflectionSettings.depth)}
+              />
+            </div>
+
+            <div className="control__section">
+              <p className="title">{t("depthToRatioBias")}</p>
+              <Slider
+                max={10}
+                min={0}
+                className="small"
+                name="depthToBlurRatioBias"
+                onChange={handleChange}
+                step={0.01}
+                value={String(reflectionSettings.depthToBlurRatioBias)}
+              />
+            </div>
+
+            <div className="control__section">
+              <p className="title">{t("envMapIntensity")}</p>
+              <Slider
+                max={100}
+                min={0}
+                className="small"
+                name="envMapIntensity"
+                onChange={handleChange}
+                step={0.01}
+                value={String(reflectionSettings.envMapIntensity)}
+              />
+            </div>
+
             <p className="title">{t("roughness")}</p>
             <Slider
               max={100}
@@ -69,16 +121,57 @@ export default function Reflection() {
           </div>
 
           <div className="control__section">
-            <p className="title">{t("strength")}</p>
-            <Slider
-              max={100}
-              min={0}
-              className="small"
-              name="strength"
-              onChange={handleChange}
-              step={0.01}
-              value={String(reflectionSettings.strength)}
-            />
+            <p className="title">{t("blur.title")}</p>
+            <div className="position">
+              <NumberInput
+                label={<LucideFlipVertical />}
+                name="blurX"
+                value={reflectionSettings.blurX}
+                onChange={handleChange}
+              />
+              <NumberInput
+                label={<LucideFlipVertical />}
+                name="blurY"
+                value={reflectionSettings.blurY}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="control__section">
+            <p className="title">{t("resolution")}</p>
+            <div className="position">
+              <NumberInput
+                label="%"
+                name="resolution"
+                value={reflectionSettings.resolution}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="control__section">
+            <p className="title">{t("mixStrength")}</p>
+            <div className="position">
+              <NumberInput
+                label="%"
+                name="mixStrength"
+                value={reflectionSettings.mixStrength}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="control__section">
+            <p className="title">{t("mixContrast")}</p>
+            <div className="position">
+              <NumberInput
+                label="%"
+                name="mixContrast"
+                value={reflectionSettings.mixContrast}
+                onChange={handleChange}
+              />
+            </div>
           </div>
         </>
       )}

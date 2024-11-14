@@ -31,6 +31,9 @@ const LazyAndroidN = dynamic(() => import("@/ui/models/Android.model"), {
 const LazyTvN = dynamic(() => import("@/ui/models/TV.model"), {
   loading: () => null,
 });
+const LazyLaptop = dynamic(() => import("@/ui/models/Laptop.model"), {
+  loading: () => null,
+});
 
 export default function Model(options: ModelType) {
   const renderedModel = () => {
@@ -56,6 +59,9 @@ export default function Model(options: ModelType) {
         ) : (
           <LazyTvN options={options} scale={4} />
         );
+
+      case "laptop":
+        return <LazyLaptop options={options} scale={2} />;
 
       default:
         return options.realistic ? (

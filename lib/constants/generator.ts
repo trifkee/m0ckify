@@ -54,6 +54,11 @@ export const MODELS_LIST = [
     title: "TV",
     model: "tv",
   },
+  {
+    id: 3,
+    title: "Laptop",
+    model: "laptop",
+  },
 ];
 
 export const ENV_LIST = [

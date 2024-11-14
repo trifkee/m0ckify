@@ -5,6 +5,27 @@ import { useRecoilValue } from "recoil";
 import { renderAtom } from "@/lib/atoms/generator";
 import { IMAGE_TYPES } from "@/lib/constants/generator";
 import useRender from "@/ui/hooks/useRender.hook";
+import Slider from "../../atoms/Slider.atom";
+
+function checkQuality(quality: number) {
+  if (quality == 0) {
+    return "Low";
+  }
+
+  if (quality == 0.25) {
+    return "Bad";
+  }
+
+  if (quality == 0.5) {
+    return "Good";
+  }
+
+  if (quality == 0.75) {
+    return "Very Good";
+  }
+
+  return "Best";
+}
 
 export default function Render() {
   const t = useTranslations("generate");
@@ -62,6 +83,24 @@ export default function Render() {
                   );
                 })}
               </select>
+            </div>
+
+            <div className="control__section render-quality">
+              <p className="title">
+                {t("render.quality")}
+                <span className={checkQuality(render.quality)}>
+                  {checkQuality(render.quality)}
+                </span>
+              </p>
+              <Slider
+                max={1}
+                min={0}
+                className="small"
+                name="quality"
+                onChange={handleChange}
+                step={0.25}
+                value={String(render.quality)}
+              />
             </div>
           </div>
         </div>
