@@ -39,6 +39,19 @@ export default function World() {
       </div>
 
       <div className="control__section">
+        <p className="title">Rotation Speed</p>
+        <Slider
+          max={1}
+          min={0.1}
+          className="small"
+          name="dampingSpeed"
+          onChange={handleChange}
+          step={0.01}
+          value={String(canvasSettings.dampingSpeed)}
+        />
+      </div>
+
+      <div className="control__section">
         <p className="title">{t("preset")}</p>
 
         <select

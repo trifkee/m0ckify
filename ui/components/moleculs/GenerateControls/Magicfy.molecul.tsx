@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/routing";
+import { AnimatePresence, motion } from "framer-motion";
+
+import useModel from "@/ui/hooks/useModel.hook";
 
 import Button from "../../atoms/Button.atom";
 
@@ -9,13 +13,10 @@ import { useGenerateImage } from "@/infrastructure/mutations/generate";
 
 import { aiKeyAtom } from "@/lib/atoms/generator";
 import { userAtom } from "@/lib/atoms/user";
+import { AI_SERVICES } from "@/lib/constants/generator";
+import { AIServiceType } from "@/lib/types/AI.types";
 
 import { LucideInfo, LucideWand2, SquareArrowOutUpRight } from "lucide-react";
-
-import Link from "next/link";
-import { AnimatePresence } from "framer-motion";
-import { motion } from "framer-motion";
-import useModel from "@/ui/hooks/useModel.hook";
 
 const promptLen = 30;
 
@@ -29,6 +30,7 @@ export default function Magicfy() {
 
   const [showMoreOptions, setShowMoreOptions] = useState(false);
   const [prompt, setPrompt] = useState("");
+  const [service, setService] = useState(AI_SERVICES[0].name);
 
   const user = useRecoilValue(userAtom);
 
@@ -58,8 +60,28 @@ export default function Magicfy() {
       return;
     }
 
-    generate({ prompt, aiKey });
+    generate({ prompt, aiKey, service: service as AIServiceType });
   };
+
+  function handleChangeService(e: ChangeEvent<HTMLSelectElement>) {
+    setService(e.target.value);
+  }
+
+  function getAPIUrl() {
+    switch (service) {
+      case "openai":
+        return "https://platform.openai.com/api-keys";
+
+      case "stability":
+        return "https://platform.stability.ai/account/keys";
+
+      case "stablediffusion":
+        return "https://docs.getimg.ai/reference/introduction";
+
+      default:
+        return "#";
+    }
+  }
 
   return (
     <details open className="control user">
@@ -67,10 +89,28 @@ export default function Magicfy() {
         {t("magicfy.title")} <LucideWand2 />
       </summary>
       <div className="magic-container">
+        <div className="control__section env select">
+          <p className="title">AI Service</p>
+
+          <select
+            name="preset"
+            onChange={handleChangeService}
+            defaultValue={service}
+          >
+            {AI_SERVICES.map((ai) => {
+              return (
+                <option key={ai.id} value={ai.name}>
+                  {ai.title}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
         <div className="magic">
           <div className="control__section">
             <p className="title">{t("magicfy.title")}</p>
-            {showMoreOptions && (
+            {!showMoreOptions && (
               <>
                 <AnimatePresence>
                   {data?.data?.message && (
@@ -110,7 +150,7 @@ export default function Magicfy() {
                     marginTop: "1rem",
                   }}
                 >
-                  <p className="title">Stability API Key</p>
+                  <p className="title">{service.toUpperCase()} API Key</p>
                   <input
                     style={{
                       width: "100%",
@@ -118,7 +158,7 @@ export default function Magicfy() {
                     }}
                     name="apiKey"
                     className="input"
-                    placeholder="STABILITY AI API KEY"
+                    placeholder={`${service.toUpperCase()} AI API KEY`}
                     value={aiKey}
                     onChange={(e) => setAiKey(e.target.value)}
                   />
@@ -132,7 +172,7 @@ export default function Magicfy() {
                     prefetch={false}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://platform.stability.ai/account/keys"
+                    href={getAPIUrl()}
                     className="title error"
                   >
                     <Button variant="editor">

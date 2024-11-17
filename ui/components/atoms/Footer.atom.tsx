@@ -22,7 +22,7 @@ export default function Footer() {
           />
         </div>
         <p>
-          V2.4.4 <span>- BETA</span>
+          V2.5.0 <span>- BETA</span>
         </p>
       </div>
 

@@ -47,6 +47,17 @@ export type SceneDocumentType = {
   };
 };
 
+export type SceneCameraType = {
+  type: "perspective" | "ortographic";
+  position: [number, number, number];
+  fov: number;
+  zoom: number;
+  effects: boolean;
+  focalLength: number;
+  bokehScale: number;
+  focusDistance: number;
+};
+
 export type SceneLightsType = {
   intensity: number;
   color: string;

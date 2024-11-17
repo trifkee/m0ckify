@@ -7,6 +7,7 @@ import Env from "../moleculs/GenerateControls/Env.molecul";
 import Lights from "../moleculs/GenerateControls/Lights.molecul";
 import OverallSettings from "../moleculs/GenerateControls/OverallSettings.molecul";
 import Actions from "../moleculs/GenerateControls/Actions.molecul";
+import Camera from "../moleculs/GenerateControls/Camera.molecul";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
 
@@ -18,6 +19,7 @@ export default function GenerateControls() {
       <User />
       <OverallSettings />
       <Render />
+      <Camera />
       <Env />
       <Lights />
       <Actions
