@@ -3,6 +3,7 @@ import { atom } from "recoil";
 import {
   ModelType,
   RenderType,
+  SceneCameraType,
   SceneDocumentType,
   SceneLightsType,
 } from "../types/model.type";
@@ -31,6 +32,7 @@ export const canvasOptionsAtom = atom({
     toneMapping: TONE_MAPPINGS[0].value,
     grid: false,
     bloom: 0,
+    dampingSpeed: 0.2,
   },
 });
 
@@ -155,5 +157,19 @@ export const backgroundSettingsAtom = atom({
   default: {
     enabled: false,
     color: "black",
+  },
+});
+
+export const cameraSettingsAtom = atom<SceneCameraType>({
+  key: "camera",
+  default: {
+    type: "perspective",
+    position: [0, 0, 0],
+    fov: 50,
+    zoom: 150,
+    focalLength: 0,
+    bokehScale: 0,
+    focusDistance: 0,
+    effects: false,
   },
 });

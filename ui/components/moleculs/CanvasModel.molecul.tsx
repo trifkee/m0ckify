@@ -1,13 +1,15 @@
 import { Suspense, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, Stage } from "@react-three/drei";
+import { Environment, Stage } from "@react-three/drei";
 
 import Model from "@/ui/components/atoms/Model.atom";
 import Lights from "@/ui/components/atoms/Lights.atom";
 
 import {
   backgroundSettingsAtom,
+  cameraSettingsAtom,
+  canvasOptionsAtom,
   floorReflectionAtom,
   fogControlsAtom,
   ObjectsLayersAtom,
@@ -18,6 +20,7 @@ import {
 import { PresetType } from "@/lib/types/model.type";
 import ToneMapping from "../atoms/ToneMapping.atom";
 import CanvasMirror from "../atoms/CanvasMirror.atom";
+import Camera from "../atoms/Camera.atom";
 
 export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -25,6 +28,8 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const reflections = useRecoilValue(floorReflectionAtom);
   const fog = useRecoilValue(fogControlsAtom);
   const background = useRecoilValue(backgroundSettingsAtom);
+  const camera = useRecoilValue(cameraSettingsAtom);
+  const canvas = useRecoilValue(canvasOptionsAtom);
 
   const render = useRecoilValue(renderAtom);
   const layers = useRecoilValue(ObjectsLayersAtom);
@@ -32,6 +37,9 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const mappedModels = layers?.map((model, i) => <Model key={i} {...model} />);
   return (
     <Canvas
+      camera={{
+        position: camera.position,
+      }}
       id="canvas-window"
       gl={{
         pixelRatio:
@@ -50,9 +58,10 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
       {fog.enabled && (
         <fog attach="fog" args={[background.color, fog.minFog, fog.maxFog]} />
       )}
+
       <ToneMapping />
       <Suspense fallback={null}>
-        {/* TODO: ADD LATER BACKGROUND  */}
+        <Camera freeroam={freeroam} dampingSpeed={canvas.dampingSpeed} />
         <Lights />
         {sceneDocument.env.castShadow ? (
           <Stage
@@ -67,7 +76,10 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
           </Stage>
         ) : (
           <>
-            <Environment preset={sceneDocument.env.preset as PresetType} />
+            <Environment
+              environmentIntensity={sceneDocument.env.intensity}
+              preset={sceneDocument.env.preset as PresetType}
+            />
             {mappedModels}
           </>
         )}
@@ -76,7 +88,6 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
       {reflections.enabled && (
         <CanvasMirror color={background.color} {...reflections} />
       )}
-      <OrbitControls enableRotate={freeroam} />
     </Canvas>
   );
 }

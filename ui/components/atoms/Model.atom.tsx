@@ -1,17 +1,16 @@
 "use client";
 
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import dynamic from "next/dynamic";
+import { PivotControls } from "@react-three/drei";
 
 import {
-  modelAtom,
   pivotControlsAtom,
   pivotEnabledControlsAtom,
   selectedLayerAtom,
-  selectedModelAtom,
 } from "@/lib/atoms/generator";
+
 import { ModelType } from "@/lib/types/model.type";
-import { PivotControls } from "@react-three/drei";
 
 const LazyIphone = dynamic(() => import("@/ui/models/IphoneNew.model"), {
   loading: () => null,
@@ -78,15 +77,27 @@ export default function Model(options: ModelType) {
   const pivotControlsEnabled = useRecoilValue(pivotEnabledControlsAtom);
 
   return (
+    /*
+      TODO:
+        FIX DISABLED OPTIONS FOR INACTIVE TAB
+        WHEN CALCULATION FOR POSITION IS FIXED
+    */
     <PivotControls
-      offset={[0, 0, 0.1]}
+      offset={[0, 0, 0]}
       depthTest={false}
       lineWidth={3}
-      disableRotations={pivotControlsEnabled.rotate}
-      disableAxes={pivotControlsEnabled.move}
-      disableScaling={pivotControlsEnabled.scale}
-      disableSliders={pivotControlsEnabled.axes}
-      // disableSliders
+      disableRotations={
+        options.id !== selectedLayer?.id || pivotControlsEnabled.rotate
+      }
+      disableAxes={
+        options.id !== selectedLayer?.id || pivotControlsEnabled.move
+      }
+      disableScaling={
+        options.id !== selectedLayer?.id || pivotControlsEnabled.scale
+      }
+      disableSliders={
+        options.id !== selectedLayer?.id || pivotControlsEnabled.axes
+      }
       visible={pivotControls && options.id === selectedLayer?.id}
     >
       {renderedModel()}

@@ -1,8 +1,7 @@
 import { STARTING_PROPMPT } from "@/lib/constants/generator";
+import { AIServiceURLSEnum } from "@/lib/enum/AI.enum";
 import axios, { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
-
-const baseUrl = "https://api.stability.ai/v2beta/stable-image/generate/core";
 
 function checkErrorMessage(status: number) {
   switch (status) {
@@ -17,14 +16,12 @@ function checkErrorMessage(status: number) {
   }
 }
 
-export async function POST(req: NextRequest) {
+async function handleStabilityAI(prompt: string, apiKey?: string) {
   try {
-    const { prompt, apiKey } = await req.json();
-
     const res = await axios.post(
-      baseUrl,
+      AIServiceURLSEnum.stabilityUrl,
       {
-        prompt: `${STARTING_PROPMPT} ${prompt}`,
+        prompt: `${STARTING_PROPMPT.stability} ${prompt}`,
         output_format: "webp",
       },
       {
@@ -38,20 +35,134 @@ export async function POST(req: NextRequest) {
       }
     );
 
+    if (res.status !== 200) {
+      return {
+        status: res.status,
+        message: checkErrorMessage(res.status),
+      };
+    }
+
     const base64Image = Buffer.from(res.data, "binary").toString("base64");
     const imageData = `data:image/webp;base64,${base64Image}`;
 
-    if (res.status !== 200) {
-      return NextResponse.json({
-        status: res.status,
-        message: checkErrorMessage(res.status),
-      });
-    }
-
-    return NextResponse.json({
+    return {
       status: 200,
       image: imageData,
-    });
+    };
+  } catch (error: unknown) {
+    const err = error as AxiosError;
+    return {
+      status: err.status,
+      errorName: err.name,
+      message: `Stability AI Error: ${err.message}`,
+    };
+  }
+}
+
+async function handleOpenAi(prompt: string, apiKey?: string) {
+  try {
+    const res = await axios.post(
+      AIServiceURLSEnum.openAiUrl,
+      {
+        prompt: `${STARTING_PROPMPT.openai} ${prompt}`,
+        n: 1,
+        size: "1024x1024",
+        response_format: "b64_json",
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey ?? process.env.OPEN_AI_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (res.status !== 200) {
+      return {
+        status: res.status,
+        message: checkErrorMessage(res.status),
+      };
+    }
+
+    const base64Image = res.data.data[0].b64_json;
+    const imageData = `data:image/webp;base64,${base64Image}`;
+
+    return {
+      status: 200,
+      image: imageData,
+    };
+  } catch (error) {
+    const err = error as AxiosError;
+
+    return {
+      status: err.status,
+      errorName: err.name,
+      message: `OpenAI Error: ${err.message}`,
+    };
+  }
+}
+
+async function handleStablediffusion(prompt: string, apiKey?: string) {
+  try {
+    const res = await axios.post(
+      AIServiceURLSEnum.stableDiffusionUrl,
+      {
+        prompt: `${STARTING_PROPMPT.stability} ${prompt}`,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${apiKey ?? process.env.OPEN_AI_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (res.status !== 200) {
+      return {
+        status: res.status,
+        message: checkErrorMessage(res.status),
+      };
+    }
+
+    const base64Image = res.data.data[0].b64_json;
+    const imageData = `data:image/webp;base64,${base64Image}`;
+
+    return {
+      status: 200,
+      image: imageData,
+    };
+  } catch (error) {
+    const err = error as AxiosError;
+
+    return {
+      status: err.status,
+      errorName: err.name,
+      message: `OpenAI Error: ${err.message}`,
+    };
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const { prompt, apiKey, service } = await req.json();
+
+    switch (service) {
+      case "stability":
+        return NextResponse.json(await handleStabilityAI(prompt, apiKey));
+
+      case "openai":
+        return NextResponse.json(await handleOpenAi(prompt, apiKey));
+
+      case "stablediffusion":
+        return NextResponse.json(await handleStablediffusion(prompt, apiKey));
+
+      default:
+        return NextResponse.json({
+          status: 400,
+          message:
+            "Invalid service specified. Use 'stability', 'openai' or 'stablediffusion",
+        });
+    }
   } catch (error: unknown) {
     const err = error as AxiosError;
 

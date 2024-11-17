@@ -1,3 +1,4 @@
+import { title } from "process";
 import {
   ReinhardToneMapping,
   LinearToneMapping,
@@ -7,36 +8,129 @@ import {
   ACESFilmicToneMapping,
 } from "three";
 
-export const STARTING_PROPMPT = `
-You are an expert UI designer focused on creating visually appealing and functional mobile application interfaces. Your goal is to design intuitive, user-friendly mobile UIs optimized for small screens. Ensure that the generated designs are displayed as clean, standalone screens with no additional device frames or background elements.
+export const STARTING_PROPMPT = {
+  stability: `
+# Expert UI/UX Design Generation Prompt
 
-<design_constraints>
-  1. Apply a minimalistic approach that prioritizes clarity and functionality over excessive detail.
-  2. Design for both light and dark modes to enhance user experience in different environments.
-  3. Use touch-friendly sizes for all interactive elements, with comfortable padding around buttons, links, and inputs.
-  4. Implement a color scheme with high contrast for legibility, ensuring all text and icons remain visible against backgrounds.
-  5. Structure the layout for one-handed use, placing primary actions within reach of the thumb.
-  6. Use smooth, subtle animations to guide user interactions and state transitions without overwhelming the experience.
+You are an expert UI designer specializing in modern mobile application interfaces. Create pixel-perfect, production-ready UI designs optimized for mobile devices while adhering to platform-specific guidelines (iOS/Material Design).
 
-<component_guidelines>
-  1. Navigation: A bottom navigation bar with icon labels for easy reach and intuitive navigation; optional floating action button for primary actions.
-  2. Buttons: Large, rounded buttons for touch, primary and secondary color variations for different states (default, hover, active).
-  3. Text and Fonts: Sans-serif font for readability, with distinct font sizes and weights to convey hierarchy.
-  4. Cards: Simple, rounded corner cards for displaying content previews, incorporating subtle shadows to distinguish from background.
-  5. Forms: Input fields with clear labels, inline error messages, and accessible touch targets for mobile keyboards.
+<design_system_specifications>
+  1. Typography:
+     - Primary: SF Pro (iOS) / Roboto (Android)
+     - Scale: 12/14/16/20/24/32px
+     - Line height: 1.5 for body, 1.2 for headings
+     - Weight variations: Regular(400)/Medium(500)/Bold(700)
 
-<artifact_instructions>
-  For each design component, include only the UI screen itself, excluding any device frames, shadows, or backgrounds. The output should be a clean mockup showing just the UI elements, which can be directly used in further presentations or mockup applications.
-  - Bottom navigation bar with icons for primary sections
-  - Button styles for primary, secondary, and disabled states
-  - Input field with validation indicators
-  - Typography guide with heading, subheading, and body text sizes
-  - Card layout design optimized for touch and readability
-</artifact_instructions>
+  2. Spacing System:
+     - Base unit: 8px
+     - Padding hierarchy: 8/16/24/32px
+     - Component spacing: 16px default
+     - Screen margins: 16px horizontal
 
-`;
-// export const STARTING_PROPMPT =
-//   "Design a cutting-edge, professional mobile app interface with a focus on UX best practices and visual hierarchy. The layout should feature a highly organized structure with a consistent design system, using a neutral color scheme complemented by a refined accent color for primary actions. Utilize modern typography with strong readability, paired with custom iconography. The home screen should showcase a high-contrast, user-friendly navigation bar, followed by dynamic, modular content sections that adapt seamlessly to different device sizes. Prioritize a polished, minimalist aesthetic with strategic use of whitespace and intuitive interaction cues for an elevated user experience.";
+  3. Color System:
+     - Primary: #0066FF (Adjust opacity for states)
+     - Secondary: #00C853
+     - Error: #FF3B30
+     - Neutral: #F7F9FC to #1A1A1A
+     - Light mode background: #FFFFFF
+     - Dark mode background: #121212
+     
+  4. Component Specifications:
+     - Border radius: 12px (large), 8px (medium), 4px (small)
+     - Touch targets: Minimum 44x44px
+     - Button height: 48px standard
+     - Input height: 56px
+     - Icon sizes: 24px default
+</design_system_specifications>
+
+<interaction_patterns>
+  1. Navigation:
+     - Bottom bar height: 56px
+     - Tab bar icons: 24x24px
+     - Active state: Icon + Label
+     - Inactive state: Icon only
+
+  2. Gestures:
+     - Swipe patterns for lists
+     - Pull-to-refresh
+     - Bottom sheet interactions
+     - Card stack navigation
+
+  3. Feedback:
+     - Loading states: Skeleton screens
+     - Success/Error states
+     - Micro-interactions: 200-300ms
+     - Progress indicators
+</interaction_patterns>
+
+<accessibility_requirements>
+  1. Contrast Ratios:
+     - Text: 4.5:1 minimum
+     - Large text: 3:1 minimum
+     - Interactive elements: 3:1 minimum
+
+  2. Touch Targets:
+     - Primary buttons: 48x48px minimum
+     - Secondary actions: 44x44px minimum
+     - Spacing between targets: 8px minimum
+
+  3. Visual Hierarchy:
+     - Clear heading structure
+     - Consistent alignment
+     - Visual grouping of related elements
+     - Focus states for all interactive elements
+</accessibility_requirements>
+
+<responsive_behavior>
+  1. Layout Adaptations:
+     - Safe areas consideration
+     - Keyboard avoidance
+     - Dynamic type support
+     - Orientation changes
+     
+  2. Breakpoints:
+     - Small: 320px
+     - Medium: 375px
+     - Large: 428px
+</responsive_behavior>
+
+<performance_considerations>
+  1. Asset Optimization:
+     - Vector icons preferred
+     - Optimized image sizes
+     - Progressive loading support
+     - Cached elements
+
+  2. Animation Performance:
+     - Transform properties only
+     - 60fps animations
+     - Reduced motion support
+</performance_considerations>
+
+<output_requirements>
+  Generate designs that are:
+  1. Production-ready and implementable
+  2. Consistent with platform guidelines
+  3. Optimized for performance
+  4. Accessible to all users
+  5. Clean and free of decorative elements
+  6. Showing only UI elements without device frames
+  7. Resolution: 390x844px (iPhone 14 Pro)
+  8. Export format: High-quality PNG/SVG
+
+Negative prompt: Avoid:
+  - Unrealistic UI patterns
+  - Non-standard interactions
+  - Decorative elements that don't serve a purpose
+  - Inaccessible color combinations
+  - Inconsistent spacing
+  - Small touch targets
+  - Complex animations
+  - Non-optimized assets
+`,
+  openai:
+    "Generate a modern mobile app interface designed for iOS. Include a clean and minimal UI with SF Pro typography. Use a spacing system based on an 8px grid, with consistent margins and padding. Design components with a 12px border radius and ensure they follow accessibility guidelines (4.5:1 contrast ratio). Avoid unnecessary decorative elements. Design a cutting-edge, professional mobile app interface with a focus on UX best practices and visual hierarchy. The layout should feature a highly organized structure with a consistent design system, using a neutral color scheme complemented by a refined accent color for primary actions. Utilize modern typography with strong readability, paired with custom iconography. The home screen should showcase a high-contrast, user-friendly navigation bar, followed by dynamic, modular content sections that adapt seamlessly to different device sizes. Prioritize a polished, minimalist aesthetic with strategic use of whitespace and intuitive interaction cues for an elevated user experience.",
+};
 
 export const MODELS_LIST = [
   {
@@ -174,3 +268,34 @@ export const DEFAULT_OBJECT_OPTIONS = {
     y: 0,
   },
 };
+
+export const AI_SERVICES = [
+  {
+    id: 0,
+    name: "openai",
+    title: "Open AI",
+  },
+  {
+    id: 1,
+    name: "stability",
+    title: "Stability",
+  },
+  {
+    id: 2,
+    name: "stablediffusion",
+    title: "Stable diffusion",
+  },
+];
+
+export const CAMERA_STYLE = [
+  {
+    id: 0,
+    name: "orthographic",
+    title: "orthographic",
+  },
+  {
+    id: 1,
+    name: "perspective",
+    title: "perspective",
+  },
+];
