@@ -7,6 +7,8 @@ type NumberInputType = {
   onChange: CallableFunction;
   value?: number;
   step?: number;
+  min?: number;
+  max?: number;
 };
 
 export default function NumberInput({
@@ -15,11 +17,15 @@ export default function NumberInput({
   value = 0,
   label,
   name,
+  min,
+  max,
 }: NumberInputType) {
   return (
     <div className="input-label">
       <label htmlFor="iw">{label ?? name}</label>
       <input
+        min={min}
+        max={max}
         step={step}
         type="number"
         name={name}

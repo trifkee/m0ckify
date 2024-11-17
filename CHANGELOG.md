@@ -1,3 +1,14 @@
+### [2.5.0] 2024.17.11
+
+## Added
+
+- Added OPEN AI and IMG.AI as wrapper for generating images
+- Camera settings, now supports orthographic and perspective camera
+
+## Changed
+
+- Changed server action for generating images
+
 ### [2.4.4] 2024.14.11
 
 ## Added

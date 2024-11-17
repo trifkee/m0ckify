@@ -54,14 +54,14 @@
     overflow-x: hidden;
 
     &::-webkit-scrollbar {
-      width: 0.75rem;
+      width: 8px;
       background: $dark-gray-clr;
       padding: 0.5rem;
     }
 
     &::-webkit-scrollbar-thumb {
       background: rgb($dashboard-border-clr, 1);
-      border-radius: 0.5rem;
+      // border-radius: 0.5rem;
     }
     .control {
       .ctas {
