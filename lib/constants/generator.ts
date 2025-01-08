@@ -128,8 +128,11 @@ Negative prompt: Avoid:
   - Complex animations
   - Non-optimized assets
 `,
-  openai:
-    "Generate a modern mobile app interface designed for iOS. Include a clean and minimal UI with SF Pro typography. Use a spacing system based on an 8px grid, with consistent margins and padding. Design components with a 12px border radius and ensure they follow accessibility guidelines (4.5:1 contrast ratio). Avoid unnecessary decorative elements. Design a cutting-edge, professional mobile app interface with a focus on UX best practices and visual hierarchy. The layout should feature a highly organized structure with a consistent design system, using a neutral color scheme complemented by a refined accent color for primary actions. Utilize modern typography with strong readability, paired with custom iconography. The home screen should showcase a high-contrast, user-friendly navigation bar, followed by dynamic, modular content sections that adapt seamlessly to different device sizes. Prioritize a polished, minimalist aesthetic with strategic use of whitespace and intuitive interaction cues for an elevated user experience.",
+  openai: `English language, single screen.
+  Create a modern, minimalist mobile app interface for mobile phone. Minimal clean, UI design with a focus on usability and user experience. Use 8point system for design.
+  Include a clean navigation bar at the bottom with 4 essential icons, a prominent search bar at the top, and content cards in between. 
+  Use a color scheme based on given prompt that you think is good, with ample white space. 
+  Focus on intuitive user flow and material design principles.`,
 };
 
 export const MODELS_LIST = [
