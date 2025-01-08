@@ -90,7 +90,7 @@ export default function Home({
                 width={720}
                 height={720}
                 className="phones"
-                src="https://utfs.io/f/iztaqYgynMhQkPUrU3NqlQBZ07fnWrAYcRzET3u8DeptXVao"
+                src="https://utfs.io/f/iztaqYgynMhQz9tICcM8PvFns3adbtMZODo29QJBS6yuWKL0"
                 alt="mockify"
               />
             </div>
@@ -148,7 +148,7 @@ export default function Home({
                 width={720}
                 height={720}
                 className="phones"
-                src="https://utfs.io/f/iztaqYgynMhQkPUrU3NqlQBZ07fnWrAYcRzET3u8DeptXVao"
+                src="https://utfs.io/f/iztaqYgynMhQz9tICcM8PvFns3adbtMZODo29QJBS6yuWKL0"
                 alt="mockify"
               />
             </div>
