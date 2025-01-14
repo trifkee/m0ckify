@@ -1,0 +1,245 @@
+{
+  "global": {
+    "start": "Başlat"
+  },
+  "footer": {
+    "sitemap": {
+      "title": "Site Haritası",
+      "generate": "Oluştur"
+    },
+    "links": {
+      "title": "Bağlantılar"
+    },
+    "copyright": "Tüm hakları saklıdır."
+  },
+  "help": {
+    "title": "Yardım",
+    "camera": {
+      "title": "Kamerayı Taşı",
+      "text": "Kameranızı istediğiniz konuma taşımak için farenin sağ tuşuna tıklayın."
+    },
+    "lights": {
+      "title": "Işıklar",
+      "text": "Modelinizi güçlendirmek için ışıkları ayarlayın ve/veya yan menüden yeni ışık kaynakları ekleyin."
+    },
+    "model": {
+      "title": "Model",
+      "text": "Mockup için istediğiniz modeli seçin. Yakında daha fazlasını getireceğiz ⭐"
+    },
+    "rotate": {
+      "title": "Modeli Döndür",
+      "text": "Varsayılan olarak döndürme devre dışıdır. Bu özelliği etkinleştirmek için tuvale sağ taraftaki simgeye tıklayın."
+    },
+    "select": {
+      "title": "Nesneyi Seç",
+      "text": "Modeli doğrudan tuvalden seçmek için çift tıklayın."
+    }
+  },
+  "notFound": {
+    "title": "Bir şeyler yanlış gitti",
+    "message": "Aradığınız sayfayı bulamadık...",
+    "ctas": {
+      "homepage": "Ana sayfa",
+      "generate": "Hadi çalışalım!"
+    }
+  },
+  "home": {
+    "title": "Çarpıcı Mockuplar Anında Oluşturun.",
+    "subtitle": "Profesyonel, özelleştirilebilir 3D mockuplar için hepsi bir arada aracınız!",
+    "getStarted": "Başlayın",
+    "learnMore": "Daha Fazla Bilgi",
+    "cards": {
+      "lang": {
+        "title": "Çok Dilli Destek",
+        "subtitle": "Küresel erişim için birden fazla dilde kullanılabilir."
+      },
+      "lights": {
+        "title": "Işık ve Ortam Kontrolleri",
+        "subtitle": "Mükemmel mockuplar için ışıkları ve arka planları özelleştirin."
+      },
+      "edit": {
+        "title": "Gerçek Zamanlı Düzenleme",
+        "subtitle": "Değişiklikleri anında yapın ve sonuçları hemen görün!"
+      },
+      "renders": {
+        "title": "Yüksek Kaliteli Render.",
+        "subtitle": "Mockupları muhteşem çözünürlükte dışa aktarın."
+      },
+      "models": {
+        "title": "Özel Yapım Modeller",
+        "subtitle": "İhtiyaçlarınıza göre uyarlanmış benzersiz modellere erişin."
+      },
+      "layers": {
+        "title": "Katmanlı Modeller",
+        "subtitle": "Birden fazla modeli sahneye kolayca ekleyin ve düzenleyin, karmaşık mockuplar oluşturun."
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "username": "Kullanıcı Adı",
+      "password": "Şifre",
+      "forgotPassword": "Şifrenizi mi unuttunuz?",
+      "register": "Hesabınız yok mu?",
+      "registerCta": "Buradan kayıt olun.",
+      "submit": "Giriş Yap",
+      "errors": {
+        "invalidCredentials": "E-posta veya şifre yanlış."
+      }
+    },
+    "register": {
+      "email": "E-posta",
+      "username": "Kullanıcı Adı",
+      "password": "Şifre",
+      "confirmPassword": "Şifreyi Onayla",
+      "firstName": "Ad",
+      "lastName": "Soyad",
+      "submit": "Kayıt Ol",
+      "login": "Zaten bir hesabınız var mı?",
+      "loginCta": "Buradan giriş yapın.",
+      "errors": {
+        "409": "Kullanıcı adı veya e-posta adresi zaten alınmış.",
+        "missPw": "Şifreler uyuşmuyor."
+      }
+    }
+  },
+  "generate": {
+    "dropImage": "Resminizi buraya bırakın",
+    "general": {
+      "title": "Genel",
+      "world": {
+        "title": "Dünya",
+        "brigthnes": "Parlaklık",
+        "preset": "Hazır Ayar"
+      },
+      "fog": {
+        "title": "Sis",
+        "enable": "Etkin",
+        "minFog": "Minimum Sis",
+        "maxFog": "Maksimum Sis"
+      },
+      "reflections": {
+        "title": "Yansımalar",
+        "enable": "Zemin Yansımaları",
+        "roughness": "Pürüzlülük",
+        "treshold": "Eşik",
+        "strength": "Güç",
+        "depth": "Derinlik",
+        "depthToRatioBias": "Derinlik Oranı",
+        "envMapIntensity": "Yoğunluk",
+        "blur": {
+          "title": "Bulanıklık",
+          "x": "Yatay Bulanıklık",
+          "y": "Dikey Bulanıklık"
+        },
+        "resolution": "Kalite",
+        "mixStrength": "Bulanıklık Gücü",
+        "mixContrast": "Bulanıklık Kontrasti"
+      },
+      "background": {
+        "title": "Arka Plan",
+        "enable": "Etkin"
+      }
+    },
+    "render": {
+      "title": "Render",
+      "imageSize": "Görüntü Boyutu",
+      "imageType": "Görüntü Türü",
+      "quality": "Kalite"
+    },
+    "user": {
+      "title": "Hesap",
+      "logout": "Çıkış Yap"
+    },
+    "magicfy": {
+      "title": "Magicfy",
+      "generatingMessage": "Oluşturuyorum, lütfen bekleyin...",
+      "generateTitle": "Sihirli Mockup Oluştur",
+      "getApiKey": "API anahtarını buradan alın",
+      "generateDescription": "Mobil uygulamam için sihirli bir mockup oluştur...",
+      "cta": "Oluştur",
+      "errors": {
+        "unknown": "Bilinmeyen Hata",
+        "invalidApiKey": "Geçersiz API Anahtarı",
+        "noCredit": "Hey, görünüşe göre hesabımızda jetonlar tükendi. \n  Ürünümüzü denemek isterseniz, kendi API anahtarınızı ayarlayın ve uygulamayı kullanmaya devam edin.",
+        "noSavingKeys": "Anahtarınız kaydedilmeyecek!"
+      }
+    },
+    "position": {
+      "title": "Pozisyon"
+    },
+    "image": {
+      "title": "Resim",
+      "add": "Resim Ekle",
+      "noImage": "Önizleme"
+    },
+    "model": {
+      "title": "Model",
+      "screenReflection": "Ekran Yansıması",
+      "bodyReflection": "Model Yansıması",
+      "rotation": "Model Döndürme",
+      "position": "Model Pozisyonu",
+      "style": "Gerçekçi",
+      "texture": {
+        "title": "Doku",
+        "texture": {
+          "plastic": "Plastik",
+          "marble": "Mermer",
+          "color": "Renk"
+        }
+      },
+      "type": {
+        "title": "Tür",
+        "types": {
+          "iphone": "iPhone",
+          "android": "Android",
+          "tv": "TV",
+          "laptop": "Dizüstü"
+        }
+      },
+      "color": {
+        "title": "Renk"
+      }
+    },
+    "environment": {
+      "title": "Ortam",
+      "preset": "Hazır Ayar",
+      "list": {
+        "warehouse": "Depo",
+        "apartment": "Daire",
+        "city": "Şehir",
+        "dawn": "Şafak",
+        "forest": "Orman",
+        "lobby": "Lobi",
+        "night": "Gece",
+        "park": "Park",
+        "studio": "Stüdyo",
+        "sunset": "Günbatımı"
+      },
+      "castShadow": {
+        "title": "Gölgeler At",
+        "shadow": "Gölgeler"
+      },
+      "ambientLight": {
+        "intensity": "Çevresel Işık Yoğunluğu",
+        "color": "Çevresel Işık Rengi"
+      }
+    },
+    "lights": {
+      "title": "Işıklar",
+      "add": "Ekle",
+      "remove": "Kaldır",
+      "lights": {
+        "title": "Işık",
+        "intensity": "Yoğunluk",
+        "position": "Pozisyon",
+        "color": "Renk"
+      }
+    },
+    "actions": {
+      "title": "Eylemler",
+      "download": "İndir",
+      "reset": "Sıfırla"
+    }
+  }
+}
