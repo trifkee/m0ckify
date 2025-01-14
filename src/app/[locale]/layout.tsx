@@ -76,7 +76,7 @@ export const metadata: Metadata = {
       "https://utfs.io/f/iztaqYgynMhQPaA2hanVqDAuyXGdB4ZWMrwavjHCFQch5sSo",
   },
   verification: {
-    google: "5G3Db-j5HWTjNgCV9bFBv4GGKa_J415AjCi8PLQYX6k",
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
   },
 };
 
