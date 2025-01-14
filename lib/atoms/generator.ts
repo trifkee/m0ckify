@@ -28,7 +28,7 @@ export const selectedLayerAtom = atom<{ id: string; layer: ModelType } | null>({
 export const canvasOptionsAtom = atom({
   key: "canvasOptions",
   default: {
-    toneMappingExposure: 0.5,
+    toneMappingExposure: 1,
     toneMapping: TONE_MAPPINGS[0].value,
     grid: false,
     bloom: 0,
