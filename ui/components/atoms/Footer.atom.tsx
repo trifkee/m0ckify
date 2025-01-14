@@ -1,11 +1,15 @@
+"use client";
+
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 import { LucideMoveUpRight } from "lucide-react";
 import { IoLogoGithub, IoLogoLinkedin } from "react-icons/io5";
 
+import FooterVersion from "./FooterVersion.atom";
+
 import "@/ui/styles/atoms/footer.atom.scss";
-import { useTranslations } from "next-intl";
 
 export default function Footer() {
   const t = useTranslations("footer");
@@ -21,9 +25,7 @@ export default function Footer() {
             alt="Mockify"
           />
         </div>
-        <p>
-          V2.5.0 <span>- BETA</span>
-        </p>
+        <FooterVersion />
       </div>
 
       <div className="middle">

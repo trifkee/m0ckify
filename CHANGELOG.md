@@ -1,3 +1,14 @@
+### [2.5.1] 2025.14.01
+
+## Changed
+
+- Changed starting Global light, scene is brigther
+
+## Added
+
+- Fetching version fro github
+- Added Turkish language
+
 ### [2.5.0] 2024.17.11
 
 ## Added

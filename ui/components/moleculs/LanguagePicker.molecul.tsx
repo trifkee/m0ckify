@@ -93,4 +93,9 @@ const languages = [
     name: "中文",
     locale: "ch",
   },
+  {
+    id: 6,
+    name: "Türkçe",
+    locale: "tr",
+  },
 ];
