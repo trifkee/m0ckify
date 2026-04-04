@@ -34,7 +34,9 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
   const render = useRecoilValue(renderAtom);
   const layers = useRecoilValue(ObjectsLayersAtom);
 
-  const mappedModels = layers?.map((model, i) => <Model key={i} {...model} />);
+  const mappedModels = layers?.map((model) => (
+    <Model key={model.id} {...model} />
+  ));
   return (
     <Canvas
       camera={{
