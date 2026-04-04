@@ -42,12 +42,16 @@ export default function CanvasModel({ freeroam }: { freeroam: boolean }) {
       camera={{
         position: camera.position,
       }}
+      dpr={
+        typeof window !== "undefined"
+          ? Math.min(window.devicePixelRatio, Math.max(1, render.quality))
+          : 2
+      }
       id="canvas-window"
       gl={{
-        pixelRatio:
-          typeof window !== "undefined"
-            ? Math.min(window.devicePixelRatio, Math.max(1, render.quality))
-            : 3,
+        antialias: true,
+        alpha: true,
+        powerPreference: "high-performance",
         preserveDrawingBuffer: true,
       }}
       ref={canvasRef}

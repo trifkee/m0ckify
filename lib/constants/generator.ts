@@ -255,7 +255,7 @@ export const DEFAULT_OBJECT_OPTIONS = {
   color: "#fff",
   texture: "plastic" as "plastic",
   bodyReflection: 0,
-  screenReflection: 1,
+  screenReflection: 0,
   screenAlphaReflection: 0.1,
   position: {
     x: 0 as number,

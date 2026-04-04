@@ -52,7 +52,7 @@ export default function Env() {
         <select
           name="preset"
           onChange={handleChange}
-          defaultValue={ENV_LIST[0].title}
+          defaultValue={ENV_LIST[2].title}
         >
           {ENV_LIST.map((env) => {
             return (
