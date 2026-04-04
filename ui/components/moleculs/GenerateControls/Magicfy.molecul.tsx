@@ -71,13 +71,12 @@ export default function Magicfy() {
     switch (service) {
       case "openai":
         return "https://platform.openai.com/api-keys";
-
       case "stability":
         return "https://platform.stability.ai/account/keys";
-
       case "stablediffusion":
         return "https://docs.getimg.ai/reference/introduction";
-
+      case "nanobanana":
+        return 'https://aistudio.google.com/app/api-keys'
       default:
         return "#";
     }
@@ -166,7 +165,7 @@ export default function Magicfy() {
 
                 <div>
                   <p style={{ marginBottom: ".25rem" }} className="title">
-                    Don't have key?
+                    Don&apos;t have key?
                   </p>
                   <Link
                     prefetch={false}

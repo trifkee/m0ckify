@@ -142,6 +142,76 @@ async function handleStablediffusion(prompt: string, apiKey?: string) {
   }
 }
 
+async function handleNanobana(prompt: string, apiKey?: string) {
+  try {
+    const key = apiKey ?? process.env.NEXT_PUBLIC_NANOBANA_API_KEY;
+
+    const fullPrompt = `${STARTING_PROPMPT.nanobanana} ${prompt}`;
+
+    if (!key || key.length < 30) {
+      return {
+        status: 401,
+        message: "API key is not valid or is missing.",
+      };
+    }
+
+    const targetUrl = `${AIServiceURLSEnum.nanobananaUrl}?key=${key}`;
+
+    const payload = {
+      contents: [
+        {
+          parts: [
+            {
+              text: fullPrompt,
+            },
+          ],
+        },
+      ],
+      generationConfig: {
+        responseModalities: ['TEXT', 'IMAGE'],
+      },
+      systemInstruction: {
+        parts: [{ text: "Generiši fotorealističnu sliku na osnovu korisničkog opisa." }]
+      }
+    };
+
+    const res = await axios.post(
+      targetUrl,
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (res.status !== 200) {
+      return {
+        status: res.status,
+        message: checkErrorMessage(res.status),
+      };
+    }
+
+    const base64Image = res.data.candidates[0].content.parts.find((p: any) => p.inlineData)?.inlineData?.data;
+    const imageData = `data:image/jpeg;base64,${base64Image}`;
+
+    return {
+      status: 200,
+      image: imageData,
+    };
+  } catch (error) {
+    const err = error as any;
+
+    const status = err.response?.status || 500;
+
+    return {
+      status: status,
+      errorName: err.name,
+      message: `Gemini Error (${status}): ${err.message}`,
+    };
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const { prompt, apiKey, service } = await req.json();
@@ -155,12 +225,13 @@ export async function POST(req: NextRequest) {
 
       case "stablediffusion":
         return NextResponse.json(await handleStablediffusion(prompt, apiKey));
-
+      case "nanobanana":
+        return NextResponse.json(await handleNanobana(prompt, apiKey));
       default:
         return NextResponse.json({
           status: 400,
           message:
-            "Invalid service specified. Use 'stability', 'openai' or 'stablediffusion",
+            "Invalid service specified. Use 'stability', 'openai', 'stablediffusion', 'gemini' or 'nanobanana'",
         });
     }
   } catch (error: unknown) {
