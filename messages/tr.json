@@ -138,8 +138,29 @@
       },
       "background": {
         "title": "Arka Plan",
-        "enable": "Etkin"
+        "enable": "Etkin",
+        "solid": "Düz",
+        "gradient": "Degrade",
+        "gradientPresets": "Ön Ayarlar",
+        "color": "Renk",
+        "gradientColor": "Degrade Rengi",
+        "angle": "Açı",
+        "colorStop": "Renk Durdurması"
       }
+    },
+    "camera": {
+      "title": "Kamera",
+      "sceneCamera": "Sahne kamerası",
+      "addCamera": "Kamera ekle",
+      "remove": "Kaldır",
+      "name": "Ad",
+      "cameraName": "Kamera adı",
+      "type": "Tür",
+      "fieldOfView": "Görüş alanı",
+      "zoom": "Yakınlaştırma",
+      "position": "Pozisyon",
+      "target": "Hedef",
+      "quickFraming": "Hızlı kadraj"
     },
     "render": {
       "title": "Render",

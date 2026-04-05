@@ -117,7 +117,11 @@ const template_1 = {
     },
     "backgroundSettings": {
         "enabled": false,
-        "color": "black"
+        "color": "#000000",
+        "type": "solid",
+        "gradientColor": "#ffffff",
+        "gradientAngle": 135,
+        "gradientColorStop": 50
     },
     "cameraSettings": {
         "type": "perspective",
@@ -225,7 +229,11 @@ const template_2 = {
     },
     "backgroundSettings": {
         "enabled": false,
-        "color": "black"
+        "color": "#000000",
+        "type": "solid",
+        "gradientColor": "#ffffff",
+        "gradientAngle": 135,
+        "gradientColorStop": 50
     },
     "cameraSettings": {
         "type": "perspective",
@@ -362,7 +370,11 @@ const template_3 = {
     },
     "backgroundSettings": {
         "enabled": false,
-        "color": "black"
+        "color": "#000000",
+        "type": "solid",
+        "gradientColor": "#ffffff",
+        "gradientAngle": 135,
+        "gradientColorStop": 50
     },
     "cameraSettings": {
         "type": "perspective",
@@ -528,7 +540,11 @@ export const template_4 = {
     },
     "backgroundSettings": {
         "enabled": false,
-        "color": "black"
+        "color": "#000000",
+        "type": "solid",
+        "gradientColor": "#ffffff",
+        "gradientAngle": 135,
+        "gradientColorStop": 50
     },
     "cameraSettings": {
         "type": "perspective",
@@ -694,7 +710,11 @@ export const template_5 = {
     },
     "backgroundSettings": {
         "enabled": false,
-        "color": "black"
+        "color": "#000000",
+        "type": "solid",
+        "gradientColor": "#ffffff",
+        "gradientAngle": 135,
+        "gradientColorStop": 50
     },
     "cameraSettings": {
         "type": "perspective",

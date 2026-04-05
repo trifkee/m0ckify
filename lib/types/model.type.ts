@@ -5,6 +5,8 @@ export type RenderType = {
   type: "JPEG" | "PNG" | "WEBP";
 };
 
+export type Vector3Tuple = [number, number, number];
+
 export type ModelType = {
   id: string;
   realistic: boolean;
@@ -47,15 +49,31 @@ export type SceneDocumentType = {
   };
 };
 
-export type SceneCameraType = {
-  type: "perspective" | "ortographic";
-  position: [number, number, number];
+export type SceneCameraItemType = {
+  id: string;
+  name: string;
+  type: "perspective" | "orthographic";
+  position: Vector3Tuple;
+  target: Vector3Tuple;
   fov: number;
   zoom: number;
+  near: number;
+  far: number;
   effects: boolean;
   focalLength: number;
   bokehScale: number;
   focusDistance: number;
+};
+
+export type SceneCameraPreviewType = {
+  enabled: boolean;
+  showSafeFrame: boolean;
+};
+
+export type SceneCameraType = {
+  activeCameraId: string;
+  preview: SceneCameraPreviewType;
+  cameras: SceneCameraItemType[];
 };
 
 export type SceneLightsType = {
