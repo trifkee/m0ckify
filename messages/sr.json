@@ -138,8 +138,29 @@
       },
       "background": {
         "title": "Pozadina",
-        "enable": "Omogućeno"
+        "enable": "Omogućeno",
+        "solid": "Jednobojna",
+        "gradient": "Preliv",
+        "gradientPresets": "Predefinisano",
+        "color": "Boja",
+        "gradientColor": "Boja preliva",
+        "angle": "Ugao",
+        "colorStop": "Zaustavka boje"
       }
+    },
+    "camera": {
+      "title": "Kamera",
+      "sceneCamera": "Kamera scene",
+      "addCamera": "Dodaj kameru",
+      "remove": "Ukloni",
+      "name": "Naziv",
+      "cameraName": "Naziv kamere",
+      "type": "Tip",
+      "fieldOfView": "Vidno polje",
+      "zoom": "Zum",
+      "position": "Pozicija",
+      "target": "Meta",
+      "quickFraming": "Brzo kadriranje"
     },
     "render": {
       "title": "Renderovanje",
@@ -180,7 +201,6 @@
       "rotation": "Rotacija modela",
       "position": "Model Position",
       "style": "Realistično",
-
       "texture": {
         "title": "Tekstura",
         "texture": {
@@ -239,6 +259,7 @@
     },
     "actions": {
       "title": "Akcije",
+      "templates": "Sabloni",
       "download": "Skini",
       "reset": "Resetuj"
     }

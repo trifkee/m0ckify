@@ -1,8 +1,10 @@
 "use client";
 
 import { useRecoilValue } from "recoil";
+import { useTranslations } from "next-intl";
 
 import NumberInput from "../../atoms/NumberInput.atom";
+import Button from "../../atoms/Button.atom";
 
 import useCamera from "@/ui/hooks/useCamera.hook";
 
@@ -10,15 +12,39 @@ import { CAMERA_STYLE } from "@/lib/constants/generator";
 import { CameraEnum } from "@/lib/enum/generate.enum";
 import { cameraSettingsAtom } from "@/lib/atoms/generator";
 
-import { LucideScanEye, Video } from "lucide-react";
+import {
+  LucideCamera,
+  LucideCrosshair,
+  LucidePlus,
+  LucideScanEye,
+  LucideTrash2,
+  Video,
+} from "lucide-react";
 
 import "@/ui/styles/moleculs/camera.molecul.scss";
 
 export default function Camera() {
+  const t = useTranslations("generate.camera");
   const cameraSettings = useRecoilValue(cameraSettingsAtom);
+  const activeCamera =
+    cameraSettings.cameras.find(
+      (camera) => camera.id === cameraSettings.activeCameraId
+    ) ?? cameraSettings.cameras[0];
 
-  const { handleChange, handleCameraAngle: handleCameraAngleHook } =
-    useCamera();
+  const {
+    addSceneCamera,
+    handleActiveCameraChange,
+    handleChange,
+    handleCameraAngle: handleCameraAngleHook,
+    handleCameraPosition,
+    handleCameraTarget,
+    removeActiveCamera,
+    renameActiveCamera,
+  } = useCamera();
+
+  if (!activeCamera) {
+    return null;
+  }
 
   function handleCameraAngle(angle: string) {
     switch (angle) {
@@ -57,16 +83,59 @@ export default function Camera() {
   return (
     <details className="control background">
       <summary className="control__title">
-        Camera
+        {t("title")}
         <Video />
       </summary>
 
       <div className="control__section select">
-        <p className="title">Type</p>
+        <p className="title">{t("sceneCamera")}</p>
+        <select
+          name="activeCameraId"
+          id="activeCameraId"
+          value={cameraSettings.activeCameraId}
+          onChange={(e) => handleActiveCameraChange(e.target.value)}
+        >
+          {cameraSettings.cameras.map((camera) => (
+            <option key={camera.id} value={camera.id}>
+              {camera.name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="control__section camera-actions-row">
+        <Button variant="editor" onClick={addSceneCamera}>
+          <span>{t("addCamera")}</span>
+          <LucidePlus />
+        </Button>
+        <Button
+          variant="editor"
+          className={cameraSettings.cameras.length === 1 ? "disabled" : "danger"}
+          disabled={cameraSettings.cameras.length === 1}
+          onClick={removeActiveCamera}
+        >
+          <span>{t("remove")}</span>
+          <LucideTrash2 />
+        </Button>
+      </div>
+
+      <div className="control__section">
+        <p className="title">{t("name")}</p>
+        <input
+          className="input"
+          type="text"
+          value={activeCamera.name}
+          onChange={(e) => renameActiveCamera(e.target.value)}
+          placeholder={t("cameraName")}
+        />
+      </div>
+
+      <div className="control__section select">
+        <p className="title">{t("type")}</p>
 
         <select
           name="type"
-          defaultValue={cameraSettings.type}
+          value={activeCamera.type}
           id="type"
           onChange={handleChange}
         >
@@ -148,28 +217,115 @@ export default function Camera() {
       </div> */}
 
       <div className="position">
-        {cameraSettings.type == "perspective" ? (
+        {activeCamera.type == "perspective" ? (
           <div className="control__section">
-            <p className="title">Field of View</p>
+            <p className="title">{t("fieldOfView")}</p>
             <NumberInput
               label={<LucideScanEye />}
               name="fov"
-              value={cameraSettings.fov}
+              value={activeCamera.fov}
               onChange={handleChange}
             />
           </div>
         ) : (
           <div className="control__section">
-            <p className="title">Zoom</p>
+            <p className="title">{t("zoom")}</p>
             <NumberInput
               label={<LucideScanEye />}
               name="zoom"
               min={1}
-              value={cameraSettings.zoom}
+              value={activeCamera.zoom}
               onChange={handleChange}
             />
           </div>
         )}
+
+        <div className="control__section">
+          <p className="title">{t("position")}</p>
+          <div className="position">
+            <NumberInput
+              label="X"
+              name="cameraPositionX"
+              value={activeCamera.position[0]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCameraPosition(0, Number(e.target.value))
+              }
+            />
+            <NumberInput
+              label="Y"
+              name="cameraPositionY"
+              value={activeCamera.position[1]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCameraPosition(1, Number(e.target.value))
+              }
+            />
+            <NumberInput
+              label="Z"
+              name="cameraPositionZ"
+              value={activeCamera.position[2]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCameraPosition(2, Number(e.target.value))
+              }
+            />
+          </div>
+        </div>
+
+        <div className="control__section">
+          <p className="title">{t("target")}</p>
+          <div className="position">
+            <NumberInput
+              label={<LucideCrosshair />}
+              name="cameraTargetX"
+              value={activeCamera.target[0]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCameraTarget(0, Number(e.target.value))
+              }
+            />
+            <NumberInput
+              label="Y"
+              name="cameraTargetY"
+              value={activeCamera.target[1]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCameraTarget(1, Number(e.target.value))
+              }
+            />
+            <NumberInput
+              label="Z"
+              name="cameraTargetZ"
+              value={activeCamera.target[2]}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handleCameraTarget(2, Number(e.target.value))
+              }
+            />
+          </div>
+        </div>
+
+        <div className="control__section camera-position">
+          <p className="title">{t("quickFraming")}</p>
+
+          <div className="position-grid">
+            {[
+              CameraEnum.TopLeft,
+              CameraEnum.TopCenter,
+              CameraEnum.TopRight,
+              CameraEnum.CenterLeft,
+              CameraEnum.CenterCenter,
+              CameraEnum.CenterRight,
+              CameraEnum.BottomLeft,
+              CameraEnum.BottomCenter,
+              CameraEnum.BottomRight,
+            ].map((angle) => (
+              <button
+                key={angle}
+                type="button"
+                onClick={() => handleCameraAngle(angle)}
+                className="position-grid__position"
+              >
+                <LucideCamera />
+              </button>
+            ))}
+          </div>
+        </div>
 
         {/* <div className="control__section">
             <p className="title">Focal Length</p>

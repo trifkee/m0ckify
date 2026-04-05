@@ -138,8 +138,29 @@
       },
       "background": {
         "title": "Background",
-        "enable": "Enabled"
+        "enable": "Enabled",
+        "solid": "Solid",
+        "gradient": "Gradient",
+        "gradientPresets": "Presets",
+        "color": "Color",
+        "gradientColor": "Gradient Color",
+        "angle": "Angle",
+        "colorStop": "Color Stop"
       }
+    },
+    "camera": {
+      "title": "Camera",
+      "sceneCamera": "Scene camera",
+      "addCamera": "Add camera",
+      "remove": "Remove",
+      "name": "Name",
+      "cameraName": "Camera name",
+      "type": "Type",
+      "fieldOfView": "Field of View",
+      "zoom": "Zoom",
+      "position": "Position",
+      "target": "Target",
+      "quickFraming": "Quick framing"
     },
     "render": {
       "title": "Render",
@@ -180,7 +201,6 @@
       "rotation": "Model Rotation",
       "position": "Model Position",
       "style": "Realistic",
-
       "texture": {
         "title": "Texture",
         "texture": {
@@ -239,6 +259,7 @@
     },
     "actions": {
       "title": "Actions",
+      "templates": "Templates",
       "download": "Download",
       "reset": "Reset"
     }

@@ -16,16 +16,7 @@ export default function Actions({
       <summary className="control__title">
         {t("actions.title")} <LucideSettings />
       </summary>
-
       <div className="control__section">
-        {/* <Button
-          onClick={resetModelPosition}
-          variant="editor"
-          className="danger  model__reset-cta"
-        >
-          <p>{t("actions.reset")}</p>
-          <IoSyncSharp />
-        </Button> */}
         <Button
           onClick={() => handleSave()}
           variant="editor"

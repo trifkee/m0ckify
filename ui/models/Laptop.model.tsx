@@ -172,13 +172,13 @@ export default function Model(props: ModelT) {
       }
       {...props}
       rotation={[
-        props.options.rotation.y - 50,
-        props.options.rotation.x + Math.PI / 1,
+        props.options.rotation.x - 50,
+        props.options.rotation.y + Math.PI / 1,
         props.options.rotation.z + Math.PI / 1,
       ]}
       position={[
-        props.options.position.y,
         props.options.position.x,
+        props.options.position.y,
         props.options.position.z,
       ]}
       dispose={null}
@@ -562,7 +562,7 @@ export default function Model(props: ModelT) {
           geometry={nodes.Object_121.geometry}
           material={materials.nDsMUuDKliqGFdU}
         />
-        {props.options.screenReflection && (
+        {Boolean(props.options.screenReflection) && (
           <mesh
             castShadow
             receiveShadow

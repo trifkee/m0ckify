@@ -76,12 +76,12 @@ export default function Model(props: ModelT) {
       {...props}
       rotation={[
         props.options.rotation.y,
-        props.options.rotation.x,
+        props.options.rotation.y,
         props.options.rotation.z,
       ]}
       position={[
         props.options.position.y,
-        props.options.position.x,
+        props.options.position.y,
         props.options.position.z,
       ]}
       dispose={null}
@@ -98,7 +98,7 @@ export default function Model(props: ModelT) {
           roughness={model.bodyReflection}
         />
       </mesh>
-      {model.screenReflection && (
+      {Boolean(model.screenReflection) && (
         <mesh
           castShadow
           receiveShadow
@@ -107,7 +107,7 @@ export default function Model(props: ModelT) {
           rotation={[0, Math.PI / 2, 0]}
         >
           <meshStandardMaterial
-            attach={"mateial"}
+            attach={"material"}
             {...materials.Glas}
             transparent
             opacity={model.screenAlphaReflection}

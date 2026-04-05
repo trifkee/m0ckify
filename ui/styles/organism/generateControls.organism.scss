@@ -194,6 +194,56 @@
       overflow: hidden;
       padding: 0.5rem 0;
 
+      .template-presets {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+      }
+
+      .template-preset-card {
+        position: relative;
+        border: 2px solid rgb($dashboard-border-clr, 0.7);
+        border-radius: 0.35rem;
+        overflow: hidden;
+        background: rgb($dark-gray-clr, 0.35);
+        padding: 0;
+        cursor: pointer;
+        transition: 0.2s ease all;
+        aspect-ratio: 16 / 10;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        span {
+          position: absolute;
+          top: 0.35rem;
+          right: 0.35rem;
+          font-size: 0.65rem;
+          line-height: 1;
+          font-weight: 700;
+          padding: 0.25rem 0.35rem;
+          border-radius: 0.25rem;
+          color: rgb($white-clr, 0.95);
+          background: rgb($dark-gray-clr, 0.7);
+          border: 1px solid rgb($dashboard-border-clr, 0.7);
+        }
+
+        &:hover {
+          border-color: rgb($secondary-clr-400, 1);
+          transform: scale(1.02);
+          box-shadow: 0 0 0.75rem rgb($secondary-clr-400, 0.2);
+        }
+
+        &.active {
+          border-color: rgb($primary-clr-500, 1);
+          box-shadow: 0 0 0 1px rgb($primary-clr-500, 0.6);
+        }
+      }
+
       & > * {
         width: 100%;
       }

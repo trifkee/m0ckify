@@ -32,11 +32,11 @@ export default function useMouse() {
 
   useEffect(() => {
     document.addEventListener("click", handleClick);
-    document.addEventListener("contextmenu", handleRightClick);
+    // document.addEventListener("contextmenu", handleRightClick);
 
     return () => {
       document.removeEventListener("click", handleClick);
-      document.removeEventListener("contextmenu", handleRightClick);
+      // document.removeEventListener("contextmenu", handleRightClick);
     };
   }, []);
 

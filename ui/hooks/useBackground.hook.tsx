@@ -17,5 +17,28 @@ export default function useBackground() {
     }));
   };
 
-  return { handleBackgroundEnable, handleBackgroundSettings };
+  const handleBackgroundType = (type: "solid" | "gradient") => {
+    setBackgroundSettings((prev) => ({ ...prev, type }));
+  };
+
+  const handleGradientColor = (gradientColor: string) => {
+    setBackgroundSettings((prev) => ({ ...prev, gradientColor }));
+  };
+
+  const handleGradientAngle = (gradientAngle: number) => {
+    setBackgroundSettings((prev) => ({ ...prev, gradientAngle }));
+  };
+
+  const handleGradientColorStop = (gradientColorStop: number) => {
+    setBackgroundSettings((prev) => ({ ...prev, gradientColorStop }));
+  };
+
+  return {
+    handleBackgroundEnable,
+    handleBackgroundSettings,
+    handleBackgroundType,
+    handleGradientColor,
+    handleGradientAngle,
+    handleGradientColorStop,
+  };
 }

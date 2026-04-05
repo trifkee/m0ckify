@@ -1,19 +1,35 @@
 import { cameraSettingsAtom } from "@/lib/atoms/generator";
+import useCamera from "@/ui/hooks/useCamera.hook";
 import {
   OrbitControls,
   OrthographicCamera,
   PerspectiveCamera,
 } from "@react-three/drei";
+import { useRef } from "react";
 import { useRecoilValue } from "recoil";
+import { OrbitControls as OrbitControlsImpl } from "three-stdlib";
 
 export default function Camera({
+  aspect,
   freeroam,
   dampingSpeed,
 }: {
+  aspect: number;
   freeroam: boolean;
   dampingSpeed: number;
 }) {
-  const camera = useRecoilValue(cameraSettingsAtom);
+  const cameraSettings = useRecoilValue(cameraSettingsAtom);
+  const controlsRef = useRef<OrbitControlsImpl | null>(null);
+  const { updateActiveCamera } = useCamera();
+
+  const camera =
+    cameraSettings.cameras.find(
+      (sceneCamera) => sceneCamera.id === cameraSettings.activeCameraId
+    ) ?? cameraSettings.cameras[0];
+
+  if (!camera) {
+    return null;
+  }
 
   return (
     <>
@@ -21,26 +37,52 @@ export default function Camera({
         <PerspectiveCamera
           makeDefault
           fov={camera.fov}
-          position={[0, 0, 10]}
-          near={0.1}
-          far={100}
-          zoom={1}
+          aspect={aspect}
+          position={camera.position}
+          near={camera.near}
+          far={camera.far}
+          zoom={camera.zoom}
+          onUpdate={(currentCamera) =>
+            currentCamera.lookAt(camera.target[0], camera.target[1], camera.target[2])
+          }
         />
       ) : (
         <OrthographicCamera
           makeDefault
           zoom={camera.zoom}
-          position={[0, 0, 10]}
-          near={0.1}
-          far={1000}
+          position={camera.position}
+          near={camera.near}
+          far={camera.far}
+          onUpdate={(currentCamera) =>
+            currentCamera.lookAt(camera.target[0], camera.target[1], camera.target[2])
+          }
         />
       )}
 
       <OrbitControls
+        ref={controlsRef}
         enableDamping
         dampingFactor={dampingSpeed}
-        target={[0, 0, 0]}
+        target={camera.target}
         enableRotate={freeroam}
+        onEnd={(event) => {
+          const controls =
+            (event?.target as OrbitControlsImpl | undefined) ?? controlsRef.current;
+
+          if (!controls) {
+            return;
+          }
+
+          updateActiveCamera((currentCamera) => ({
+            ...currentCamera,
+            position: [
+              controls.object.position.x,
+              controls.object.position.y,
+              controls.object.position.z,
+            ],
+            target: [controls.target.x, controls.target.y, controls.target.z],
+          }));
+        }}
       />
     </>
   );

@@ -86,3 +86,62 @@
     }
   }
 }
+
+.canvas-stage-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.05) 1px,
+    rgba(255, 255, 255, 0) 1px
+  );
+  background-size: 1500px 1500px;
+}
+
+.canvas-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: width 0.2s ease, height 0.2s ease, box-shadow 0.2s ease;
+
+  &.is-framed {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 20px 60px rgba(0, 0, 0, 0.35);
+  }
+
+  canvas {
+    inset: 0;
+  }
+}
+
+.safe-frame-overlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 3;
+
+  &__border {
+    position: absolute;
+    inset: 4%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+
+  &__meta {
+    position: absolute;
+    left: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}

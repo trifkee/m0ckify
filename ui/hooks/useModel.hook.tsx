@@ -3,6 +3,7 @@
 import { ChangeEvent } from "react";
 
 import { ObjectsLayersAtom, selectedLayerAtom } from "@/lib/atoms/generator";
+import { ModelType } from "@/lib/types/model.type";
 
 import { readUserImage } from "@/lib/helpers/model";
 import { useRecoilValue, useSetRecoilState } from "recoil";
@@ -10,6 +11,12 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 export default function useModel() {
   const selectedLayer = useRecoilValue(selectedLayerAtom);
   const setModel = useSetRecoilState(ObjectsLayersAtom);
+  const setSelectedLayer = useSetRecoilState(selectedLayerAtom);
+
+  function toFiniteNumber(rawValue: string, fallbackValue: number) {
+    const parsedValue = Number(rawValue);
+    return Number.isFinite(parsedValue) ? parsedValue : fallbackValue;
+  }
 
   function handleChangeColor(color: string) {
     setModel((prev) =>
@@ -116,38 +123,81 @@ export default function useModel() {
     e: ChangeEvent<HTMLInputElement>,
     axis: "x" | "y" | "z"
   ) {
-    return setModel((prev) =>
+    if (!selectedLayer) return;
+
+    return handleSetTransform({
+      rotation: {
+        ...selectedLayer.layer.rotation,
+        [axis]: toFiniteNumber(
+          e.target.value,
+          selectedLayer.layer.rotation[axis]
+        ),
+      },
+    });
+  }
+
+  function handleSetTransform(transform: {
+    position?: ModelType["position"];
+    rotation?: ModelType["rotation"];
+  }) {
+    setModel((prev) =>
       prev.map((n) =>
         n.id === selectedLayer?.id
           ? {
               ...n,
-              rotation: {
-                ...n.rotation,
-                [axis]: Number(e.target.value),
-              },
+              ...(transform.position ? { position: transform.position } : {}),
+              ...(transform.rotation ? { rotation: transform.rotation } : {}),
             }
           : n
       )
     );
+
+    setSelectedLayer((prev) => {
+      if (!prev || prev.id !== selectedLayer?.id) return prev;
+
+      return {
+        id: prev.id,
+        layer: {
+          ...prev.layer,
+          ...(transform.position ? { position: transform.position } : {}),
+          ...(transform.rotation ? { rotation: transform.rotation } : {}),
+        },
+      };
+    });
+  }
+
+  function handleSetPosition(position: ModelType["position"]) {
+    return handleSetTransform({ position });
   }
 
   function handleChangePosition(
     e: ChangeEvent<HTMLInputElement>,
     axis: "x" | "y" | "z"
   ) {
-    return setModel((prev) =>
-      prev.map((n) =>
-        n.id === selectedLayer?.id
-          ? {
-              ...n,
-              position: {
-                ...n.position,
-                [axis]: Number(e.target.value),
-              },
-            }
-          : n
-      )
-    );
+    if (!selectedLayer) return;
+
+    return handleSetPosition({
+      ...selectedLayer.layer.position,
+      [axis]: toFiniteNumber(
+        e.target.value,
+        selectedLayer.layer.position[axis]
+      ),
+    });
+  }
+
+  function handleSyncPivotPosition(position: ModelType["position"]) {
+    if (!selectedLayer) return;
+
+    return handleSetPosition(position);
+  }
+
+  function handleSyncPivotTransform(transform: {
+    position: ModelType["position"];
+    rotation: ModelType["rotation"];
+  }) {
+    if (!selectedLayer) return;
+
+    return handleSetTransform(transform);
   }
 
   /* Read image from user PC */
@@ -231,5 +281,7 @@ export default function useModel() {
     handleImageSize,
     handleChangeRotation,
     handleChangePosition,
+    handleSyncPivotPosition,
+    handleSyncPivotTransform,
   };
 }

@@ -11,6 +11,7 @@ import useMouse from "../hooks/useMouse.hook";
 import CanvasModel from "../components/moleculs/CanvasModel.molecul";
 import Button from "../components/atoms/Button.atom";
 import ContextMenu from "../components/moleculs/ContextMenu.molecul";
+import { template_5 } from "../../lib/constants/templates";
 
 // import { RenderType } from "@/lib/types/model.type";
 
@@ -28,6 +29,7 @@ import {
   LucideFilePlus2,
   LucideHelpCircle,
   LucideLayers,
+  LucideLayoutTemplate,
   LucideRotate3D,
   Maximize,
   Move,
@@ -38,10 +40,27 @@ import {
 
 import "@/ui/styles/providers/modelProvider.provider.scss";
 import useModel from "../hooks/useModel.hook";
+import useRestoreGeneratorState from '@/ui/hooks/useRestoreGeneratorState';
 
 export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
   const t = useTranslations("generate");
+
+  const restoreGeneratorState = useRestoreGeneratorState();
+  function setShowTemplate(value: boolean) {
+    console.log('sss');
+
+    try {
+      console.log(template_5,'template_5');
+      const doc = template_5;
+      if (!doc) throw new Error('Nema sačuvanog stanja u localStorage!');
+      const parsed = doc;
+      restoreGeneratorState(parsed);
+      alert('Stanje je uspešno učitano iz localStorage!');
+    } catch (e) {
+      alert(`Greška pri učitavanju iz localStorage! ${e}`);
+    }
+  }
 
   const [freeroam, setFreeroam] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -179,6 +198,13 @@ export default function ModelProvider() {
               </Button> */}
             </div>
 
+            <Button
+              variant="editor"
+              onClick={() => setShowTemplate(true)}
+              className="template"
+            >
+              <LucideLayoutTemplate />
+            </Button>
             <Button
               variant="editor"
               onClick={() => setShowHelp(true)}

@@ -67,7 +67,6 @@
       }
     }
   },
-
   "notFound": {
     "title": "Etwas ist schief gelaufen",
     "message": "Wir konnten die Seite, die du suchst, nicht finden...",
@@ -106,7 +105,6 @@
   },
   "generate": {
     "dropImage": "Legen Sie Ihr Bild hier ab",
-
     "general": {
       "title": "Allgemein",
       "world": {
@@ -140,10 +138,30 @@
       },
       "background": {
         "title": "Hintergrund",
-        "enable": "Aktiviert"
+        "enable": "Aktiviert",
+        "solid": "Einfarbig",
+        "gradient": "Farbverlauf",
+        "gradientPresets": "Voreinstellungen",
+        "color": "Farbe",
+        "gradientColor": "Farbverlauf Farbe",
+        "angle": "Winkel",
+        "colorStop": "Farbstopp"
       }
     },
-
+    "camera": {
+      "title": "Kamera",
+      "sceneCamera": "Szenenkamera",
+      "addCamera": "Kamera hinzufügen",
+      "remove": "Entfernen",
+      "name": "Name",
+      "cameraName": "Kameraname",
+      "type": "Typ",
+      "fieldOfView": "Sichtfeld",
+      "zoom": "Zoom",
+      "position": "Position",
+      "target": "Ziel",
+      "quickFraming": "Schnelle Ausrichtung"
+    },
     "render": {
       "title": "Rendern",
       "imageSize": "Bildgröße",
@@ -241,6 +259,7 @@
     },
     "actions": {
       "title": "Aktionen",
+      "templates": "Vorlagen",
       "download": "Herunterladen",
       "reset": "Zurücksetzen"
     }
