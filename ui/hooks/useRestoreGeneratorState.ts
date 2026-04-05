@@ -3,6 +3,7 @@ import {
   SceneCameraItemType,
   SceneCameraType,
   Vector3Tuple,
+  ModelType,
 } from "@/lib/types/model.type";
 import {
   ObjectsLayersAtom,
@@ -57,6 +58,55 @@ export default function useRestoreGeneratorState() {
     }
 
     return tuple as Vector3Tuple;
+  }
+
+  function normalizeNumber(value: unknown, fallback: number): number {
+    const parsedValue = Number(value);
+    return Number.isFinite(parsedValue) ? parsedValue : fallback;
+  }
+
+  function normalizeObjectsLayers(value: any): ModelType[] | null {
+    if (!Array.isArray(value)) {
+      return null;
+    }
+
+    const allowedTypes: ModelType["type"][] = ["iphone", "android", "tv", "laptop"];
+    const allowedTextures: ModelType["texture"][] = ["plastic", "marble"];
+
+    return value.map((layer: any, index: number) => {
+      const layerType = allowedTypes.includes(layer?.type) ? layer.type : "iphone";
+      const layerTexture = allowedTextures.includes(layer?.texture) ? layer.texture : "plastic";
+
+      return {
+        id: String(layer?.id ?? `layer-${index + 1}`),
+        realistic: Boolean(layer?.realistic),
+        type: layerType,
+        title: String(layer?.title ?? `Layer ${index + 1}`),
+        color: String(layer?.color ?? "#ffffff"),
+        texture: layerTexture,
+        bodyReflection: normalizeNumber(layer?.bodyReflection, 0),
+        screenReflection: normalizeNumber(layer?.screenReflection, 0),
+        screenAlphaReflection: normalizeNumber(layer?.screenAlphaReflection, 0.1),
+        position: {
+          x: normalizeNumber(layer?.position?.x, 0),
+          y: normalizeNumber(layer?.position?.y, 0),
+          z: normalizeNumber(layer?.position?.z, 0),
+        },
+        rotation: {
+          x: normalizeNumber(layer?.rotation?.x, 0),
+          y: normalizeNumber(layer?.rotation?.y, 0),
+          z: normalizeNumber(layer?.rotation?.z, 0),
+        },
+        image: {
+          src: typeof layer?.image?.src === "string" ? layer.image.src : null,
+          isDefault: Boolean(layer?.image?.isDefault),
+          width: normalizeNumber(layer?.image?.width, 0),
+          height: normalizeNumber(layer?.image?.height, 0),
+          x: normalizeNumber(layer?.image?.x, 0),
+          y: normalizeNumber(layer?.image?.y, 0),
+        },
+      };
+    });
   }
 
   function normalizeCameraSettings(value: any): SceneCameraType | null {
@@ -120,7 +170,14 @@ export default function useRestoreGeneratorState() {
 
   function restore(state: any) {
     if (!state) return;
-    if (state.objectsLayers) setObjectsLayers(state.objectsLayers);
+    if (state.objectsLayers) {
+      const normalizedObjectsLayers = normalizeObjectsLayers(state.objectsLayers);
+
+      if (normalizedObjectsLayers) {
+        setObjectsLayers(normalizedObjectsLayers);
+        setSelectedLayer(null);
+      }
+    }
     if (state.render) setRender(state.render);
     if (state.selectedLayer) setSelectedLayer(state.selectedLayer);
     if (state.canvasOptions) setCanvasOptions(state.canvasOptions);

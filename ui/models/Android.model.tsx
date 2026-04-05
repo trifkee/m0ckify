@@ -98,7 +98,7 @@ export default function Model(props: ModelT) {
           roughness={model.bodyReflection}
         />
       </mesh>
-      {model.screenReflection && (
+      {Boolean(model.screenReflection) && (
         <mesh
           castShadow
           receiveShadow
@@ -107,7 +107,7 @@ export default function Model(props: ModelT) {
           rotation={[0, Math.PI / 2, 0]}
         >
           <meshStandardMaterial
-            attach={"mateial"}
+            attach={"material"}
             {...materials.Glas}
             transparent
             opacity={model.screenAlphaReflection}

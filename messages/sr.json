@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "Akcije",
+      "templates": "Sabloni",
       "download": "Skini",
       "reset": "Resetuj"
     }

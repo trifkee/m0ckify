@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "操作",
+      "templates": "模板",
       "download": "下载",
       "reset": "重置"
     }
