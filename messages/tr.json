@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "Eylemler",
+      "templates": "Sablonlar",
       "download": "İndir",
       "reset": "Sıfırla"
     }

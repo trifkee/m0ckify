@@ -200,7 +200,7 @@ export default function Model(props: ModelT) {
               />
             </group>
           </group>
-          {props.options.screenReflection && (
+          {Boolean(props.options.screenReflection) && (
             <group position={[0, -25.829, -23.164]}>
               <group
                 position={[611.695, 363.123, 23.164]}

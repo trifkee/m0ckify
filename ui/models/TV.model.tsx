@@ -104,7 +104,7 @@ export default function Model(props: ModelT) {
         material={materials.Body}
         position={[0, -0.3, 0]}
       />
-      {model.screenReflection && (
+      {Boolean(model.screenReflection) && (
         <mesh
           castShadow
           receiveShadow

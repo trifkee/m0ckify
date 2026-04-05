@@ -145,7 +145,7 @@ export default function Model(props: ModelT) {
             geometry={nodes.Cam_Mt.geometry}
             material={materials.Black_Hole}
           />
-          {props.options.screenReflection && (
+            {Boolean(props.options.screenReflection) && (
             <mesh
               castShadow
               receiveShadow

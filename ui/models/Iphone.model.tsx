@@ -106,7 +106,7 @@ export default function Iphone(props: ModelT) {
         material={materials.Black}
         rotation={[0, -Math.PI / 2, 0]}
       />
-      {props.options.screenReflection && (
+      {Boolean(props.options.screenReflection) && (
         <mesh
           geometry={nodes.Glass.geometry}
           material={materials.Glas}

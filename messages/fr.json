@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "Actions",
+      "templates": "Modèles",
       "download": "Télécharger",
       "reset": "Réinitialiser"
     }

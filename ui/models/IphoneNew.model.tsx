@@ -77,7 +77,7 @@ export default function Model(props: ModelT) {
             geometry={nodes.UCttAeyROPsgmix.geometry}
             material={materials.KtvhjlxyToKjYkE}
           />
-          {props.options.screenReflection && (
+          {Boolean(props.options.screenReflection) && (
             <mesh
               castShadow
               receiveShadow

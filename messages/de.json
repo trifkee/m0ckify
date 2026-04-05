@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "Aktionen",
+      "templates": "Vorlagen",
       "download": "Herunterladen",
       "reset": "Zurücksetzen"
     }

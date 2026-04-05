@@ -128,7 +128,7 @@ export default function Background() {
                   className="small env-slider"
                   max={100}
                   min={0}
-                  name={t("lights.lights.intensity")}
+                  name={t("colorStop")}
                   step={1}
                   onChange={(e) => handleGradientColorStop(Number(e.target.value))}
                   value={String(backgroundSettings.gradientColorStop)}              

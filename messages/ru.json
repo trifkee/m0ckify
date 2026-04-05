@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "Действия",
+      "templates": "Шаблоны",
       "download": "Скачать",
       "reset": "Сбросить"
     }

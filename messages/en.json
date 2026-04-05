@@ -259,6 +259,7 @@
     },
     "actions": {
       "title": "Actions",
+      "templates": "Templates",
       "download": "Download",
       "reset": "Reset"
     }
