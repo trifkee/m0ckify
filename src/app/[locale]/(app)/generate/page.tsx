@@ -23,6 +23,7 @@ export default function Generate({
 }) {
   return (
     <>
+      <h1 style={{ opacity: 0, position: "absolute" }}>Mockify</h1>
       <LazyHelpModal />
       <GenerateLoading />
       <main className="generate">

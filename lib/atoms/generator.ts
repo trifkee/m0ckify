@@ -31,7 +31,6 @@ export const canvasOptionsAtom = atom({
     toneMappingExposure: 1,
     toneMapping: TONE_MAPPINGS[0].value,
     grid: false,
-    bloom: 0,
     dampingSpeed: 0.2,
   },
 });
@@ -56,20 +55,20 @@ export const sceneLightsAtom = atom<SceneLightsType[]>({
   default: [
     {
       color: "#fff",
-      intensity: 0.5,
+      intensity: 1.4,
       position: {
-        x: -2,
-        y: 1,
-        z: 5,
+        x: -4,
+        y: 6,
+        z: 8,
       },
     },
     {
       color: "#fff",
-      intensity: 0.5,
+      intensity: 0.9,
       position: {
-        x: 5,
-        y: -10,
-        z: 15,
+        x: 6,
+        y: 2,
+        z: 4,
       },
     },
   ],
@@ -81,8 +80,8 @@ export const sceneDocumentAtom = atom<SceneDocumentType>({
     title: "Untitled",
     background: "transparent",
     env: {
-      preset: "warehouse",
-      intensity: 0.25,
+      preset: "city",
+      intensity: 1,
       color: "#fff",
       castShadow: false,
     },

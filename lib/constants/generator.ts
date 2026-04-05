@@ -133,6 +133,11 @@ Negative prompt: Avoid:
   Include a clean navigation bar at the bottom with 4 essential icons, a prominent search bar at the top, and content cards in between. 
   Use a color scheme based on given prompt that you think is good, with ample white space. 
   Focus on intuitive user flow and material design principles.`,
+  nanobanana: `single screen.
+  Create a modern, minimalist mobile app interface for mobile phone. Minimal clean, UI design with a focus on usability and user experience. Use 8point system for design.
+  Include a clean navigation bar at the bottom with 4 essential icons, a prominent search bar at the top, and content cards in between. 
+  Use a color scheme based on given prompt that you think is good, with ample white space. 
+  Focus on intuitive user flow and material design principles. In dimension 1290x2796px for iPhone 14 Pro.`,
 };
 
 export const MODELS_LIST = [
@@ -250,7 +255,7 @@ export const DEFAULT_OBJECT_OPTIONS = {
   color: "#fff",
   texture: "plastic" as "plastic",
   bodyReflection: 0,
-  screenReflection: 1,
+  screenReflection: 0,
   screenAlphaReflection: 0.1,
   position: {
     x: 0 as number,
@@ -287,6 +292,11 @@ export const AI_SERVICES = [
     id: 2,
     name: "stablediffusion",
     title: "Stable diffusion",
+  },
+  {
+    id: 4,
+    name: "nanobanana",
+    title: "Nanobanana",
   },
 ];
 

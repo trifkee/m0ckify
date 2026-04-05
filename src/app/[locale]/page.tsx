@@ -55,24 +55,10 @@ export default function Home({
 
             <div className="images">
               <Image
-                width={1920}
-                height={720}
-                alt="noise"
-                className="noise-texture"
-                src="https://utfs.io/f/iztaqYgynMhQZLksdak2N3mK9FQMEWgPS2C8uVTzJ0cxi1kL"
-              />
-              <Image
-                width={1920}
-                height={720}
-                className="grids"
-                src="https://utfs.io/f/iztaqYgynMhQ8rhEQ30faA4ur9TcGVvgNXeH8kSFBwIn3CdD"
-                alt="product mockup free online"
-              />
-              <Image
                 className="gradient-image"
                 width={1920}
                 height={720}
-                src="https://utfs.io/f/iztaqYgynMhQzBXRYJM8PvFns3adbtMZODo29QJBS6yuWKL0"
+                src="./bg.png"
                 alt="Mockify - Free 3D online mockup generator"
               />
             </div>

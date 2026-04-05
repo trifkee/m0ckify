@@ -74,8 +74,8 @@ export default function GenerateObjects() {
         <>
           <div ref={layersRef} className="layers">
             <AnimatePresence>
-              {layers?.map((layer, i) => (
-                <ObjectLayer key={i} layer={layer} />
+              {layers?.map((layer) => (
+                <ObjectLayer key={layer.id} layer={layer} />
               ))}
             </AnimatePresence>
           </div>

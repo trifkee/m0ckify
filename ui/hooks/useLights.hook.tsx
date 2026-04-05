@@ -10,7 +10,7 @@ export default function useLights() {
   const onChangeIntensity = (e: any, index?: number) => {
     setSceneLights(
       sceneLights.map((light, i: number) =>
-        i === index ? { ...light, intensity: e.target.value } : light
+        i === index ? { ...light, intensity: Number(e.target.value) } : light
       )
     );
   };

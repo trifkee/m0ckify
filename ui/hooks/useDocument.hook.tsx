@@ -31,13 +31,20 @@ export default function useDocument() {
   };
 
   function handleChange(e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+    const isCheckbox = e.target.type === "checkbox";
+    const isNumericInput =
+      e.target instanceof HTMLInputElement &&
+      (e.target.type === "number" || e.target.type === "range");
+
     setSceneDocument((prev) => ({
       ...prev,
       env: {
         ...prev.env,
         [e.target.name]:
-          e.target.type === "checkbox"
+          isCheckbox
             ? (e.target as HTMLInputElement).checked
+            : isNumericInput
+            ? Number(e.target.value)
             : e.target.value,
       },
     }));
