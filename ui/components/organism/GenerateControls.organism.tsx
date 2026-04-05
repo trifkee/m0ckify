@@ -10,6 +10,7 @@ import Actions from "../moleculs/GenerateControls/Actions.molecul";
 import Camera from "../moleculs/GenerateControls/Camera.molecul";
 
 import "@/ui/styles/organism/generateControls.organism.scss";
+import Background from '../moleculs/GenerateControls/Background.molecul';
 
 export default function GenerateControls() {
   const { handleSave } = useGenerator();
@@ -21,6 +22,7 @@ export default function GenerateControls() {
       <Render />
       <Camera />
       <Env />
+      <Background />
       <Lights />
       <Actions
         handleSave={handleSave}

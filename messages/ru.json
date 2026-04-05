@@ -105,7 +105,6 @@
   },
   "generate": {
     "dropImage": "Перетащите ваше изображение сюда",
-
     "general": {
       "title": "Общие",
       "world": {
@@ -139,8 +138,29 @@
       },
       "background": {
         "title": "Фон",
-        "enable": "Включено"
+        "enable": "Включено",
+        "solid": "Однотонный",
+        "gradient": "Градиент",
+        "gradientPresets": "Предустановки",
+        "color": "Цвет",
+        "gradientColor": "Цвет градиента",
+        "angle": "Угол",
+        "colorStop": "Остановка цвета"
       }
+    },
+    "camera": {
+      "title": "Камера",
+      "sceneCamera": "Камера сцены",
+      "addCamera": "Добавить камеру",
+      "remove": "Удалить",
+      "name": "Имя",
+      "cameraName": "Имя камеры",
+      "type": "Тип",
+      "fieldOfView": "Поле зрения",
+      "zoom": "Зум",
+      "position": "Позиция",
+      "target": "Цель",
+      "quickFraming": "Быстрое кадрирование"
     },
     "render": {
       "title": "Рендеринг",

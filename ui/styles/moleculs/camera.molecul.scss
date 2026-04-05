@@ -1,5 +1,15 @@
 @import "variables.scss";
 
+.camera-actions-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+
+  .button {
+    padding-inline: 0.75rem;
+  }
+}
+
 .camera-position {
   .position-grid {
     display: grid;
@@ -17,6 +27,7 @@
       transition: 0.2s ease all;
       cursor: pointer;
       padding: 0.5rem;
+      appearance: none;
 
       & > svg {
         font-size: 1rem;

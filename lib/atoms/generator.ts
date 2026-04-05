@@ -155,20 +155,38 @@ export const backgroundSettingsAtom = atom({
   key: "background",
   default: {
     enabled: false,
-    color: "black",
+    color: "#000000",
+    type: "solid" as "solid" | "gradient",
+    gradientColor: "#ffffff",
+    gradientAngle: 135,
+    gradientColorStop: 50,
   },
 });
 
 export const cameraSettingsAtom = atom<SceneCameraType>({
   key: "camera",
   default: {
-    type: "perspective",
-    position: [0, 0, 0],
-    fov: 50,
-    zoom: 150,
-    focalLength: 0,
-    bokehScale: 0,
-    focusDistance: 0,
-    effects: false,
+    activeCameraId: "camera-1",
+    preview: {
+      enabled: true,
+      showSafeFrame: true,
+    },
+    cameras: [
+      {
+        id: "camera-1",
+        name: "Main Camera",
+        type: "perspective",
+        position: [0, 0, 5],
+        target: [0, 0, 0],
+        fov: 50,
+        zoom: 1,
+        near: 0.1,
+        far: 100,
+        focalLength: 0,
+        bokehScale: 0,
+        focusDistance: 0,
+        effects: false,
+      },
+    ],
   },
 });

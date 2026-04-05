@@ -21,7 +21,6 @@ export default function OverallSettings() {
         <World />
         <Fog />
         <Reflection />
-        <Background />
       </div>
     </details>
   );

@@ -138,8 +138,29 @@
       },
       "background": {
         "title": "Arrière-plan",
-        "enable": "Activé"
+        "enable": "Activé",
+        "solid": "Uni",
+        "gradient": "Dégradé",
+        "gradientPresets": "Présélections",
+        "color": "Couleur",
+        "gradientColor": "Couleur du dégradé",
+        "angle": "Angle",
+        "colorStop": "Arrêt de couleur"
       }
+    },
+    "camera": {
+      "title": "Caméra",
+      "sceneCamera": "Caméra de la scène",
+      "addCamera": "Ajouter une caméra",
+      "remove": "Supprimer",
+      "name": "Nom",
+      "cameraName": "Nom de la caméra",
+      "type": "Type",
+      "fieldOfView": "Champ de vision",
+      "zoom": "Zoom",
+      "position": "Position",
+      "target": "Cible",
+      "quickFraming": "Cadrage rapide"
     },
     "render": {
       "title": "Rendu",

@@ -6,6 +6,9 @@ import { renderAtom } from "@/lib/atoms/generator";
 import { IMAGE_TYPES } from "@/lib/constants/generator";
 import useRender from "@/ui/hooks/useRender.hook";
 import Slider from "../../atoms/Slider.atom";
+import Checkbox from "../../atoms/Checkbox.atom";
+import useCamera from "@/ui/hooks/useCamera.hook";
+import { cameraSettingsAtom } from "@/lib/atoms/generator";
 
 function checkQuality(quality: number) {
   if (quality == 0) {
@@ -31,8 +34,10 @@ export default function Render() {
   const t = useTranslations("generate");
 
   const { handleChange } = useRender();
+  const { handlePreviewChange } = useCamera();
 
   const render = useRecoilValue(renderAtom);
+  const cameraSettings = useRecoilValue(cameraSettingsAtom);
 
   return (
     <details className="control image">
@@ -73,7 +78,7 @@ export default function Render() {
               <select
                 name="type"
                 onChange={handleChange}
-                defaultValue={IMAGE_TYPES[0]}
+                value={render.type}
               >
                 {IMAGE_TYPES.map((type) => {
                   return (
@@ -100,6 +105,24 @@ export default function Render() {
                 onChange={handleChange}
                 step={0.25}
                 value={String(render.quality)}
+              />
+            </div>
+
+            <div className="control__section">
+              <p className="title">Viewport preview</p>
+              <Checkbox
+                title="Lock viewport to render frame"
+                htmlName="previewEnabled"
+                value={cameraSettings.preview.enabled}
+                onChange={(e) => handlePreviewChange("enabled", e.target.checked)}
+              />
+              <Checkbox
+                title="Show safe frame"
+                htmlName="showSafeFrame"
+                value={cameraSettings.preview.showSafeFrame}
+                onChange={(e) =>
+                  handlePreviewChange("showSafeFrame", e.target.checked)
+                }
               />
             </div>
           </div>
