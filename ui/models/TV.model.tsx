@@ -68,12 +68,12 @@ export default function Model(props: ModelT) {
       {...props}
       rotation={[
         props.options.rotation.y,
-        props.options.rotation.x,
+        props.options.rotation.y,
         props.options.rotation.z,
       ]}
       position={[
         props.options.position.y,
-        props.options.position.x,
+        props.options.position.y,
         props.options.position.z,
       ]}
       dispose={null}
