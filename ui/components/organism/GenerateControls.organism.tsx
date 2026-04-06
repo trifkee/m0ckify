@@ -1,35 +1,30 @@
 "use client";
-import useGenerator from "@/ui/hooks/useGenerator.hook";
 
-import Render from "../moleculs/GenerateControls/Render.molecul";
-import User from "../moleculs/GenerateControls/User.molecul";
-import Env from "../moleculs/GenerateControls/Env.molecul";
-import Lights from "../moleculs/GenerateControls/Lights.molecul";
-import OverallSettings from "../moleculs/GenerateControls/OverallSettings.molecul";
-import Actions from "../moleculs/GenerateControls/Actions.molecul";
-import Camera from "../moleculs/GenerateControls/Camera.molecul";
+import useGenerateControls from '@/ui/hooks/useGenerateControls.hook';
 
-import "@/ui/styles/organism/generateControls.organism.scss";
-import Background from '../moleculs/GenerateControls/Background.molecul';
-import Templates from '../moleculs/GenerateControls/Templates.molecul';
+import "@/ui/styles/organism/generateControls.new.organism.scss";
 
 export default function GenerateControls() {
-  const { handleSave } = useGenerator();
+  const { handleSelectTab, selectedTab, tabs } = useGenerateControls()
 
   return (
-    <article className="generate__controls">
-      <User />
-      <Templates/>
-      <OverallSettings />
-      <Render />
-      <Camera />
-      <Env />
-      <Background />
-      <Lights />
-      <Actions
-        handleSave={handleSave}
-        // resetModelPosition={resetModelPosition}
-      />
+    <article className="generate__controls controls">
+      <div className="selections">
+      {
+        tabs.map((tab, index) => {
+          return (
+           <div key={index} className={`selections__tab ${selectedTab === tab.name ? 'active' : ''}`} data-name={tab.name} onClick={() => handleSelectTab(tab.name)}>
+            {tab.icon}
+
+            <span className='tab-name'>{tab.name}</span>
+          </div>
+          )
+        })
+      }
+      </div>
+      <div className={`selected-menu ${selectedTab ? 'active' : ''}`}>
+        {tabs.find(tab => tab.name === selectedTab)?.component}
+      </div>
     </article>
   );
 }

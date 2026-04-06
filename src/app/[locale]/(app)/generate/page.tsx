@@ -1,9 +1,9 @@
 import dynamic from "next/dynamic";
 
 import GenerateModel from "@/ui/components/organism/GenerateModel.organism";
-import GenerateControls from "@/ui/components/organism/GenerateControls.organism";
 import GenerateNavigation from "@/ui/components/organism/GenerateNavigation.organism";
 import GenerateObjects from "@/ui/components/organism/GenerateObjects.organism";
+import GenerateControlsContainer from '@/ui/components/containers/GenerateControls.container';
 
 import GenerateLoading from "@/ui/components/atoms/GenerateLoading.atom";
 
@@ -29,7 +29,7 @@ export default function Generate({
       <main className="generate">
         <GenerateNavigation locale={locale} />
         <GenerateModel />
-        <GenerateControls />
+        <GenerateControlsContainer />
         <GenerateObjects />
       </main>
     </>

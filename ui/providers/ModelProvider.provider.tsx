@@ -46,21 +46,6 @@ export default function ModelProvider() {
   const parentRef = useRef<HTMLDivElement | null>(null);
   const t = useTranslations("generate");
 
-  const restoreGeneratorState = useRestoreGeneratorState();
-  function setShowTemplate(value: boolean) {
-    console.log('sss');
-
-    try {
-      console.log(template_5,'template_5');
-      const doc = template_5;
-      if (!doc) throw new Error('Nema sačuvanog stanja u localStorage!');
-      const parsed = doc;
-      restoreGeneratorState(parsed);
-      alert('Stanje je uspešno učitano iz localStorage!');
-    } catch (e) {
-      alert(`Greška pri učitavanju iz localStorage! ${e}`);
-    }
-  }
 
   const [freeroam, setFreeroam] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -131,7 +116,7 @@ export default function ModelProvider() {
       <ContextMenu
         handleSave={handleSave}
         handleImageChange={handleImageChange}
-        // resetModelPosition={resetModelPosition}
+      // resetModelPosition={resetModelPosition}
       />
       <div
         className="model"
@@ -197,14 +182,6 @@ export default function ModelProvider() {
                 <LucideSettings2 style={{ transform: "rotate(90deg)" }} />
               </Button> */}
             </div>
-
-            <Button
-              variant="editor"
-              onClick={() => setShowTemplate(true)}
-              className="template"
-            >
-              <LucideLayoutTemplate />
-            </Button>
             <Button
               variant="editor"
               onClick={() => setShowHelp(true)}
@@ -238,9 +215,8 @@ export default function ModelProvider() {
                   >
                     <Button
                       variant="editor"
-                      className={`freeroam ${
-                        !pivotControlsEnabled.move ? "y" : "n"
-                      }`}
+                      className={`freeroam ${!pivotControlsEnabled.move ? "y" : "n"
+                        }`}
                       onClick={() => handleEnabledPivotControls("move")}
                     >
                       <Move />
@@ -259,9 +235,8 @@ export default function ModelProvider() {
                   >
                     <Button
                       variant="editor"
-                      className={` freeroam ${
-                        !pivotControlsEnabled.rotate ? "y" : "n"
-                      }`}
+                      className={` freeroam ${!pivotControlsEnabled.rotate ? "y" : "n"
+                        }`}
                       onClick={() => handleEnabledPivotControls("rotate")}
                     >
                       <RefreshCw />
@@ -280,9 +255,8 @@ export default function ModelProvider() {
                   >
                     <Button
                       variant="editor"
-                      className={`freeroam ${
-                        !pivotControlsEnabled.scale ? "y" : "n"
-                      }`}
+                      className={`freeroam ${!pivotControlsEnabled.scale ? "y" : "n"
+                        }`}
                       onClick={() => handleEnabledPivotControls("scale")}
                     >
                       <Scale3d />
@@ -302,9 +276,8 @@ export default function ModelProvider() {
                   >
                     <Button
                       variant="editor"
-                      className={`freeroam ${
-                        !pivotControlsEnabled.axes ? "y" : "n"
-                      }`}
+                      className={`freeroam ${!pivotControlsEnabled.axes ? "y" : "n"
+                        }`}
                       onClick={() => handleEnabledPivotControls("axes")}
                     >
                       <Maximize />

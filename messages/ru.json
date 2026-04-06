@@ -257,6 +257,7 @@
         "color": "Цвет"
       }
     },
+    "newControlsDesign": "Меню Управления v2",
     "actions": {
       "title": "Действия",
       "templates": "Шаблоны",

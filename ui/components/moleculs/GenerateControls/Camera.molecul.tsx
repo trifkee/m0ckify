@@ -88,6 +88,48 @@ export default function Camera() {
       </summary>
 
       <div className="control__section select">
+        <div className="control__section select">
+          <p className="title">{t("type")}</p>
+
+          <select
+            name="type"
+            value={activeCamera.type}
+            id="type"
+            onChange={handleChange}
+          >
+            {CAMERA_STYLE.map((camera) => (
+              <option key={camera.id} value={camera.name}>
+                {camera.title}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {activeCamera.type == "perspective" ? (
+          <div className="control__section">
+            <p className="title">{t("fieldOfView")}</p>
+            <NumberInput
+              label={<LucideScanEye />}
+              name="fov"
+              value={activeCamera.fov}
+              onChange={handleChange}
+            />
+          </div>
+        ) : (
+          <div className="control__section">
+            <p className="title">{t("zoom")}</p>
+            <NumberInput
+              label={<LucideScanEye />}
+              name="zoom"
+              min={1}
+              value={activeCamera.zoom}
+              onChange={handleChange}
+            />
+          </div>
+        )}
+
+        <div className="hr"></div>
+
         <p className="title">{t("sceneCamera")}</p>
         <select
           name="activeCameraId"
@@ -130,22 +172,6 @@ export default function Camera() {
         />
       </div>
 
-      <div className="control__section select">
-        <p className="title">{t("type")}</p>
-
-        <select
-          name="type"
-          value={activeCamera.type}
-          id="type"
-          onChange={handleChange}
-        >
-          {CAMERA_STYLE.map((camera) => (
-            <option key={camera.id} value={camera.name}>
-              {camera.title}
-            </option>
-          ))}
-        </select>
-      </div>
       {/* 
       <div className="control__section camera-position">
         <p className="title">Position</p>
@@ -217,29 +243,6 @@ export default function Camera() {
       </div> */}
 
       <div className="position">
-        {activeCamera.type == "perspective" ? (
-          <div className="control__section">
-            <p className="title">{t("fieldOfView")}</p>
-            <NumberInput
-              label={<LucideScanEye />}
-              name="fov"
-              value={activeCamera.fov}
-              onChange={handleChange}
-            />
-          </div>
-        ) : (
-          <div className="control__section">
-            <p className="title">{t("zoom")}</p>
-            <NumberInput
-              label={<LucideScanEye />}
-              name="zoom"
-              min={1}
-              value={activeCamera.zoom}
-              onChange={handleChange}
-            />
-          </div>
-        )}
-
         <div className="control__section">
           <p className="title">{t("position")}</p>
           <div className="position">
@@ -299,6 +302,8 @@ export default function Camera() {
             />
           </div>
         </div>
+
+        <div className="hr"></div>
 
         <div className="control__section camera-position">
           <p className="title">{t("quickFraming")}</p>
