@@ -257,6 +257,7 @@
         "color": "颜色"
       }
     },
+    "newControlsDesign": "控制菜单 v2",
     "actions": {
       "title": "操作",
       "templates": "模板",

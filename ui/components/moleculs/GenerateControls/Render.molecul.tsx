@@ -108,6 +108,8 @@ export default function Render() {
               />
             </div>
 
+            <div className="hr"></div>
+
             <div className="control__section">
               <p className="title">Viewport preview</p>
               <Checkbox

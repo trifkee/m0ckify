@@ -9,11 +9,17 @@ import {
   sceneDocumentAtom,
   selectedLayerAtom,
 } from "@/lib/atoms/generator";
+import { newControlsDesignAtom } from '@/lib/atoms/global';
 
 export default function useGenerator() {
   const sceneDocument = useRecoilValue(sceneDocumentAtom);
   const [selectedLayer, setSelectedLayer] = useRecoilState(selectedLayerAtom);
   const render = useRecoilValue(renderAtom);
+  const [newControlsDesign, setNewControlsDesign] = useRecoilState(newControlsDesignAtom);
+
+  function handleSwitchControlsDesign() {
+    setNewControlsDesign((prev) => !prev);
+  }
 
   /* Save Image to user PC */
   const handleSave = () => {
@@ -71,5 +77,5 @@ export default function useGenerator() {
   //   ]);
   // };
 
-  return { handleSave };
+  return { handleSave, handleSwitchControlsDesign, newControlsDesign };
 }

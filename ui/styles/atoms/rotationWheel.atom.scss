@@ -11,9 +11,9 @@
   transition: all 0.3s ease;
   background: transparent;
 
-  & > svg {
-    width: 150px!important;
-    height: 150px!important;
+  &>svg {
+    width: 150px !important;
+    height: 150px !important;
   }
 }
 
@@ -141,7 +141,7 @@
 
 .gradient-presets {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
   gap: 0.5rem;
   width: 100%;
 
@@ -178,5 +178,3 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-
-

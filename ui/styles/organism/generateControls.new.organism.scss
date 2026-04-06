@@ -1,0 +1,531 @@
+@import "variables.scss";
+
+.generate {
+  &__controls.controls {
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1000;
+    background: rgb($dashboard-gray-clr, 0.95);
+    border-top: 1px solid rgb($dashboard-border-clr, 1);
+    overflow-y: visible;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .selections {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: visible;
+    width: 100%;
+    white-space: nowrap;
+    border-bottom: 1px solid rgb($dashboard-border-clr, 1);
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &__tab {
+      width: fit-content;
+      padding: 1rem 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-start;
+      cursor: pointer;
+      scroll-snap-align: start;
+      border-right: 1px solid rgb($dashboard-border-clr, 1);
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+
+      &.active {
+        background: rgb($dashboard-border-clr, 0.5);
+      }
+
+      &:hover {
+        background: rgb($dashboard-border-clr, 0.3);
+      }
+
+      .tab-name {
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .selected-menu {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: 100%;
+    max-width: 100vw;
+    background-color: rgb($dashboard-gray-clr, 0.98);
+    backdrop-filter: blur(10px);
+    max-height: 70vh;
+    padding: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgb($dashboard-border-clr, 1);
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+      background: rgb($dark-gray-clr, 0.5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgb($dashboard-border-clr, 1);
+      border-radius: 0.25rem;
+    }
+
+    &.active {
+      display: block;
+    }
+
+    // Stilovi za control elemente unutar modala
+    .control {
+      &:has(> .control) {
+        padding: 0;
+      }
+
+      padding: 0.5rem;
+      border-bottom: 1px solid rgb($dashboard-border-clr, 0.5);
+      display: flex;
+      flex-direction: column;
+
+      &[open] {
+        background: rgb($light-gray-clr, 0.2);
+
+        &>.control__title {
+          background: rgb($dark-gray-clr, 0.25);
+        }
+      }
+
+      &>*,
+      &>*>* {
+        border-radius: 0.15rem;
+      }
+
+      &:last-of-type+.divider {
+        display: none;
+      }
+
+      .magic-input {
+        height: 12rem;
+        border-radius: 0.25rem;
+        background: rgb($dark-gray-clr, 0.15);
+        padding: 0.5rem;
+        font: inherit;
+        font-size: clamp(0.5rem, 65rem, 0.85rem);
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .input {
+        border-radius: 0.25rem;
+        background: rgb($dark-gray-clr, 0.15);
+        padding: 0.5rem;
+        font: inherit;
+        font-size: clamp(0.5rem, 65rem, 0.85rem);
+        border: 1px solid rgb($dashboard-border-clr, 1);
+        background-color: rgb($dark-gray-clr, 0.15);
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .divider {
+        height: 1px;
+        background: rgb($dashboard-border-clr, 1);
+      }
+
+      &__title {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 1rem 0.5rem;
+        font-weight: bold;
+        font-size: clamp(0.5rem, 10vw, 0.85rem);
+        border-radius: 0.25rem;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &:hover {
+          background: rgb($dark-gray-clr, 0.25);
+        }
+
+        &::-webkit-details-marker {
+          display: none;
+        }
+
+        &.flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 0.25rem;
+
+          .button {
+            width: fit-content;
+          }
+        }
+      }
+
+      &.user {
+        display: flex;
+        flex-direction: column;
+
+        .user-container {
+          padding: 0.5rem 0;
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          gap: 0.5rem;
+
+          .user {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+
+            p {
+              max-width: 16ch;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          .logout {
+            width: 100%;
+          }
+
+          img {
+            aspect-ratio: 1;
+            border-radius: 100%;
+            object-fit: cover;
+            max-height: 24px;
+            width: 24px;
+          }
+        }
+      }
+
+      &.image {
+        .image-container {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0.5rem;
+          outline: 1px solid $dashboard-border-clr;
+          width: 100%;
+          height: 10rem;
+          overflow: hidden;
+          background-image: radial-gradient(circle,
+              rgb($dashboard-border-clr, 0.25) 1px,
+              rgb($dark-gray-clr, 0.5) 1px);
+          background-size: 0.5rem 0.5rem;
+          background-position: center center;
+
+          img {
+            object-fit: cover;
+            object-position: center;
+          }
+        }
+      }
+
+      &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        overflow: hidden;
+        padding: 0.5rem 0;
+
+        .template-presets {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+          gap: 0.5rem;
+        }
+
+        .template-preset-card {
+          position: relative;
+          border: 2px solid rgb($dashboard-border-clr, 0.7);
+          border-radius: 0.35rem;
+          overflow: hidden;
+          background: rgb($dark-gray-clr, 0.35);
+          padding: 0;
+          cursor: pointer;
+          transition: 0.2s ease all;
+          aspect-ratio: 16 / 10;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+          }
+
+          span {
+            position: absolute;
+            top: 0.35rem;
+            right: 0.35rem;
+            font-size: 0.65rem;
+            line-height: 1;
+            font-weight: 700;
+            padding: 0.25rem 0.35rem;
+            border-radius: 0.25rem;
+            color: rgb($white-clr, 0.95);
+            background: rgb($dark-gray-clr, 0.7);
+            border: 1px solid rgb($dashboard-border-clr, 0.7);
+          }
+
+          &:hover {
+            border-color: rgb($secondary-clr-400, 1);
+            transform: scale(1.02);
+            box-shadow: 0 0 0.75rem rgb($secondary-clr-400, 0.2);
+          }
+
+          &.active {
+            border-color: rgb($primary-clr-500, 1);
+            box-shadow: 0 0 0 1px rgb($primary-clr-500, 0.6);
+          }
+        }
+
+        &>* {
+          width: 100%;
+        }
+
+        &.render-quality {
+          .title {
+            width: 100%;
+            display: flex;
+            align-items: center;
+
+            span {
+              margin-left: auto;
+              border-radius: 0.25rem;
+              padding: 0.25rem 0.5rem;
+
+              &.Low {
+                color: rgb(255, 78, 78);
+              }
+
+              &.Bad {
+                color: rgb(243, 148, 6);
+              }
+
+              &.Good {
+                color: rgb(252, 255, 68);
+              }
+
+              &.Very.Good {
+                color: rgb(110, 233, 165);
+              }
+
+              &.Best {
+                color: rgb(15, 224, 32);
+              }
+            }
+          }
+        }
+
+        .title {
+          font-weight: 300;
+          font-size: clamp(0.5rem, 15vw, 0.75rem);
+
+          &.information {
+            border-radius: 0.25rem;
+            background-color: rgb($ternary-clr-500, 0.5);
+            padding: 0.5rem;
+            border: 1px solid rgb($ternary-clr-500, 1);
+          }
+
+          &.flex {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.5rem 0;
+
+            .button {
+              padding: 0.25rem;
+              width: fit-content;
+            }
+          }
+
+          &.additional-info {
+            color: rgb($yellow-clr-500, 1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            background: rgb($yellow-clr-500, 0.15);
+            border: 1px solid rgb($yellow-clr-500, 0.5);
+
+            span,
+            path,
+            svg {
+              width: 16px !important;
+              font-size: 0.5rem;
+              color: inherit;
+            }
+          }
+        }
+
+        .react-colorful {
+          width: 100%;
+          cursor: pointer;
+
+          @media (max-width: 768px) {
+            max-width: 70%;
+          }
+        }
+
+        .position {
+          display: flex;
+          gap: 0.5rem;
+        }
+
+        input[type="number"] {
+          width: 100%;
+          height: 2rem;
+          outline: none;
+          text-align: center;
+          border: 1px solid rgb($dashboard-border-clr, 1);
+          background: rgb($dark-gray-clr, 0.5);
+        }
+
+        .textures {
+          display: flex;
+          gap: 0.25rem;
+        }
+      }
+    }
+
+    .select {
+      width: 100%;
+
+      select {
+        width: 100%;
+        color: $white-clr;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        outline: none;
+        border: 1px solid rgb($dashboard-border-clr, 1);
+        background: rgb($dark-gray-clr, 0.5);
+        transition: 0.2s ease all;
+
+        &:hover {
+          cursor: pointer;
+          border: 1px solid $secondary-clr-400;
+          background: rgb($secondary-clr-700, 0.5);
+        }
+
+        &>* {
+          border-radius: 0;
+        }
+      }
+    }
+  }
+
+  .hr {
+    height: 1px;
+    background: rgb($dashboard-border-clr, 1);
+    margin: 1rem 0;
+  }
+
+  .color-pickers {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    &>* {
+      min-width: 10vw;
+      width: 100%;
+      flex: 1;
+      height: clamp(8rem, 20vw, 12rem);
+    }
+  }
+}
+
+@media (max-width: 768PX) {
+  .generate__controls {
+    .selected-menu {
+      max-height: 60vh;
+
+      .control__section {
+        .template-presets {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 768PX) {
+  .generate__controls.controls {
+    resize: vertical;
+    grid-area: menu;
+    width: 25vw;
+    display: flex;
+    flex-direction: row;
+
+    .selections {
+      flex-direction: column;
+      height: 100%;
+      border-right: 1px solid rgb($dashboard-border-clr, 1);
+      width: fit-content;
+      border-bottom: none;
+      overflow: visible;
+
+      &__tab {
+        width: 50px;
+        aspect-ratio: 1;
+        padding: 1rem;
+        border-right: none;
+        border-bottom: 1px solid rgb($dashboard-border-clr, 1);
+        position: relative;
+
+        &::before {
+          user-select: none;
+          pointer-events: none;
+          content: attr(data-name);
+          position: absolute;
+          right: 130%;
+          top: 50%;
+          font-size: 1rem;
+          transform: translateY(-50%);
+          white-space: nowrap;
+          background: rgb($dashboard-border-clr, 0.2);
+          color: rgb($white-clr, 0.95);
+          padding: 0.5rem 1rem;
+          border-radius: 0.25rem;
+          border: 1px solid rgb($dashboard-border-clr, 0.5);
+          opacity: 0;
+          backdrop-filter: blur(5px);
+        }
+
+        &:hover::before {
+          opacity: 1;
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+    .selected-menu {
+      padding: unset;
+      position: initial;
+      height: 100%;
+      max-width: unset;
+      max-height: unset;
+      border: none;
+    }
+  }
+}

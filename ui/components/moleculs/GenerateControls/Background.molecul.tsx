@@ -44,6 +44,8 @@ export default function Background() {
         />
       </div>
 
+      <div className="hr"></div>
+
       {backgroundSettings.enabled && (
         <>
           <div className="control__section">
@@ -95,20 +97,24 @@ export default function Background() {
                 </div>
               </div>
 
-              <div className="control__section">
-                <p className="title">{t("color")}</p>
-                <HexColorPicker
-                  color={backgroundSettings.color}
-                  onChange={handleBackgroundSettings}
-                />
-              </div>
+              <div className="hr"></div>
 
-              <div className="control__section">
-                <p className="title">{t("gradientColor")}</p>
-                <HexColorPicker
-                  color={backgroundSettings.gradientColor}
-                  onChange={handleGradientColor}
-                />
+              <div className="color-pickers">
+                <div className="control__section">
+                  <p className="title">{t("color")}</p>
+                  <HexColorPicker
+                    color={backgroundSettings.color}
+                    onChange={handleBackgroundSettings}
+                  />
+                </div>
+
+                <div className="control__section">
+                  <p className="title">{t("gradientColor")}</p>
+                  <HexColorPicker
+                    color={backgroundSettings.gradientColor}
+                    onChange={handleGradientColor}
+                  />
+                </div>
               </div>
 
               <div className="control__section">
@@ -131,7 +137,7 @@ export default function Background() {
                   name={t("colorStop")}
                   step={1}
                   onChange={(e) => handleGradientColorStop(Number(e.target.value))}
-                  value={String(backgroundSettings.gradientColorStop)}              
+                  value={String(backgroundSettings.gradientColorStop)}
                 />
               </div>
             </>

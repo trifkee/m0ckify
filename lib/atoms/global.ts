@@ -12,3 +12,8 @@ export const showCanvasSliderAtom = atom({
   key: "canvasSliders",
   default: true,
 });
+
+export const newControlsDesignAtom = atom({
+  key: "newControlsDesign",
+  default: false,
+});

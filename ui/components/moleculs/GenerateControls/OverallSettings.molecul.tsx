@@ -6,22 +6,35 @@ import Background from "@/ui/components/moleculs/GenerateControls/Background.mol
 import World from "@/ui/components/moleculs/GenerateControls/World.molecul";
 
 import { Monitor } from "lucide-react";
+import { useRecoilValue } from 'recoil';
+import { newControlsDesignAtom } from '@/lib/atoms/global';
 
 export default function OverallSettings() {
   const t = useTranslations("generate");
 
-  return (
-    <details className="control model select">
-      <summary className="control__title">
-        {t("general.title")}
-        <Monitor />
-      </summary>
+  const isNewDesign = useRecoilValue(newControlsDesignAtom)
 
-      <div className="control__section">
-        <World />
-        <Fog />
-        <Reflection />
+  return (
+    isNewDesign ?
+      <div style={{ borderBottom: 'none' }} className="control model select">
+        <div className="control__section">
+          <World />
+          <Fog />
+          <Reflection />
+        </div>
       </div>
-    </details>
+      :
+      <details className="control model select">
+        <summary className="control__title">
+          {t("general.title")}
+          <Monitor />
+        </summary>
+
+        <div className="control__section">
+          <World />
+          <Fog />
+          <Reflection />
+        </div>
+      </details>
   );
 }
